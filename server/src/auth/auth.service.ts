@@ -47,22 +47,55 @@ export class AuthService {
 		}
 	}
 
-	public async login() {}
+	public async login(dto) {
+		const user = await this.userRepository.findOne({
+			where: { email: dto.email },
+		})
+		if (!user) {
+			throw new HttpException(
+				'Invalid email or password',
+				HttpStatus.BAD_REQUEST,
+			)
+		}
+		const isPassEqual = await bcrypt.compare(dto.password, user.password)
+		if (!isPassEqual) {
+			throw new HttpException(
+				'Invalid email or password',
+				HttpStatus.BAD_REQUEST,
+			)
+		}
+		const userDto = new UserDto(user)
+		const tokens = await this.generateTokes({ ...userDto })
+		await this.saveToken(userDto.id, tokens.refreshToken)
+		return {
+			...tokens,
+			user: userDto,
+			userName: dto.userName,
+		}
+	}
 
-	public async logout() {}
+	public async logout(refreshToken: string) {
+		return await this.removeToken(refreshToken)
+	}
 
 	public async activate(activationLink: string) {
 		const user = await this.userRepository.findOne({
 			where: { activationLink },
 		})
 		if (!user) {
-			throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+			throw new HttpException('Invalid link', HttpStatus.BAD_REQUEST)
 		}
 		user.isActivated = true
 		await user.save()
 	}
 
 	public async refresh() {}
+
+	private async removeToken(refreshToken: string) {
+		return await this.tokenRepository.destroy({
+			where: { refreshToken },
+		})
+	}
 
 	private async generateTokes(payload) {
 		const accessToken = this.jwtService.sign(payload, {

@@ -1,39 +1,81 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common'
+import {
+	Body,
+	Controller,
+	Get,
+	Next,
+	Param,
+	Post,
+	Req,
+	Res,
+} from '@nestjs/common'
 import { AuthService } from './auth.service'
-import { CreateUserDto } from '../users/dto/create-user.dto'
+import { CreateUserDto } from '../users/dtos/create-user.dto'
+import { LoginUserDto } from '../users/dtos/login-user.dto'
 
 @Controller('auth')
 export class AuthController {
 	constructor(private authService: AuthService) {}
 
 	@Post('register')
-	async register(@Body() userDto: CreateUserDto, @Res() response) {
-		const userData = await this.authService.register(userDto)
-		await response.cookie('refreshToken', userData.refreshToken, {
-			maxAge: 30 * 24 * 60 * 60 * 1000,
-			httpOnly: true,
-		})
-		return response.json(userData)
+	async register(
+		@Body() userDto: CreateUserDto,
+		@Res() response,
+		@Next() next,
+	) {
+		try {
+			const userData = await this.authService.register(userDto)
+			await response.cookie('refreshToken', userData.refreshToken, {
+				maxAge: 30 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+			})
+			return response.json(userData)
+		} catch (e) {
+			next(e)
+		}
 	}
 
-	@Post()
-	login() {
-		return this.authService.login()
+	@Post('login')
+	async login(@Body() userDto: LoginUserDto, @Res() response, @Next() next) {
+		try {
+			const userData = await this.authService.login(userDto)
+			await response.cookie('refreshToken', userData.refreshToken, {
+				maxAge: 30 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+			})
+			return response.json(userData)
+		} catch (e) {
+			next(e)
+		}
 	}
 
-	@Post()
-	logout() {
-		return this.authService.logout()
+	@Post('logout')
+	async logout(@Req() request, @Res() response, @Next() next) {
+		try {
+			const { refreshToken } = request.cookies
+			const token = await this.authService.logout(refreshToken)
+			response.clearCookie('refreshToken')
+			return response.json(token)
+		} catch (e) {
+			next(e)
+		}
 	}
 
 	@Get('activate/:link')
-	activate(@Param('link') link: string, @Res() response) {
-		this.authService.activate(link).then()
-		return response.redirect(process.env.CLIENT_URL)
+	activate(@Param('link') link: string, @Res() response, @Next() next) {
+		try {
+			this.authService.activate(link).then()
+			return response.redirect(process.env.CLIENT_URL)
+		} catch (e) {
+			next(e)
+		}
 	}
 
 	@Post()
-	refresh() {
-		return this.authService.refresh()
+	refresh(@Next() next) {
+		try {
+			return this.authService.refresh()
+		} catch (e) {
+			next(e)
+		}
 	}
 }
