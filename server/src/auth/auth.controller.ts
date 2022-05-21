@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common'
+import { Body, Controller, Get, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dto/create-user.dto'
 
@@ -26,7 +26,7 @@ export class AuthController {
 		return this.authService.logout()
 	}
 
-	@Post()
+	@Get('activate/:link')
 	activate() {
 		return this.authService.activate()
 	}

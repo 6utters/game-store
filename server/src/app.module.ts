@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { UsersModule } from './users/users.module'
 import { User } from './users/users.model'
+import { join } from 'path'
 import { AuthModule } from './auth/auth.module'
 import { Token } from './auth/tokens.model'
+import { MailerModule } from '@nestjs-modules/mailer'
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 
 @Module({
 	controllers: [],
@@ -23,6 +26,30 @@ import { Token } from './auth/tokens.model'
 			models: [User, Token],
 			autoLoadModels: true,
 			synchronize: true,
+		}),
+		MailerModule.forRootAsync({
+			imports: [ConfigModule],
+			useFactory: async (config: ConfigService) => ({
+				transport: {
+					host: config.get('SMTP_HOST'),
+					secure: false,
+					auth: {
+						user: config.get('SMTP_USER'),
+						pass: config.get('SMTP_PASSWORD'),
+					},
+				},
+				defaults: {
+					from: config.get('SMTP_USER'),
+				},
+				template: {
+					dir: join(__dirname, './templates'),
+					adapter: new HandlebarsAdapter(),
+					options: {
+						strict: true,
+					},
+				},
+			}),
+			inject: [ConfigService],
 		}),
 		UsersModule,
 		AuthModule,

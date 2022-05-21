@@ -20,34 +20,30 @@ export class AuthService {
 	) {}
 
 	public async register(dto) {
-		try {
-			const candidate = await this.userRepository.findOne({
-				where: { email: dto.email },
-			})
-			if (candidate) {
-				return new HttpException('User already exists', HttpStatus.BAD_REQUEST)
-			}
-			const hashPassword = await bcrypt.hash(dto.password, 3)
-			const activationLink = uuidv4()
-			const user = await this.usersService.createUser({
-				...dto,
-				password: hashPassword,
-				activationLink,
-			})
-			await this.mailService.sendActivationMail({
-				email: dto.email,
-				link: activationLink,
-			})
-			const userDto = new UserDto(user)
-			const tokens = await this.generateTokes({ ...userDto })
-			await this.saveToken(userDto.id, tokens.refreshToken)
-			return {
-				...tokens,
-				user: userDto,
-				userName: dto.userName,
-			}
-		} catch (e) {
-			throw new HttpException('Something went wrong', HttpStatus.BAD_REQUEST)
+		const candidate = await this.userRepository.findOne({
+			where: { email: dto.email },
+		})
+		if (candidate) {
+			throw new HttpException('User already exists', HttpStatus.BAD_REQUEST)
+		}
+		const hashPassword = await bcrypt.hash(dto.password, 3)
+		const activationLink = uuidv4()
+		const user = await this.usersService.createUser({
+			...dto,
+			password: hashPassword,
+			activationLink: `${process.env.API_URL}/api/activate/${activationLink}`,
+		})
+		await this.mailService.sendActivationMail({
+			email: dto.email,
+			link: `${process.env.API_URL}/api/activate/${activationLink}`,
+		})
+		const userDto = new UserDto(user)
+		const tokens = await this.generateTokes({ ...userDto })
+		await this.saveToken(userDto.id, tokens.refreshToken)
+		return {
+			...tokens,
+			user: userDto,
+			userName: dto.userName,
 		}
 	}
 
