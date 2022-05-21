@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dto/create-user.dto'
 
@@ -27,8 +27,9 @@ export class AuthController {
 	}
 
 	@Get('activate/:link')
-	activate() {
-		return this.authService.activate()
+	activate(@Param('link') link: string, @Res() response) {
+		this.authService.activate(link).then()
+		return response.redirect(process.env.CLIENT_URL)
 	}
 
 	@Post()

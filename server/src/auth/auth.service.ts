@@ -31,11 +31,11 @@ export class AuthService {
 		const user = await this.usersService.createUser({
 			...dto,
 			password: hashPassword,
-			activationLink: `${process.env.API_URL}/api/activate/${activationLink}`,
+			activationLink,
 		})
 		await this.mailService.sendActivationMail({
 			email: dto.email,
-			link: `${process.env.API_URL}/api/activate/${activationLink}`,
+			link: `${process.env.API_URL}/api/auth/activate/${activationLink}`,
 		})
 		const userDto = new UserDto(user)
 		const tokens = await this.generateTokes({ ...userDto })
@@ -51,7 +51,16 @@ export class AuthService {
 
 	public async logout() {}
 
-	public async activate() {}
+	public async activate(activationLink: string) {
+		const user = await this.userRepository.findOne({
+			where: { activationLink },
+		})
+		if (!user) {
+			throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+		}
+		user.isActivated = true
+		await user.save()
+	}
 
 	public async refresh() {}
 
