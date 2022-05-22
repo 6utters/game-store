@@ -89,7 +89,52 @@ export class AuthService {
 		await user.save()
 	}
 
-	public async refresh() {}
+	public async refresh(refreshToken: string) {
+		if (!refreshToken) {
+			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
+		}
+		const userData = await this.validateRefreshToken(refreshToken)
+		const currentToken = await this.findToken(refreshToken)
+		if (!userData || !currentToken) {
+			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
+		}
+		const user = await this.userRepository.findOne({
+			where: { id: userData.id },
+		})
+		const userDto = new UserDto(user)
+		const tokens = await this.generateTokes({ ...userDto })
+		await this.saveToken(userDto.id, tokens.refreshToken)
+		return {
+			...tokens,
+			user: userDto,
+		}
+	}
+
+	public validateAccessToken(accessToken: string) {
+		try {
+			return this.jwtService.verify(accessToken, {
+				secret: process.env.JWT_ACCESS_SECRET,
+			})
+		} catch (e) {
+			return null
+		}
+	}
+
+	private validateRefreshToken(refreshToken: string) {
+		try {
+			return this.jwtService.verify(refreshToken, {
+				secret: process.env.JWT_REFRESH_SECRET,
+			})
+		} catch (e) {
+			return null
+		}
+	}
+
+	private async findToken(refreshToken: string) {
+		return await this.tokenRepository.findOne({
+			where: { refreshToken },
+		})
+	}
 
 	private async removeToken(refreshToken: string) {
 		return await this.tokenRepository.destroy({
@@ -100,7 +145,7 @@ export class AuthService {
 	private async generateTokes(payload) {
 		const accessToken = this.jwtService.sign(payload, {
 			secret: process.env.JWT_ACCESS_SECRET,
-			expiresIn: '30m',
+			expiresIn: '15s',
 		})
 		const refreshToken = this.jwtService.sign(payload, {
 			secret: process.env.JWT_REFRESH_SECRET,

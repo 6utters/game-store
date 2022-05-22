@@ -70,10 +70,16 @@ export class AuthController {
 		}
 	}
 
-	@Post()
-	refresh(@Next() next) {
+	@Get('refresh')
+	async refresh(@Req() request, @Res() response, @Next() next) {
 		try {
-			return this.authService.refresh()
+			const { refreshToken } = request.cookies
+			const userData = await this.authService.refresh(refreshToken)
+			response.cookie('refreshToken', userData.refreshToken, {
+				maxAge: 30 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+			})
+			return response.json(userData)
 		} catch (e) {
 			next(e)
 		}

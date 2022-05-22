@@ -12,5 +12,6 @@ import { JwtService } from '@nestjs/jwt'
 	controllers: [AuthController],
 	providers: [AuthService, MailService, UsersService, JwtService],
 	imports: [SequelizeModule.forFeature([User, Token])],
+	exports: [AuthService],
 })
 export class AuthModule {}
