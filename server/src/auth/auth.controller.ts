@@ -11,10 +11,14 @@ import {
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dtos/create-user.dto'
 import { LoginUserDto } from '../users/dtos/login-user.dto'
+import { TokensService } from './tokens.service'
 
 @Controller('auth')
 export class AuthController {
-	constructor(private authService: AuthService) {}
+	constructor(
+		private authService: AuthService,
+		private tokenService: TokensService,
+	) {}
 
 	@Post('register')
 	async register(
@@ -74,7 +78,7 @@ export class AuthController {
 	async refresh(@Req() request, @Res() response, @Next() next) {
 		try {
 			const { refreshToken } = request.cookies
-			const userData = await this.authService.refresh(refreshToken)
+			const userData = await this.tokenService.refresh(refreshToken)
 			response.cookie('refreshToken', userData.refreshToken, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
 				httpOnly: true,

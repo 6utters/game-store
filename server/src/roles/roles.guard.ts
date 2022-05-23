@@ -11,10 +11,15 @@ import { Observable } from 'rxjs'
 import { AuthService } from '../auth/auth.service'
 import { Reflector } from '@nestjs/core'
 import { ROLES_KEY } from './roles-auth.decorator'
+import { TokensService } from '../auth/tokens.service'
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-	constructor(private authService: AuthService, private reflector: Reflector) {}
+	constructor(
+		private authService: AuthService,
+		private tokenService: TokensService,
+		private reflector: Reflector,
+	) {}
 
 	canActivate(
 		context: ExecutionContext,
@@ -36,7 +41,7 @@ export class RolesGuard implements CanActivate {
 			if (!accessToken) {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 			}
-			const userData = this.authService.validateAccessToken(accessToken)
+			const userData = this.tokenService.validateAccessToken(accessToken)
 			if (!userData) {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 			}

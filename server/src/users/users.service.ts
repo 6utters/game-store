@@ -16,6 +16,13 @@ export class UsersService {
 		return await this.userRepository.create(dto)
 	}
 
+	public async findUserByEmail(email: string) {
+		return await this.userRepository.findOne({
+			where: { email },
+			include: { all: true },
+		})
+	}
+
 	public async getUsers() {
 		return await this.userRepository.findAll({ include: { all: true } })
 	}

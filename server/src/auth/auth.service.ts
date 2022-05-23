@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt'
 import { Token } from './tokens.model'
 import { UserDto } from './dtos/user.dto'
 import { RolesService } from '../roles/roles.service'
+import { TokensService } from './tokens.service'
 
 @Injectable()
 export class AuthService {
@@ -19,14 +20,11 @@ export class AuthService {
 		private mailService: MailService,
 		private jwtService: JwtService,
 		private rolesService: RolesService,
+		private tokenService: TokensService,
 	) {}
 
 	public async register(dto) {
-		const candidate = await this.userRepository.findOne({
-			where: { email: dto.email },
-			include: { all: true },
-		})
-		console.log('candidate:', candidate)
+		const candidate = await this.usersService.findUserByEmail(dto.email)
 		if (candidate) {
 			throw new HttpException('User already exists', HttpStatus.BAD_REQUEST)
 		}
@@ -45,8 +43,8 @@ export class AuthService {
 			link: `${process.env.API_URL}/api/auth/activate/${activationLink}`,
 		})
 		const userDto = new UserDto(user)
-		const tokens = await this.generateTokes({ ...userDto })
-		await this.saveToken(userDto.id, tokens.refreshToken)
+		const tokens = await this.tokenService.generateTokes({ ...userDto })
+		await this.tokenService.saveToken(userDto.id, tokens.refreshToken)
 		return {
 			...tokens,
 			user: userDto,
@@ -55,10 +53,7 @@ export class AuthService {
 	}
 
 	public async login(dto) {
-		const user = await this.userRepository.findOne({
-			where: { email: dto.email },
-			include: { all: true },
-		})
+		const user = await this.usersService.findUserByEmail(dto.email)
 		if (!user) {
 			throw new HttpException(
 				'Invalid email or password',
@@ -73,9 +68,8 @@ export class AuthService {
 			)
 		}
 		const userDto = new UserDto(user)
-		console.log('dto', userDto)
-		const tokens = await this.generateTokes({ ...userDto })
-		await this.saveToken(userDto.id, tokens.refreshToken)
+		const tokens = await this.tokenService.generateTokes({ ...userDto })
+		await this.tokenService.saveToken(userDto.id, tokens.refreshToken)
 		return {
 			...tokens,
 			user: userDto,
@@ -84,7 +78,7 @@ export class AuthService {
 	}
 
 	public async logout(refreshToken: string) {
-		return await this.removeToken(refreshToken)
+		return await this.tokenService.removeToken(refreshToken)
 	}
 
 	public async activate(activationLink: string) {
@@ -96,82 +90,5 @@ export class AuthService {
 		}
 		user.isActivated = true
 		await user.save()
-	}
-
-	public async refresh(refreshToken: string) {
-		if (!refreshToken) {
-			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
-		}
-		const userData = await this.validateRefreshToken(refreshToken)
-		const currentToken = await this.findToken(refreshToken)
-		if (!userData || !currentToken) {
-			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
-		}
-		const user = await this.userRepository.findOne({
-			where: { id: userData.id },
-		})
-		const userDto = new UserDto(user)
-		const tokens = await this.generateTokes({ ...userDto })
-		await this.saveToken(userDto.id, tokens.refreshToken)
-		return {
-			...tokens,
-			user: userDto,
-		}
-	}
-
-	public validateAccessToken(accessToken: string) {
-		try {
-			return this.jwtService.verify(accessToken, {
-				secret: process.env.JWT_ACCESS_SECRET,
-			})
-		} catch (e) {
-			return null
-		}
-	}
-
-	private validateRefreshToken(refreshToken: string) {
-		try {
-			return this.jwtService.verify(refreshToken, {
-				secret: process.env.JWT_REFRESH_SECRET,
-			})
-		} catch (e) {
-			return null
-		}
-	}
-
-	private async findToken(refreshToken: string) {
-		return await this.tokenRepository.findOne({
-			where: { refreshToken },
-		})
-	}
-
-	private async removeToken(refreshToken: string) {
-		return await this.tokenRepository.destroy({
-			where: { refreshToken },
-		})
-	}
-
-	private async generateTokes(payload) {
-		const accessToken = this.jwtService.sign(payload, {
-			secret: process.env.JWT_ACCESS_SECRET,
-			expiresIn: '30m',
-		})
-		const refreshToken = this.jwtService.sign(payload, {
-			secret: process.env.JWT_REFRESH_SECRET,
-			expiresIn: '30d',
-		})
-		return {
-			accessToken,
-			refreshToken,
-		}
-	}
-
-	private async saveToken(userId, refreshToken) {
-		const tokenData = await this.tokenRepository.findOne({ where: { userId } })
-		if (tokenData) {
-			tokenData.refreshToken = refreshToken
-			return tokenData.save()
-		}
-		return await this.tokenRepository.create({ refreshToken, userId })
 	}
 }

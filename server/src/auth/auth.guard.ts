@@ -9,10 +9,14 @@ import {
 } from '@nestjs/common'
 import { Observable } from 'rxjs'
 import { AuthService } from './auth.service'
+import { TokensService } from './tokens.service'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-	constructor(private authService: AuthService) {}
+	constructor(
+		private authService: AuthService,
+		private tokenService: TokensService,
+	) {}
 
 	canActivate(
 		context: ExecutionContext,
@@ -27,7 +31,7 @@ export class AuthGuard implements CanActivate {
 			if (!accessToken) {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 			}
-			const userData = this.authService.validateAccessToken(accessToken)
+			const userData = this.tokenService.validateAccessToken(accessToken)
 			console.log('data', userData)
 			if (!userData) {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
