@@ -10,7 +10,7 @@ import { User } from '../users/users.model'
 @Table({ tableName: 'tokens' })
 export class Token extends Model<Token> {
 	@Column({
-		type: DataType.STRING,
+		type: DataType.STRING(1000),
 		allowNull: false,
 	})
 	refreshToken: string

@@ -8,6 +8,7 @@ import { MailService } from './mail.service'
 import { JwtService } from '@nestjs/jwt'
 import { Token } from './tokens.model'
 import { UserDto } from './dtos/user.dto'
+import { RolesService } from '../roles/roles.service'
 
 @Injectable()
 export class AuthService {
@@ -17,12 +18,15 @@ export class AuthService {
 		private usersService: UsersService,
 		private mailService: MailService,
 		private jwtService: JwtService,
+		private rolesService: RolesService,
 	) {}
 
 	public async register(dto) {
 		const candidate = await this.userRepository.findOne({
 			where: { email: dto.email },
+			include: { all: true },
 		})
+		console.log('candidate:', candidate)
 		if (candidate) {
 			throw new HttpException('User already exists', HttpStatus.BAD_REQUEST)
 		}
@@ -33,6 +37,9 @@ export class AuthService {
 			password: hashPassword,
 			activationLink,
 		})
+		const role = await this.rolesService.getRoleByValue('USER')
+		await user.$set('roles', [role.id])
+		user.roles = [role]
 		await this.mailService.sendActivationMail({
 			email: dto.email,
 			link: `${process.env.API_URL}/api/auth/activate/${activationLink}`,
@@ -50,6 +57,7 @@ export class AuthService {
 	public async login(dto) {
 		const user = await this.userRepository.findOne({
 			where: { email: dto.email },
+			include: { all: true },
 		})
 		if (!user) {
 			throw new HttpException(
@@ -65,6 +73,7 @@ export class AuthService {
 			)
 		}
 		const userDto = new UserDto(user)
+		console.log('dto', userDto)
 		const tokens = await this.generateTokes({ ...userDto })
 		await this.saveToken(userDto.id, tokens.refreshToken)
 		return {
@@ -145,7 +154,7 @@ export class AuthService {
 	private async generateTokes(payload) {
 		const accessToken = this.jwtService.sign(payload, {
 			secret: process.env.JWT_ACCESS_SECRET,
-			expiresIn: '15s',
+			expiresIn: '30m',
 		})
 		const refreshToken = this.jwtService.sign(payload, {
 			secret: process.env.JWT_REFRESH_SECRET,

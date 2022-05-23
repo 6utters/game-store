@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module'
 import { Token } from './auth/tokens.model'
 import { MailerModule } from '@nestjs-modules/mailer'
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
+import { RolesModule } from './roles/roles.module'
+import { Role } from './roles/roles.model'
+import { UserRoles } from './roles/user-roles.model'
 
 @Module({
 	controllers: [],
@@ -23,7 +26,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 			username: process.env.POSTGRES_USER,
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
-			models: [User, Token],
+			models: [User, Token, Role, UserRoles],
 			autoLoadModels: true,
 			synchronize: true,
 		}),
@@ -53,6 +56,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 		}),
 		UsersModule,
 		AuthModule,
+		RolesModule,
 	],
 })
 export class AppModule {}

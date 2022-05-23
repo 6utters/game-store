@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, IsNumber } from 'class-validator'
+import { IsArray, IsBoolean, IsEmail, IsNumber } from 'class-validator'
 
 export class UserDto {
 	@IsEmail()
@@ -7,10 +7,13 @@ export class UserDto {
 	id: number
 	@IsBoolean()
 	isActivated: boolean
+	@IsArray()
+	roles: []
 
 	constructor(model) {
 		this.email = model.email
 		this.id = model.id
 		this.isActivated = model.isActivated
+		this.roles = model.roles
 	}
 }

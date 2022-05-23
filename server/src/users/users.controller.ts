@@ -2,6 +2,9 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
 import { CreateUserDto } from './dtos/create-user.dto'
 import { UsersService } from './users.service'
 import { AuthGuard } from '../auth/auth.guard'
+import { Roles } from '../roles/roles-auth.decorator'
+import { RolesGuard } from '../roles/roles.guard'
+import { AddRoleDto } from './dtos/add-role.dto'
 
 @Controller('users')
 export class UsersController {
@@ -12,14 +15,17 @@ export class UsersController {
 		return this.usersService.createUser(userDto)
 	}
 
+	@Roles('ADMIN')
+	@UseGuards(AuthGuard, RolesGuard)
 	@Get()
-	@UseGuards(AuthGuard)
 	getAllUsers() {
 		return this.usersService.getUsers()
 	}
 
-	// @Get()
-	// getByEmail(@Body() email: string) {
-	// 	return this.usersService.getUserByEmail(email)
-	// }
+	@Roles('ADMIN')
+	@UseGuards(AuthGuard, RolesGuard)
+	@Post('role')
+	addRole(@Body() dto: AddRoleDto) {
+		return this.usersService.addRole(dto)
+	}
 }
