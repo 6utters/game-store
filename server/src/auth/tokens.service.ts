@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-import { User } from '../users/users.model'
+import { User } from '../users/entities/users.model'
 import { UsersService } from '../users/users.service'
 import { MailService } from './mail.service'
 import { JwtService } from '@nestjs/jwt'
-import { Token } from './tokens.model'
+import { Token } from './entities/tokens.model'
 import { UserDto } from './dtos/user.dto'
 
 @Injectable()

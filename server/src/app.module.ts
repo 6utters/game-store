@@ -2,15 +2,20 @@ import { Module } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { UsersModule } from './users/users.module'
-import { User } from './users/users.model'
-import { join } from 'path'
+import { User } from './users/entities/users.model'
+import { join, resolve } from 'path'
 import { AuthModule } from './auth/auth.module'
-import { Token } from './auth/tokens.model'
+import { Token } from './auth/entities/tokens.model'
 import { MailerModule } from '@nestjs-modules/mailer'
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter'
 import { RolesModule } from './roles/roles.module'
-import { Role } from './roles/roles.model'
-import { UserRoles } from './roles/user-roles.model'
+import { Role } from './roles/entities/roles.model'
+import { UserRoles } from './roles/entities/user-roles.model'
+import { GamesModule } from './games/games.module'
+import { Game } from './games/entities/games.model'
+import { FilesModule } from './files/files.module'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { CartsModule } from './carts/carts.module';
 
 @Module({
 	controllers: [],
@@ -26,9 +31,12 @@ import { UserRoles } from './roles/user-roles.model'
 			username: process.env.POSTGRES_USER,
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
-			models: [User, Token, Role, UserRoles],
+			models: [User, Token, Role, UserRoles, Game],
 			autoLoadModels: true,
 			synchronize: true,
+		}),
+		ServeStaticModule.forRoot({
+			rootPath: resolve(__dirname, 'static'),
 		}),
 		MailerModule.forRootAsync({
 			imports: [ConfigModule],
@@ -57,6 +65,9 @@ import { UserRoles } from './roles/user-roles.model'
 		UsersModule,
 		AuthModule,
 		RolesModule,
+		GamesModule,
+		FilesModule,
+		CartsModule,
 	],
 })
 export class AppModule {}
