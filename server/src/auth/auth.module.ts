@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt'
 import { UsersModule } from '../users/users.module'
 import { RolesModule } from '../roles/roles.module'
 import { TokensService } from './tokens.service'
+import { CartsModule } from '../carts/carts.module'
 
 @Module({
 	controllers: [AuthController],
@@ -16,6 +17,7 @@ import { TokensService } from './tokens.service'
 	imports: [
 		SequelizeModule.forFeature([User, Token]),
 		RolesModule,
+		forwardRef(() => CartsModule),
 		forwardRef(() => UsersModule),
 	],
 	exports: [AuthService, TokensService],

@@ -10,6 +10,7 @@ import { Token } from './entities/tokens.model'
 import { UserDto } from './dtos/user.dto'
 import { RolesService } from '../roles/roles.service'
 import { TokensService } from './tokens.service'
+import { CartsService } from '../carts/carts.service'
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
 		private jwtService: JwtService,
 		private rolesService: RolesService,
 		private tokenService: TokensService,
+		private cartsService: CartsService,
 	) {}
 
 	public async register(dto) {
@@ -35,6 +37,8 @@ export class AuthService {
 			password: hashPassword,
 			activationLink,
 		})
+		const cart = await this.cartsService.createCart()
+		await user.$set('cart', [cart.id])
 		const role = await this.rolesService.getRoleByValue('USER')
 		await user.$set('roles', [role.id])
 		user.roles = [role]

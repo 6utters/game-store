@@ -15,4 +15,11 @@ export class GamesService {
 		const fileName = await this.filesService.createFile(gameImage)
 		return await this.gameRepository.create({ ...gameDto, gameImage: fileName })
 	}
+
+	public async findGameByName(gameName: string) {
+		return await this.gameRepository.findOne({
+			where: { gameName },
+			include: { all: true },
+		})
+	}
 }

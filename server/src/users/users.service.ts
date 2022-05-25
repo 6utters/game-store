@@ -23,6 +23,10 @@ export class UsersService {
 		})
 	}
 
+	public async findUserById(id: number) {
+		return await this.userRepository.findByPk(id, { include: { all: true } })
+	}
+
 	public async getUsers() {
 		return await this.userRepository.findAll({ include: { all: true } })
 	}
