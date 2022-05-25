@@ -17,7 +17,7 @@ import { FilesModule } from './files/files.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { CartsModule } from './carts/carts.module'
 import { Cart } from './carts/entities/carts.model'
-import { CartGames } from './carts/entities/cart-games.model'
+import { CartGame } from './carts/entities/cart-games.model'
 
 @Module({
 	controllers: [],
@@ -33,7 +33,7 @@ import { CartGames } from './carts/entities/cart-games.model'
 			username: process.env.POSTGRES_USER,
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
-			models: [User, Token, Role, UserRoles, Game, Cart, CartGames],
+			models: [User, Token, Role, UserRoles, Game, Cart, CartGame],
 			autoLoadModels: true,
 			synchronize: true,
 		}),

@@ -1,14 +1,13 @@
 import {
-	BelongsToMany,
 	Column,
 	DataType,
 	ForeignKey,
+	HasMany,
 	Model,
 	Table,
 } from 'sequelize-typescript'
 import { User } from '../../users/entities/users.model'
-import { Game } from '../../games/entities/games.model'
-import { CartGames } from './cart-games.model'
+import { CartGame } from './cart-games.model'
 
 @Table({ tableName: 'carts' })
 export class Cart extends Model<Cart> {
@@ -26,6 +25,6 @@ export class Cart extends Model<Cart> {
 	})
 	userId: number
 
-	@BelongsToMany(() => Game, () => CartGames)
-	games: Game[]
+	@HasMany(() => CartGame)
+	games: CartGame[]
 }

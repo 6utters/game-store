@@ -4,7 +4,7 @@ import { CartsController } from './carts.controller'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { User } from '../users/entities/users.model'
 import { Cart } from './entities/carts.model'
-import { CartGames } from './entities/cart-games.model'
+import { CartGame } from './entities/cart-games.model'
 import { GamesModule } from '../games/games.module'
 import { AuthModule } from '../auth/auth.module'
 import { Game } from '../games/entities/games.model'
@@ -13,7 +13,7 @@ import { Game } from '../games/entities/games.model'
 	providers: [CartsService],
 	controllers: [CartsController],
 	imports: [
-		SequelizeModule.forFeature([Cart, User, CartGames, Game]),
+		SequelizeModule.forFeature([Cart, User, CartGame, Game]),
 		GamesModule,
 		forwardRef(() => AuthModule),
 	],

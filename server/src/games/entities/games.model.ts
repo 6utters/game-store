@@ -1,12 +1,4 @@
-import {
-	BelongsToMany,
-	Column,
-	DataType,
-	Model,
-	Table,
-} from 'sequelize-typescript'
-import { Cart } from '../../carts/entities/carts.model'
-import { CartGames } from '../../carts/entities/cart-games.model'
+import { Column, DataType, Model, Table } from 'sequelize-typescript'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -49,7 +41,4 @@ export class Game extends Model<Game, UserCreationAttrs> {
 		allowNull: false,
 	})
 	gameImage: string
-
-	@BelongsToMany(() => Cart, () => CartGames)
-	carts: Cart[]
 }

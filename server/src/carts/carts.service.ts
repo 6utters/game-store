@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { Cart } from './entities/carts.model'
 import { GamesService } from '../games/games.service'
+import { CartGame } from './entities/cart-games.model'
 
 @Injectable()
 export class CartsService {
 	constructor(
 		@InjectModel(Cart) private cartsRepository: typeof Cart,
+		@InjectModel(CartGame) private cartGamesRepository: typeof CartGame,
 		private gamesService: GamesService,
 	) {}
 
@@ -23,20 +25,24 @@ export class CartsService {
 
 	public async addGame(userId, gameName: string) {
 		const game = await this.gamesService.findGameByName(gameName)
+		if (!game) {
+			throw new HttpException('No such game', HttpStatus.NOT_FOUND)
+		}
 		const cart = await this.cartsRepository.findOne({
 			where: { userId },
-			include: { all: true },
 		})
-		await cart.$add('games', [game.id])
-		cart.games = [game]
-		return cart
+		return await this.cartGamesRepository.create({
+			gameId: game.id,
+			cartId: cart.id,
+		})
 	}
 
 	public async removeGame(userId, gameId) {
 		const cart = await this.cartsRepository.findOne({
 			where: { userId },
-			include: { all: true },
 		})
-		await cart.$remove('games', [gameId])
+		await this.cartGamesRepository.destroy({
+			where: { cartId: cart.id, gameId },
+		})
 	}
 }
