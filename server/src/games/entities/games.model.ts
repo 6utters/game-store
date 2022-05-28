@@ -7,6 +7,8 @@ import {
 } from 'sequelize-typescript'
 import { Genre } from '../../genres/entities/genres.model'
 import { GenreGames } from '../../genres/entities/genre-games.model'
+import { Feature } from '../../features/entities/features.model'
+import { FeatureGames } from '../../features/entities/feature-games.model'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -52,4 +54,7 @@ export class Game extends Model<Game, UserCreationAttrs> {
 
 	@BelongsToMany(() => Genre, () => GenreGames)
 	genres: Genre[]
+
+	@BelongsToMany(() => Feature, () => FeatureGames)
+	features: Feature[]
 }

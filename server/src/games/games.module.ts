@@ -9,14 +9,26 @@ import { CartGame } from '../carts/entities/cart-games.model'
 import { Genre } from '../genres/entities/genres.model'
 import { GenreGames } from '../genres/entities/genre-games.model'
 import { GenresModule } from '../genres/genres.module'
+import { Feature } from '../features/entities/features.model'
+import { FeatureGames } from '../features/entities/feature-games.model'
+import { FeaturesModule } from '../features/features.module'
 
 @Module({
 	providers: [GamesService],
 	controllers: [GamesController],
 	imports: [
-		SequelizeModule.forFeature([Game, Cart, CartGame, Genre, GenreGames]),
+		SequelizeModule.forFeature([
+			Game,
+			Cart,
+			CartGame,
+			Genre,
+			GenreGames,
+			Feature,
+			FeatureGames,
+		]),
 		FilesModule,
 		GenresModule,
+		FeaturesModule,
 	],
 	exports: [GamesService],
 })

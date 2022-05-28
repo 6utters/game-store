@@ -7,4 +7,6 @@ export class CreateGameDto {
 	readonly gamePrice: number
 	@IsArray()
 	readonly genreNames: string[]
+	@IsArray()
+	readonly featureNames: string[]
 }

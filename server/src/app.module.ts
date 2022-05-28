@@ -23,6 +23,9 @@ import { Rating } from './ratings/entities/ratings.model'
 import { GenresModule } from './genres/genres.module'
 import { GenreGames } from './genres/entities/genre-games.model'
 import { Genre } from './genres/entities/genres.model'
+import { FeaturesModule } from './features/features.module'
+import { Feature } from './features/entities/features.model'
+import { FeatureGames } from './features/entities/feature-games.model'
 
 @Module({
 	controllers: [],
@@ -49,6 +52,8 @@ import { Genre } from './genres/entities/genres.model'
 				Rating,
 				GenreGames,
 				Genre,
+				Feature,
+				FeatureGames,
 			],
 			autoLoadModels: true,
 			synchronize: true,
@@ -88,6 +93,7 @@ import { Genre } from './genres/entities/genres.model'
 		CartsModule,
 		RatingsModule,
 		GenresModule,
+		FeaturesModule,
 	],
 })
 export class AppModule {}
