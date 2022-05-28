@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Get,
 	Post,
 	UploadedFile,
 	UseInterceptors,
@@ -17,5 +18,10 @@ export class GamesController {
 	@UseInterceptors(FileInterceptor('gameImage'))
 	createGame(@Body() gameDto: CreateGameDto, @UploadedFile() gameImage) {
 		return this.gamesService.create(gameDto, gameImage)
+	}
+
+	@Get()
+	getAllGames() {
+		return this.gamesService.getAll()
 	}
 }

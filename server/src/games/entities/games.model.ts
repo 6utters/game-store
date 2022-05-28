@@ -1,4 +1,12 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript'
+import {
+	BelongsToMany,
+	Column,
+	DataType,
+	Model,
+	Table,
+} from 'sequelize-typescript'
+import { Genre } from '../../genres/entities/genres.model'
+import { GenreGames } from '../../genres/entities/genre-games.model'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -41,4 +49,7 @@ export class Game extends Model<Game, UserCreationAttrs> {
 		allowNull: false,
 	})
 	gameImage: string
+
+	@BelongsToMany(() => Genre, () => GenreGames)
+	genres: Genre[]
 }

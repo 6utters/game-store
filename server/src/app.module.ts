@@ -20,6 +20,9 @@ import { Cart } from './carts/entities/carts.model'
 import { CartGame } from './carts/entities/cart-games.model'
 import { RatingsModule } from './ratings/ratings.module'
 import { Rating } from './ratings/entities/ratings.model'
+import { GenresModule } from './genres/genres.module'
+import { GenreGames } from './genres/entities/genre-games.model'
+import { Genre } from './genres/entities/genres.model'
 
 @Module({
 	controllers: [],
@@ -35,7 +38,18 @@ import { Rating } from './ratings/entities/ratings.model'
 			username: process.env.POSTGRES_USER,
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
-			models: [User, Token, Role, UserRoles, Game, Cart, CartGame, Rating],
+			models: [
+				User,
+				Token,
+				Role,
+				UserRoles,
+				Game,
+				Cart,
+				CartGame,
+				Rating,
+				GenreGames,
+				Genre,
+			],
 			autoLoadModels: true,
 			synchronize: true,
 		}),
@@ -73,6 +87,7 @@ import { Rating } from './ratings/entities/ratings.model'
 		FilesModule,
 		CartsModule,
 		RatingsModule,
+		GenresModule,
 	],
 })
 export class AppModule {}
