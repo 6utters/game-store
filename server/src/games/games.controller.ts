@@ -3,6 +3,7 @@ import {
 	Controller,
 	Get,
 	Post,
+	Query,
 	UploadedFile,
 	UseInterceptors,
 } from '@nestjs/common'
@@ -21,7 +22,10 @@ export class GamesController {
 	}
 
 	@Get()
-	getAllGames() {
-		return this.gamesService.getAll()
+	getByFilter(
+		@Query('genreName') genreName: string,
+		@Query('featureName') featureName: string,
+	) {
+		return this.gamesService.getAllByValue(genreName, featureName)
 	}
 }

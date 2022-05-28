@@ -43,7 +43,37 @@ export class GamesService {
 		})
 	}
 
-	async getAll(): Promise<Game[]> {
-		return this.gameRepository.findAll({ include: { all: true } })
+	public async getAllByValue(
+		genreName: string = null,
+		featureName: string = null,
+	) {
+		if (genreName && !featureName) {
+			const ids = await this.genresService.getIdsByGenre(genreName)
+			return await this.gameRepository.findAll({
+				where: { id: ids },
+				include: { all: true },
+			})
+		}
+		if (!genreName && featureName) {
+			const ids = await this.featuresService.getIdsByFeature(featureName)
+			return await this.gameRepository.findAll({
+				where: { id: ids },
+				include: { all: true },
+			})
+		}
+		if (genreName && featureName) {
+			const genreIds = await this.genresService.getIdsByGenre(genreName)
+			const featureIds = await this.featuresService.getIdsByFeature(featureName)
+			const targetIds = genreIds.filter((targetId) =>
+				featureIds.includes(targetId),
+			)
+			return await this.gameRepository.findAll({
+				where: { id: targetIds },
+				include: { all: true },
+			})
+		}
+		if (!genreName && !featureName) {
+			return await this.gameRepository.findAll({ include: { all: true } })
+		}
 	}
 }
