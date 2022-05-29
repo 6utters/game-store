@@ -32,7 +32,6 @@ export class AuthGuard implements CanActivate {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 			}
 			const userData = this.tokenService.validateAccessToken(accessToken)
-			console.log('data', userData)
 			if (!userData) {
 				throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 			}

@@ -7,11 +7,13 @@ import {
 	Post,
 	Req,
 	Res,
+	UseGuards,
 } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dtos/create-user.dto'
 import { LoginUserDto } from '../users/dtos/login-user.dto'
 import { TokensService } from './tokens.service'
+import { AuthGuard } from './auth.guard'
 
 @Controller('auth')
 export class AuthController {
@@ -52,6 +54,7 @@ export class AuthController {
 		}
 	}
 
+	@UseGuards(AuthGuard)
 	@Post('logout')
 	async logout(@Req() request, @Res() response, @Next() next) {
 		try {

@@ -6,7 +6,7 @@ import {
 	Table,
 } from 'sequelize-typescript'
 import { Role } from './roles.model'
-import { User } from '../users/users.model'
+import { User } from '../../users/entities/users.model'
 
 @Table({ tableName: 'user_roles', createdAt: false, updatedAt: false })
 export class UserRoles extends Model<UserRoles> {

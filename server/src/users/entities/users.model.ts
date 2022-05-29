@@ -2,11 +2,13 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
+	HasOne,
 	Model,
 	Table,
 } from 'sequelize-typescript'
-import { Role } from '../roles/roles.model'
-import { UserRoles } from '../roles/user-roles.model'
+import { Role } from '../../roles/entities/roles.model'
+import { UserRoles } from '../../roles/entities/user-roles.model'
+import { Cart } from '../../carts/entities/carts.model'
 
 interface UserCreationAttrs {
 	userName: string
@@ -53,6 +55,9 @@ export class User extends Model<User, UserCreationAttrs> {
 		type: DataType.STRING,
 	})
 	activationLink: string
+
+	@HasOne(() => Cart)
+	cart: Cart
 
 	@BelongsToMany(() => Role, () => UserRoles)
 	roles: Role[]

@@ -1,15 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-import { User } from '../users/users.model'
+import { User } from '../users/entities/users.model'
 import { UsersService } from '../users/users.service'
 import * as bcrypt from 'bcrypt'
 import { v4 as uuidv4 } from 'uuid'
 import { MailService } from './mail.service'
 import { JwtService } from '@nestjs/jwt'
-import { Token } from './tokens.model'
+import { Token } from './entities/tokens.model'
 import { UserDto } from './dtos/user.dto'
 import { RolesService } from '../roles/roles.service'
 import { TokensService } from './tokens.service'
+import { CartsService } from '../carts/carts.service'
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
 		private jwtService: JwtService,
 		private rolesService: RolesService,
 		private tokenService: TokensService,
+		private cartsService: CartsService,
 	) {}
 
 	public async register(dto) {
@@ -35,6 +37,8 @@ export class AuthService {
 			password: hashPassword,
 			activationLink,
 		})
+		const cart = await this.cartsService.createCart()
+		await user.$set('cart', [cart.id])
 		const role = await this.rolesService.getRoleByValue('USER')
 		await user.$set('roles', [role.id])
 		user.roles = [role]
@@ -81,7 +85,7 @@ export class AuthService {
 		return await this.tokenService.removeToken(refreshToken)
 	}
 
-	public async activate(activationLink: string) {
+	public async activate(activationLink: string): Promise<void> {
 		const user = await this.userRepository.findOne({
 			where: { activationLink },
 		})

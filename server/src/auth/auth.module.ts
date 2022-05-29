@@ -3,12 +3,13 @@ import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { MailService } from './mail.service'
 import { SequelizeModule } from '@nestjs/sequelize'
-import { User } from '../users/users.model'
-import { Token } from './tokens.model'
+import { User } from '../users/entities/users.model'
+import { Token } from './entities/tokens.model'
 import { JwtService } from '@nestjs/jwt'
 import { UsersModule } from '../users/users.module'
 import { RolesModule } from '../roles/roles.module'
 import { TokensService } from './tokens.service'
+import { CartsModule } from '../carts/carts.module'
 
 @Module({
 	controllers: [AuthController],
@@ -16,6 +17,7 @@ import { TokensService } from './tokens.service'
 	imports: [
 		SequelizeModule.forFeature([User, Token]),
 		RolesModule,
+		forwardRef(() => CartsModule),
 		forwardRef(() => UsersModule),
 	],
 	exports: [AuthService, TokensService],
