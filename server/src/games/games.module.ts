@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { forwardRef, Module } from '@nestjs/common'
 import { GamesService } from './games.service'
 import { GamesController } from './games.controller'
 import { SequelizeModule } from '@nestjs/sequelize'
@@ -12,6 +12,7 @@ import { GenresModule } from '../genres/genres.module'
 import { Feature } from '../features/entities/features.model'
 import { FeatureGames } from '../features/entities/feature-games.model'
 import { FeaturesModule } from '../features/features.module'
+import { AuthModule } from '../auth/auth.module'
 
 @Module({
 	providers: [GamesService],
@@ -29,6 +30,7 @@ import { FeaturesModule } from '../features/features.module'
 		FilesModule,
 		GenresModule,
 		FeaturesModule,
+		forwardRef(() => AuthModule),
 	],
 	exports: [GamesService],
 })

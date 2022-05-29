@@ -35,6 +35,9 @@
 # vercel
 /client/.vercel
 
+# typescript
+/client/*.tsbuildinfo
+
 
 # server
 

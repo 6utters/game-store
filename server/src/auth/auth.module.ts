@@ -16,7 +16,7 @@ import { CartsModule } from '../carts/carts.module'
 	providers: [AuthService, MailService, JwtService, TokensService],
 	imports: [
 		SequelizeModule.forFeature([User, Token]),
-		RolesModule,
+		forwardRef(() => RolesModule),
 		forwardRef(() => CartsModule),
 		forwardRef(() => UsersModule),
 	],
