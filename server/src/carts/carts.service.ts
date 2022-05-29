@@ -12,18 +12,18 @@ export class CartsService {
 		private gamesService: GamesService,
 	) {}
 
-	public async createCart() {
+	public async createCart(): Promise<Cart> {
 		return await this.cartsRepository.create()
 	}
 
-	public async getCart(userId) {
+	public async getCart(userId): Promise<Cart> {
 		return await this.cartsRepository.findOne({
 			where: { userId },
 			include: { all: true },
 		})
 	}
 
-	public async addGame(userId, gameName: string) {
+	public async addGame(userId, gameName: string): Promise<CartGame> {
 		const game = await this.gamesService.findGameByName(gameName)
 		if (!game) {
 			throw new HttpException('No such game', HttpStatus.NOT_FOUND)
@@ -37,7 +37,7 @@ export class CartsService {
 		})
 	}
 
-	public async removeGame(userId, gameId) {
+	public async removeGame(userId, gameId): Promise<void> {
 		const cart = await this.cartsRepository.findOne({
 			where: { userId },
 		})

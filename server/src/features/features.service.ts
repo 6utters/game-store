@@ -18,7 +18,9 @@ export class FeaturesService {
 		return this.featuresRepository.create(dto)
 	}
 
-	public async getByValues(featureNames: string[] | string) {
+	public async getByValues(
+		featureNames: string[] | string,
+	): Promise<Feature[] | Feature> {
 		if (Array.isArray(featureNames)) {
 			const features = []
 			for (let i = 0; i < featureNames.length; i++) {

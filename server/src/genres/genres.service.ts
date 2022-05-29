@@ -15,7 +15,9 @@ export class GenresService {
 		return await this.genresRepository.create(dto)
 	}
 
-	public async getByValues(genreNames: string[] | string) {
+	public async getByValues(
+		genreNames: string[] | string,
+	): Promise<Genre | Genre[]> {
 		if (Array.isArray(genreNames)) {
 			const genres = []
 			for (let i = 0; i < genreNames.length; i++) {
@@ -67,7 +69,7 @@ export class GenresService {
 		return await this.genresRepository.findAll({ include: { all: true } })
 	}
 
-	public findDuplicates(arr) {
+	public findDuplicates(arr): number[] {
 		let counts = {}
 		for (let i = 0; i < arr.length; i++) {
 			if (counts[arr[i]]) {

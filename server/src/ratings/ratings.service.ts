@@ -7,7 +7,7 @@ import { Rating } from './entities/ratings.model'
 export class RatingsService {
 	constructor(@InjectModel(Rating) private ratingsRepository: typeof Rating) {}
 
-	async rate(userId: number, { rate, gameId }: RateGameDto) {
+	async rate(userId: number, { rate, gameId }: RateGameDto): Promise<Rating> {
 		const rating = await this.ratingsRepository.findOne({
 			where: { userId, gameId },
 		})
@@ -22,7 +22,7 @@ export class RatingsService {
 		})
 	}
 
-	async getRate(gameId: number) {
+	async getRate(gameId: number): Promise<number> {
 		const ratings = await this.ratingsRepository.findAll({ where: { gameId } })
 		return (
 			ratings.reduce((total, next) => total + next.rate, 0) / ratings.length

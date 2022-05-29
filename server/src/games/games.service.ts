@@ -57,7 +57,7 @@ export class GamesService {
 	public async getAllByValue(
 		genreName: string = null,
 		featureName: string = null,
-	) {
+	): Promise<Game[]> {
 		if (genreName && !featureName) {
 			const ids = await this.genresService.getIdsByGenre(genreName)
 			return await this.gameRepository.findAll({

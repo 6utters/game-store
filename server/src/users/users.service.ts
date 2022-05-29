@@ -12,26 +12,26 @@ export class UsersService {
 		private roleService: RolesService,
 	) {}
 
-	public async createUser(dto: CreateUserDto) {
+	public async createUser(dto: CreateUserDto): Promise<User> {
 		return await this.userRepository.create(dto)
 	}
 
-	public async findUserByEmail(email: string) {
+	public async findUserByEmail(email: string): Promise<User> {
 		return await this.userRepository.findOne({
 			where: { email },
 			include: { all: true },
 		})
 	}
 
-	public async findUserById(id: number) {
+	public async findUserById(id: number): Promise<User> {
 		return await this.userRepository.findByPk(id, { include: { all: true } })
 	}
 
-	public async getUsers() {
+	public async getUsers(): Promise<User[]> {
 		return await this.userRepository.findAll({ include: { all: true } })
 	}
 
-	public async addRole(dto: AddRoleDto) {
+	public async addRole(dto: AddRoleDto): Promise<AddRoleDto> {
 		const user = await this.userRepository.findByPk(dto.userId)
 		const role = await this.roleService.getRoleByValue(dto.value)
 		if (user && role) {
