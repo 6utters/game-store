@@ -15,18 +15,40 @@ export class GenresService {
 		return await this.genresRepository.create(dto)
 	}
 
-	public async getByValues(genreNames: string[]): Promise<Genre[]> {
-		const genres = []
-		for (let i = 0; i < genreNames.length; i++) {
-			const genreName = genreNames[i]
-			genres.push(await this.genresRepository.findOne({ where: { genreName } }))
+	public async getByValues(genreNames: string[] | string) {
+		if (Array.isArray(genreNames)) {
+			const genres = []
+			for (let i = 0; i < genreNames.length; i++) {
+				const genreName = genreNames[i]
+				genres.push(
+					await this.genresRepository.findOne({ where: { genreName } }),
+				)
+			}
+			return genres
 		}
-		return genres
+		return await this.genresRepository.findOne({
+			where: { genreName: genreNames },
+		})
 	}
 
-	async getIdsByGenre(genreName: string) {
+	async getIdsByGenre(genreNames: string[] | string): Promise<number[]> {
+		if (Array.isArray(genreNames)) {
+			let targetIds = []
+			for (let i = 0; i < genreNames.length; i++) {
+				const genreName = genreNames[i]
+				const targetGenre = await this.genresRepository.findOne({
+					where: { genreName },
+				})
+				const genreGames = await this.genreGamesRepository.findAll({
+					where: { genreId: targetGenre.id },
+				})
+				const ids = genreGames.map((genre) => genre.gameId)
+				targetIds = [...targetIds, ...ids]
+			}
+			return this.findDuplicates(targetIds)
+		}
 		const targetGenre = await this.genresRepository.findOne({
-			where: { genreName },
+			where: { genreName: genreNames },
 		})
 		const genreGames = await this.genreGamesRepository.findAll({
 			where: { genreId: targetGenre.id },
@@ -43,5 +65,22 @@ export class GenresService {
 
 	public async getAll(): Promise<Genre[]> {
 		return await this.genresRepository.findAll({ include: { all: true } })
+	}
+
+	public findDuplicates(arr) {
+		let counts = {}
+		for (let i = 0; i < arr.length; i++) {
+			if (counts[arr[i]]) {
+				counts[arr[i]] += 1
+			} else {
+				counts[arr[i]] = 1
+			}
+		}
+
+		const maxValue = Math.max.apply(Math, Object.values(counts))
+		const arrayOfStrings = Object.keys(counts).filter(
+			(key) => counts[key] === maxValue,
+		)
+		return arrayOfStrings.map((str) => Number(str))
 	}
 }

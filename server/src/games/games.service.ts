@@ -21,18 +21,29 @@ export class GamesService {
 			...gameDto,
 			gameImage: fileName,
 		})
+
 		const genres = await this.genresService.getByValues(gameDto.genreNames)
-		await game.$set('genres', [genres[0].id])
-		for (let i = 1; i < genres.length; i++) {
-			await game.$add('genres', [genres[i].id])
+		if (Array.isArray(genres)) {
+			await game.$set('genres', [genres[0].id])
+			for (let i = 1; i < genres.length; i++) {
+				await game.$add('genres', [genres[i].id])
+			}
+		} else {
+			await game.$set('genres', [genres.id])
 		}
+
 		const features = await this.featuresService.getByValues(
 			gameDto.featureNames,
 		)
-		await game.$set('features', [features[0].id])
-		for (let i = 1; i < features.length; i++) {
-			await game.$add('features', [features[i].id])
+		if (Array.isArray(features)) {
+			await game.$set('features', [features[0].id])
+			for (let i = 1; i < features.length; i++) {
+				await game.$add('features', [features[i].id])
+			}
+		} else {
+			await game.$set('features', [features.id])
 		}
+
 		return game
 	}
 
