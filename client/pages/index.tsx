@@ -1,7 +1,13 @@
 import type { NextPage } from 'next'
+import Layout from '../app/components/layout/Layout.'
+import Store from '../app/components/pages/store/Store'
 
-const Home: NextPage = () => {
-	return <div>Main page</div>
+const HomePage: NextPage = () => {
+	return (
+		<Layout title={'D&D Games | Store page'}>
+			<Store />
+		</Layout>
+	)
 }
 
-export default Home
+export default HomePage
