@@ -2,7 +2,7 @@
   @apply relative h-full flex items-center;
 
   .login_btn {
-    @apply relative;
+    @apply relative h-full;
     padding: 0 1rem;
 
     &:hover:after {
@@ -35,7 +35,7 @@
   }
 
   .signup_btn {
-    @apply relative;
+    @apply relative h-full;
     padding: 0 1.5rem;
     background: #f3d349;
 

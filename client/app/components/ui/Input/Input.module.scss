@@ -1,0 +1,17 @@
+.input {
+  @apply relative w-full h-[3.7rem] mb-[1.5rem] rounded-[4px] border border-border-gray;
+
+  input {
+    @apply w-full h-full pl-[1.3rem] text-white;
+    background: transparent;
+
+    &::placeholder {
+      @apply text-input-text font-normal;
+    }
+  }
+
+}
+
+.error {
+  @apply absolute -bottom-6 left-8 text-sm text-gray-text
+}

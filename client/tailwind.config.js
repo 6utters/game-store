@@ -5,7 +5,16 @@ module.exports = {
 	],
 	theme: {
 		extend: {},
-		colors: { 'basic-gray': '#2A2A2A', 'gray-text': '#CCCCCC' },
+		colors: {
+			'basic-black': '#202020',
+			'basic-gray': '#2A2A2A',
+			'gray-text': '#CCCCCC',
+			'basic-yellow': '#f3d349',
+			white: '#ffffff',
+			'border-gray': 'rgb(118, 118, 118)',
+			'input-text': 'rgb(190,190,190)',
+			'form-btn': '#887634',
+		},
 	},
 	plugins: [],
 }

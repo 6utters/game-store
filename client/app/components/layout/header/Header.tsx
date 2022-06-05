@@ -8,8 +8,10 @@ import { navigationLinks } from './header-links'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import AuthNavbar from './authNavbar/AuthNavbar'
+import { useAppSelector } from '../../../hooks/redux'
 
 const Header: FC = () => {
+	const { isAuth } = useAppSelector((state) => state.user)
 	const router = useRouter()
 	return (
 		<div className={styles.header}>
@@ -43,7 +45,7 @@ const Header: FC = () => {
 					))}
 				</div>
 			</div>
-			<AuthNavbar isAuth={true} />
+			<AuthNavbar isAuth={isAuth} />
 		</div>
 	)
 }

@@ -5,11 +5,8 @@
 
   .right_nav {
     @apply h-full flex items-center;
-
     .logo {
-
       @apply h-full;
-
       a {
         @apply h-full flex items-center cursor-pointer;
 
@@ -23,9 +20,7 @@
             font-weight: bold;
             color: #f3d349
           }
-
         }
-
       }
     }
 
