@@ -11,8 +11,13 @@ import AuthNavbar from './authNavbar/AuthNavbar'
 import { useAppSelector } from '../../../hooks/redux'
 
 const Header: FC = () => {
-	const { isAuth } = useAppSelector((state) => state.user)
+	const { isAuth, user, isLoading } = useAppSelector((state) => state.user)
 	const router = useRouter()
+
+	if (isLoading) {
+		return <div className={styles.header}></div>
+	}
+	
 	return (
 		<div className={styles.header}>
 			<div className={styles.right_nav}>
@@ -45,7 +50,7 @@ const Header: FC = () => {
 					))}
 				</div>
 			</div>
-			<AuthNavbar isAuth={isAuth} />
+			<AuthNavbar isAuth={isAuth} userName={user && user.userName} />
 		</div>
 	)
 }

@@ -52,7 +52,6 @@ export class AuthService {
 		return {
 			...tokens,
 			user: userDto,
-			userName: dto.userName,
 		}
 	}
 
@@ -77,7 +76,6 @@ export class AuthService {
 		return {
 			...tokens,
 			user: userDto,
-			userName: dto.userName,
 		}
 	}
 

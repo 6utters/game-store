@@ -1,7 +1,10 @@
 import { AppDispatch } from '../../store'
 import AuthService from '../../../services/auth.service'
-import { setIsAuth, setUser } from './UserSlice'
+import { setIsAuth, setIsLoading, setUser } from './UserSlice'
 import { IUser } from '../../../models/IUser'
+import axios from 'axios'
+import { AuthResponse } from '../../../models/response/AuthResponse'
+import { API_URL } from '../../../providers'
 
 export const login =
 	(email: string, password: string) => async (dispatch: AppDispatch) => {
@@ -36,5 +39,22 @@ export const logout = () => async (dispatch: AppDispatch) => {
 		dispatch(setUser({} as IUser))
 	} catch (e) {
 		console.log(e)
+	}
+}
+
+export const checkAuth = () => async (dispatch: AppDispatch) => {
+	dispatch(setIsLoading(true))
+	try {
+		const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {
+			withCredentials: true,
+		})
+		console.log(response)
+		localStorage.setItem('token', response.data.accessToken)
+		dispatch(setIsAuth(true))
+		dispatch(setUser(response.data.user))
+	} catch (e) {
+		console.log(e)
+	} finally {
+		dispatch(setIsLoading(false))
 	}
 }

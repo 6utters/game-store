@@ -13,5 +13,10 @@
 }
 
 .error {
-  @apply absolute -bottom-6 left-8 text-sm text-gray-text
+  @apply absolute -bottom-5 text-sm text-error-red;
+  font-size: 0.8rem;
+}
+
+.errorInput {
+  @apply border-[1.5px] border-error-red
 }

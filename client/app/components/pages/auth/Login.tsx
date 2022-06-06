@@ -9,17 +9,22 @@ import Image from 'next/image'
 import Input from '../../ui/Input/Input'
 import Link from 'next/link'
 import { REGISTRATION_ROUTE, STORE_ROUTE } from '../../../utils/constants'
+import { useRouter } from 'next/router'
 
 const Login: FC = () => {
+	const router = useRouter()
 	const dispatch = useAppDispatch()
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<ILoginField>()
+	} = useForm<ILoginField>({
+		mode: 'onBlur',
+	})
 
 	const onSubmit: SubmitHandler<ILoginField> = (data) => {
 		dispatch(login(data.email, data.password))
+		return router.push('/')
 	}
 
 	return (
@@ -43,13 +48,14 @@ const Login: FC = () => {
 						<div className={styles.form_elms}>
 							<Input
 								placeholder={'Email Address'}
-								{...register('email', { required: true })}
+								{...register('email', { required: 'Required' })}
 								error={errors.email}
 							/>
 							<Input
 								placeholder={'Password'}
-								{...register('password', { required: true })}
+								{...register('password', { required: 'Required' })}
 								error={errors.password}
+								type={'password'}
 							/>
 							<div className={styles.submit}>
 								<button type={'submit'}>LOG IN NOW</button>

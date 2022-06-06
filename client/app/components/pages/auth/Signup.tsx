@@ -9,8 +9,10 @@ import Input from '../../ui/Input/Input'
 import Link from 'next/link'
 import { LOGIN_ROUTE, STORE_ROUTE } from '../../../utils/constants'
 import { ISignupFields } from '../../../models/ISignupFields'
+import { useRouter } from 'next/router'
 
 const Signup: FC = () => {
+	const router = useRouter()
 	const dispatch = useAppDispatch()
 	const {
 		register,
@@ -19,7 +21,8 @@ const Signup: FC = () => {
 	} = useForm<ISignupFields>()
 
 	const onSubmit: SubmitHandler<ISignupFields> = (data) => {
-		dispatch(signup(data.userName, data.email, data.password))
+		dispatch(signup(data.email, data.password, data.userName))
+		return router.push('/')
 	}
 
 	return (
@@ -43,18 +46,19 @@ const Signup: FC = () => {
 						<div className={styles.form_elms}>
 							<Input
 								placeholder={"User's Name"}
-								{...register('userName', { required: true })}
+								{...register('userName', { required: 'Required' })}
 								error={errors.userName}
 							/>
 							<Input
 								placeholder={'Email Address'}
-								{...register('email', { required: true })}
+								{...register('email', { required: 'Required' })}
 								error={errors.email}
 							/>
 							<Input
 								placeholder={'Password'}
-								{...register('password', { required: true })}
+								{...register('password', { required: 'Required' })}
 								error={errors.password}
+								type={'password'}
 							/>
 							<div className={styles.submit}>
 								<button type={'submit'}>SIGN UP NOW</button>
