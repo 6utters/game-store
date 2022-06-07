@@ -1,0 +1,7 @@
+.container {
+  @apply h-screen w-full flex justify-center;
+
+  .content {
+    @apply w-3/4 border
+  }
+}

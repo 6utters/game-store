@@ -1,0 +1,13 @@
+.navbar {
+  @apply sticky top-0 w-full border w-full flex justify-center;
+  height: 6.25rem;
+  background: rgb(18, 18, 18);
+
+  &__content {
+    @apply w-3/4 border flex items-center justify-between;
+  }
+
+  &__left {
+    @apply flex
+  }
+}
