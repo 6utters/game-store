@@ -1,13 +1,39 @@
 .navbar {
-  @apply sticky top-0 w-full border w-full flex justify-center;
+  @apply sticky top-0 w-full w-full flex justify-center z-50;
   height: 6.25rem;
   background: rgb(18, 18, 18);
 
   &__content {
-    @apply w-3/4 border flex items-center justify-between;
+    @apply w-3/4 flex items-center justify-between;
   }
 
   &__left {
-    @apply flex
+    @apply flex items-center;
+
+    a {
+      @apply ml-[2rem] text-border-gray text-sm font-medium;
+
+      &:hover {
+        @apply text-white transition-all;
+      }
+    }
+
+    .activeLink {
+      @apply text-white;
+    }
+  }
+
+  &__right {
+    @apply flex items-center;
+
+    button {
+      @apply ml-[1.8rem] text-border-gray text-sm font-medium;
+
+      &:hover {
+        @apply text-white transition-all;
+      }
+
+    }
+
   }
 }

@@ -1,7 +1,9 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	Get,
+	Param,
 	Post,
 	Query,
 	UploadedFile,
@@ -32,5 +34,10 @@ export class GamesController {
 		@Query('featureName') featureName: string,
 	) {
 		return this.gamesService.getAllByValue(genreName, featureName)
+	}
+
+	@Delete(':id')
+	deleteGame(@Param('id') id: number) {
+		return this.gamesService.delete(id)
 	}
 }

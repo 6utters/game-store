@@ -2,6 +2,7 @@ import { FC } from 'react'
 import styles from './Navbar.module.scss'
 import Search from './Search/Search'
 import Link from 'next/link'
+import { BASKET_ROUTE } from '../../../../utils/constants'
 
 const Navbar: FC = () => {
 	return (
@@ -11,11 +12,27 @@ const Navbar: FC = () => {
 					<Search />
 					<div className={styles.navbar__links}>
 						<Link href={'/'}>
-							<a>Browse</a>
+							<a className={styles.activeLink}>Browse</a>
+						</Link>
+						<Link href={'/'}>
+							<a>News</a>
 						</Link>
 					</div>
 				</div>
-				<div className={styles.navbar__right}>right</div>
+				<div className={styles.navbar__right}>
+					<div className={styles.buttons}>
+						<button>
+							<Link href={'/wishlist'}>
+								<a>Wishlist</a>
+							</Link>
+						</button>
+						<button>
+							<Link href={BASKET_ROUTE}>
+								<a>Cart</a>
+							</Link>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

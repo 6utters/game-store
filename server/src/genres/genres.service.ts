@@ -47,7 +47,7 @@ export class GenresService {
 				const ids = genreGames.map((genre) => genre.gameId)
 				targetIds = [...targetIds, ...ids]
 			}
-			return this.findDuplicates(targetIds)
+			return this.findDuplicates(targetIds, genreNames.length)
 		}
 		const targetGenre = await this.genresRepository.findOne({
 			where: { genreName: genreNames },
@@ -69,7 +69,7 @@ export class GenresService {
 		return await this.genresRepository.findAll({ include: { all: true } })
 	}
 
-	public findDuplicates(arr): number[] {
+	public findDuplicates(arr, filtersCount): number[] {
 		let counts = {}
 		for (let i = 0; i < arr.length; i++) {
 			if (counts[arr[i]]) {
@@ -79,7 +79,8 @@ export class GenresService {
 			}
 		}
 
-		const maxValue = Math.max.apply(Math, Object.values(counts))
+		const maxValue = filtersCount
+		console.log('maxV:', maxValue)
 		const arrayOfStrings = Object.keys(counts).filter(
 			(key) => counts[key] === maxValue,
 		)

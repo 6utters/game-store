@@ -1,9 +1,5 @@
-import {
-	BASKET_ROUTE,
-	LOGIN_ROUTE,
-	REGISTRATION_ROUTE,
-} from '../../../../utils/constants'
-import { FaShoppingCart, FaUser } from 'react-icons/fa'
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../../../utils/constants'
+import { FaUser } from 'react-icons/fa'
 import Link from 'next/link'
 import { FC } from 'react'
 import styles from './AuthNavbar.module.scss'
@@ -19,20 +15,7 @@ const AuthNavbar: FC<IAuthNavbarProps> = ({ isAuth, userName }) => {
 		<>
 			<div className={styles.left_nav}>
 				{isAuth ? (
-					<>
-						<button className={styles.basket_btn}>
-							<Link href={BASKET_ROUTE}>
-								<a
-									className={
-										'flex items-center text-gray-400 hover:text-gray-200 '
-									}
-								>
-									<FaShoppingCart className={styles.basket_img} />
-								</a>
-							</Link>
-						</button>
-						<UserDropdown userName={userName} />
-					</>
+					<UserDropdown userName={userName} />
 				) : (
 					<>
 						<button className={styles.login_btn}>

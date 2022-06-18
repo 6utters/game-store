@@ -1,7 +1,23 @@
 .container {
-  @apply h-screen w-full flex justify-center;
+  @apply relative h-full w-full flex justify-center;
 
   .content {
-    @apply w-3/4 border
+    @apply w-3/4 flex justify-between;
+
+    .games {
+      @apply h-full w-4/5;
+
+      &_list {
+        @apply w-full pr-[2rem] flex flex-wrap gap-4 items-start justify-start items-start;
+      }
+    }
+  }
+
+  .no_games {
+    @apply text-sm text-white;
+  }
+
+  .filters {
+    @apply w-1/5;
   }
 }

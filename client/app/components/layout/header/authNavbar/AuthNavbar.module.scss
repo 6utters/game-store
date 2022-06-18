@@ -50,15 +50,4 @@
     }
 
   }
-
-  .basket_btn {
-    @apply relative text-gray-text m-2;
-    .basket_img {
-      @apply text-[1rem];
-    }
-
-    &:hover {
-      @apply text-[#ffffff];
-    }
-  }
 }

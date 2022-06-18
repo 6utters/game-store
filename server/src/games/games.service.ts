@@ -21,7 +21,6 @@ export class GamesService {
 			...gameDto,
 			gameImage: fileName,
 		})
-
 		const genres = await this.genresService.getByValues(gameDto.genreNames)
 		if (Array.isArray(genres)) {
 			await game.$set('genres', [genres[0].id])
@@ -86,5 +85,9 @@ export class GamesService {
 		if (!genreName && !featureName) {
 			return await this.gameRepository.findAll({ include: { all: true } })
 		}
+	}
+
+	public async delete(id: number) {
+		return this.gameRepository.destroy({ where: { id } })
 	}
 }

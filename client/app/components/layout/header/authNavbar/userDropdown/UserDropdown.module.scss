@@ -34,6 +34,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 200ms ease-in;
+    z-index: 10000;
   }
 
   &__item {
