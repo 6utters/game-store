@@ -28,6 +28,11 @@ export class GamesController {
 		return this.gamesService.create(gameDto, gameImage)
 	}
 
+	@Get(':id')
+	getOne(@Param('id') id: number) {
+		return this.gamesService.getOne(id)
+	}
+
 	@Get()
 	getByFilter(
 		@Query('genreName') genreName: string,

@@ -3,7 +3,7 @@ import styles from './UserDropdown.module.scss'
 import { FaUser } from 'react-icons/fa'
 import Link from 'next/link'
 import { ADMIN_ROUTE } from '../../../../../utils/constants'
-import { useAppDispatch } from '../../../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux'
 import { logout } from '../../../../../store/reducers/userReducer/userAC'
 
 interface IUserDropdownProps {
@@ -11,6 +11,10 @@ interface IUserDropdownProps {
 }
 
 const UserDropdown: FC<IUserDropdownProps> = ({ userName }) => {
+	const { user } = useAppSelector((state) => state.user)
+	const userRoles = user && user.roles
+	const adminRole =
+		userRoles && userRoles.find((role) => role.value === 'ADMIN')
 	const dispatch = useAppDispatch()
 	const logoutHandler = () => {
 		dispatch(logout())
@@ -26,11 +30,13 @@ const UserDropdown: FC<IUserDropdownProps> = ({ userName }) => {
 				<p>{userName}</p>
 			</div>
 			<ul className={styles.dropdown__list}>
-				<li className={styles.dropdown__item}>
-					<Link href={ADMIN_ROUTE}>
-						<a href=''>Admin</a>
-					</Link>
-				</li>
+				{adminRole && (
+					<li className={styles.dropdown__item}>
+						<Link href={ADMIN_ROUTE}>
+							<a href=''>Admin</a>
+						</Link>
+					</li>
+				)}
 				<li className={styles.dropdown__item}>
 					<p onClick={logoutHandler}>Log Out</p>
 				</li>

@@ -46,6 +46,21 @@ export class GamesService {
 		return game
 	}
 
+	public async getByIds(ids: number[]) {
+		console.log('ids:', ids)
+		const games = []
+		for (let i = 0; i < ids.length; i++) {
+			const game = await this.gameRepository.findByPk(ids[i])
+			games.push(game)
+		}
+		console.log('games:', games)
+		return games
+	}
+
+	async getOne(id: number) {
+		return await this.gameRepository.findByPk(id, { include: { all: true } })
+	}
+
 	public async findGameByName(gameName: string): Promise<Game> {
 		return await this.gameRepository.findOne({
 			where: { gameName },

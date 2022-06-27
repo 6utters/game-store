@@ -26,7 +26,7 @@ export class CartsService {
 	public async addGame(userId, gameName: string): Promise<CartGame> {
 		const game = await this.gamesService.findGameByName(gameName)
 		if (!game) {
-			throw new HttpException('No such game', HttpStatus.NOT_FOUND)
+			throw new HttpException('No such games', HttpStatus.NOT_FOUND)
 		}
 		const cart = await this.cartsRepository.findOne({
 			where: { userId },

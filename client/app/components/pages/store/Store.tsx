@@ -23,7 +23,6 @@ const Store: FC = () => {
 	const { games, selectedGenres, selectedFeatures } = useAppSelector(
 		(state) => state.game,
 	)
-
 	useEffect(() => {
 		GameService.fetchGamesByFilter(selectedGenres, selectedFeatures).then(
 			(data) => dispatch(setGames(data)),
@@ -40,6 +39,7 @@ const Store: FC = () => {
 							{games.map((game) => (
 								<GameCard
 									key={game.id}
+									gameId={game.id}
 									name={game.gameName}
 									price={game.gamePrice}
 									image={game.gameImage}

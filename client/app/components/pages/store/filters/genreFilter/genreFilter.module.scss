@@ -47,7 +47,7 @@
     @apply w-full list-none;
 
     .genre {
-      @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1;
+      @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1 transition-all;
       font-size: 0.8rem;
 
       &:hover {

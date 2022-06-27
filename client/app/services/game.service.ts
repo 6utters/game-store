@@ -10,6 +10,10 @@ export default class GameService {
 		return data
 	}
 
+	static async fetchOneGame(id: string) {
+		return await axios.get<IGame>(`${API_URL}/games/${id}`)
+	}
+
 	static async fetchGenres() {
 		const { data } = await axios.get<IGenre[]>(`${API_URL}/genres`)
 		return data
@@ -19,20 +23,6 @@ export default class GameService {
 		const { data } = await axios.get<IFeature[]>(`${API_URL}/features`)
 		return data
 	}
-
-	// static async fetchGamesByGenres(genres: IGenre[]) {
-	// 	const genresQuery = genres.map((g) => `genreName=${g.genreName}&`).join('')
-	// 	const { data } = await axios.get(`${API_URL}/games?${genresQuery}`)
-	// 	return data
-	// }
-	//
-	// static async fetchGamesByFeatures(features: IFeature[]) {
-	// 	const featuresQuery = features
-	// 		.map((f) => `featureName=${f.featureName}&`)
-	// 		.join('')
-	// 	const { data } = await axios.get(`${API_URL}/games?${featuresQuery}`)
-	// 	return data
-	// }
 
 	static async fetchGamesByFilter(
 		genres: IGenre[] | [],

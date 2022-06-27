@@ -1,17 +1,24 @@
 import { FC } from 'react'
 import styles from './GameCard.module.scss'
+import { useRouter } from 'next/router'
+import { GAME_ROUTE } from '../../../../utils/constants'
 
 interface IGameCardProps {
 	name: string
 	price: number
 	image: string
+	gameId: number
 }
 
-const GameCard: FC<IGameCardProps> = ({ name, price, image }) => {
+const GameCard: FC<IGameCardProps> = ({ name, price, image, gameId }) => {
+	const router = useRouter()
 	const actualPrice = price - 0.01
 
 	return (
-		<div className={styles.card}>
+		<div
+			className={styles.card}
+			onClick={() => router.push(GAME_ROUTE + '/' + gameId)}
+		>
 			<div className={styles.card__image}>
 				<img src={'http://localhost:5000/' + image} alt='gameImage' />
 			</div>
