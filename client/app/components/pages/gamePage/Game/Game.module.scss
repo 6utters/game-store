@@ -1,3 +1,8 @@
 .container {
-  @apply h-full w-4/6;
+  @apply h-full w-4/6 pt-[0.5rem];
+
+  .wrapper {
+    @apply h-[27.5rem] mt-[1rem] rounded;
+
+  }
 }

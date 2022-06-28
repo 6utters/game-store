@@ -15,8 +15,12 @@ export class GamesService {
 		private featuresService: FeaturesService,
 	) {}
 
+	public async video(videos: any) {
+		console.log('video:', videos)
+	}
+
 	public async create(gameDto: CreateGameDto, gameImage: any): Promise<Game> {
-		const fileName = await this.filesService.createFile(gameImage)
+		const fileName = await this.filesService.createFile(gameImage, '.png')
 		const game = await this.gameRepository.create({
 			...gameDto,
 			gameImage: fileName,

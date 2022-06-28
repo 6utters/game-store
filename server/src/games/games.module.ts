@@ -13,6 +13,7 @@ import { Feature } from '../features/entities/features.model'
 import { FeatureGames } from '../features/entities/feature-games.model'
 import { FeaturesModule } from '../features/features.module'
 import { AuthModule } from '../auth/auth.module'
+import { Game_info } from '../games-info/entities/game-info.model'
 
 @Module({
 	providers: [GamesService],
@@ -26,6 +27,7 @@ import { AuthModule } from '../auth/auth.module'
 			GenreGames,
 			Feature,
 			FeatureGames,
+			Game_info,
 		]),
 		FilesModule,
 		GenresModule,

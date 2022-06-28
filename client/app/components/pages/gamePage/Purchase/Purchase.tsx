@@ -25,6 +25,7 @@ const Purchase: FC<IGame> = (game) => {
 			<div className={styles.game_name}>
 				<p>{game.gameName}</p>
 			</div>
+			<p>base game</p>
 			<div className={styles.game_price}>
 				<p>{game.gamePrice}$</p>
 			</div>
@@ -47,6 +48,20 @@ const Purchase: FC<IGame> = (game) => {
 						<p>add to cart</p>
 					</button>
 				)}
+				<div className={styles.purchase_info}>
+					<div className={styles.info_item}>
+						<p>Developer</p>
+						<h4>{game.gameInfo.developer}</h4>
+					</div>
+					<div className={styles.info_item}>
+						<p>Publisher</p>
+						<h4>{game.gameInfo.publisher}</h4>
+					</div>
+					<div className={styles.info_item}>
+						<p>Release Date</p>
+						<h4>{game.gameInfo.releaseDate}</h4>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

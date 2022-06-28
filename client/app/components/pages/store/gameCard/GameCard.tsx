@@ -13,7 +13,6 @@ interface IGameCardProps {
 const GameCard: FC<IGameCardProps> = ({ name, price, image, gameId }) => {
 	const router = useRouter()
 	const actualPrice = price - 0.01
-
 	return (
 		<div
 			className={styles.card}

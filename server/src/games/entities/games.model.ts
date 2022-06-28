@@ -2,6 +2,7 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
+	HasOne,
 	Model,
 	Table,
 } from 'sequelize-typescript'
@@ -9,6 +10,7 @@ import { Genre } from '../../genres/entities/genres.model'
 import { GenreGames } from '../../genres/entities/genre-games.model'
 import { Feature } from '../../features/entities/features.model'
 import { FeatureGames } from '../../features/entities/feature-games.model'
+import { Game_info } from '../../games-info/entities/game-info.model'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -51,6 +53,9 @@ export class Game extends Model<Game, UserCreationAttrs> {
 		allowNull: false,
 	})
 	gameImage: string
+
+	@HasOne(() => Game_info)
+	gameInfo: Game_info
 
 	@BelongsToMany(() => Genre, () => GenreGames)
 	genres: Genre[]

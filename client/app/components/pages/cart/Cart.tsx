@@ -17,7 +17,6 @@ const Cart: FC = () => {
 
 	// TODO: realize discount logic
 	const discount = 0
-
 	const subtotal = totalPrice - discount
 
 	return (

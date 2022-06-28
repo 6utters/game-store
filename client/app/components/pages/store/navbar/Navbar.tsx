@@ -3,8 +3,17 @@ import styles from './Navbar.module.scss'
 import Search from './Search/Search'
 import Link from 'next/link'
 import { BASKET_ROUTE } from '../../../../utils/constants'
+import { useAppSelector } from '../../../../hooks/redux'
+import { IGame } from '../../../../models/IGame'
 
 const Navbar: FC = () => {
+	const { cartGames } = useAppSelector((state) => state.cart)
+
+	//TODO: realize through redux toolkit
+	const showCount = (cartGames: IGame[]) => {
+		return cartGames.length ? cartGames.length : ''
+	}
+
 	return (
 		<div className={styles.navbar}>
 			<div className={styles.navbar__content}>
@@ -28,7 +37,9 @@ const Navbar: FC = () => {
 						</button>
 						<button>
 							<Link href={BASKET_ROUTE}>
-								<a>Cart</a>
+								<a>
+									Cart <span>{showCount(cartGames)}</span>
+								</a>
 							</Link>
 						</button>
 					</div>

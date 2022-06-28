@@ -27,12 +27,19 @@
     @apply flex items-center;
 
     button {
-      @apply ml-[1.8rem] text-border-gray text-sm font-medium;
+      @apply ml-[1.8rem] text-border-gray text-sm font-medium ;
 
       &:hover {
         @apply text-white transition-all;
+
+        span {
+          @apply text-basic-black;
+        }
       }
 
+      span {
+        @apply inline-block bg-white w-[1rem] rounded-3xl ml-[0.2rem] text-basic-black;
+      }
     }
 
   }

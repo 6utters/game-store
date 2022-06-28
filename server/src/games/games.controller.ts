@@ -28,6 +28,12 @@ export class GamesController {
 		return this.gamesService.create(gameDto, gameImage)
 	}
 
+	@Post('video')
+	@UseInterceptors(FileInterceptor('video'))
+	addVideo(@UploadedFile() video) {
+		return this.gamesService.video(video)
+	}
+
 	@Get(':id')
 	getOne(@Param('id') id: number) {
 		return this.gamesService.getOne(id)
