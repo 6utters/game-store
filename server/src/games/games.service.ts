@@ -5,6 +5,8 @@ import { Game } from './entities/games.model'
 import { FilesService } from '../files/files.service'
 import { GenresService } from '../genres/genres.service'
 import { FeaturesService } from '../features/features.service'
+import { GamesMediaService } from '../games-media/games-media.service'
+import { CreateMediaDto } from '../games-media/dtos/create-media.dto'
 
 @Injectable()
 export class GamesService {
@@ -13,17 +15,41 @@ export class GamesService {
 		private filesService: FilesService,
 		private genresService: GenresService,
 		private featuresService: FeaturesService,
+		private gameMediaService: GamesMediaService,
 	) {}
 
-	public async video(videos: any) {
-		console.log('video:', videos)
+	public async addVideos(
+		mediaFile: Array<Express.Multer.File>,
+		folder,
+		gameId: number,
+		type: string,
+	) {
+		const game = await this.gameRepository.findByPk(gameId)
+		const urls = []
+		for (let i = 0; i < mediaFile.length; i++) {
+			urls.push(await this.filesService.saveMedia(mediaFile[i], folder))
+			await this.filesService.saveMedia(mediaFile[i], folder)
+		}
+		for (let i = 0; i < urls.length; i++) {
+			const mediasDto: CreateMediaDto = {
+				url: urls[i].url,
+				type,
+				gameId,
+			}
+			const media = await this.gameMediaService.createMedia(mediasDto)
+			await game.$add('gameMedia', media)
+		}
 	}
 
-	public async create(gameDto: CreateGameDto, gameImage: any): Promise<Game> {
-		const fileName = await this.filesService.createFile(gameImage, '.png')
+	public async create(
+		gameDto: CreateGameDto,
+		gameImage: Express.Multer.File,
+		folder = 'default',
+	): Promise<Game> {
+		const fileName = await this.filesService.saveMedia(gameImage, folder)
 		const game = await this.gameRepository.create({
 			...gameDto,
-			gameImage: fileName,
+			gameImage: fileName.url,
 		})
 		const genres = await this.genresService.getByValues(gameDto.genreNames)
 		if (Array.isArray(genres)) {
@@ -51,13 +77,11 @@ export class GamesService {
 	}
 
 	public async getByIds(ids: number[]) {
-		console.log('ids:', ids)
 		const games = []
 		for (let i = 0; i < ids.length; i++) {
 			const game = await this.gameRepository.findByPk(ids[i])
 			games.push(game)
 		}
-		console.log('games:', games)
 		return games
 	}
 

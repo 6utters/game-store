@@ -8,7 +8,6 @@ export default class CartService {
 
 	static async addToCart(gameName: string) {
 		const { data } = await $api.post(`${API_URL}/carts`, { gameName })
-		console.log('data:', data)
 	}
 
 	static async removeFromCart(gameId: string) {

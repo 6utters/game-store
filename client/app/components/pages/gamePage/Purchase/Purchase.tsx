@@ -27,7 +27,7 @@ const Purchase: FC<IGame> = (game) => {
 			</div>
 			<p>base game</p>
 			<div className={styles.game_price}>
-				<p>{game.gamePrice}$</p>
+				<p>{game.gamePrice - 0.01}$</p>
 			</div>
 			<div className={styles.buttons}>
 				<button className={styles.buy_btn}>

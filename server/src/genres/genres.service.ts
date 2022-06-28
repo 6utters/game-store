@@ -80,7 +80,6 @@ export class GenresService {
 		}
 
 		const maxValue = filtersCount
-		console.log('maxV:', maxValue)
 		const arrayOfStrings = Object.keys(counts).filter(
 			(key) => counts[key] === maxValue,
 		)

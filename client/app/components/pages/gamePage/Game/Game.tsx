@@ -6,12 +6,14 @@ import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const Game: FC<IGame> = (game) => {
+	const firstVideo = game.gameMedia.find((media) => media.type === 'video')
+	const mainVideoUrl = `http://localhost:5000${firstVideo?.url}`
 	return (
 		<div className={styles.container}>
 			<div>rating</div>
 			<div className={styles.wrapper}>
 				<ReactPlayer
-					url='http://localhost:5000/6cf2f4de-5bac-44fe-bc45-23fb1d8f912f.mp4'
+					url={mainVideoUrl}
 					controls={true}
 					pip={true}
 					className={styles.player}

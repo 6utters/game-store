@@ -14,6 +14,8 @@ import { FeatureGames } from '../features/entities/feature-games.model'
 import { FeaturesModule } from '../features/features.module'
 import { AuthModule } from '../auth/auth.module'
 import { Game_info } from '../games-info/entities/game-info.model'
+import { Game_media } from '../games-media/entities/games-media.model'
+import { GamesMediaModule } from '../games-media/games-media.module'
 
 @Module({
 	providers: [GamesService],
@@ -28,10 +30,12 @@ import { Game_info } from '../games-info/entities/game-info.model'
 			Feature,
 			FeatureGames,
 			Game_info,
+			Game_media,
 		]),
 		FilesModule,
 		GenresModule,
 		FeaturesModule,
+		GamesMediaModule,
 		forwardRef(() => AuthModule),
 	],
 	exports: [GamesService],

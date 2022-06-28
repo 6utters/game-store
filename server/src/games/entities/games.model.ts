@@ -2,6 +2,7 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
+	HasMany,
 	HasOne,
 	Model,
 	Table,
@@ -11,6 +12,7 @@ import { GenreGames } from '../../genres/entities/genre-games.model'
 import { Feature } from '../../features/entities/features.model'
 import { FeatureGames } from '../../features/entities/feature-games.model'
 import { Game_info } from '../../games-info/entities/game-info.model'
+import { Game_media } from '../../games-media/entities/games-media.model'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -53,6 +55,9 @@ export class Game extends Model<Game, UserCreationAttrs> {
 		allowNull: false,
 	})
 	gameImage: string
+
+	@HasMany(() => Game_media)
+	gameMedia: Game_media[]
 
 	@HasOne(() => Game_info)
 	gameInfo: Game_info

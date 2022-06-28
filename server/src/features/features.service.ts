@@ -51,8 +51,6 @@ export class FeaturesService {
 				})
 				const ids = featureGames.map((feature) => feature.gameId)
 				targetIds = [...targetIds, ...ids]
-				console.log('ids:', ids)
-				console.log('targetIds', targetIds)
 			}
 			return this.genresService.findDuplicates(targetIds, featureNames.length)
 		}

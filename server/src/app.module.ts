@@ -14,7 +14,6 @@ import { UserRoles } from './roles/entities/user-roles.model'
 import { GamesModule } from './games/games.module'
 import { Game } from './games/entities/games.model'
 import { FilesModule } from './files/files.module'
-import { ServeStaticModule } from '@nestjs/serve-static'
 import { CartsModule } from './carts/carts.module'
 import { Cart } from './carts/entities/carts.model'
 import { CartGame } from './carts/entities/cart-games.model'
@@ -28,6 +27,9 @@ import { Feature } from './features/entities/features.model'
 import { FeatureGames } from './features/entities/feature-games.model'
 import { GamesInfoModule } from './games-info/games-info.module'
 import { Game_info } from './games-info/entities/game-info.model'
+import { GamesMediaModule } from './games-media/games-media.module'
+import { Game_media } from './games-media/entities/games-media.model'
+import { ServeStaticModule } from '@nestjs/serve-static'
 
 @Module({
 	controllers: [],
@@ -57,6 +59,7 @@ import { Game_info } from './games-info/entities/game-info.model'
 				Feature,
 				FeatureGames,
 				Game_info,
+				Game_media,
 			],
 			autoLoadModels: true,
 			synchronize: true,
@@ -98,6 +101,7 @@ import { Game_info } from './games-info/entities/game-info.model'
 		GenresModule,
 		FeaturesModule,
 		GamesInfoModule,
+		GamesMediaModule,
 	],
 })
 export class AppModule {}
