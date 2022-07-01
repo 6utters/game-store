@@ -41,7 +41,7 @@ export class GamesController {
 		@Query('type') type: string,
 		@Query('folder') folder?: string,
 	) {
-		return this.gamesService.addVideos(mediaFiles, folder, gameId, type)
+		return this.gamesService.addMedia(mediaFiles, folder, gameId, type)
 	}
 
 	@Get(':id')

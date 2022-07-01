@@ -30,6 +30,7 @@ import { Game_info } from './games-info/entities/game-info.model'
 import { GamesMediaModule } from './games-media/games-media.module'
 import { Game_media } from './games-media/entities/games-media.model'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import { GamesAboutModule } from './games-about/games-about.module';
 
 @Module({
 	controllers: [],
@@ -102,6 +103,7 @@ import { ServeStaticModule } from '@nestjs/serve-static'
 		FeaturesModule,
 		GamesInfoModule,
 		GamesMediaModule,
+		GamesAboutModule,
 	],
 })
 export class AppModule {}

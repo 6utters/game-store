@@ -18,7 +18,7 @@ export class GamesService {
 		private gameMediaService: GamesMediaService,
 	) {}
 
-	public async addVideos(
+	public async addMedia(
 		mediaFile: Array<Express.Multer.File>,
 		folder,
 		gameId: number,
