@@ -1,5 +1,5 @@
 .game-media-slider {
-  @apply relative h-[27.5rem] mb-[1.5rem];
+  @apply relative h-[27.5rem] mb-[1rem];
   .swiper-slide {
     @apply relative overflow-hidden;
     padding-top: 100%;
@@ -70,7 +70,6 @@
   z-index: 10;
 
   .swiper-slide {
-    @apply cursor-pointer;
 
     &-thumb-active {
       .game-media-slider-thumbs-wrapper {
@@ -88,7 +87,8 @@
   }
 
   &-wrapper {
-    @apply relative w-full h-[3.5rem] opacity-50;
+    @apply relative w-full h-[3.5rem] opacity-60 cursor-pointer;
+  ;
 
     img {
       @apply absolute top-0 left-0 w-full h-full rounded;

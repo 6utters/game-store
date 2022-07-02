@@ -15,16 +15,16 @@
   &__name {
     @apply w-full mt-2;
     p {
-      @apply text-white;
-      font-size: 0.95rem;
+      @apply text-gray-text font-medium;
+      font-size: 0.9rem;
     }
   }
 
   &__price {
-    @apply w-full  mt-2;
+    @apply w-full mt-2 ;
     p {
-      @apply text-white;
-      font-size: 0.95rem
+      @apply text-gray-text font-medium;
+      font-size: 0.85rem
     }
   }
 

@@ -1,0 +1,17 @@
+.images {
+  @apply w-full mb-[3rem];
+  .one_image {
+    @apply w-full h-[27.5rem] mb-[1.5rem];
+    img {
+      @apply w-full h-full rounded;
+    }
+  }
+
+  .two_images {
+    @apply w-full flex justify-between gap-[1.5rem] mb-[1.5rem];
+    img {
+      @apply rounded;
+      width: calc(50% - 0.75rem);
+    }
+  }
+}

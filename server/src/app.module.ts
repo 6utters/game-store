@@ -30,7 +30,8 @@ import { Game_info } from './games-info/entities/game-info.model'
 import { GamesMediaModule } from './games-media/games-media.module'
 import { Game_media } from './games-media/entities/games-media.model'
 import { ServeStaticModule } from '@nestjs/serve-static'
-import { GamesAboutModule } from './games-about/games-about.module';
+import { GamesAboutModule } from './games-about/games-about.module'
+import { Game_about } from './games-about/entities/games-about.model'
 
 @Module({
 	controllers: [],
@@ -61,6 +62,7 @@ import { GamesAboutModule } from './games-about/games-about.module';
 				FeatureGames,
 				Game_info,
 				Game_media,
+				Game_about,
 			],
 			autoLoadModels: true,
 			synchronize: true,

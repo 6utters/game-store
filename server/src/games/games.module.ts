@@ -16,6 +16,7 @@ import { AuthModule } from '../auth/auth.module'
 import { Game_info } from '../games-info/entities/game-info.model'
 import { Game_media } from '../games-media/entities/games-media.model'
 import { GamesMediaModule } from '../games-media/games-media.module'
+import { Game_about } from '../games-about/entities/games-about.model'
 
 @Module({
 	providers: [GamesService],
@@ -31,6 +32,7 @@ import { GamesMediaModule } from '../games-media/games-media.module'
 			FeatureGames,
 			Game_info,
 			Game_media,
+			Game_about,
 		]),
 		FilesModule,
 		GenresModule,

@@ -8,8 +8,11 @@ import { BsFillPlayFill } from 'react-icons/bs'
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const GameSlider: FC<{ media: IGameMedia[] }> = ({ media }) => {
-	const images = media.filter((m) => m.type === 'image')
 	const [activeThumb, setActiveThumb] = useState()
+	const videos = media.filter((m) => m.type === 'video')
+	const images = media.filter((m) => m.type === 'image')
+	const sortedMedia = [...videos, ...images]
+	console.log(media)
 
 	return (
 		<>
@@ -22,7 +25,7 @@ const GameSlider: FC<{ media: IGameMedia[] }> = ({ media }) => {
 				simulateTouch={false}
 				className={'game-media-slider'}
 			>
-				{media.map((mediaItem) => (
+				{sortedMedia.map((mediaItem) => (
 					<SwiperSlide key={mediaItem.id}>
 						{mediaItem.type === 'video' ? (
 							<ReactPlayer
@@ -53,7 +56,7 @@ const GameSlider: FC<{ media: IGameMedia[] }> = ({ media }) => {
 				modules={[Navigation, Thumbs]}
 				className={'game-media-slider-thumbs'}
 			>
-				{media.map((mediaItem) => (
+				{sortedMedia.map((mediaItem) => (
 					<SwiperSlide key={mediaItem.id}>
 						<div className={'game-media-slider-thumbs-wrapper'}>
 							{mediaItem.type === 'video' ? (

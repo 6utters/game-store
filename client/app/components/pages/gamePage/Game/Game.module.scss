@@ -2,6 +2,6 @@
   @apply h-full w-4/6 pt-[0.5rem];
 
   .sliderWrapper {
-    @apply h-[27.5rem] mt-[1rem] w-full;
+    @apply relative h-[27.5rem] mt-[1rem] w-full mb-[7.5rem];
   }
 }
