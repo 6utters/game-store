@@ -2,16 +2,19 @@ import { FC, useEffect, useState } from 'react'
 import styles from './Purchase.module.scss'
 import { IGame } from '../../../../models/IGame'
 import CartService from '../../../../services/cart.service'
-import { useAppSelector } from '../../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { useRouter } from 'next/router'
 import { BASKET_ROUTE } from '../../../../utils/constants'
+import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 
 const Purchase: FC<IGame> = (game) => {
+	const dispatch = useAppDispatch()
 	const { cartGames } = useAppSelector((state) => state.cart)
 	useEffect(() => {
 		if (cartGames.some((g) => g.gameName === game.gameName)) {
 			setAddToCartBtn(true)
 		}
+		dispatch(fetchCartGames())
 	}, [cartGames])
 
 	const router = useRouter()

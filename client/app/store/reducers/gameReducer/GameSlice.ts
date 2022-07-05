@@ -61,6 +61,20 @@ export const gameSlice = createSlice({
 				(feature) => feature.id !== searchedId,
 			)
 		},
+
+		removeGame: (state, action: PayloadAction<number>) => {
+			state.games = state.games.filter((game) => game.id !== action.payload)
+		},
+
+		removeGenre: (state, action: PayloadAction<number>) => {
+			state.genres = state.genres.filter((genre) => genre.id !== action.payload)
+		},
+
+		removeFeature: (state, action: PayloadAction<number>) => {
+			state.features = state.features.filter(
+				(feature) => feature.id !== action.payload,
+			)
+		},
 	},
 })
 
@@ -72,6 +86,9 @@ export const {
 	removeSelectedGenre,
 	setSelectedFeatures,
 	removeSelectedFeature,
+	removeGenre,
+	removeFeature,
+	removeGame,
 } = gameSlice.actions
 
 export default gameSlice.reducer

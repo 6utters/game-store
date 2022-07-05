@@ -10,3 +10,11 @@ export const findSelectedFilter = (searchedId: number, filters: IFilters[]) => {
 		return searchedFilter.id
 	}
 }
+
+export const convertImage = (image: string) => {
+	if (image.slice(0, 1) === '/') {
+		return image
+	} else {
+		return `/${image}`
+	}
+}

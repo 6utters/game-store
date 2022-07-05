@@ -24,6 +24,10 @@ export class GamesService {
 		gameId: number,
 		type: string,
 	) {
+		console.log('mediaFile', mediaFile)
+		console.log('folder', folder)
+		console.log('gameId', gameId)
+		console.log('type', type)
 		const game = await this.gameRepository.findByPk(gameId)
 		const urls = []
 		for (let i = 0; i < mediaFile.length; i++) {
@@ -46,31 +50,25 @@ export class GamesService {
 		gameImage: Express.Multer.File,
 		folder = 'default',
 	): Promise<Game> {
+		console.log('gameDto:', gameDto)
+		console.log('gameImage:', gameImage)
 		const fileName = await this.filesService.saveMedia(gameImage, folder)
 		const game = await this.gameRepository.create({
 			...gameDto,
 			gameImage: fileName.url,
 		})
 		const genres = await this.genresService.getByValues(gameDto.genreNames)
-		if (Array.isArray(genres)) {
-			await game.$set('genres', [genres[0].id])
-			for (let i = 1; i < genres.length; i++) {
-				await game.$add('genres', [genres[i].id])
-			}
-		} else {
-			await game.$set('genres', [genres.id])
+		await game.$set('genres', [genres[0].id])
+		for (let i = 1; i < genres.length; i++) {
+			await game.$add('genres', [genres[i].id])
 		}
 
 		const features = await this.featuresService.getByValues(
 			gameDto.featureNames,
 		)
-		if (Array.isArray(features)) {
-			await game.$set('features', [features[0].id])
-			for (let i = 1; i < features.length; i++) {
-				await game.$add('features', [features[i].id])
-			}
-		} else {
-			await game.$set('features', [features.id])
+		await game.$set('features', [features[0].id])
+		for (let i = 1; i < features.length; i++) {
+			await game.$add('features', [features[i].id])
 		}
 
 		return game

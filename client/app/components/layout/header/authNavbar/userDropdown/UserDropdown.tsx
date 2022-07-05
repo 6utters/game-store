@@ -12,6 +12,8 @@ interface IUserDropdownProps {
 
 const UserDropdown: FC<IUserDropdownProps> = ({ userName }) => {
 	const { user } = useAppSelector((state) => state.user)
+	console.log('userU:', user)
+
 	const userRoles = user && user.roles
 	const adminRole =
 		userRoles && userRoles.find((role) => role.value === 'ADMIN')

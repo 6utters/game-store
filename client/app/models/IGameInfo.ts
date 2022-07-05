@@ -1,5 +1,5 @@
 export interface IGameInfo {
-	id: number
+	id?: number
 	gameId: number
 	developer: string
 	publisher: string
