@@ -1,14 +1,21 @@
 .content {
-  @apply rounded bg-basic-gray flex flex-col px-[2rem] py-[1rem] overflow-hidden;
+  @apply rounded bg-basic-gray flex flex-col px-[2rem] py-[1rem] overflow-hidden items-center justify-center;
   width: 90%;
   height: 90%;
+
+  .loading {
+    @apply flex;
+    p {
+      @apply text-white font-semibold;
+    }
+  }
 
   .title {
     @apply w-full h-[2rem] flex justify-center mb-[0.5rem];
 
     p {
       @apply text-white font-semibold;
-      font-size: 1rem
+      font-size: 1rem;
     }
   }
 
@@ -41,41 +48,12 @@
         }
 
         grid-column-start: 3;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
         grid-row-start: 1;
         grid-row-end: 3;
-
-        .info {
-          @apply mb-[1.5rem];
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 0.5rem;
-
-          input {
-            @apply flex items-center;
-
-            &::placeholder {
-              font-size: 0.7rem;
-            }
-          }
-        }
-
-        .about {
-          textarea {
-            @apply w-full rounded border border-border-gray h-[3rem] text-white px-[0.5rem];
-            font-size: 0.8rem;
-            background-color: transparent;
-            resize: none;
-
-            &::placeholder {
-            }
-          }
-        }
-
       }
 
       .form_4 {
-        @apply pr-[0.5rem];
+        @apply pr-[1rem] pl-[1rem];
         grid-column-start: 1;
         grid-column-end: 3;
 

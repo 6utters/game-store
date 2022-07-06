@@ -5,7 +5,11 @@ import GamesPanel from '../../app/components/pages/admin/gamesPanel/GamesPanel'
 
 const Games: FC = () => {
 	return (
-		<Layout showHeader={true} title={'D&D Games | Admin panel | Games Panel'}>
+		<Layout
+			showHeader={true}
+			title={'D&D Games | Admin panel | Games Panel'}
+			showFooter={false}
+		>
 			<AdminLayout>
 				<GamesPanel />
 			</AdminLayout>

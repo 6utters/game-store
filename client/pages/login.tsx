@@ -4,7 +4,7 @@ import Login from '../app/components/pages/auth/Login'
 
 const LogInPage: NextPage = () => {
 	return (
-		<Layout showHeader={false} title={'D&D Games | Log In'}>
+		<Layout showHeader={false} title={'D&D Games | Log In'} showFooter={false}>
 			<Login />
 		</Layout>
 	)

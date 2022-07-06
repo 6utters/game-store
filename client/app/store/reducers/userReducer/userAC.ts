@@ -43,7 +43,6 @@ export const logout = () => async (dispatch: AppDispatch) => {
 }
 
 export const checkAuth = () => async (dispatch: AppDispatch) => {
-	dispatch(setIsLoading(true))
 	try {
 		const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {
 			withCredentials: true,

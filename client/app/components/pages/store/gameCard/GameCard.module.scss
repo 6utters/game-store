@@ -2,7 +2,7 @@
   @apply relative w-[12,9375rem] h-[22rem] cursor-pointer mb-[3rem];
 
   &__image {
-    @apply relative w-full h-[17.5rem];
+    @apply relative w-full h-[17.5rem] transition-all;
     img {
       @apply h-full w-full rounded-md;
     }

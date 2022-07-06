@@ -1,4 +1,6 @@
 .feature_filter {
+  @apply transition-all;
+
   &:before {
     content: '';
     display: block;
@@ -23,6 +25,10 @@
     @apply flex items-center justify-between w-full cursor-pointer;
     height: 3.75rem;
 
+    .arrow_icon {
+      @apply transition-all;
+    }
+
     &:hover {
       h3 {
         @apply text-gray-text;
@@ -31,6 +37,7 @@
       .arrow_icon {
         @apply text-gray-text;
       }
+
     }
 
     h3 {
@@ -47,7 +54,7 @@
     @apply w-full list-none;
 
     .feature {
-      @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1 transition-all;
+      @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1 transition-all pl-[0.5rem];
       font-size: 0.8rem;
 
       &:hover {
@@ -62,4 +69,9 @@
       @apply text-white;
     }
   }
+
+  .clicked {
+    @apply rotate-180;
+  }
+
 }

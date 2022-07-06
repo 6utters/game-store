@@ -42,17 +42,22 @@
         font-size: 0.65rem;
         letter-spacing: 0.05rem;
 
+        &:after {
+          @apply transition-all;
+          content: '';
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          height: 0;
+          background: #f3d349;
+        }
+
         &:hover {
           color: white;
 
           &:after {
-            content: '';
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom: 0;
             height: .25rem;
-            background: #f3d349;
           }
         }
       }

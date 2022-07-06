@@ -5,7 +5,11 @@ import AdminLayout from '../app/components/layout/adminLayout/AdminLayout'
 
 const AdminPage: FC = () => {
 	return (
-		<Layout showHeader={true} title={'D&D Games | Admin panel'}>
+		<Layout
+			showHeader={true}
+			title={'D&D Games | Admin panel'}
+			showFooter={false}
+		>
 			<AdminLayout>
 				<Admin />
 			</AdminLayout>

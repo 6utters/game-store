@@ -7,11 +7,14 @@ import { ImCross } from 'react-icons/im'
 import { deleteGenre } from '../../../../store/reducers/gameReducer/gameAC'
 import { FiPlus } from 'react-icons/fi'
 import GenreModal from './GenreModal/GenreModal'
+import Spinner from '../../../ui/Spinner/Spinner'
 
 const GenresPanel: FC = () => {
 	const dispatch = useAppDispatch()
+	const [loading, setLoading] = useState<boolean>(true)
 	useEffect(() => {
 		GameService.fetchGenres().then((data) => dispatch(setGenres(data)))
+		setLoading(false)
 	}, [])
 	const { genres } = useAppSelector((state) => state.game)
 
@@ -23,21 +26,25 @@ const GenresPanel: FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.content}>
-				<div className={styles.add_genre}>
-					<FiPlus onClick={() => setModalActive(true)} />
-					<GenreModal active={modalActive} setActive={setModalActive} />
+			{loading ? (
+				<Spinner />
+			) : (
+				<div className={styles.content}>
+					<div className={styles.add_genre}>
+						<FiPlus onClick={() => setModalActive(true)} />
+						<GenreModal active={modalActive} setActive={setModalActive} />
+					</div>
+					<div className={styles.genreList}>
+						<h3>Genres</h3>
+						{genres.map((genre) => (
+							<div key={genre.id} className={styles.genre}>
+								<p>{genre.genreName}</p>
+								<ImCross onClick={() => deleteHandler(genre.id)} />
+							</div>
+						))}
+					</div>
 				</div>
-				<div className={styles.genreList}>
-					<h3>Genres</h3>
-					{genres.map((genre) => (
-						<div key={genre.id} className={styles.genre}>
-							<p>{genre.genreName}</p>
-							<ImCross onClick={() => deleteHandler(genre.id)} />
-						</div>
-					))}
-				</div>
-			</div>
+			)}
 		</div>
 	)
 }

@@ -8,6 +8,7 @@ const Features: FC = () => {
 		<Layout
 			showHeader={true}
 			title={'D&D Games | Admin panel | Features Panel'}
+			showFooter={false}
 		>
 			<AdminLayout>
 				<FeaturesPanel />

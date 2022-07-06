@@ -11,7 +11,7 @@ const CartPage: FC = () => {
 	}, [])
 
 	return (
-		<Layout showHeader={true} title={'D&D Games | Your Cart'}>
+		<Layout showHeader={true} title={'D&D Games | Your Cart'} showFooter={true}>
 			<Cart />
 		</Layout>
 	)

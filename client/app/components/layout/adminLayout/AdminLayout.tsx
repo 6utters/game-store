@@ -4,26 +4,30 @@ import SidebarPanel from './SidebarPanel/SidebarPanel'
 import { useAppSelector } from '../../../hooks/redux'
 
 const AdminLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const { user } = useAppSelector((state) => state.user)
+	const { user, isLoading } = useAppSelector((state) => state.user)
 	const userRoles = user && user.roles
 	const adminRole =
 		userRoles && userRoles.find((role) => role.value === 'ADMIN')
 
-	if (!adminRole) {
-		return (
-			<div className={styles.error}>
-				<h1>This page is not allowed for an ordinary user :(</h1>
-			</div>
-		)
+	if (isLoading) {
+		return <div className={styles.container}>Laoding</div>
 	}
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.content}>
-				<SidebarPanel />
-				<div className={styles.main_block}>{children}</div>
-			</div>
-		</div>
+		<>
+			{adminRole ? (
+				<div className={styles.container}>
+					<div className={styles.content}>
+						<SidebarPanel />
+						<div className={styles.main_block}>{children}</div>
+					</div>
+				</div>
+			) : (
+				<div className={styles.error}>
+					<h1>This page is not allowed for an ordinary user :(</h1>
+				</div>
+			)}
+		</>
 	)
 }
 

@@ -5,7 +5,11 @@ import GenresPanel from '../../app/components/pages/admin/genresPanel/GenresPane
 
 const Genres: FC = () => {
 	return (
-		<Layout showHeader={true} title={'D&D Games | Admin panel | Genres Panel'}>
+		<Layout
+			showHeader={true}
+			title={'D&D Games | Admin panel | Genres Panel'}
+			showFooter={false}
+		>
 			<AdminLayout>
 				<GenresPanel />
 			</AdminLayout>

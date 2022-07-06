@@ -32,7 +32,7 @@ const FeatureFilter: FC = () => {
 				<h3>features</h3>
 				<IoIosArrowDown
 					className={cn(styles.arrow_icon, {
-						showGenres: 'rotate-180',
+						[styles.clicked]: showFeatures,
 					})}
 				/>
 			</button>

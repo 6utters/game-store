@@ -6,8 +6,8 @@ import GameService from '../../../../services/game.service'
 import { setGames } from '../../../../store/reducers/gameReducer/GameSlice'
 import GameModal from './GameModal/GameModal'
 import styles from './GamesPanel.module.scss'
-import { convertImage } from '../../../../utils/helpers'
 import { deleteGame } from '../../../../store/reducers/gameReducer/gameAC'
+import { convertImage } from '../../../../utils/helpers'
 
 const GamesPanel: FC = () => {
 	const dispatch = useAppDispatch()

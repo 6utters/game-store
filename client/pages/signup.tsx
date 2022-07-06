@@ -4,7 +4,7 @@ import Signup from '../app/components/pages/auth/Signup'
 
 const SignUpPage: NextPage = () => {
 	return (
-		<Layout showHeader={false} title={'D&D Games | Sign Up'}>
+		<Layout showHeader={false} title={'D&D Games | Sign Up'} showFooter={false}>
 			<Signup />
 		</Layout>
 	)

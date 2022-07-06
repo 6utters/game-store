@@ -16,7 +16,11 @@ const Game: NextPage<IGameProps> = (props) => {
 	}, [])
 
 	return (
-		<Layout title={`D&D Games | ${props.game.gameName}`} showHeader={true}>
+		<Layout
+			title={`D&D Games | ${props.game.gameName}`}
+			showHeader={true}
+			showFooter={true}
+		>
 			<GamePage {...props.game} />
 		</Layout>
 	)

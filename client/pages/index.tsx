@@ -4,7 +4,11 @@ import Store from '../app/components/pages/store/Store'
 
 const HomePage: NextPage = () => {
 	return (
-		<Layout showHeader={true} title={'D&D Games | Store page'}>
+		<Layout
+			showHeader={true}
+			title={'D&D Games | Store page'}
+			showFooter={true}
+		>
 			<Store />
 		</Layout>
 	)

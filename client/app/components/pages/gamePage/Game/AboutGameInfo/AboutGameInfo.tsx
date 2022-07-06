@@ -3,6 +3,12 @@ import { IGameAbout } from '../../../../../models/IGameAbout'
 import styles from './AboutGameInfo.module.scss'
 import { IGenre } from '../../../../../models/IGenre'
 import { IFeature } from '../../../../../models/IFeature'
+import { useAppDispatch } from '../../../../../hooks/redux'
+import { useRouter } from 'next/router'
+import {
+	setSelectedFeatures,
+	setSelectedGenres,
+} from '../../../../../store/reducers/gameReducer/GameSlice'
 
 interface IAboutGameInfoProps {
 	aboutInfo: IGameAbout
@@ -17,6 +23,19 @@ const AboutGameInfo: FC<IAboutGameInfoProps> = ({
 	gameFeatures,
 	gameName,
 }) => {
+	const dispatch = useAppDispatch()
+	const router = useRouter()
+	const filterHandler = (filter: any, type: string) => {
+		if (type === 'genre') {
+			dispatch(setSelectedGenres(filter))
+			router.push('/')
+		}
+		if (type === 'feature') {
+			dispatch(setSelectedFeatures(filter))
+			router.push('/')
+		}
+	}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_info}>
@@ -27,7 +46,9 @@ const AboutGameInfo: FC<IAboutGameInfoProps> = ({
 					<p>Genres</p>
 					<div className={styles.genres}>
 						{gameGenres.map((g) => (
-							<h5 key={g.id}>{g.genreName}</h5>
+							<h5 onClick={() => filterHandler(g, 'genre')} key={g.id}>
+								{g.genreName}
+							</h5>
 						))}
 					</div>
 				</div>
@@ -35,7 +56,9 @@ const AboutGameInfo: FC<IAboutGameInfoProps> = ({
 					<p>Features</p>
 					<div className={styles.features}>
 						{gameFeatures.map((f) => (
-							<h5 key={f.id}>{f.featureName}</h5>
+							<h5 onClick={() => filterHandler(f, 'feature')} key={f.id}>
+								{f.featureName}
+							</h5>
 						))}
 					</div>
 				</div>
