@@ -8,7 +8,11 @@
       @apply h-full w-4/5;
 
       &_list {
-        @apply w-full pr-[2rem] flex flex-wrap gap-4 items-start justify-start items-start;
+        @apply w-full pr-[2rem];
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-auto-rows: 25rem;
+        grid-gap: 1rem;
       }
     }
   }

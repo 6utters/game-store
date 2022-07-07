@@ -52,10 +52,11 @@ export class GamesController {
 
 	@Get()
 	getByFilter(
+		@Query('searchTerm') searchTerm: string,
 		@Query('genreName') genreName: string,
 		@Query('featureName') featureName: string,
 	) {
-		return this.gamesService.getAllByValue(genreName, featureName)
+		return this.gamesService.getAllByValue(searchTerm, genreName, featureName)
 	}
 
 	@Delete(':id')

@@ -7,6 +7,7 @@ import { GenresService } from '../genres/genres.service'
 import { FeaturesService } from '../features/features.service'
 import { GamesMediaService } from '../games-media/games-media.service'
 import { CreateMediaDto } from '../games-media/dtos/create-media.dto'
+import { Op } from 'sequelize'
 
 @Injectable()
 export class GamesService {
@@ -95,9 +96,21 @@ export class GamesService {
 	}
 
 	public async getAllByValue(
+		searchTerm?: string,
 		genreName: string = null,
 		featureName: string = null,
 	): Promise<Game[]> {
+		if (searchTerm) {
+			return await this.gameRepository.findAll({
+				where: {
+					[Op.or]: [
+						{
+							gameName: { [Op.iRegexp]: searchTerm },
+						},
+					],
+				},
+			})
+		}
 		if (genreName && !featureName) {
 			const ids = await this.genresService.getIdsByGenre(genreName)
 			return await this.gameRepository.findAll({

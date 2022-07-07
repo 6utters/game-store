@@ -27,7 +27,7 @@
     @apply flex items-center;
 
     button {
-      @apply ml-[1.8rem] text-border-gray text-sm font-medium ;
+      @apply relative ml-[1.8rem] text-border-gray text-sm font-medium ;
 
       &:hover {
         @apply text-white transition-all;
@@ -38,7 +38,9 @@
       }
 
       span {
-        @apply inline-block bg-white w-[1rem] rounded-3xl ml-[0.2rem] text-basic-black;
+        @apply absolute inline-block bg-white w-[1rem] rounded-3xl ml-[0.2rem] text-basic-black;
+        top: 0;
+        right: -1.3rem;
       }
     }
 

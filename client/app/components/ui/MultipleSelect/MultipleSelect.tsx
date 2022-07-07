@@ -31,7 +31,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
 	return (
 		<>
 			<Select
-				maxMenuHeight={175}
+				maxMenuHeight={120}
 				classNamePrefix={'custom-select'}
 				onChange={onChange}
 				value={getValue()}

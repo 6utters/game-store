@@ -1,20 +1,55 @@
-.input {
-  @apply relative h-[2.5rem] min-w-[10rem] w-[10rem];
+.container {
+  @apply relative;
+  .input {
+    @apply h-[2.5rem] min-w-[10rem] w-[10rem];
 
-  input {
-    @apply w-full h-full bg-basic-black rounded-3xl pl-[2rem] pr-[0.7rem] text-sm font-medium text-white;
+    input {
+      @apply w-full h-full bg-basic-black rounded-3xl pl-[2rem] pr-[0.7rem] text-sm font-medium text-white;
 
-    &:focus {
-      @apply bg-basic-gray outline-0;
+      &:focus {
+        @apply bg-basic-gray outline-0;
+      }
+
+      &::placeholder {
+        @apply text-border-gray
+      }
+
     }
 
-    &::placeholder {
-      @apply text-border-gray
+    .search_icon {
+      @apply absolute top-[0.8rem] left-[0.7rem] text-border-gray w-[0.9rem]
     }
-
   }
 
-  .search_icon {
-    @apply absolute top-[0.8rem] left-[0.7rem] text-border-gray w-[0.9rem]
+  .drop_down {
+    @apply absolute left-0 top-[4rem] bg-basic-gray rounded py-[0.75rem];
+    width: 17rem;
+
+    .search_item {
+      @apply h-[2rem] w-full;
+      z-index: 9995;
+
+
+      a {
+        @apply text-white font-semibold transition-all;
+        font-size: 0.8rem;
+
+        &:hover {
+          @apply underline;
+        }
+      }
+    }
+
+    .no_games {
+      a {
+        @apply text-white font-semibold transition-all;
+        font-size: 0.8rem;
+
+        &:hover {
+          @apply underline;
+        }
+      }
+    }
   }
 }
+

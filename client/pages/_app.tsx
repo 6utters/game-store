@@ -8,14 +8,18 @@ import '../app/components/ui/MultipleSelect/MultipleSelect.scss'
 import type { AppProps } from 'next/app'
 import { setupStore } from '../app/store/store'
 import { Provider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const store = setupStore()
+const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<Provider store={store}>
-			<Component {...pageProps} />
-		</Provider>
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<Component {...pageProps} />
+			</Provider>
+		</QueryClientProvider>
 	)
 }
 

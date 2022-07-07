@@ -21,20 +21,15 @@ const Navbar: FC = () => {
 					<Search />
 					<div className={styles.navbar__links}>
 						<Link href={'/'}>
-							<a className={styles.activeLink}>Browse</a>
+							<a>Discover</a>
 						</Link>
 						<Link href={'/'}>
-							<a>News</a>
+							<a className={styles.activeLink}>Browse</a>
 						</Link>
 					</div>
 				</div>
 				<div className={styles.navbar__right}>
 					<div className={styles.buttons}>
-						<button>
-							<Link href={'/wishlist'}>
-								<a>Wishlist</a>
-							</Link>
-						</button>
 						<button>
 							<Link href={BASKET_ROUTE}>
 								<a>

@@ -37,6 +37,13 @@ export default class GameService {
 		await $api.delete(`${API_URL}/games/${gameId}`)
 	}
 
+	static async fetchBySearchGames(searchTerm: string) {
+		const { data } = await axios.get<IGame[]>(
+			`${API_URL}/games?searchTerm=${searchTerm}`,
+		)
+		return data
+	}
+
 	static async fetchGames() {
 		const { data } = await axios.get<IGame[]>(`${API_URL}/games`)
 		return data
