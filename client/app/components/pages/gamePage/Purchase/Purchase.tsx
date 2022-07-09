@@ -15,7 +15,7 @@ const Purchase: FC<IGame> = (game) => {
 			setAddToCartBtn(true)
 		}
 		dispatch(fetchCartGames())
-	}, [cartGames])
+	}, [])
 
 	const router = useRouter()
 	const [addToCartBtn, setAddToCartBtn] = useState<boolean>(false)

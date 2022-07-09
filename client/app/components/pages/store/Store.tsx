@@ -10,7 +10,7 @@ import {
 	setGenres,
 } from '../../../store/reducers/gameReducer/GameSlice'
 import FeatureFilter from './filters/featureFilter/FeatureFilter'
-import GenreFilter from './filters/genreFilter/genreFilter'
+import GenreFilter from './filters/genreFilter/GenreFilter'
 import { fetchCartGames } from '../../../store/reducers/cartReducer/cartAC'
 
 const Store: FC = () => {

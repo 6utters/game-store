@@ -1,6 +1,5 @@
-.feature_filter {
-  @apply transition-all;
-
+.genre_filter {
+  @apply overflow-hidden;
   &:before {
     content: '';
     display: block;
@@ -22,7 +21,7 @@
   }
 
   .main_btn {
-    @apply flex items-center justify-between w-full cursor-pointer;
+    @apply flex items-center justify-between w-full cursor-pointer overflow-hidden;
     height: 3.75rem;
 
     .arrow_icon {
@@ -37,7 +36,6 @@
       .arrow_icon {
         @apply text-gray-text;
       }
-
     }
 
     h3 {
@@ -50,10 +48,32 @@
     }
   }
 
-  .features_list {
-    @apply w-full list-none;
+  .show_genres_enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
 
-    .feature {
+  .show_genres_enter_active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  .show_genres_exit {
+    opacity: 1;
+  }
+
+  .show_genres_exit_active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+
+  .genres_list {
+    @apply w-full list-none ;
+
+    .genre {
       @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1 transition-all pl-[0.5rem];
       font-size: 0.8rem;
 
@@ -63,7 +83,7 @@
     }
   }
 
-  .active_feature {
+  .active_genre {
     @apply bg-basic-gray rounded font-medium;
     p {
       @apply text-white;

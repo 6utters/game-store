@@ -2,6 +2,7 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
+	ForeignKey,
 	HasMany,
 	HasOne,
 	Model,
@@ -14,6 +15,7 @@ import { FeatureGames } from '../../features/entities/feature-games.model'
 import { Game_info } from '../../games-info/entities/game-info.model'
 import { Game_media } from '../../games-media/entities/games-media.model'
 import { Game_about } from '../../games-about/entities/games-about.model'
+import { Rating } from '../../ratings/entities/ratings.model'
 
 interface UserCreationAttrs {
 	gameName: string
@@ -45,6 +47,7 @@ export class Game extends Model<Game, UserCreationAttrs> {
 	})
 	gamePrice: number
 
+	@ForeignKey(() => Rating)
 	@Column({
 		type: DataType.INTEGER,
 		defaultValue: 0,

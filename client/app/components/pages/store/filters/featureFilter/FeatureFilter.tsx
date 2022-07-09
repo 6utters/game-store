@@ -6,9 +6,10 @@ import {
 	removeSelectedFeature,
 	setSelectedFeatures,
 } from '../../../../../store/reducers/gameReducer/GameSlice'
-import styles from './featureFilter.module.scss'
+import styles from './FeatureFilter.module.scss'
 import cn from 'classnames'
 import { IFeature } from '../../../../../models/IFeature'
+import { CSSTransition } from 'react-transition-group'
 
 const FeatureFilter: FC = () => {
 	const [showFeatures, setShowFeatures] = useState(true)
@@ -36,7 +37,17 @@ const FeatureFilter: FC = () => {
 					})}
 				/>
 			</button>
-			{showFeatures && (
+			<CSSTransition
+				in={showFeatures}
+				timeout={250}
+				classNames={{
+					enter: styles.show_features_enter,
+					enterActive: styles.show_features_enter_active,
+					exit: styles.show_features_exit,
+					exitActive: styles.show_features_exit_active,
+				}}
+				unmountOnExit
+			>
 				<ul className={styles.features_list}>
 					{features.map((feature) => (
 						<li
@@ -52,7 +63,7 @@ const FeatureFilter: FC = () => {
 						</li>
 					))}
 				</ul>
-			)}
+			</CSSTransition>
 		</div>
 	)
 }

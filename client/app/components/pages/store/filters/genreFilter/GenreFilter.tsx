@@ -7,8 +7,9 @@ import {
 	removeSelectedGenre,
 	setSelectedGenres,
 } from '../../../../../store/reducers/gameReducer/GameSlice'
-import styles from './genreFilter.module.scss'
+import styles from './GenreFilter.module.scss'
 import cn from 'classnames'
+import { CSSTransition } from 'react-transition-group'
 
 const GenreFilter: FC = () => {
 	const [showGenres, setShowGenres] = useState(true)
@@ -36,7 +37,17 @@ const GenreFilter: FC = () => {
 					})}
 				/>
 			</button>
-			{showGenres && (
+			<CSSTransition
+				in={showGenres}
+				timeout={250}
+				classNames={{
+					enter: styles.show_genres_enter,
+					enterActive: styles.show_genres_enter_active,
+					exit: styles.show_genres_exit,
+					exitActive: styles.show_genres_exit_active,
+				}}
+				unmountOnExit
+			>
 				<ul className={styles.genres_list}>
 					{genres.map((genre) => (
 						<li
@@ -51,7 +62,7 @@ const GenreFilter: FC = () => {
 						</li>
 					))}
 				</ul>
-			)}
+			</CSSTransition>
 		</div>
 	)
 }

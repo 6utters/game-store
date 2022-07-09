@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { IGame } from '../../../models/IGame'
 import styles from './GamePage.module.scss'
 import Navbar from '../store/navbar/Navbar'
-import Game from './Game/Game'
 import Purchase from './Purchase/Purchase'
+import Game from './Game/Game'
 
 export interface IGameProps {
 	game: IGame

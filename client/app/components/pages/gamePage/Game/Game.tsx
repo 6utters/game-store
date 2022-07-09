@@ -5,12 +5,13 @@ import GameSlider from './GameSlider/GameSlider'
 import AboutGameInfo from './AboutGameInfo/AboutGameInfo'
 import GameImages from './GameImages/GameImages'
 import Specifications from './Specifications/Specifications'
+import Rating from './Rating/Rating'
 
 const Game: FC<IGame> = (game) => {
 	const gameImages = game.gameMedia.filter((g) => g.type === 'image')
 	return (
 		<div className={styles.container}>
-			<div>rating</div>
+			<Rating gameRating={game.gameRating} gameId={game.id} />
 			<div className={styles.sliderWrapper}>
 				<GameSlider media={game.gameMedia} />
 			</div>

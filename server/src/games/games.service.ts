@@ -25,10 +25,6 @@ export class GamesService {
 		gameId: number,
 		type: string,
 	) {
-		console.log('mediaFile', mediaFile)
-		console.log('folder', folder)
-		console.log('gameId', gameId)
-		console.log('type', type)
 		const game = await this.gameRepository.findByPk(gameId)
 		const urls = []
 		for (let i = 0; i < mediaFile.length; i++) {

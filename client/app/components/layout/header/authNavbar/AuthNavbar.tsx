@@ -12,42 +12,37 @@ interface IAuthNavbarProps {
 }
 
 const AuthNavbar: FC<IAuthNavbarProps> = ({ isAuth, userName }) => {
-	const { isLoading } = useAppSelector((state) => state.user)
-	console.log('isLoading:', isLoading)
+	const { isLoading, user } = useAppSelector((state) => state.user)
 	return (
 		<>
-			{isLoading ? (
-				''
-			) : (
-				<div className={styles.left_nav}>
-					{isAuth ? (
-						<UserDropdown userName={userName} />
-					) : (
-						<>
-							<button className={styles.login_btn}>
-								<Link
-									href={LOGIN_ROUTE}
-									className={
-										'flex items-center text-gray-400 hover:text-gray-200 '
-									}
-								>
-									<a>
-										<FaUser className={styles.login_symb} />
-										<p>Log in</p>
-									</a>
-								</Link>
-							</button>
-							<button className={styles.signup_btn}>
-								<Link href={REGISTRATION_ROUTE}>
-									<a>
-										<p>Sigh in</p>
-									</a>
-								</Link>
-							</button>
-						</>
-					)}
-				</div>
-			)}
+			<div className={styles.left_nav}>
+				{isAuth ? (
+					<UserDropdown userName={userName} />
+				) : (
+					<>
+						<button className={styles.login_btn}>
+							<Link
+								href={LOGIN_ROUTE}
+								className={
+									'flex items-center text-gray-400 hover:text-gray-200 '
+								}
+							>
+								<a>
+									<FaUser className={styles.login_symb} />
+									<p>Log in</p>
+								</a>
+							</Link>
+						</button>
+						<button className={styles.signup_btn}>
+							<Link href={REGISTRATION_ROUTE}>
+								<a>
+									<p>Sigh in</p>
+								</a>
+							</Link>
+						</button>
+					</>
+				)}
+			</div>
 		</>
 	)
 }

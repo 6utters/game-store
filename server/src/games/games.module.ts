@@ -17,6 +17,7 @@ import { Game_info } from '../games-info/entities/game-info.model'
 import { Game_media } from '../games-media/entities/games-media.model'
 import { GamesMediaModule } from '../games-media/games-media.module'
 import { Game_about } from '../games-about/entities/games-about.model'
+import { Rating } from '../ratings/entities/ratings.model'
 
 @Module({
 	providers: [GamesService],
@@ -33,6 +34,7 @@ import { Game_about } from '../games-about/entities/games-about.model'
 			Game_info,
 			Game_media,
 			Game_about,
+			Rating,
 		]),
 		FilesModule,
 		GenresModule,

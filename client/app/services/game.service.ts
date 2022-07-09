@@ -9,7 +9,6 @@ import { IGameAboutInfo } from '../models/IGameAboutInfo'
 export default class GameService {
 	static async createGame(game: any) {
 		const { data } = await $api.post<IGame>(`${API_URL}/games`, game)
-		console.log('data:', data)
 		return data
 	}
 
@@ -90,5 +89,9 @@ export default class GameService {
 		const filterQuery = genresQuery.concat(featuresQuery)
 		const { data } = await axios.get(`${API_URL}/games?${filterQuery}`)
 		return data
+	}
+
+	static async giveRating(gameId: number, rating: number) {
+		await $api.post(`${API_URL}/ratings`, { gameId, rating })
 	}
 }
