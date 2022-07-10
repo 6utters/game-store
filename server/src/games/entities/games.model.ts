@@ -2,7 +2,6 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
-	ForeignKey,
 	HasMany,
 	HasOne,
 	Model,
@@ -47,18 +46,21 @@ export class Game extends Model<Game, UserCreationAttrs> {
 	})
 	gamePrice: number
 
-	@ForeignKey(() => Rating)
-	@Column({
-		type: DataType.INTEGER,
-		defaultValue: 0,
-	})
-	gameRating: number
+	// @ForeignKey(() => Rating)
+	// @Column({
+	// 	type: DataType.INTEGER,
+	// 	defaultValue: 0,
+	// })
+	// gameRating: number
 
 	@Column({
 		type: DataType.STRING,
 		allowNull: false,
 	})
 	gameImage: string
+
+	@HasMany(() => Rating)
+	gameRating: Rating[]
 
 	@HasMany(() => Game_media)
 	gameMedia: Game_media[]

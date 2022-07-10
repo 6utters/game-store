@@ -75,7 +75,7 @@ import { Game_about } from './games-about/entities/games-about.model'
 			useFactory: async (config: ConfigService) => ({
 				transport: {
 					host: config.get('SMTP_HOST'),
-					secure: false,
+					secure: true,
 					auth: {
 						user: config.get('SMTP_USER'),
 						pass: config.get('SMTP_PASSWORD'),

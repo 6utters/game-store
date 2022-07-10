@@ -92,6 +92,11 @@ export default class GameService {
 	}
 
 	static async giveRating(gameId: number, rating: number) {
-		await $api.post(`${API_URL}/ratings`, { gameId, rating })
+		await $api.post(`${API_URL}/ratings`, { gameId, rate: rating })
+	}
+
+	static async getRating(gameId: number) {
+		const { data } = await axios.get(`${API_URL}/ratings/${gameId}`)
+		return data
 	}
 }

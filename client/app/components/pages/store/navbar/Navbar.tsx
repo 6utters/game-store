@@ -1,13 +1,19 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Navbar.module.scss'
 import Search from './Search/Search'
 import Link from 'next/link'
 import { BASKET_ROUTE } from '../../../../utils/constants'
-import { useAppSelector } from '../../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { IGame } from '../../../../models/IGame'
+import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 
 const Navbar: FC = () => {
+	const dispatch = useAppDispatch()
 	const { cartGames } = useAppSelector((state) => state.cart)
+
+	useEffect(() => {
+		dispatch(fetchCartGames())
+	}, [])
 
 	//TODO: realize through redux toolkit
 	const showCount = (cartGames: IGame[]) => {

@@ -12,7 +12,6 @@ const GameSlider: FC<{ media: IGameMedia[] }> = ({ media }) => {
 	const videos = media.filter((m) => m.type === 'video')
 	const images = media.filter((m) => m.type === 'image')
 	const sortedMedia = [...videos, ...images]
-	console.log(media)
 
 	return (
 		<>

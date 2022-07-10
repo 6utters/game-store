@@ -33,7 +33,7 @@ export const signup =
 
 export const logout = () => async (dispatch: AppDispatch) => {
 	try {
-		const response = await AuthService.logout()
+		await AuthService.logout()
 		localStorage.removeItem('token')
 		dispatch(setIsAuth(false))
 		dispatch(setUser({} as IUser))

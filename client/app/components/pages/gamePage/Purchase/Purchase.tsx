@@ -11,10 +11,11 @@ const Purchase: FC<IGame> = (game) => {
 	const dispatch = useAppDispatch()
 	const { cartGames } = useAppSelector((state) => state.cart)
 	useEffect(() => {
-		if (cartGames.some((g) => g.gameName === game.gameName)) {
-			setAddToCartBtn(true)
-		}
 		dispatch(fetchCartGames())
+		// if (cartGames.some((g) => g.gameName === game.gameName)) {
+		// 	setAddToCartBtn(true)
+		// 	dispatch(fetchCartGames())
+		// }
 	}, [])
 
 	const router = useRouter()
@@ -22,6 +23,12 @@ const Purchase: FC<IGame> = (game) => {
 	const addToCart = (gameName: string) => {
 		CartService.addToCart(gameName).then(() => setAddToCartBtn(!addToCartBtn))
 	}
+
+	useEffect(() => {
+		if (cartGames.some((g) => g.gameName === game.gameName)) {
+			setAddToCartBtn(true)
+		}
+	}, [cartGames])
 
 	return (
 		<div className={styles.container}>

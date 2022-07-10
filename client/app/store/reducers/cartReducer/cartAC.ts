@@ -1,7 +1,7 @@
 import { AppDispatch } from '../../store'
 import CartService from '../../../services/cart.service'
 import GameService from '../../../services/game.service'
-import { removeGame, setGames } from './CartSlice'
+import { removeGame, setCartGames } from './CartSlice'
 
 export const fetchCartGames = () => async (dispatch: AppDispatch) => {
 	try {
@@ -14,7 +14,7 @@ export const fetchCartGames = () => async (dispatch: AppDispatch) => {
 			)
 			games.push(game)
 		}
-		dispatch(setGames(games))
+		dispatch(setCartGames(games))
 	} catch (e) {
 		console.log(e)
 	}

@@ -13,7 +13,7 @@ export const CartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		setGames: (state, action: PayloadAction<IGame[] | []>) => {
+		setCartGames: (state, action: PayloadAction<IGame[] | []>) => {
 			state.cartGames = action.payload
 		},
 		removeGame: (state, action: PayloadAction<number>) => {
@@ -24,6 +24,6 @@ export const CartSlice = createSlice({
 	},
 })
 
-export const { setGames, removeGame } = CartSlice.actions
+export const { setCartGames, removeGame } = CartSlice.actions
 
 export default CartSlice.reducer

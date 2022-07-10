@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { RateGameDto } from './dtos/rate-game.dto'
 import { InjectModel } from '@nestjs/sequelize'
 import { Rating } from './entities/ratings.model'
@@ -7,19 +7,25 @@ import { Rating } from './entities/ratings.model'
 export class RatingsService {
 	constructor(@InjectModel(Rating) private ratingsRepository: typeof Rating) {}
 
-	async rate(userId: number, { rate, gameId }: RateGameDto): Promise<Rating> {
+	async rate(userId: number, dto: RateGameDto): Promise<Rating> {
 		const rating = await this.ratingsRepository.findOne({
-			where: { userId, gameId },
+			where: { userId, gameId: dto.gameId },
 		})
-		//make user change his rate
 		if (rating) {
-			throw new HttpException('already voted', HttpStatus.BAD_REQUEST)
+			await this.changeRate(userId, dto)
 		}
 		return await this.ratingsRepository.create({
-			rate,
-			gameId,
+			rate: dto.rate,
+			gameId: dto.gameId,
 			userId,
 		})
+	}
+
+	async changeRate(userId: number, dto: RateGameDto) {
+		return await this.ratingsRepository.destroy({
+			where: { userId, gameId: dto.gameId },
+		})
+		// return await this.rate(userId, dto)
 	}
 
 	async getRate(gameId: number): Promise<number> {
@@ -28,4 +34,11 @@ export class RatingsService {
 			ratings.reduce((total, next) => total + next.rate, 0) / ratings.length
 		)
 	}
+
+	// 	async check(userId: number, dto: RateGameDto) {
+	// 		await this.ratingsRepository.destroy({
+	// 			where: { userId, gameId: dto.gameId },
+	// 		})
+	// 		return await this.rate(userId, dto)
+	// 	}
 }

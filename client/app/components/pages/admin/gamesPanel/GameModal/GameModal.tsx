@@ -143,7 +143,12 @@ const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 										<Input
 											style={{ marginBottom: '1.5rem', paddingLeft: '0.7rem' }}
 											placeholder={'Game Price'}
-											{...register('gamePrice', { required: 'Required' })}
+											{...register('gamePrice', {
+												pattern: {
+													value: /^[0-9]+$/,
+													message: 'Please enter a number',
+												},
+											})}
 											error={errors.gamePrice}
 										/>
 										<div className={styles.file_input}>

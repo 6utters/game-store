@@ -11,7 +11,6 @@ import {
 } from '../../../store/reducers/gameReducer/GameSlice'
 import FeatureFilter from './filters/featureFilter/FeatureFilter'
 import GenreFilter from './filters/genreFilter/GenreFilter'
-import { fetchCartGames } from '../../../store/reducers/cartReducer/cartAC'
 
 const Store: FC = () => {
 	const dispatch = useAppDispatch()
@@ -19,7 +18,7 @@ const Store: FC = () => {
 		GameService.fetchGames().then((data) => dispatch(setGames(data)))
 		GameService.fetchGenres().then((data) => dispatch(setGenres(data)))
 		GameService.fetchFeatures().then((data) => dispatch(setFeatures(data)))
-		dispatch(fetchCartGames())
+		// dispatch(fetchCartGames())
 	}, [])
 
 	const { games, selectedGenres, selectedFeatures } = useAppSelector(

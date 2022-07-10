@@ -11,7 +11,7 @@ const Game: FC<IGame> = (game) => {
 	const gameImages = game.gameMedia.filter((g) => g.type === 'image')
 	return (
 		<div className={styles.container}>
-			<Rating gameRating={game.gameRating} gameId={game.id} />
+			<Rating gameId={game.id} />
 			<div className={styles.sliderWrapper}>
 				<GameSlider media={game.gameMedia} />
 			</div>

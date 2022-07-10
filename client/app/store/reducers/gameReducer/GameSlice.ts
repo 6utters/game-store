@@ -37,10 +37,6 @@ export const gameSlice = createSlice({
 			state.selectedGenres.push(action.payload)
 		},
 		removeSelectedGenre: (state, action: PayloadAction<number>) => {
-			// // const searchedGenre = state.selectedGenres.find(genre => genre.id === action.payload)
-			// if (searchedGenre) {
-			// 	state.selectedGenres = state.selectedGenres.filter(genre => genre.id !== searchedGenre.id)
-			// }
 			const searchedId = findSelectedFilter(
 				action.payload,
 				state.selectedGenres,

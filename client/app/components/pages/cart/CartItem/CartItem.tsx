@@ -28,7 +28,7 @@ const CartItem: FC<IGame> = (game) => {
 					</Link>
 				</div>
 				<div className={styles.right}>
-					<div className={styles.game_price}>${game.gamePrice}</div>
+					<div className={styles.game_price}>${game.gamePrice - 0.01}</div>
 					<button
 						className={styles.remove_btn}
 						onClick={() => removeHandler(String(game.id))}

@@ -47,8 +47,6 @@ export class GamesService {
 		gameImage: Express.Multer.File,
 		folder = 'default',
 	): Promise<Game> {
-		console.log('gameDto:', gameDto)
-		console.log('gameImage:', gameImage)
 		const fileName = await this.filesService.saveMedia(gameImage, folder)
 		const game = await this.gameRepository.create({
 			...gameDto,

@@ -22,4 +22,10 @@ export class RatingsController {
 	getRating(@Param('gameId') gameId: number) {
 		return this.ratingsService.getRate(gameId)
 	}
+
+	// @Get('check/:gameId')
+	// @UseGuards(AuthGuard)
+	// checkRating(@CurrentUser('id') id: number, @Param('gameId') gameId: number) {
+	// 	return this.ratingsService.check(id, gameId)
+	// }
 }
