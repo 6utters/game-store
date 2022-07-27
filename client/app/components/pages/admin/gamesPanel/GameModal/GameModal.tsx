@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux'
+import { useAppDispatch } from '../../../../../hooks/redux'
 import PopUp from '../../../../ui/popUp/PopUp'
 import Input from '../../../../ui/Input/Input'
 import styles from './GamesModal.module.scss'
@@ -9,19 +9,24 @@ import MultipleSelect, {
 	IOption,
 } from '../../../../ui/MultipleSelect/MultipleSelect'
 import GameService from '../../../../../services/game.service'
-import {
-	setFeatures,
-	setGames,
-	setGenres,
-} from '../../../../../store/reducers/gameReducer/GameSlice'
-import FormData from 'form-data'
+import { setGames } from '../../../../../store/reducers/gameReducer/GameSlice'
 import UploadField from '../../../../ui/UploadField/UploadField'
-import { IGameInfo } from '../../../../../models/IGameInfo'
-import { IGameAboutInfo } from '../../../../../models/IGameAboutInfo'
 import Spinner from '../../../../ui/Spinner/Spinner'
 import { IGameModalProps } from '../../../../../models/IGameModalProps'
-import ModalInfoField from './MofalInfoField/ModalInfoField'
-import ModalAboutField from './ModalAboutField/ModalAboutField'
+import ModalInfoField from './mofalInfoField/ModalInfoField'
+import ModalAboutField from './modalAboutField/ModalAboutField'
+import { propertiesApi } from '../../../../../store/api/properties.api'
+import {
+	createFormImagesData,
+	createFormVideosData,
+	createGameAboutInfoFormData,
+	createGameFormData,
+	createGameInfoFormData,
+	selectFile,
+	selectImages,
+	selectVideos,
+} from './formdata.helper'
+import { gamesApi } from '../../../../../store/api/games.api'
 
 const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 	const {
@@ -31,22 +36,20 @@ const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 	} = useForm<IGameForm>({
 		mode: 'onBlur',
 	})
+	const [createGame] = gamesApi.useCreateGameMutation()
 	const [loading, setLoading] = useState<boolean>(false)
 	const dispatch = useAppDispatch()
-	useEffect(() => {
-		GameService.fetchGenres().then((data) => dispatch(setGenres(data)))
-		GameService.fetchFeatures().then((data) => dispatch(setFeatures(data)))
-	}, [])
-	const { genres, features } = useAppSelector((state) => state.game)
-	const genreOptions: IOption[] = genres.map((g) => ({
+	const { data: genres } = propertiesApi.useFetchGenresQuery()
+	const { data: features } = propertiesApi.useFetchFeaturesQuery()
+	const genreOptions: IOption[] | undefined = genres?.map((g) => ({
 		value: g.genreName,
 		label: g.genreName,
 	}))
-	const featuresOptions: IOption[] = features.map((f) => ({
+	const featuresOptions: IOption[] | undefined = features?.map((f) => ({
 		value: f.featureName,
 		label: f.featureName,
 	}))
-	const [currentFile, setCurrentFile] = useState(null)
+	const [currentFile, setCurrentFile] = useState<File | null>(null)
 	const [currentImages, setCurrentImages] = useState<File[]>([])
 	const [currentVideos, setCurrentVideos] = useState<File[]>([])
 	const [currentGenreOptions, setCurrentGenreOptions] = useState([])
@@ -54,68 +57,27 @@ const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 
 	const onSubmit: SubmitHandler<IGameForm> = async (data) => {
 		setLoading(true)
-		const formData = new FormData()
-		formData.append('gameName', data.gameName)
-		formData.append('gamePrice', `${data.gamePrice}`)
-		formData.append('gameImage', currentFile)
-		formData.append('genreNames', JSON.stringify(currentGenreOptions))
-		formData.append('featureNames', JSON.stringify(currentFeatureOptions))
-		const gameId = await GameService.createGame(formData).then(
-			(data) => data.id,
+
+		const formData = createGameFormData(
+			data,
+			currentFile,
+			currentGenreOptions,
+			currentFeatureOptions,
 		)
-		const gameInfo: IGameInfo = {
-			gameId,
-			developer: data.developer,
-			publisher: data.publisher,
-			releaseDate: data.releaseDate,
-			os: data.os,
-			processor: data.processor,
-			memory: data.memory,
-			storage: data.storage,
-			graphics: data.graphics,
-		}
-		await GameService.addInfo(gameInfo)
-		const gameAboutInfo: IGameAboutInfo = {
-			gameId,
-			mainInfo: data.mainInfo,
-			fstP: data.fstP,
-			sndP: data.sndP,
-			thdP: data.thdP,
-			ftsP: data.ftsP,
-			thsP: data.thsP,
-		}
-		await GameService.addAboutInfo(gameAboutInfo)
-		const formVideosData = new FormData()
-		for (let i = 0; i < currentVideos.length; i++) {
-			formVideosData.append('media', currentVideos[i])
-		}
+		//TODO: resolve error case
+		// @ts-ignore
+		const gameId = await createGame(formData).then((data) => data.data.id)
+
+		await GameService.addInfo(createGameInfoFormData(gameId, data))
+		await GameService.addAboutInfo(createGameAboutInfoFormData(gameId, data))
+
+		const formVideosData = createFormVideosData(currentVideos)
 		await GameService.addMedia(formVideosData, gameId, 'video', 'videos')
-		const formImagesData = new FormData()
-		for (let i = 0; i < currentImages.length; i++) {
-			formImagesData.append('media', currentImages[i])
-		}
+		const formImagesData = createFormImagesData(currentImages)
 		await GameService.addMedia(formImagesData, gameId, 'image', 'images')
 		GameService.fetchGames().then((data) => dispatch(setGames(data)))
 		setActive(false)
 		setLoading(false)
-	}
-
-	const selectFile = (e: any) => {
-		setCurrentFile(e.target.files[0])
-	}
-
-	const selectVideos = (e: any) => {
-		const videos: File[] = []
-		for (let i = 0; i < Object.keys(e.target.files).length; i++)
-			videos.push(e.target.files[i])
-		setCurrentVideos(videos)
-	}
-
-	const selectImages = (e: any) => {
-		const images: File[] = []
-		for (let i = 0; i < Object.keys(e.target.files).length; i++)
-			images.push(e.target.files[i])
-		setCurrentImages(images)
 	}
 
 	return (
@@ -155,7 +117,7 @@ const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 											<UploadField
 												multiple={false}
 												title={'Image for the game'}
-												onChange={selectFile}
+												onChange={(e) => selectFile(e, setCurrentFile)}
 											/>
 										</div>
 									</div>
@@ -164,14 +126,14 @@ const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 											<UploadField
 												title={'Choose 2 videos for the Game'}
 												multiple={true}
-												onChange={selectVideos}
+												onChange={(e) => selectVideos(e, setCurrentVideos)}
 											/>
 										</div>
 										<div className={styles.file_input}>
 											<UploadField
 												title={'Choose 6 images for the Game'}
 												multiple={true}
-												onChange={selectImages}
+												onChange={(e) => selectImages(e, setCurrentImages)}
 											/>
 										</div>
 									</div>

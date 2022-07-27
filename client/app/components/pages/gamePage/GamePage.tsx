@@ -1,22 +1,21 @@
 import { FC } from 'react'
-import { IGame } from '../../../models/IGame'
 import styles from './GamePage.module.scss'
 import Navbar from '../store/navbar/Navbar'
 import Purchase from './Purchase/Purchase'
 import Game from './Game/Game'
+import { useRouter } from 'next/router'
 
-export interface IGameProps {
-	game: IGame
-}
+const GamePage: FC = () => {
+	const { query } = useRouter()
+	const gameId = Number(query?.id)
 
-const GamePage: FC<IGame> = (game) => {
 	return (
 		<>
 			<Navbar />
 			<div className={styles.container}>
 				<div className={styles.content}>
-					<Game {...game} />
-					<Purchase {...game} />
+					<Game gameId={gameId} />
+					<Purchase gameId={gameId} />
 				</div>
 			</div>
 		</>

@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react'
-import GamePage, {
-	IGameProps,
-} from '../../app/components/pages/gamePage/GamePage'
+import React from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import GameService from '../../app/services/game.service'
 import { IGame } from '../../app/models/IGame'
 import Layout from '../../app/components/layout/Layout.'
-import { fetchCartGames } from '../../app/store/reducers/cartReducer/cartAC'
-import { useAppDispatch } from '../../app/hooks/redux'
+import GamePage from '../../app/components/pages/gamePage/GamePage'
 
-const Game: NextPage<IGameProps> = (props) => {
-	const dispatch = useAppDispatch()
-	useEffect(() => {
-		dispatch(fetchCartGames())
-	}, [])
-
+const Game: NextPage<{ game: IGame }> = (props) => {
 	return (
 		<Layout
 			title={`D&D Games | ${props.game.gameName}`}
 			showHeader={true}
 			showFooter={true}
 		>
-			<GamePage {...props.game} />
+			<GamePage />
 		</Layout>
 	)
 }

@@ -1,34 +1,21 @@
-import { FC, useEffect } from 'react'
+import { FC, useState } from 'react'
 import styles from './Store.module.scss'
 import Navbar from './navbar/Navbar'
 import GameCard from './gameCard/GameCard'
-import GameService from '../../../services/game.service'
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
-import {
-	setFeatures,
-	setGames,
-	setGenres,
-} from '../../../store/reducers/gameReducer/GameSlice'
+import { gamesApi } from '../../../store/api/games.api'
+import { IGenre } from '../../../models/IGenre'
+import { IFeature } from '../../../models/IFeature'
 import FeatureFilter from './filters/featureFilter/FeatureFilter'
 import GenreFilter from './filters/genreFilter/GenreFilter'
 
 const Store: FC = () => {
-	const dispatch = useAppDispatch()
-	useEffect(() => {
-		GameService.fetchGames().then((data) => dispatch(setGames(data)))
-		GameService.fetchGenres().then((data) => dispatch(setGenres(data)))
-		GameService.fetchFeatures().then((data) => dispatch(setFeatures(data)))
-		// dispatch(fetchCartGames())
-	}, [])
+	const [selectedGenres, setSelectedGenres] = useState<IGenre[]>([])
+	const [selectedFeatures, setSelectedFeatures] = useState<IFeature[]>([])
 
-	const { games, selectedGenres, selectedFeatures } = useAppSelector(
-		(state) => state.game,
-	)
-	useEffect(() => {
-		GameService.fetchGamesByFilter(selectedGenres, selectedFeatures).then(
-			(data) => dispatch(setGames(data)),
-		)
-	}, [selectedFeatures.length, selectedGenres.length])
+	const { data: games, error } = gamesApi.useFetchGamesQuery({
+		genres: selectedGenres,
+		features: selectedFeatures,
+	})
 
 	return (
 		<>
@@ -37,7 +24,8 @@ const Store: FC = () => {
 				<div className={styles.content}>
 					<div className={styles.games}>
 						<div className={styles.games_list}>
-							{games.map((game) => (
+							{error && 'Error'}
+							{games?.map((game) => (
 								<GameCard
 									key={game.id}
 									gameId={game.id}
@@ -49,8 +37,24 @@ const Store: FC = () => {
 						</div>
 					</div>
 					<div className={styles.filters}>
-						<GenreFilter />
-						<FeatureFilter />
+						{/*<Filter*/}
+						{/*	type={'genres'}*/}
+						{/*	selectedFilters={selectedGenres}*/}
+						{/*	setSelectedFilters={setSelectedGenres}*/}
+						{/*/>*/}
+						{/*<Filter*/}
+						{/*	type={'features'}*/}
+						{/*	selectedFilters={selectedFeatures}*/}
+						{/*	setSelectedFilters={setSelectedFeatures}*/}
+						{/*/>*/}
+						<GenreFilter
+							selectedGenres={selectedGenres}
+							setSelectedGenres={setSelectedGenres}
+						/>
+						<FeatureFilter
+							selectedFeatures={selectedFeatures}
+							setSelectedFeatures={setSelectedFeatures}
+						/>
 					</div>
 				</div>
 			</div>

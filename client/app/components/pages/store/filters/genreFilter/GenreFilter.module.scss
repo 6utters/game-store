@@ -1,4 +1,9 @@
 .genre_filter {
+
+  @media screen and (max-width: 766px) {
+    display: none;
+  }
+
   @apply overflow-hidden;
   &:before {
     content: '';

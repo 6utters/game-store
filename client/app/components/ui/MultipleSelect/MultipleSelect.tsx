@@ -7,7 +7,7 @@ export interface IOption {
 }
 
 interface IMultipleSelectProps {
-	options: IOption[]
+	options: IOption[] | undefined
 	placeHolder: string
 	currentOptions: string[]
 	setCurrentOptions: (option: any) => void
@@ -21,7 +21,7 @@ const MultipleSelect: FC<IMultipleSelectProps> = ({
 }) => {
 	const getValue = () => {
 		return currentOptions
-			? options.filter((o) => currentOptions.indexOf(o.value) >= 0)
+			? options?.filter((o) => currentOptions.indexOf(o.value) >= 0)
 			: []
 	}
 	const onChange = (newValue: OnChangeValue<IOption, boolean>) => {

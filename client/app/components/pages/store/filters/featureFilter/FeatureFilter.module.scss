@@ -1,6 +1,10 @@
 .feature_filter {
   @apply transition-all;
 
+  @media screen and (max-width: 766px) {
+    display: none;
+  }
+
   &:before {
     content: '';
     display: block;

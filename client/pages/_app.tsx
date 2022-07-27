@@ -9,6 +9,7 @@ import type { AppProps } from 'next/app'
 import { setupStore } from '../app/store/store'
 import { Provider } from 'react-redux'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import AuthProvider from '../app/providers/auth.provider'
 
 const store = setupStore()
 const queryClient = new QueryClient()
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Provider store={store}>
-				<Component {...pageProps} />
+				<AuthProvider>
+					<Component {...pageProps} />
+				</AuthProvider>
 			</Provider>
 		</QueryClientProvider>
 	)

@@ -1,20 +1,15 @@
 import { AppDispatch } from '../../store'
-import AuthService from '../../../services/auth.service'
-import { setIsAuth, setIsLoading, setUser } from './UserSlice'
+import AuthService from '../../../services/auth/auth.service'
+import { setIsAuth, setUser, userSlice } from './UserSlice'
 import { IUser } from '../../../models/IUser'
-import axios from 'axios'
-import { AuthResponse } from '../../../models/response/AuthResponse'
-import { API_URL } from '../../../providers'
 
 export const login =
 	(email: string, password: string) => async (dispatch: AppDispatch) => {
 		try {
-			const response = await AuthService.login(email, password)
-			localStorage.setItem('token', response.data.accessToken)
+			await AuthService.login(email, password)
 			dispatch(setIsAuth(true))
-			dispatch(setUser(response.data.user))
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			dispatch(userSlice.actions.setUserError(e.message))
 		}
 	}
 
@@ -22,12 +17,10 @@ export const signup =
 	(email: string, password: string, userName: string) =>
 	async (dispatch: AppDispatch) => {
 		try {
-			const response = await AuthService.register(email, password, userName)
-			localStorage.setItem('token', response.data.accessToken)
+			await AuthService.register(email, password, userName)
 			dispatch(setIsAuth(true))
-			dispatch(setUser(response.data.user))
-		} catch (e) {
-			console.log(e)
+		} catch (e: any) {
+			dispatch(userSlice.actions.setUserError(e.message))
 		}
 	}
 
@@ -37,22 +30,22 @@ export const logout = () => async (dispatch: AppDispatch) => {
 		localStorage.removeItem('token')
 		dispatch(setIsAuth(false))
 		dispatch(setUser({} as IUser))
-	} catch (e) {
-		console.log(e)
+	} catch (e: any) {
+		dispatch(userSlice.actions.setUserError(e.message))
 	}
 }
-
-export const checkAuth = () => async (dispatch: AppDispatch) => {
-	try {
-		const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {
-			withCredentials: true,
-		})
-		localStorage.setItem('token', response.data.accessToken)
-		dispatch(setIsAuth(true))
-		dispatch(setUser(response.data.user))
-	} catch (e) {
-		console.log(e)
-	} finally {
-		dispatch(setIsLoading(false))
-	}
-}
+//
+// export const checkAuth = () => async (dispatch: AppDispatch) => {
+// 	try {
+// 		const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {
+// 			withCredentials: true,
+// 		})
+// 		localStorage.setItem('token', response.data.accessToken)
+// 		dispatch(setIsAuth(true))
+// 		// dispatch(setUser(response.data.user))
+// 	} catch (e: any) {
+// 		dispatch(userSlice.actions.setUserError(e.message))
+// 	} finally {
+// 		dispatch(userSlice.actions.setIsLoading(false))
+// 	}
+// }

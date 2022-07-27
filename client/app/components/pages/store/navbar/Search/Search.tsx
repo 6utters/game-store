@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './Search.module.scss'
 import { BiSearch } from 'react-icons/bi'
 import { useSearch } from './useSearch'
 import Link from 'next/link'
 import { GAME_ROUTE, STORE_ROUTE } from '../../../../../utils/constants'
 
-const Search: FC = () => {
-	const { data, handleSearch, searchTerm, isSuccess, visible } = useSearch()
+const Search: FC = memo(() => {
+	const { data, handleSearch, searchTerm, visible } = useSearch()
 	return (
 		<div className={styles.container} ref={visible.ref}>
 			<div className={styles.input}>
@@ -39,6 +39,6 @@ const Search: FC = () => {
 			)}
 		</div>
 	)
-}
+})
 
 export default Search

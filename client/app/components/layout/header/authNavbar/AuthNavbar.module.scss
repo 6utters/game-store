@@ -1,6 +1,10 @@
 .left_nav {
   @apply relative h-full flex items-center;
 
+  @media screen and (max-width: 766px) {
+    display: none;
+  }
+
   .login_btn {
     @apply relative h-full;
     padding: 0 1rem;

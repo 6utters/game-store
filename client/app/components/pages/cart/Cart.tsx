@@ -11,8 +11,7 @@ import { STORE_ROUTE } from '../../../utils/constants'
 const Cart: FC = () => {
 	const { cartGames } = useAppSelector((state) => state.cart)
 	const totalPrice = cartGames.reduce((acc, game) => {
-		const actualGamePrice = game.gamePrice - 0.01
-		return acc + actualGamePrice
+		return acc + game.gamePrice
 	}, 0)
 
 	// TODO: realize discount logic

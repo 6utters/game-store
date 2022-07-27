@@ -17,7 +17,6 @@ export class MailService {
 				},
 			})
 		} catch (e) {
-			console.log('e:', e)
 			throw new HttpException('Mail error', HttpStatus.BAD_REQUEST)
 		}
 	}

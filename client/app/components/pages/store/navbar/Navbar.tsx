@@ -1,23 +1,18 @@
-import { FC, useEffect } from 'react'
+import { FC, memo } from 'react'
 import styles from './Navbar.module.scss'
 import Search from './Search/Search'
 import Link from 'next/link'
 import { BASKET_ROUTE } from '../../../../utils/constants'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
-import { IGame } from '../../../../models/IGame'
-import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
+import { cartApi } from '../../../../store/api/cart.api'
+import { ICartGame } from '../../../../models/ICartGame'
 
-const Navbar: FC = () => {
-	const dispatch = useAppDispatch()
-	const { cartGames } = useAppSelector((state) => state.cart)
+const Navbar: FC = memo(() => {
+	const { data: cartGames } = cartApi.useFetchCartQuery()
 
-	useEffect(() => {
-		dispatch(fetchCartGames())
-	}, [])
-
-	//TODO: realize through redux toolkit
-	const showCount = (cartGames: IGame[]) => {
-		return cartGames.length ? cartGames.length : ''
+	const showCount = (cartGames: ICartGame[] | undefined) => {
+		if (cartGames) {
+			return cartGames.length ? cartGames.length : ''
+		}
 	}
 
 	return (
@@ -39,7 +34,7 @@ const Navbar: FC = () => {
 						<button>
 							<Link href={BASKET_ROUTE}>
 								<a>
-									Cart <span>{showCount(cartGames)}</span>
+									Cart <span>{showCount(cartGames?.games)}</span>
 								</a>
 							</Link>
 						</button>
@@ -48,6 +43,6 @@ const Navbar: FC = () => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default Navbar

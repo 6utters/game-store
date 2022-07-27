@@ -1,5 +1,7 @@
 .dropdown {
   @apply relative h-full;
+  display: none;
+
   &_title {
     @apply relative h-full flex items-center text-gray-text ml-[1rem] mr-6 cursor-pointer;
 
@@ -47,6 +49,10 @@
       @apply text-white;
     }
 
+  }
+
+  @media screen and (min-width: 766px) {
+    display: block;
   }
 }
 

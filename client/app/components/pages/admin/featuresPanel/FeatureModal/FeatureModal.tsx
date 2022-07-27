@@ -1,11 +1,10 @@
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { IFeatureForm } from '../../../../../models/IFeatureForm'
-import { useAppDispatch } from '../../../../../hooks/redux'
-import { createFeature } from '../../../../../store/reducers/gameReducer/gameAC'
 import PopUp from '../../../../ui/popUp/PopUp'
 import styles from '../../genresPanel/GenreModal/GenreModal.module.scss'
 import Input from '../../../../ui/Input/Input'
+import { propertiesApi } from '../../../../../store/api/properties.api'
 
 const FeatureModal: FC<{
 	active: boolean
@@ -18,9 +17,9 @@ const FeatureModal: FC<{
 	} = useForm<IFeatureForm>({
 		mode: 'onBlur',
 	})
-	const dispatch = useAppDispatch()
+	const [createFeature] = propertiesApi.useCreateFeatureMutation()
 	const onSubmit: SubmitHandler<IFeatureForm> = (data) => {
-		dispatch(createFeature(data.featureName))
+		createFeature(data.featureName)
 		setActive(false)
 	}
 

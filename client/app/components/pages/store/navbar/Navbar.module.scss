@@ -1,10 +1,9 @@
 .navbar {
-  @apply sticky top-0 w-full w-full flex justify-center z-50;
-  height: 6.25rem;
-  background: rgb(18, 18, 18);
+  @apply sticky top-0 w-full h-[6.25rem] bg-black-primary flex justify-center z-50;
 
   &__content {
-    @apply w-3/4 flex items-center justify-between;
+    @apply flex items-center justify-between;
+    width: 75%;
   }
 
   &__left {

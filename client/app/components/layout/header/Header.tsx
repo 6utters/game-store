@@ -8,14 +8,13 @@ import { navigationLinks } from './header-links'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import AuthNavbar from './authNavbar/AuthNavbar'
-import { useAppSelector } from '../../../hooks/redux'
+import BurgerNavbar from './burgerNavbar/BurgerNavbar'
 
 const Header: FC = () => {
-	const { isAuth, user } = useAppSelector((state) => state.user)
 	const router = useRouter()
 	return (
 		<div className={styles.header}>
-			<div className={styles.right_nav}>
+			<div className={styles.left_nav}>
 				<div className={styles.logo}>
 					<Link href={STORE_ROUTE}>
 						<a>
@@ -45,7 +44,8 @@ const Header: FC = () => {
 					))}
 				</div>
 			</div>
-			<AuthNavbar isAuth={isAuth} userName={user && user.userName} />
+			<AuthNavbar />
+			<BurgerNavbar />
 		</div>
 	)
 }

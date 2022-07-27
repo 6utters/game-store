@@ -1,23 +1,20 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { FiPlus } from 'react-icons/fi'
 import { ImCross } from 'react-icons/im'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
-import GameService from '../../../../services/game.service'
-import { setGames } from '../../../../store/reducers/gameReducer/GameSlice'
 import GameModal from './GameModal/GameModal'
 import styles from './GamesPanel.module.scss'
-import { deleteGame } from '../../../../store/reducers/gameReducer/gameAC'
 import { convertImage } from '../../../../utils/helpers'
+import { gamesApi } from '../../../../store/api/games.api'
 
 const GamesPanel: FC = () => {
-	const dispatch = useAppDispatch()
-	useEffect(() => {
-		GameService.fetchGames().then((data) => dispatch(setGames(data)))
-	}, [])
-	const { games } = useAppSelector((state) => state.game)
+	const { data: games } = gamesApi.useFetchGamesQuery({
+		genres: [],
+		features: [],
+	})
+	const [deleteGame, {}] = gamesApi.useDeleteGameMutation()
 
 	const deleteHandler = (gameId: number) => {
-		dispatch(deleteGame(gameId))
+		deleteGame(gameId)
 	}
 
 	const [modalActive, setModalActive] = useState<boolean>(false)
@@ -31,7 +28,7 @@ const GamesPanel: FC = () => {
 				</div>
 				<div className={styles.gameList}>
 					<h3>Games</h3>
-					{games.map((game) => (
+					{games?.map((game) => (
 						<div key={game.id} className={styles.game}>
 							<img
 								className={styles.image}

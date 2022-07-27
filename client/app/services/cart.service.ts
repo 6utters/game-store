@@ -1,4 +1,4 @@
-import $api, { API_URL } from '../providers'
+import $api, { API_URL } from '../api'
 
 export default class CartService {
 	static async fetchCart() {
@@ -7,7 +7,7 @@ export default class CartService {
 	}
 
 	static async addToCart(gameName: string) {
-		const { data } = await $api.post(`${API_URL}/carts`, { gameName })
+		return await $api.post(`${API_URL}/carts`, { gameName })
 	}
 
 	static async removeFromCart(gameId: string) {
@@ -15,3 +15,27 @@ export default class CartService {
 		return data
 	}
 }
+
+// const baseQuery = fetchBaseQuery({
+// 	baseUrl: API_URL,
+// 	prepareHeaders: (headers, { getState }) => {
+// 		const accessToken = localStorage.getItem('token')
+// 		if (accessToken) {
+// 			headers.set('authorization', `Bearer ${accessToken}`)
+// 		}
+// 		return headers
+// 	},
+// })
+//
+// export const cartApi = createApi({
+// 	reducerPath: 'api/cart',
+// 	baseQuery,
+// 	endpoints: (build) => ({
+// 		fetchCart: build.query<any, void>({
+// 			query: () => ({
+// 				url: '/carts',
+// 				credentials: 'include',
+// 			}),
+// 		}),
+// 	}),
+// })

@@ -4,8 +4,7 @@ import styles from './GenreModal.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { IGenreForm } from '../../../../../models/IGenreForm'
 import Input from '../../../../ui/Input/Input'
-import { createGenre } from '../../../../../store/reducers/gameReducer/gameAC'
-import { useAppDispatch } from '../../../../../hooks/redux'
+import { propertiesApi } from '../../../../../store/api/properties.api'
 
 const GenreModal: FC<{
 	active: boolean
@@ -18,9 +17,9 @@ const GenreModal: FC<{
 	} = useForm<IGenreForm>({
 		mode: 'onBlur',
 	})
-	const dispatch = useAppDispatch()
+	const [createGenre] = propertiesApi.useCreateGenreMutation()
 	const onSubmit: SubmitHandler<IGenreForm> = (data) => {
-		dispatch(createGenre(data.genreName))
+		createGenre(data.genreName)
 		setActive(false)
 	}
 

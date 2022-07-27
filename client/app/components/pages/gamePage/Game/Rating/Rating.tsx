@@ -1,19 +1,21 @@
 import { FC, useEffect, useState } from 'react'
 import styles from './Rating.module.scss'
 import { BsFillStarFill } from 'react-icons/bs'
-import GameService from '../../../../../services/game.service'
+import { gamesApi } from '../../../../../store/api/games.api'
 
 const Rating: FC<{ gameId: number }> = ({ gameId }) => {
-	useEffect(() => {
-		GameService.getRating(gameId).then((data) => setRating(data))
-	}, [])
-
+	const { data, isSuccess } = gamesApi.useGetRatingQuery(gameId)
+	const [rate] = gamesApi.useRateMutation()
 	const [rating, setRating] = useState(0)
 	const [hoverRating, setHoverRating] = useState(0)
 
+	useEffect(() => {
+		setRating(data)
+	}, [isSuccess])
+
 	const clickHandler = async (value: number) => {
 		setRating(value)
-		await GameService.giveRating(gameId, value)
+		rate({ gameId, rate: value })
 	}
 
 	return (

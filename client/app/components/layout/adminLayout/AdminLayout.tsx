@@ -4,13 +4,13 @@ import SidebarPanel from './SidebarPanel/SidebarPanel'
 import { useAppSelector } from '../../../hooks/redux'
 
 const AdminLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const { user, isLoading } = useAppSelector((state) => state.user)
+	const { user, isLoading } = useAppSelector((state) => state.auth)
 	const userRoles = user && user.roles
 	const adminRole =
 		userRoles && userRoles.find((role) => role.value === 'ADMIN')
 
 	if (isLoading) {
-		return <div className={styles.container}>Laoding</div>
+		return <div className={styles.container}>Loading</div>
 	}
 
 	return (

@@ -1,8 +1,6 @@
 import axios from 'axios'
-import $api, { API_URL } from '../providers'
+import $api, { API_URL } from '../api'
 import { IGame } from '../models/IGame'
-import { IGenre } from '../models/IGenre'
-import { IFeature } from '../models/IFeature'
 import { IGameInfo } from '../models/IGameInfo'
 import { IGameAboutInfo } from '../models/IGameAboutInfo'
 
@@ -50,53 +48,5 @@ export default class GameService {
 
 	static async fetchOneGame(id: string) {
 		return await axios.get<IGame>(`${API_URL}/games/${id}`)
-	}
-
-	static async fetchGenres() {
-		const { data } = await axios.get<IGenre[]>(`${API_URL}/genres`)
-		return data
-	}
-
-	static async fetchFeatures() {
-		const { data } = await axios.get<IFeature[]>(`${API_URL}/features`)
-		return data
-	}
-
-	static async createGenre(genreName: string) {
-		await $api.post(`${API_URL}/genres`, { genreName })
-	}
-
-	static async deleteGenre(genreId: number) {
-		await $api.delete(`${API_URL}/genres/${genreId}`)
-	}
-
-	static async createFeature(featureName: string) {
-		await $api.post(`${API_URL}/features`, { featureName })
-	}
-
-	static async deleteFeature(featureId: number) {
-		await $api.delete(`${API_URL}/features/${featureId}`)
-	}
-
-	static async fetchGamesByFilter(
-		genres: IGenre[] | [],
-		features: IFeature[] | [],
-	) {
-		const genresQuery = genres.map((g) => `genreName=${g.genreName}&`).join('')
-		const featuresQuery = features
-			.map((f) => `featureName=${f.featureName}&`)
-			.join('')
-		const filterQuery = genresQuery.concat(featuresQuery)
-		const { data } = await axios.get(`${API_URL}/games?${filterQuery}`)
-		return data
-	}
-
-	static async giveRating(gameId: number, rating: number) {
-		await $api.post(`${API_URL}/ratings`, { gameId, rate: rating })
-	}
-
-	static async getRating(gameId: number) {
-		const { data } = await axios.get(`${API_URL}/ratings/${gameId}`)
-		return data
 	}
 }

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './GameCard.module.scss'
 import { useRouter } from 'next/router'
 import { GAME_ROUTE } from '../../../../utils/constants'
@@ -11,7 +11,7 @@ interface IGameCardProps {
 	gameId: number
 }
 
-const GameCard: FC<IGameCardProps> = ({ name, price, image, gameId }) => {
+const GameCard: FC<IGameCardProps> = memo(({ name, price, image, gameId }) => {
 	const router = useRouter()
 	const actualPrice = price - 0.01
 
@@ -34,6 +34,6 @@ const GameCard: FC<IGameCardProps> = ({ name, price, image, gameId }) => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default GameCard

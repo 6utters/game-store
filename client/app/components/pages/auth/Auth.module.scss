@@ -30,6 +30,11 @@
         @apply w-full h-full mt-[1.2rem];
       }
 
+      .error {
+        @apply text-sm text-error-red -mt-[0.9rem];
+        font-size: 0.6rem;
+      }
+
       .submit {
         @apply w-full h-[3.7rem] rounded-[4px] bg-form-btn;
 

@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import userReducer from './reducers/userReducer/UserSlice'
 import gameReducer from './reducers/gameReducer/GameSlice'
 import cartReducer from './reducers/cartReducer/CartSlice'
+import { authSlice } from './auth/auth.slice'
+import { api } from './api/api'
 
 const rootReducer = combineReducers({
-	user: userReducer,
+	[api.reducerPath]: api.reducer,
+	auth: authSlice.reducer,
 	game: gameReducer,
 	cart: cartReducer,
 })
@@ -12,6 +14,10 @@ const rootReducer = combineReducers({
 export const setupStore = () => {
 	return configureStore({
 		reducer: rootReducer,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				serializableCheck: false,
+			}).concat(api.middleware),
 	})
 }
 

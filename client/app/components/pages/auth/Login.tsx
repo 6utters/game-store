@@ -1,9 +1,8 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Auth.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { ILoginField } from '../../../models/ILoginField'
-import { useAppDispatch } from '../../../hooks/redux'
-import { login } from '../../../store/reducers/userReducer/userAC'
+import { ILoginFields } from '../../../models/ILoginFields'
+import { useActions, useAppSelector } from '../../../hooks/redux'
 import logoSvg from '../../../assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Input from '../../ui/Input/Input'
@@ -13,18 +12,34 @@ import { useRouter } from 'next/router'
 
 const Login: FC = () => {
 	const router = useRouter()
-	const dispatch = useAppDispatch()
+	// const dispatch = useAppDispatch()
+	const { login } = useActions()
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<ILoginField>({
+	} = useForm<ILoginFields>({
 		mode: 'onBlur',
 	})
 
-	const onSubmit: SubmitHandler<ILoginField> = (data) => {
-		dispatch(login(data.email, data.password))
-		return router.push('/')
+	// const { error } = useAppSelector((state) => state.user)
+	const { error, isAuth } = useAppSelector((state) => state.auth)
+
+	useEffect(() => {
+		if (isAuth) {
+			router.push('/').then()
+		}
+	}, [isAuth])
+
+	const onSubmit: SubmitHandler<ILoginFields> = async (data) => {
+		// try {
+		// 	await AuthService.login(data.email, data.password)
+		// 	dispatch(login(data.email, data.password))
+		// 	return router.push('/')
+		// } catch (e: any) {
+		// 	dispatch(userSlice.actions.setUserError(e.response.data.message))
+		// }
+		login(data)
 	}
 
 	return (
@@ -57,6 +72,7 @@ const Login: FC = () => {
 								error={errors.password}
 								type={'password'}
 							/>
+							{error && <div className={styles.error}>{error}</div>}
 							<div className={styles.submit}>
 								<button type={'submit'}>LOG IN NOW</button>
 							</div>
