@@ -1,0 +1,8 @@
+.container {
+  @apply relative h-full w-full flex justify-center;
+
+  .content {
+    @apply w-3/4 h-full flex justify-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

@@ -1,0 +1,72 @@
+.container {
+  @apply relative w-full flex justify-center pt-[3rem];
+
+  .card {
+    @apply relative w-[30rem] bg-basic-black rounded-md;
+    padding: 4rem;
+
+    .form {
+      @apply w-full h-full;
+
+      a {
+        .image {
+          @apply w-full flex justify-center items-center mb-[1.5rem];
+
+          h2 {
+            @apply text-sm text-gray-text;
+
+            span {
+              @apply text-lg text-basic-yellow font-semibold;
+            }
+          }
+        }
+      }
+
+      .title {
+        @apply w-full flex justify-center text-[1.2rem] text-white font-semibold;
+      }
+
+      .form_elms {
+        @apply w-full h-full mt-[1.2rem];
+      }
+
+      .error {
+        @apply text-sm text-error-red -mt-[0.9rem];
+        font-size: 0.6rem;
+      }
+
+      .submit {
+        @apply w-full h-[3.7rem] rounded-[4px] bg-form-btn;
+
+        button {
+          @apply w-full h-full rounded-[4px] text-input-text font-semibold;
+          font-size: 0.8rem;
+
+          &:hover {
+            @apply bg-basic-yellow text-basic-gray;
+          }
+        }
+      }
+
+      .privacy {
+        @apply w-full h-[3rem] flex justify-center items-end;
+        h3 {
+          @apply underline text-white font-medium;
+          font-size: 0.9rem;
+        }
+      }
+
+      .condition {
+        @apply w-full h-[2.3rem] flex justify-center items-end;
+        p {
+          @apply text-input-text font-medium;
+          font-size: 0.9rem;
+
+          a {
+            @apply text-white underline font-medium;
+          }
+        }
+      }
+    }
+  }
+}

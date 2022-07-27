@@ -1,0 +1,114 @@
+.game-media-slider {
+  @apply relative h-[27.5rem] mb-[1rem];
+  .swiper-slide {
+    @apply relative overflow-hidden;
+    padding-top: 100%;
+
+    .player {
+      @apply absolute top-0 left-0 rounded;
+
+      video {
+        @apply w-full h-full rounded;
+      }
+    }
+
+    img {
+      @apply absolute top-0 left-0 w-full h-[27.5rem] rounded;
+      object-fit: fill;
+    }
+  }
+
+  .swiper-button-prev {
+    @apply absolute text-white transition-all;
+    top: 1rem;
+    left: 1rem;
+    height: 85%;
+    width: 2rem;
+
+    &:after {
+      @apply font-bold transition-all;
+      position: absolute;
+      top: 55%;
+      z-index: 10000;
+      font-size: 1.5rem;
+      opacity: 0;
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  .swiper-button-next {
+    @apply absolute text-white transition-all;
+    top: 1rem;
+    right: 1rem;
+    height: 85%;
+    width: 2rem;
+
+    &:after {
+      @apply font-bold transition-all;
+      position: absolute;
+      top: 55%;
+      z-index: 10000;
+      font-size: 1.5rem;
+      opacity: 0;
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.game-media-slider-thumbs {
+  width: 90%;
+  z-index: 10;
+
+  .swiper-slide {
+
+    &-thumb-active {
+      .game-media-slider-thumbs-wrapper {
+        opacity: 1;
+      }
+
+      .video {
+        opacity: 1;
+      }
+
+      .play-btn {
+        opacity: 0;
+      }
+    }
+  }
+
+  &-wrapper {
+    @apply relative w-full h-[3.5rem] opacity-60 cursor-pointer;
+  ;
+
+    img {
+      @apply absolute top-0 left-0 w-full h-full rounded;
+    }
+
+    .video {
+      @apply absolute top-0 left-0 rounded opacity-50;
+
+      video {
+        @apply relative h-full;
+      }
+    }
+
+    .play-btn {
+      @apply absolute top-[38%] left-[42%] text-white;
+
+      .icon {
+        opacity: 1
+      }
+    }
+  }
+
+}

@@ -18,22 +18,16 @@ export class FeaturesService {
 		return this.featuresRepository.create(dto)
 	}
 
-	public async getByValues(
-		featureNames: string[] | string,
-	): Promise<Feature[] | Feature> {
-		if (Array.isArray(featureNames)) {
-			const features = []
-			for (let i = 0; i < featureNames.length; i++) {
-				const featureName = featureNames[i]
-				features.push(
-					await this.featuresRepository.findOne({ where: { featureName } }),
-				)
-			}
-			return features
+	public async getByValues(featureNames: string): Promise<Feature[]> {
+		const featureNamesArray = JSON.parse(featureNames)
+		const features = []
+		for (let i = 0; i < featureNamesArray.length; i++) {
+			const featureName = featureNamesArray[i]
+			features.push(
+				await this.featuresRepository.findOne({ where: { featureName } }),
+			)
 		}
-		return await this.featuresRepository.findOne({
-			where: { featureName: featureNames },
-		})
+		return features
 	}
 
 	public async getIdsByFeature(
@@ -52,7 +46,7 @@ export class FeaturesService {
 				const ids = featureGames.map((feature) => feature.gameId)
 				targetIds = [...targetIds, ...ids]
 			}
-			return this.genresService.findDuplicates(targetIds)
+			return this.genresService.findDuplicates(targetIds, featureNames.length)
 		}
 		const targetFeature = await this.featuresRepository.findOne({
 			where: { featureName: featureNames },
@@ -72,5 +66,9 @@ export class FeaturesService {
 
 	public async getAll(): Promise<Feature[]> {
 		return await this.featuresRepository.findAll({ include: { all: true } })
+	}
+
+	public async deleteOne(featureId: number) {
+		await this.featuresRepository.destroy({ where: { id: featureId } })
 	}
 }

@@ -26,9 +26,7 @@ export class TokensService {
 		if (!userData || !currentToken) {
 			throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
 		}
-		const user = await this.userRepository.findOne({
-			where: { id: userData.id },
-		})
+		const user = await this.usersService.findUserById(userData.id)
 		const userDto = new UserDto(user)
 		const tokens = await this.generateTokes({ ...userDto })
 		await this.saveToken(userDto.id, tokens.refreshToken)
@@ -61,6 +59,7 @@ export class TokensService {
 	public async findToken(refreshToken: string) {
 		return await this.tokenRepository.findOne({
 			where: { refreshToken },
+			include: { all: true },
 		})
 	}
 

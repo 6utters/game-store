@@ -1,0 +1,36 @@
+.container {
+  @apply h-full w-1/5 flex flex-col pt-[5rem];
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  .links {
+    @apply w-full py-[2rem] pr-[0.75rem];
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .link {
+      @apply w-full h-[3rem] mb-[1rem];
+
+      .active {
+        @apply bg-basic-gray rounded text-white font-medium;
+      }
+
+      a {
+        @apply text-border-gray font-semibold flex items-center transition-all h-full pl-[0.5rem];
+        font-size: 0.9rem;
+
+        svg {
+          font-size: 1.5rem;
+        }
+
+        p {
+          @apply ml-[0.8rem]
+        }
+      }
+
+      &:hover {
+        a {
+          @apply text-white;
+        }
+      }
+    }
+  }
+}

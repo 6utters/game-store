@@ -14,7 +14,6 @@ import { UserRoles } from './roles/entities/user-roles.model'
 import { GamesModule } from './games/games.module'
 import { Game } from './games/entities/games.model'
 import { FilesModule } from './files/files.module'
-import { ServeStaticModule } from '@nestjs/serve-static'
 import { CartsModule } from './carts/carts.module'
 import { Cart } from './carts/entities/carts.model'
 import { CartGame } from './carts/entities/cart-games.model'
@@ -26,6 +25,13 @@ import { Genre } from './genres/entities/genres.model'
 import { FeaturesModule } from './features/features.module'
 import { Feature } from './features/entities/features.model'
 import { FeatureGames } from './features/entities/feature-games.model'
+import { GamesInfoModule } from './games-info/games-info.module'
+import { Game_info } from './games-info/entities/game-info.model'
+import { GamesMediaModule } from './games-media/games-media.module'
+import { Game_media } from './games-media/entities/games-media.model'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { GamesAboutModule } from './games-about/games-about.module'
+import { Game_about } from './games-about/entities/games-about.model'
 
 @Module({
 	controllers: [],
@@ -54,6 +60,9 @@ import { FeatureGames } from './features/entities/feature-games.model'
 				Genre,
 				Feature,
 				FeatureGames,
+				Game_info,
+				Game_media,
+				Game_about,
 			],
 			autoLoadModels: true,
 			synchronize: true,
@@ -66,7 +75,7 @@ import { FeatureGames } from './features/entities/feature-games.model'
 			useFactory: async (config: ConfigService) => ({
 				transport: {
 					host: config.get('SMTP_HOST'),
-					secure: false,
+					secure: true,
 					auth: {
 						user: config.get('SMTP_USER'),
 						pass: config.get('SMTP_PASSWORD'),
@@ -94,6 +103,9 @@ import { FeatureGames } from './features/entities/feature-games.model'
 		RatingsModule,
 		GenresModule,
 		FeaturesModule,
+		GamesInfoModule,
+		GamesMediaModule,
+		GamesAboutModule,
 	],
 })
 export class AppModule {}

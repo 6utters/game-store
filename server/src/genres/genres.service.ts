@@ -15,23 +15,33 @@ export class GenresService {
 		return await this.genresRepository.create(dto)
 	}
 
-	public async getByValues(
-		genreNames: string[] | string,
-	): Promise<Genre | Genre[]> {
-		if (Array.isArray(genreNames)) {
-			const genres = []
-			for (let i = 0; i < genreNames.length; i++) {
-				const genreName = genreNames[i]
-				genres.push(
-					await this.genresRepository.findOne({ where: { genreName } }),
-				)
-			}
-			return genres
+	public async getByValues(genreNames: string): Promise<Genre[]> {
+		const genreNamesArray = JSON.parse(genreNames)
+		const genres = []
+		for (let i = 0; i < genreNamesArray.length; i++) {
+			const genreName = genreNamesArray[i]
+			genres.push(await this.genresRepository.findOne({ where: { genreName } }))
 		}
-		return await this.genresRepository.findOne({
-			where: { genreName: genreNames },
-		})
+		return genres
 	}
+
+	// public async getByValues(
+	// 	genreNames: string[] | string,
+	// ): Promise<Genre | Genre[]> {
+	// 	if (Array.isArray(genreNames)) {
+	// 		const genres = []
+	// 		for (let i = 0; i < genreNames.length; i++) {
+	// 			const genreName = genreNames[i]
+	// 			genres.push(
+	// 				await this.genresRepository.findOne({ where: { genreName } }),
+	// 			)
+	// 		}
+	// 		return genres
+	// 	}
+	// 	return await this.genresRepository.findOne({
+	// 		where: { genreName: genreNames },
+	// 	})
+	// }
 
 	async getIdsByGenre(genreNames: string[] | string): Promise<number[]> {
 		if (Array.isArray(genreNames)) {
@@ -47,7 +57,7 @@ export class GenresService {
 				const ids = genreGames.map((genre) => genre.gameId)
 				targetIds = [...targetIds, ...ids]
 			}
-			return this.findDuplicates(targetIds)
+			return this.findDuplicates(targetIds, genreNames.length)
 		}
 		const targetGenre = await this.genresRepository.findOne({
 			where: { genreName: genreNames },
@@ -69,7 +79,7 @@ export class GenresService {
 		return await this.genresRepository.findAll({ include: { all: true } })
 	}
 
-	public findDuplicates(arr): number[] {
+	public findDuplicates(arr, filtersCount): number[] {
 		let counts = {}
 		for (let i = 0; i < arr.length; i++) {
 			if (counts[arr[i]]) {
@@ -79,10 +89,14 @@ export class GenresService {
 			}
 		}
 
-		const maxValue = Math.max.apply(Math, Object.values(counts))
+		const maxValue = filtersCount
 		const arrayOfStrings = Object.keys(counts).filter(
 			(key) => counts[key] === maxValue,
 		)
 		return arrayOfStrings.map((str) => Number(str))
+	}
+
+	public async deleteOne(genreId: number) {
+		await this.genresRepository.destroy({ where: { id: genreId } })
 	}
 }

@@ -1,0 +1,71 @@
+.container {
+  @apply relative h-full w-full flex flex-col items-center;
+
+  .title {
+    @apply w-3/4 mb-[3.5rem];
+    h1 {
+      @apply text-4xl text-white ;
+    }
+  }
+
+  .content {
+    @apply w-3/4 flex justify-between;
+
+    .cart_games {
+      @apply h-full w-[73%];
+
+    }
+
+    .cart_purchase {
+      @apply h-full w-[28%] ml-[2rem] pr-[1rem];
+
+      h2 {
+        @apply text-white text-3xl font-light mb-[2rem];
+      }
+
+      .main {
+        @apply mb-[1rem];
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        .property {
+          @apply w-full flex justify-between text-white font-light mb-[0.8rem];
+
+          h5 {
+            @apply text-border-gray font-medium;
+          }
+        }
+
+      }
+
+      .subtotal {
+        @apply w-full flex justify-between text-white font-semibold mb-[1.2rem];
+      }
+
+      button {
+        @apply w-full h-[3rem] rounded text-white font-semibold border transition-all;
+        font-size: 0.9rem;
+
+        &:hover {
+          @apply bg-basic-yellow border-none;
+        }
+      }
+    }
+  }
+
+  .no_games {
+    @apply w-3/4 flex flex-col justify-center items-center mt-[2rem];
+
+    h2 {
+      @apply text-white text-4xl mt-[1rem];
+    }
+
+    .link {
+      @apply text-border-gray font-semibold border-b border-b-basic-gray mt-[1rem] transition-all;
+      font-size: 0.9rem;
+
+      &:hover {
+        @apply text-white;
+      }
+    }
+  }
+}

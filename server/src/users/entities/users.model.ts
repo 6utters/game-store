@@ -2,6 +2,7 @@ import {
 	BelongsToMany,
 	Column,
 	DataType,
+	HasMany,
 	HasOne,
 	Model,
 	Table,
@@ -9,6 +10,7 @@ import {
 import { Role } from '../../roles/entities/roles.model'
 import { UserRoles } from '../../roles/entities/user-roles.model'
 import { Cart } from '../../carts/entities/carts.model'
+import { Rating } from '../../ratings/entities/ratings.model'
 
 interface UserCreationAttrs {
 	userName: string
@@ -55,6 +57,9 @@ export class User extends Model<User, UserCreationAttrs> {
 		type: DataType.STRING,
 	})
 	activationLink: string
+	
+	@HasMany(() => Rating)
+	ratings: Rating[]
 
 	@HasOne(() => Cart)
 	cart: Cart

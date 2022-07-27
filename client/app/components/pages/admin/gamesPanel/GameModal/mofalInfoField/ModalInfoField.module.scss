@@ -1,0 +1,14 @@
+.info {
+  @apply mb-[1.5rem];
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem;
+
+  input {
+    @apply flex items-center;
+
+    &::placeholder {
+      font-size: 0.7rem;
+    }
+  }
+}

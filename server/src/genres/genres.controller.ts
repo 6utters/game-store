@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	Param,
+	Post,
+	UseGuards,
+} from '@nestjs/common'
 import { GenresService } from './genres.service'
 import { CreateGenreDto } from './dtos/create-genre.dto'
-import { Roles } from '../roles/roles-auth.decorator'
 import { AuthGuard } from '../auth/auth.guard'
+import { Roles } from 'src/roles/roles-auth.decorator'
 
 @Controller('genres')
 export class GenresController {
@@ -23,5 +31,11 @@ export class GenresController {
 	@Get()
 	getAllGenres() {
 		return this.genresService.getAll()
+	}
+
+	@UseGuards(AuthGuard)
+	@Delete(':genreId')
+	deleteGenre(@Param('genreId') genreId: number) {
+		return this.genresService.deleteOne(genreId)
 	}
 }

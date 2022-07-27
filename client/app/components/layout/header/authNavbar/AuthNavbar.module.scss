@@ -1,0 +1,57 @@
+.left_nav {
+  @apply relative h-full flex items-center;
+
+  @media screen and (max-width: 766px) {
+    display: none;
+  }
+
+  .login_btn {
+    @apply relative h-full;
+    padding: 0 1rem;
+
+    &:hover:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: .25rem;
+      background: #f3d349;
+    }
+
+    a {
+      @apply h-full w-full flex items-center text-gray-text uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+
+      .login_symb {
+        @apply text-sm;
+      }
+
+      p {
+        @apply ml-2
+      }
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .signup_btn {
+    @apply relative h-full;
+    padding: 0 1.5rem;
+    background: #f3d349;
+
+    &:hover {
+      background: rgba(243, 211, 73, 0.88);
+    }
+
+    a {
+      @apply h-full w-full flex items-center font-semibold text-basic-gray uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+    }
+
+  }
+}

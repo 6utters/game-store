@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	Param,
+	Post,
+	UseGuards,
+} from '@nestjs/common'
 import { FeaturesService } from './features.service'
 import { CreateFeatureDto } from './dtos/create-feature.dto'
 import { AuthGuard } from '../auth/auth.guard'
@@ -24,5 +32,11 @@ export class FeaturesController {
 	@Get()
 	getAllFeatures() {
 		return this.featuresService.getAll()
+	}
+
+	@UseGuards(AuthGuard)
+	@Delete(':featureId')
+	deleteGenre(@Param('featureId') featureId: number) {
+		return this.featuresService.deleteOne(featureId)
 	}
 }
