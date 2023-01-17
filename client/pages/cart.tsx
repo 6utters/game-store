@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react'
-import { fetchCartGames } from '../app/store/reducers/cartReducer/cartAC'
-import { useAppDispatch } from '../app/hooks/redux'
-import Cart from '../app/components/pages/cart/Cart'
-import Layout from '../app/components/layout/Layout.'
+import { fetchCartGames } from '../src/store/reducers/cartReducer/cartAC'
+import { useAppDispatch } from '../src/hooks/redux'
+import Cart from '../src/components/pages/cart/Cart'
+import Layout from '../src/components/layout/Layout.'
 
 const CartPage: FC = () => {
 	const dispatch = useAppDispatch()

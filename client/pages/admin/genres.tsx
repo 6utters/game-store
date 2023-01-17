@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import Layout from '../../app/components/layout/Layout.'
-import AdminLayout from '../../app/components/layout/adminLayout/AdminLayout'
-import GenresPanel from '../../app/components/pages/admin/genresPanel/GenresPanel'
+import Layout from '../../src/components/layout/Layout.'
+import AdminLayout from '../../src/components/layout/adminLayout/AdminLayout'
+import GenresPanel from '../../src/components/pages/admin/genresPanel/GenresPanel'
 
 const Genres: FC = () => {
 	return (

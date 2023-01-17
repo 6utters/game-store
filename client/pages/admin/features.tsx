@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import AdminLayout from '../../app/components/layout/adminLayout/AdminLayout'
-import Layout from '../../app/components/layout/Layout.'
-import FeaturesPanel from '../../app/components/pages/admin/featuresPanel/FeaturesPanel'
+import AdminLayout from '../../src/components/layout/adminLayout/AdminLayout'
+import Layout from '../../src/components/layout/Layout.'
+import FeaturesPanel from '../../src/components/pages/admin/featuresPanel/FeaturesPanel'
 
 const Features: FC = () => {
 	return (

@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import Admin from '../app/components/pages/admin/Admin'
-import Layout from '../app/components/layout/Layout.'
-import AdminLayout from '../app/components/layout/adminLayout/AdminLayout'
+import Admin from '../src/components/pages/admin/Admin'
+import Layout from '../src/components/layout/Layout.'
+import AdminLayout from '../src/components/layout/adminLayout/AdminLayout'
 
 const AdminPage: FC = () => {
 	return (

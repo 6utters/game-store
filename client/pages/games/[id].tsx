@@ -1,9 +1,9 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import GameService from '../../app/services/game.service'
-import { IGame } from '../../app/models/IGame'
-import Layout from '../../app/components/layout/Layout.'
-import GamePage from '../../app/components/pages/gamePage/GamePage'
+import GameService from '../../src/services/game.service'
+import { IGame } from '../../src/models/IGame'
+import Layout from '../../src/components/layout/Layout.'
+import GamePage from '../../src/components/pages/gamePage/GamePage'
 
 const Game: NextPage<{ game: IGame }> = (props) => {
 	return (

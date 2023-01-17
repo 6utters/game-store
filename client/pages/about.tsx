@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import Layout from '../app/components/layout/Layout.'
-import About from '../app/components/pages/about/About'
+import Layout from '../src/components/layout/Layout.'
+import About from '../src/components/pages/about/About'
 
 const AboutPage: NextPage = () => {
 	return (

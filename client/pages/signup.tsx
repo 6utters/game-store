@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import Layout from '../app/components/layout/Layout.'
-import Signup from '../app/components/pages/auth/Signup'
+import Layout from '../src/components/layout/Layout.'
+import Signup from '../src/components/pages/auth/Signup'
 
 const SignUpPage: NextPage = () => {
 	return (
