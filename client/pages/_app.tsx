@@ -2,7 +2,7 @@
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
-import '../src/assets/styles/globals.scss'
+import '../src/app/styles/globals.scss'
 import '../src/components/pages/gamePage/Game/GameSlider/GameSlider.scss'
 import '../src/components/ui/MultipleSelect/MultipleSelect.scss'
 import type { AppProps } from 'next/app'

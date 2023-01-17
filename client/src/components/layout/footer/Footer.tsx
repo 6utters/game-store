@@ -6,7 +6,7 @@ import { resourceLinks } from './footer.links'
 import Link from 'next/link'
 import { STORE_ROUTE } from '../../../utils/constants'
 import Image from 'next/image'
-import logoSvg from '../../../assets/svgs/sword-svgrepo-com.svg'
+import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 
 const Footer: FC = () => {
 	const goToTop = () => {

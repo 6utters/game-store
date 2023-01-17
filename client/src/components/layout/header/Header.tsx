@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styles from './Header.module.scss'
 import Image from 'next/image'
-import logoSvg from '../../../assets/svgs/sword-svgrepo-com.svg'
+import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Link from 'next/link'
 import { STORE_ROUTE } from '../../../utils/constants'
 import { navigationLinks } from './header-links'
