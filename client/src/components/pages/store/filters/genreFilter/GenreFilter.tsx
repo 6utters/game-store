@@ -1,11 +1,11 @@
 import { Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 import { IGenre } from '../../../../../models/IGenre'
-import { findSelectedFilter } from '../../../../../utils/helpers'
 import styles from './GenreFilter.module.scss'
 import cn from 'classnames'
 import { CSSTransition } from 'react-transition-group'
 import { propertiesApi } from '../../../../../store/api/properties.api'
+import { findSelectedFilterId } from '@/shared/lib'
 
 interface IGenreFilterProps {
 	selectedGenres: IGenre[]
@@ -19,8 +19,8 @@ const GenreFilter: FC<IGenreFilterProps> = memo(
 		const { data: genres } = propertiesApi.useFetchGenresQuery()
 
 		const genreClickHandler = (genre: IGenre) => {
-			if (genre.id === findSelectedFilter(genre.id, selectedGenres)) {
-				setSelectedGenres([...selectedGenres.filter((g) => g.id !== genre.id)])
+			if (genre.id === findSelectedFilterId(genre.id, selectedGenres)) {
+				setSelectedGenres([...selectedGenres.filter(g => g.id !== genre.id)])
 			} else {
 				setSelectedGenres([...selectedGenres, genre])
 			}
@@ -51,13 +51,13 @@ const GenreFilter: FC<IGenreFilterProps> = memo(
 					unmountOnExit
 				>
 					<ul className={styles.genres_list}>
-						{genres?.map((genre) => (
+						{genres?.map(genre => (
 							<li
 								onClick={() => genreClickHandler(genre)}
 								key={genre.id}
 								className={cn(styles.genre, {
 									[styles.active_genre]:
-										genre.id === findSelectedFilter(genre.id, selectedGenres),
+										genre.id === findSelectedFilterId(genre.id, selectedGenres),
 								})}
 							>
 								<p>{genre.genreName}</p>

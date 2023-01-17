@@ -1,11 +1,11 @@
 import { Dispatch, FC, memo, SetStateAction, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
-import { findSelectedFilter } from '../../../../../utils/helpers'
 import styles from './FeatureFilter.module.scss'
 import cn from 'classnames'
 import { IFeature } from '../../../../../models/IFeature'
 import { CSSTransition } from 'react-transition-group'
 import { propertiesApi } from '../../../../../store/api/properties.api'
+import { findSelectedFilterId } from '@/shared/lib'
 
 interface IGenreFilterProps {
 	selectedFeatures: IFeature[]
@@ -18,9 +18,9 @@ const FeatureFilter: FC<IGenreFilterProps> = memo(
 		const { data: features } = propertiesApi.useFetchFeaturesQuery()
 
 		const featureClickHandler = (feature: IFeature) => {
-			if (feature.id === findSelectedFilter(feature.id, selectedFeatures)) {
+			if (feature.id === findSelectedFilterId(feature.id, selectedFeatures)) {
 				setSelectedFeatures([
-					...selectedFeatures.filter((f) => f.id !== feature.id),
+					...selectedFeatures.filter(f => f.id !== feature.id),
 				])
 			} else {
 				setSelectedFeatures([...selectedFeatures, feature])
@@ -52,14 +52,14 @@ const FeatureFilter: FC<IGenreFilterProps> = memo(
 					unmountOnExit
 				>
 					<ul className={styles.features_list}>
-						{features?.map((feature) => (
+						{features?.map(feature => (
 							<li
 								onClick={() => featureClickHandler(feature)}
 								key={feature.id}
 								className={cn(styles.feature, {
 									[styles.active_feature]:
 										feature.id ===
-										findSelectedFilter(feature.id, selectedFeatures),
+										findSelectedFilterId(feature.id, selectedFeatures),
 								})}
 							>
 								<p>{feature.featureName}</p>

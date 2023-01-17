@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IGame } from '../../../models/IGame'
 import { IGenre } from '../../../models/IGenre'
 import { IFeature } from '../../../models/IFeature'
-import { findSelectedFilter } from '../../../utils/helpers'
+import { findSelectedFilterId } from '@/shared/lib'
 
 interface IGameState {
 	genres: IGenre[]
@@ -37,38 +37,38 @@ export const gameSlice = createSlice({
 			state.selectedGenres.push(action.payload)
 		},
 		removeSelectedGenre: (state, action: PayloadAction<number>) => {
-			const searchedId = findSelectedFilter(
+			const searchedId = findSelectedFilterId(
 				action.payload,
 				state.selectedGenres,
 			)
 			state.selectedGenres = state.selectedGenres.filter(
-				(genre) => genre.id !== searchedId,
+				genre => genre.id !== searchedId,
 			)
 		},
 		setSelectedFeatures: (state, action: PayloadAction<IFeature>) => {
 			state.selectedFeatures.push(action.payload)
 		},
 		removeSelectedFeature: (state, action: PayloadAction<number>) => {
-			const searchedId = findSelectedFilter(
+			const searchedId = findSelectedFilterId(
 				action.payload,
 				state.selectedFeatures,
 			)
 			state.selectedFeatures = state.selectedFeatures.filter(
-				(feature) => feature.id !== searchedId,
+				feature => feature.id !== searchedId,
 			)
 		},
 
 		removeGame: (state, action: PayloadAction<number>) => {
-			state.games = state.games.filter((game) => game.id !== action.payload)
+			state.games = state.games.filter(game => game.id !== action.payload)
 		},
 
 		removeGenre: (state, action: PayloadAction<number>) => {
-			state.genres = state.genres.filter((genre) => genre.id !== action.payload)
+			state.genres = state.genres.filter(genre => genre.id !== action.payload)
 		},
 
 		removeFeature: (state, action: PayloadAction<number>) => {
 			state.features = state.features.filter(
-				(feature) => feature.id !== action.payload,
+				feature => feature.id !== action.payload,
 			)
 		},
 	},

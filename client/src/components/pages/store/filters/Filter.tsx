@@ -6,7 +6,7 @@ import { CSSTransition } from 'react-transition-group'
 import { IFeature } from '../../../../models/IFeature'
 import { IGenre } from '../../../../models/IGenre'
 import { propertiesApi } from '../../../../store/api/properties.api'
-import { findSelectedFilter } from '../../../../utils/helpers'
+import { findSelectedFilterId } from '@/shared/lib'
 
 interface IFilterProps {
 	type: 'genres' | 'features'
@@ -30,7 +30,7 @@ const Filter: FC<IFilterProps> = memo(
 		}
 
 		const genreClickHandler = (filter: any) => {
-			if (filter.id === findSelectedFilter(filter.id, selectedFilters)) {
+			if (filter.id === findSelectedFilterId(filter.id, selectedFilters)) {
 				setSelectedFilters([
 					...selectedFilters.filter((f: any) => f.id !== filter.id),
 				])
@@ -64,14 +64,14 @@ const Filter: FC<IFilterProps> = memo(
 					unmountOnExit
 				>
 					<ul className={styles.filters_list}>
-						{filters?.map((filter) => (
+						{filters?.map(filter => (
 							<li
 								onClick={() => genreClickHandler(filter)}
 								key={filter.id}
 								className={cn(styles.filter, {
 									[styles.active_filter]:
 										filter.id ===
-										findSelectedFilter(filter.id, selectedFilters),
+										findSelectedFilterId(filter.id, selectedFilters),
 								})}
 							>
 								<p>
