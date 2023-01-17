@@ -6,10 +6,10 @@ import CartItem from './CartItem/CartItem'
 import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { STORE_ROUTE } from '../../../utils/constants'
+import { STORE_ROUTE } from '@/shared/consts'
 
 const Cart: FC = () => {
-	const { cartGames } = useAppSelector((state) => state.cart)
+	const { cartGames } = useAppSelector(state => state.cart)
 	const totalPrice = cartGames.reduce((acc, game) => {
 		return acc + game.gamePrice
 	}, 0)
@@ -28,7 +28,7 @@ const Cart: FC = () => {
 				{cartGames.length ? (
 					<div className={styles.content}>
 						<div className={styles.cart_games}>
-							{cartGames.map((game) => (
+							{cartGames.map(game => (
 								<CartItem key={game.id} {...game} />
 							))}
 						</div>

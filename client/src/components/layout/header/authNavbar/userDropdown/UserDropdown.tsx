@@ -2,8 +2,8 @@ import { FC } from 'react'
 import styles from './UserDropdown.module.scss'
 import { FaUser } from 'react-icons/fa'
 import Link from 'next/link'
-import { ADMIN_ROUTE } from '../../../../../utils/constants'
 import { useActions, useAppSelector } from '../../../../../hooks/redux'
+import { ADMIN_ROUTE } from '@/shared/consts'
 
 interface IUserDropdownProps {
 	userName: string | null
@@ -11,10 +11,9 @@ interface IUserDropdownProps {
 
 const UserDropdown: FC<IUserDropdownProps> = ({ userName }) => {
 	// const { user } = useAppSelector((state) => state.user)
-	const { user } = useAppSelector((state) => state.auth)
+	const { user } = useAppSelector(state => state.auth)
 	const userRoles = user && user.roles
-	const adminRole =
-		userRoles && userRoles.find((role) => role.value === 'ADMIN')
+	const adminRole = userRoles && userRoles.find(role => role.value === 'ADMIN')
 	// const dispatch = useAppDispatch()
 	const { logout } = useActions()
 	const logoutHandler = () => {

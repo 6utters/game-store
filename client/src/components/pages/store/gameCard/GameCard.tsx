@@ -1,8 +1,8 @@
 import { FC, memo } from 'react'
-import styles from './GameCard.module.scss'
 import { useRouter } from 'next/router'
-import { GAME_ROUTE } from '../../../../utils/constants'
-import { convertImage } from '../../../../utils/helpers'
+import { convertImagePath } from '@/shared/lib'
+import styles from './GameCard.module.scss'
+import { GAME_ROUTE } from '@/shared/consts'
 
 interface IGameCardProps {
 	name: string
@@ -22,7 +22,7 @@ const GameCard: FC<IGameCardProps> = memo(({ name, price, image, gameId }) => {
 		>
 			<div className={styles.card__image}>
 				<img
-					src={'http://localhost:5000' + convertImage(image)}
+					src={'http://localhost:5000' + convertImagePath(image)}
 					alt='gameImage'
 				/>
 			</div>

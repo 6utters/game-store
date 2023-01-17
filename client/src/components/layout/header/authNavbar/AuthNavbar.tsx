@@ -1,13 +1,13 @@
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../../../utils/constants'
 import { FaUser } from 'react-icons/fa'
 import Link from 'next/link'
 import { FC } from 'react'
 import styles from './AuthNavbar.module.scss'
 import UserDropdown from './userDropdown/UserDropdown'
 import { useAppSelector } from '../../../../hooks/redux'
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
 
 const AuthNavbar: FC = () => {
-	const { isAuth, user, isLoading } = useAppSelector((state) => state.auth)
+	const { isAuth, user, isLoading } = useAppSelector(state => state.auth)
 
 	return (
 		<>

@@ -3,7 +3,7 @@ import styles from './Search.module.scss'
 import { BiSearch } from 'react-icons/bi'
 import { useSearch } from './useSearch'
 import Link from 'next/link'
-import { GAME_ROUTE, STORE_ROUTE } from '../../../../../utils/constants'
+import { GAME_ROUTE, STORE_ROUTE } from '@/shared/consts'
 
 const Search: FC = memo(() => {
 	const { data, handleSearch, searchTerm, visible } = useSearch()
@@ -21,7 +21,7 @@ const Search: FC = memo(() => {
 			{visible.isShown && (
 				<div className={styles.drop_down} ref={visible.ref}>
 					{data?.length ? (
-						data.map((game) => (
+						data.map(game => (
 							<div className={styles.search_item} key={game.id}>
 								<Link href={GAME_ROUTE + '/' + game.id}>
 									<a>{game.gameName}</a>

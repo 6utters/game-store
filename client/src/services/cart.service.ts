@@ -1,4 +1,4 @@
-import $api, { API_URL } from '../api'
+import $api, { API_URL } from '../shared/api'
 
 export default class CartService {
 	static async fetchCart() {

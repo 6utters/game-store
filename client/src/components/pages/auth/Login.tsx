@@ -7,8 +7,8 @@ import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Input from '../../ui/Input/Input'
 import Link from 'next/link'
-import { REGISTRATION_ROUTE, STORE_ROUTE } from '../../../utils/constants'
 import { useRouter } from 'next/router'
+import { REGISTRATION_ROUTE, STORE_ROUTE } from '@/shared/consts'
 
 const Login: FC = () => {
 	const router = useRouter()
@@ -23,7 +23,7 @@ const Login: FC = () => {
 	})
 
 	// const { error } = useAppSelector((state) => state.user)
-	const { error, isAuth } = useAppSelector((state) => state.auth)
+	const { error, isAuth } = useAppSelector(state => state.auth)
 
 	useEffect(() => {
 		if (isAuth) {
@@ -31,7 +31,7 @@ const Login: FC = () => {
 		}
 	}, [isAuth])
 
-	const onSubmit: SubmitHandler<ILoginFields> = async (data) => {
+	const onSubmit: SubmitHandler<ILoginFields> = async data => {
 		// try {
 		// 	await AuthService.login(data.email, data.password)
 		// 	dispatch(login(data.email, data.password))

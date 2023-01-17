@@ -4,10 +4,10 @@ import { IGame } from '../../../../models/IGame'
 import { addGameToCart } from '../../../../store/reducers/cartReducer/cartAC'
 import { useAppDispatch } from '../../../../hooks/redux'
 import Link from 'next/link'
-import { GAME_ROUTE } from '../../../../utils/constants'
-import { convertImage } from '../../../../utils/helpers'
+import { convertImagePath } from '@/shared/lib'
+import { GAME_ROUTE } from '@/shared/consts'
 
-const CartItem: FC<IGame> = (game) => {
+const CartItem: FC<IGame> = game => {
 	const dispatch = useAppDispatch()
 	const removeHandler = (gameId: string) => {
 		dispatch(addGameToCart(gameId))
@@ -17,7 +17,7 @@ const CartItem: FC<IGame> = (game) => {
 		<div className={styles.card}>
 			<div className={styles.card__image}>
 				<img
-					src={'http://localhost:5000' + convertImage(game.gameImage)}
+					src={'http://localhost:5000' + convertImagePath(game.gameImage)}
 					alt='Game Image'
 				/>
 			</div>

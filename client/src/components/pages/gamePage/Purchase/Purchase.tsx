@@ -3,14 +3,14 @@ import styles from './Purchase.module.scss'
 import CartService from '../../../../services/cart.service'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { useRouter } from 'next/router'
-import { BASKET_ROUTE } from '../../../../utils/constants'
 import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 import { gamesApi } from '../../../../store/api/games.api'
 import Spinner from '../../../ui/Spinner/Spinner'
+import { BASKET_ROUTE } from '@/shared/consts'
 
 const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
 	const dispatch = useAppDispatch()
-	const { cartGames } = useAppSelector((state) => state.cart)
+	const { cartGames } = useAppSelector(state => state.cart)
 	useEffect(() => {
 		dispatch(fetchCartGames())
 	}, [])
@@ -25,7 +25,7 @@ const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
 	const { data: game } = gamesApi.useFetchOneGameQuery(gameId)
 
 	useEffect(() => {
-		if (cartGames.some((g) => g.gameName === game?.gameName)) {
+		if (cartGames.some(g => g.gameName === game?.gameName)) {
 			setAddToCartBtn(true)
 		}
 	}, [cartGames])

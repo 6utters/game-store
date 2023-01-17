@@ -1,4 +1,4 @@
-import { ABOUT_ROUTE, STORE_ROUTE } from '../../../utils/constants'
+import { ABOUT_ROUTE, STORE_ROUTE } from '@/shared/consts'
 
 interface navLink {
 	id: number

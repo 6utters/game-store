@@ -4,9 +4,9 @@ import { GrFacebook, GrTwitter, GrYoutube } from 'react-icons/gr'
 import { BsFillArrowUpSquareFill } from 'react-icons/bs'
 import { resourceLinks } from './footer.links'
 import Link from 'next/link'
-import { STORE_ROUTE } from '../../../utils/constants'
 import Image from 'next/image'
 import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
+import { STORE_ROUTE } from '@/shared/consts'
 
 const Footer: FC = () => {
 	const goToTop = () => {
@@ -39,7 +39,7 @@ const Footer: FC = () => {
 			<div className={styles.resources}>
 				<p>Resources</p>
 				<div className={styles.resources_links}>
-					{resourceLinks.map((link) => (
+					{resourceLinks.map(link => (
 						<Link href={link.href} key={link.id}>
 							<a>{link.title}</a>
 						</Link>

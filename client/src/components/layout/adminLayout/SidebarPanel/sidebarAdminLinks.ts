@@ -1,10 +1,6 @@
-import {
-	FEATURES_PANEL,
-	GAMES_PANEL,
-	GENRES_PANEL,
-} from '../../../../utils/constants'
 import { BsHdd } from 'react-icons/bs'
 import { GiGamepad } from 'react-icons/gi'
+import { FEATURES_PANEL, GAMES_PANEL, GENRES_PANEL } from '@/shared/consts'
 
 interface ISidebarAdminLinks {
 	id: number

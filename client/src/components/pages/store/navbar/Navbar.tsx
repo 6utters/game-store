@@ -2,9 +2,9 @@ import { FC, memo } from 'react'
 import styles from './Navbar.module.scss'
 import Search from './Search/Search'
 import Link from 'next/link'
-import { BASKET_ROUTE } from '../../../../utils/constants'
 import { cartApi } from '../../../../store/api/cart.api'
 import { ICartGame } from '../../../../models/ICartGame'
+import { BASKET_ROUTE } from '@/shared/consts'
 
 const Navbar: FC = memo(() => {
 	const { data: cartGames } = cartApi.useFetchCartQuery()

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import $api, { API_URL } from '../api'
+import $api, { API_URL } from '../shared/api'
 import { IGame } from '../models/IGame'
 import { IGameInfo } from '../models/IGameInfo'
 import { IGameAboutInfo } from '../models/IGameAboutInfo'

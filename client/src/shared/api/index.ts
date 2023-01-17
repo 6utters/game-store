@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AuthResponse } from '../models/response/AuthResponse'
+import { AuthResponse } from '../../models/response/AuthResponse'
 
 export const API_URL = `http://localhost:5000/api`
 
@@ -8,7 +8,7 @@ const $api = axios.create({
 	baseURL: API_URL,
 })
 
-$api.interceptors.request.use((config) => {
+$api.interceptors.request.use(config => {
 	if (config.headers) {
 		config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
 	}
@@ -16,10 +16,10 @@ $api.interceptors.request.use((config) => {
 })
 
 $api.interceptors.response.use(
-	(config) => {
+	config => {
 		return config
 	},
-	async (error) => {
+	async error => {
 		const originalRequest = error.config
 		if (
 			error.response.status == '401' &&

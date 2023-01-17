@@ -1,4 +1,4 @@
-import $api, { API_URL } from '../../api'
+import $api, { API_URL } from '../../shared/api'
 import { AuthResponse } from '../../models/response/AuthResponse'
 import axios from 'axios'
 

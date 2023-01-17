@@ -1,4 +1,4 @@
-import { STORE_ROUTE } from '../../../utils/constants'
+import { STORE_ROUTE } from '@/shared/consts'
 
 interface IResource {
 	id: number

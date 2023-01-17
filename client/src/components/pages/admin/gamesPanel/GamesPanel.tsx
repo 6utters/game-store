@@ -3,8 +3,8 @@ import { FiPlus } from 'react-icons/fi'
 import { ImCross } from 'react-icons/im'
 import GameModal from './GameModal/GameModal'
 import styles from './GamesPanel.module.scss'
-import { convertImage } from '../../../../utils/helpers'
 import { gamesApi } from '../../../../store/api/games.api'
+import { convertImagePath } from '@/shared/lib'
 
 const GamesPanel: FC = () => {
 	const { data: games } = gamesApi.useFetchGamesQuery({
@@ -28,11 +28,11 @@ const GamesPanel: FC = () => {
 				</div>
 				<div className={styles.gameList}>
 					<h3>Games</h3>
-					{games?.map((game) => (
+					{games?.map(game => (
 						<div key={game.id} className={styles.game}>
 							<img
 								className={styles.image}
-								src={'http://localhost:5000' + convertImage(game.gameImage)}
+								src={'http://localhost:5000' + convertImagePath(game.gameImage)}
 								alt='image'
 							/>
 							<p>{game.gameName}</p>

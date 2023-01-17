@@ -3,12 +3,12 @@ import styles from './Header.module.scss'
 import Image from 'next/image'
 import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Link from 'next/link'
-import { STORE_ROUTE } from '../../../utils/constants'
 import { navigationLinks } from './header-links'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import AuthNavbar from './authNavbar/AuthNavbar'
 import BurgerNavbar from './burgerNavbar/BurgerNavbar'
+import { STORE_ROUTE } from '@/shared/consts'
 
 const Header: FC = () => {
 	const router = useRouter()
@@ -31,7 +31,7 @@ const Header: FC = () => {
 					</Link>
 				</div>
 				<div className={styles.nav_links}>
-					{navigationLinks.map((link) => (
+					{navigationLinks.map(link => (
 						<Link key={'navbar' + link.id} href={link.href}>
 							<a
 								className={cn({

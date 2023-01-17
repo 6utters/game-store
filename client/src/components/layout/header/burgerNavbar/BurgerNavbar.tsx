@@ -3,17 +3,17 @@ import styles from './BurgerNanbar.module.scss'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { navigationLinks } from '../header-links'
 import Link from 'next/link'
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../../../utils/constants'
 import { FaUser } from 'react-icons/fa'
 import cn from 'classnames'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { logout } from '../../../../store/reducers/userReducer/userAC'
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
 
 const BurgerNavbar: FC = () => {
 	const dispatch = useAppDispatch()
 	const [isShown, setIsShown] = useState(false)
 	// const { isAuth, user } = useAppSelector((state) => state.user)
-	const { isAuth, user } = useAppSelector((state) => state.auth)
+	const { isAuth, user } = useAppSelector(state => state.auth)
 
 	useEffect(() => {
 		if (isShown) {
@@ -45,7 +45,7 @@ const BurgerNavbar: FC = () => {
 				<div className={styles.darken} />
 				<div className={styles.content}>
 					<div className={styles.links}>
-						{navigationLinks.map((link) => (
+						{navigationLinks.map(link => (
 							<Link key={'navbar-m' + link.id} href={link.href}>
 								<a className={styles.link}>{link.title}</a>
 							</Link>

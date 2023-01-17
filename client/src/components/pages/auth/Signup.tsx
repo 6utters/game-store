@@ -6,9 +6,9 @@ import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Input from '../../ui/Input/Input'
 import Link from 'next/link'
-import { LOGIN_ROUTE, STORE_ROUTE } from '../../../utils/constants'
 import { ISignupFields } from '../../../models/ISignupFields'
 import { useRouter } from 'next/router'
+import { LOGIN_ROUTE, STORE_ROUTE } from '@/shared/consts'
 
 const Signup: FC = () => {
 	const router = useRouter()
@@ -19,7 +19,7 @@ const Signup: FC = () => {
 		formState: { errors },
 	} = useForm<ISignupFields>()
 
-	const { error, isAuth } = useAppSelector((state) => state.auth)
+	const { error, isAuth } = useAppSelector(state => state.auth)
 
 	useEffect(() => {
 		if (isAuth) {
@@ -27,7 +27,7 @@ const Signup: FC = () => {
 		}
 	}, [isAuth])
 
-	const onSubmit: SubmitHandler<ISignupFields> = async (data) => {
+	const onSubmit: SubmitHandler<ISignupFields> = async data => {
 		registerHandler(data)
 	}
 
