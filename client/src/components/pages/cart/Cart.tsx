@@ -58,14 +58,15 @@ const Cart: FC = () => {
 				) : (
 					<div className={styles.no_games}>
 						<Image
+							alt={'img'}
 							src={logoSvg}
 							height={50}
 							width={50}
 							className={styles.logoImg}
 						/>
 						<h2>Your cart is empty</h2>
-						<Link href={STORE_ROUTE}>
-							<a className={styles.link}>Shop for Games & Apps</a>
+						<Link className={styles.link} href={STORE_ROUTE}>
+							Shop for Games & Apps
 						</Link>
 					</div>
 				)}

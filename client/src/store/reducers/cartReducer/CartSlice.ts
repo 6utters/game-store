@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IGame } from '../../../models/IGame'
 
-interface ICartState {
+export interface ICartState {
 	cartGames: IGame[]
 }
 
@@ -18,7 +18,7 @@ export const CartSlice = createSlice({
 		},
 		removeGame: (state, action: PayloadAction<number>) => {
 			state.cartGames = state.cartGames.filter(
-				(game) => game.id !== action.payload,
+				game => game.id !== action.payload,
 			)
 		},
 	},

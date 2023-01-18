@@ -41,7 +41,7 @@ const Footer: FC = () => {
 				<div className={styles.resources_links}>
 					{resourceLinks.map(link => (
 						<Link href={link.href} key={link.id}>
-							<a>{link.title}</a>
+							{link.title}
 						</Link>
 					))}
 				</div>
@@ -60,9 +60,7 @@ const Footer: FC = () => {
 					<button>Store Refund Policy</button>
 				</div>
 				<Link href={STORE_ROUTE}>
-					<a>
-						<Image src={logoSvg} height={25} width={25} />
-					</a>
+					<Image alt={'img'} src={logoSvg} height={25} width={25} />
 				</Link>
 			</div>
 		</footer>

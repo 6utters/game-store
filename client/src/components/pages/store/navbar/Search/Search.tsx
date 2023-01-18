@@ -23,16 +23,12 @@ const Search: FC = memo(() => {
 					{data?.length ? (
 						data.map(game => (
 							<div className={styles.search_item} key={game.id}>
-								<Link href={GAME_ROUTE + '/' + game.id}>
-									<a>{game.gameName}</a>
-								</Link>
+								<Link href={GAME_ROUTE + '/' + game.id}>{game.gameName}</Link>
 							</div>
 						))
 					) : (
 						<div className={styles.no_games}>
-							<Link href={STORE_ROUTE}>
-								<a>Browse all</a>
-							</Link>
+							<Link href={STORE_ROUTE}>Browse all</Link>
 						</div>
 					)}
 				</div>

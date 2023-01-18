@@ -46,8 +46,12 @@ const BurgerNavbar: FC = () => {
 				<div className={styles.content}>
 					<div className={styles.links}>
 						{navigationLinks.map(link => (
-							<Link key={'navbar-m' + link.id} href={link.href}>
-								<a className={styles.link}>{link.title}</a>
+							<Link
+								className={styles.link}
+								key={'navbar-m' + link.id}
+								href={link.href}
+							>
+								{link.title}
 							</Link>
 						))}
 					</div>
@@ -69,17 +73,13 @@ const BurgerNavbar: FC = () => {
 							<>
 								<button className={styles.login_btn}>
 									<Link href={LOGIN_ROUTE}>
-										<a>
-											<FaUser className={styles.login_symb} />
-											<p>Log in</p>
-										</a>
+										<FaUser className={styles.login_symb} />
+										<p>Log in</p>
 									</Link>
 								</button>
 								<button className={styles.signup_btn}>
 									<Link href={REGISTRATION_ROUTE}>
-										<a>
-											<p>Sign in</p>
-										</a>
+										<p>Sign in</p>
 									</Link>
 								</button>
 							</>

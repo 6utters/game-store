@@ -10,6 +10,7 @@ export const register = createAsyncThunk<AuthResponse, ISignupFields>(
 		try {
 			const response = await AuthService.register(email, password, userName)
 			localStorage.setItem('token', response.accessToken)
+			localStorage.setItem('user', JSON.stringify(response.user))
 			return response
 		} catch (e: any) {
 			console.log(e)
@@ -24,6 +25,7 @@ export const login = createAsyncThunk<AuthResponse, ILoginFields>(
 		try {
 			const response = await AuthService.login(email, password)
 			localStorage.setItem('token', response.accessToken)
+			localStorage.setItem('user', JSON.stringify(response.user))
 			return response
 		} catch (e: any) {
 			return thunkAPI.rejectWithValue(e.response.data.message)
@@ -33,6 +35,7 @@ export const login = createAsyncThunk<AuthResponse, ILoginFields>(
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 	try {
 		localStorage.removeItem('token')
+		localStorage.removeItem('user')
 		return await AuthService.logout()
 	} catch (e: any) {
 		return thunkAPI.rejectWithValue(e.response.data.message)
@@ -43,6 +46,7 @@ export const check = createAsyncThunk('auth/check', async (_, thunkAPI) => {
 	try {
 		const response = await AuthService.check()
 		localStorage.setItem('token', response.accessToken)
+		localStorage.setItem('user', JSON.stringify(response.user))
 		return response
 	} catch (e: any) {
 		return thunkAPI.rejectWithValue(e.response.data.message)

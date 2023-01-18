@@ -48,14 +48,12 @@ const Login: FC = () => {
 				<div className={styles.form}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<Link href={STORE_ROUTE}>
-							<a>
-								<div className={styles.image}>
-									<Image src={logoSvg} height={40} width={40} />
-									<h2>
-										<span>D</span>&<span>D</span> Games
-									</h2>
-								</div>
-							</a>
+							<div className={styles.image}>
+								<Image alt={'img'} src={logoSvg} height={40} width={40} />
+								<h2>
+									<span>D</span>&<span>D</span> Games
+								</h2>
+							</div>
 						</Link>
 						<div className={styles.title}>
 							<h1>Log in with an D&D Games Account.</h1>
@@ -82,9 +80,7 @@ const Login: FC = () => {
 							<div className={styles.condition}>
 								<p>
 									Don't have an D&D Games Account?{' '}
-									<Link href={REGISTRATION_ROUTE}>
-										<a>Sign Up</a>
-									</Link>
+									<Link href={REGISTRATION_ROUTE}>Sign Up</Link>
 								</p>
 							</div>
 						</div>

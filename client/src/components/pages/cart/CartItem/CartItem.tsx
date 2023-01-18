@@ -23,9 +23,7 @@ const CartItem: FC<IGame> = game => {
 			</div>
 			<div className={styles.card__content}>
 				<div className={styles.game_name}>
-					<Link href={GAME_ROUTE + '/' + `${game.id}`}>
-						<a>{game.gameName}</a>
-					</Link>
+					<Link href={GAME_ROUTE + '/' + `${game.id}`}>{game.gameName}</Link>
 				</div>
 				<div className={styles.right}>
 					<div className={styles.game_price}>${game.gamePrice - 0.01}</div>

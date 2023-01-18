@@ -21,11 +21,9 @@ const Navbar: FC = memo(() => {
 				<div className={styles.navbar__left}>
 					<Search />
 					<div className={styles.navbar__links}>
-						<Link href={'/'}>
-							<a>Discover</a>
-						</Link>
-						<Link href={'/'}>
-							<a className={styles.activeLink}>Browse</a>
+						<Link href={'/'}>Discover</Link>
+						<Link className={styles.activeLink} href={'/'}>
+							Browse
 						</Link>
 					</div>
 				</div>
@@ -33,9 +31,7 @@ const Navbar: FC = memo(() => {
 					<div className={styles.buttons}>
 						<button>
 							<Link href={BASKET_ROUTE}>
-								<a>
-									Cart <span>{showCount(cartGames?.games)}</span>
-								</a>
+								Cart <span>{showCount(cartGames?.games)}</span>
 							</Link>
 						</button>
 					</div>

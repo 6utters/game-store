@@ -4,7 +4,7 @@ import { IGenre } from '../../../models/IGenre'
 import { IFeature } from '../../../models/IFeature'
 import { findSelectedFilterId } from '@/shared/lib'
 
-interface IGameState {
+export interface IGameState {
 	genres: IGenre[]
 	features: IFeature[]
 	games: IGame[]

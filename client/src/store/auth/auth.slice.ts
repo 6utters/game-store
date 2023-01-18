@@ -1,9 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { check, login, logout, register } from './auth.actions'
-import { IAuthInitialState } from './auth.interface'
+import { AuthSchema } from './auth.interface'
 import { AuthResponse } from '../../models/response/AuthResponse'
 
-const initialState: IAuthInitialState = {
+function getFromLocalStorage(name: string) {
+	if (typeof window !== 'undefined') {
+		const item = localStorage.getItem(name)
+		console.log('item:', item)
+		return item ? JSON.parse(item) : null
+	}
+	return null
+}
+
+const initialState: AuthSchema = {
+	// user: getFromLocalStorage('user'),
 	user: null,
 	accessToken: '',
 	refreshToken: '',
@@ -17,7 +27,7 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
-		[register.pending.type]: (state) => {
+		[register.pending.type]: state => {
 			state.isLoading = true
 		},
 		[register.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
@@ -32,7 +42,7 @@ export const authSlice = createSlice({
 			state.error = action.payload
 			state.isAuth = false
 		},
-		[login.pending.type]: (state) => {
+		[login.pending.type]: state => {
 			state.isLoading = true
 		},
 		[login.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {
@@ -47,10 +57,10 @@ export const authSlice = createSlice({
 			state.error = action.payload
 			state.isAuth = false
 		},
-		[logout.pending.type]: (state) => {
+		[logout.pending.type]: state => {
 			state.isLoading = true
 		},
-		[logout.fulfilled.type]: (state) => {
+		[logout.fulfilled.type]: state => {
 			state.isLoading = false
 			state.user = null
 			state.error = ''
@@ -61,7 +71,7 @@ export const authSlice = createSlice({
 			state.error = action.payload
 			state.isAuth = true
 		},
-		[check.pending.type]: (state) => {
+		[check.pending.type]: state => {
 			state.isLoading = true
 		},
 		[check.fulfilled.type]: (state, action: PayloadAction<AuthResponse>) => {

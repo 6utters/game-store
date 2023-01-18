@@ -10,17 +10,15 @@ const SidebarPanel: FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.links}>
-				{sidebarAdminLinks.map((link) => (
+				{sidebarAdminLinks.map(link => (
 					<div key={link.id} className={styles.link}>
 						<Link href={link.href}>
-							<a
-								className={cn({
-									[styles.active]: link.href === router.asPath,
-								})}
-							>
-								<link.icon className={styles.icon} />
-								<p>{link.title}</p>
-							</a>
+							className=
+							{cn({
+								[styles.active]: link.href === router.asPath,
+							})}
+							<link.icon className={styles.icon} />
+							<p>{link.title}</p>
 						</Link>
 					</div>
 				))}

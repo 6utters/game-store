@@ -32,9 +32,7 @@ const UserDropdown: FC<IUserDropdownProps> = ({ userName }) => {
 			<ul className={styles.dropdown__list}>
 				{adminRole && (
 					<li className={styles.dropdown__item}>
-						<Link href={ADMIN_ROUTE}>
-							<a href=''>Admin</a>
-						</Link>
+						<Link href={ADMIN_ROUTE}>Admin</Link>
 					</li>
 				)}
 				<li className={styles.dropdown__item}>

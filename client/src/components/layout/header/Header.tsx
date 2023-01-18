@@ -17,29 +17,28 @@ const Header: FC = () => {
 			<div className={styles.left_nav}>
 				<div className={styles.logo}>
 					<Link href={STORE_ROUTE}>
-						<a>
-							<Image
-								src={logoSvg}
-								height={35}
-								width={35}
-								className={styles.logoImg}
-							/>
-							<p>
-								<span>D</span>&<span>D</span> Games
-							</p>
-						</a>
+						<Image
+							alt={'img'}
+							src={logoSvg}
+							height={35}
+							width={35}
+							className={styles.logoImg}
+						/>
+						<p>
+							<span>D</span>&<span>D</span> Games
+						</p>
 					</Link>
 				</div>
 				<div className={styles.nav_links}>
 					{navigationLinks.map(link => (
-						<Link key={'navbar' + link.id} href={link.href}>
-							<a
-								className={cn({
-									[styles.active_link]: link.href == router.asPath,
-								})}
-							>
-								{link.title}
-							</a>
+						<Link
+							className={cn({
+								[styles.active_link]: link.href == router.asPath,
+							})}
+							key={'navbar' + link.id}
+							href={link.href}
+						>
+							{link.title}
 						</Link>
 					))}
 				</div>

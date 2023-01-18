@@ -24,17 +24,13 @@ const AuthNavbar: FC = () => {
 										'flex items-center text-gray-400 hover:text-gray-200 '
 									}
 								>
-									<a>
-										<FaUser className={styles.login_symb} />
-										<p>Log in</p>
-									</a>
+									<FaUser className={styles.login_symb} />
+									<p>Log in</p>
 								</Link>
 							</button>
 							<button className={styles.signup_btn}>
 								<Link href={REGISTRATION_ROUTE}>
-									<a>
-										<p>Sign in</p>
-									</a>
+									<p>Sign in</p>
 								</Link>
 							</button>
 						</>
