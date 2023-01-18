@@ -1,10 +1,11 @@
-import { StateSchema } from './StateSchema'
+import { StateSchema, ThunkExtraArgs } from './StateSchema'
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 import { authSlice } from '@/store/auth/auth.slice'
 import { api } from '@/store/api/api'
 import gameReducer from '@/store/reducers/gameReducer/GameSlice'
 import cartReducer from '@/store/reducers/cartReducer/CartSlice'
 import { userReducer } from '@/entities/User'
+import { $api } from '@/shared/api'
 
 export function createReduxStore(initialState?: StateSchema) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
@@ -15,10 +16,17 @@ export function createReduxStore(initialState?: StateSchema) {
 		cart: cartReducer,
 	}
 
+	const extraArg: ThunkExtraArgs = {
+		api: $api,
+	}
+
 	return configureStore({
 		reducer: rootReducer,
 		middleware: getDefaultMiddleware =>
-			getDefaultMiddleware({ serializableCheck: false }).concat(api.middleware),
+			getDefaultMiddleware({
+				serializableCheck: false,
+				thunk: { extraArgument: extraArg },
+			}).concat(api.middleware),
 	})
 }
 

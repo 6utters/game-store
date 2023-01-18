@@ -32,7 +32,7 @@ export const login = createAsyncThunk<AuthResponse, ILoginFields>(
 		}
 	},
 )
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
 	try {
 		localStorage.removeItem('token')
 		localStorage.removeItem('user')

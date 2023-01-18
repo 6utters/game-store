@@ -9,6 +9,10 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setAuthData: (state, action: PayloadAction<User>) => {
+			localStorage.setItem(
+				USER_LOCAL_STORAGE_KEY,
+				JSON.stringify(action.payload),
+			)
 			state.authData = action.payload
 		},
 		initAuthData: state => {
