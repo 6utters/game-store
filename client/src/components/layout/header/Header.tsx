@@ -7,7 +7,6 @@ import { navigationLinks } from './header-links'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
 import AuthNavbar from './authNavbar/AuthNavbar'
-import BurgerNavbar from './burgerNavbar/BurgerNavbar'
 import { STORE_ROUTE } from '@/shared/consts'
 
 const Header: FC = () => {
@@ -44,7 +43,7 @@ const Header: FC = () => {
 				</div>
 			</div>
 			<AuthNavbar />
-			<BurgerNavbar />
+			{/*<BurgerNavbar />*/}
 		</div>
 	)
 }

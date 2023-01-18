@@ -1,26 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AuthByEmailResponse } from '../../types/AuthByEmailSchema'
+import { ThunkConfig } from '@/app/providers/storeProvider'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
-import { ThunkConfig } from '@/app/providers/storeProvider'
 
-interface SignInProps {
+interface SignUpProps {
 	email: string
 	password: string
+	userName: string
 }
 
-export const signIn = createAsyncThunk<
+export const signUp = createAsyncThunk<
 	AuthByEmailResponse,
-	SignInProps,
+	SignUpProps,
 	ThunkConfig<string>
->('authByEmail/signIn', async (inputData, thunkAPI) => {
-	const { dispatch, extra, rejectWithValue } = thunkAPI
+>('authByEmail/signUp', async (inputData, thunkAPI) => {
+	const { dispatch, rejectWithValue, extra } = thunkAPI
 	try {
-		const response = await extra.api.post<AuthByEmailResponse>(
-			'/auth/login',
-			inputData,
-		)
-
+		const response = await extra.api.post('/auth/register', inputData)
 		if (!response.data) {
 			throw new Error()
 		}
@@ -32,6 +29,6 @@ export const signIn = createAsyncThunk<
 
 		return response.data
 	} catch (e: any) {
-		return rejectWithValue(e.response.data.message)
+		rejectWithValue(e.response.data.message)
 	}
 })

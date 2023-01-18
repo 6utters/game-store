@@ -1,11 +1,15 @@
 import React, { FC, PropsWithChildren, useEffect } from 'react'
-import { useActions } from '../hooks/redux'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { refresh } from '@/features/authByEmail'
+import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 
 const AuthProvider: FC<PropsWithChildren<any>> = ({ children }) => {
-	const { check } = useActions()
+	const dispatch = useAppDispatch()
+	// const { check } = useActions()
 	useEffect(() => {
-		if (localStorage.getItem('token')) {
-			check()
+		if (localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY)) {
+			// check()
+			dispatch(refresh())
 		}
 	}, [])
 	return <>{children}</>

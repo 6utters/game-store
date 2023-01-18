@@ -1,19 +1,20 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import styles from './Auth.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ILoginFields } from '../../../models/ILoginFields'
-import { useActions, useAppSelector } from '../../../hooks/redux'
 import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Input from '../../ui/Input/Input'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { REGISTRATION_ROUTE, STORE_ROUTE } from '@/shared/consts'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { signIn } from '@/features/authByEmail'
 
 const Login: FC = () => {
 	const router = useRouter()
-	// const dispatch = useAppDispatch()
-	const { login } = useActions()
+	const dispatch = useAppDispatch()
+	// const { login } = useActions()
 	const {
 		register,
 		handleSubmit,
@@ -23,15 +24,19 @@ const Login: FC = () => {
 	})
 
 	// const { error } = useAppSelector((state) => state.user)
-	const { error, isAuth } = useAppSelector(state => state.auth)
+	// const { error, isAuth } = useAppSelector(state => state.auth)
 
-	useEffect(() => {
-		if (isAuth) {
-			router.push('/').then()
-		}
-	}, [isAuth])
+	// useEffect(() => {
+	// 	if (isAuth) {
+	// 		router.push('/').then()
+	// 	}
+	// }, [isAuth])
 
 	const onSubmit: SubmitHandler<ILoginFields> = async data => {
+		const result = await dispatch(signIn(data))
+		if (result.meta.requestStatus === 'fulfilled') {
+			await router.push('/')
+		}
 		// try {
 		// 	await AuthService.login(data.email, data.password)
 		// 	dispatch(login(data.email, data.password))
@@ -39,7 +44,7 @@ const Login: FC = () => {
 		// } catch (e: any) {
 		// 	dispatch(userSlice.actions.setUserError(e.response.data.message))
 		// }
-		login(data)
+		// login(data)
 	}
 
 	return (
@@ -70,7 +75,7 @@ const Login: FC = () => {
 								error={errors.password}
 								type={'password'}
 							/>
-							{error && <div className={styles.error}>{error}</div>}
+							{/*{error && <div className={styles.error}>{error}</div>}*/}
 							<div className={styles.submit}>
 								<button type={'submit'}>LOG IN NOW</button>
 							</div>

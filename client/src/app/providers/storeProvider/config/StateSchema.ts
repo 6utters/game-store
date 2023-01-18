@@ -1,13 +1,13 @@
-import { AuthSchema } from '@/store/auth/auth.interface'
 import { ICartState } from '@/store/reducers/cartReducer/CartSlice'
 import { IGameState } from '@/store/reducers/gameReducer/GameSlice'
 import { api } from '@/store/api/api'
 import { UserSchema } from '@/entities/User'
 import { AxiosInstance } from 'axios'
+import { AuthByEmailSchema } from '@/features/authByEmail'
 
 export interface StateSchema {
 	user: UserSchema
-	auth: AuthSchema
+	authByEmail: AuthByEmailSchema
 	cart: ICartState
 	game: IGameState
 	[api.reducerPath]: ReturnType<typeof api.reducer>

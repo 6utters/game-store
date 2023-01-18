@@ -1,29 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AuthByEmailResponse } from '../../types/AuthByEmailSchema'
+import { ThunkConfig } from '@/app/providers/storeProvider'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
-import { ThunkConfig } from '@/app/providers/storeProvider'
 
-interface SignInProps {
-	email: string
-	password: string
-}
-
-export const signIn = createAsyncThunk<
+export const refresh = createAsyncThunk<
 	AuthByEmailResponse,
-	SignInProps,
+	void,
 	ThunkConfig<string>
->('authByEmail/signIn', async (inputData, thunkAPI) => {
-	const { dispatch, extra, rejectWithValue } = thunkAPI
+>('authByEmail/check', async (_, ThunkAPI) => {
+	const { rejectWithValue, extra, dispatch } = ThunkAPI
 	try {
-		const response = await extra.api.post<AuthByEmailResponse>(
-			'/auth/login',
-			inputData,
-		)
-
+		const response = await extra.api.get<AuthByEmailResponse>('/auth/refresh', {
+			withCredentials: true,
+		})
 		if (!response.data) {
 			throw new Error()
 		}
+
 		localStorage.setItem(
 			ACCESS_TOKEN_LOCAL_STORAGE_KEY,
 			response.data.accessToken,
