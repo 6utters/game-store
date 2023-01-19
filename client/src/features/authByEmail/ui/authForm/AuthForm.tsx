@@ -21,6 +21,15 @@ import Input from '@/components/ui/Input/Input'
 import { Logo } from '@/shared/ui'
 
 import styles from './AuthForm.module.scss'
+import {
+	DynamicModuleLoader,
+	ReducerList,
+} from '@/shared/lib/components/dynamicModuleLoader/DynamicModuleLoader'
+import { authByEmailReducer } from '@/features/authByEmail'
+
+const initialReducers: ReducerList = {
+	authByEmail: authByEmailReducer,
+}
 
 interface AuthFormProps {
 	isSignUpPage: boolean
@@ -60,69 +69,71 @@ export const AuthForm: FC<AuthFormProps> = memo(({ isSignUpPage }) => {
 	)
 
 	return (
-		<form
-			onSubmit={handleSubmit(isSignUpPage ? onSignUpSubmit : onSignInSubmit)}
-			className={styles.form}
-		>
-			<Logo size={40} className={styles.image} />
-			<div className={styles.title}>
-				<h1>{isSignUpPage ? 'Sign Up.' : 'Sign In'}</h1>
-			</div>
-			<div className={styles.inputs}>
-				{isSignUpPage && (
-					<Input
-						placeholder={"User's Name"}
-						{...register('userName', {
-							required: 'Required',
-						})}
-						error={errors.userName}
-					/>
-				)}
-				<Input
-					placeholder={'Email Address'}
-					{...register('email', {
-						required: 'Required',
-						pattern: { value: emailPattern, message: 'Invalid email' },
-					})}
-					error={errors.email}
-				/>
-				<Input
-					placeholder={'Password'}
-					{...register('password', {
-						required: 'Required',
-						minLength: {
-							value: 6,
-							message: 'Password must be at least 6 symbols.',
-						},
-					})}
-					error={errors.password}
-					type={'password'}
-				/>
-				{error && <div className={styles.error}>{error}</div>}
-				<div className={styles.submit}>
-					<button type={'submit'} disabled={isLoading}>
-						{isSignUpPage ? 'SIGN UP NOW' : 'SIGN IN NOW'}
-					</button>
+		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+			<form
+				onSubmit={handleSubmit(isSignUpPage ? onSignUpSubmit : onSignInSubmit)}
+				className={styles.form}
+			>
+				<Logo size={40} className={styles.image} />
+				<div className={styles.title}>
+					<h1>{isSignUpPage ? 'Sign Up.' : 'Sign In'}</h1>
 				</div>
-				{isSignUpPage && (
-					<div className={styles.privacy}>
-						<h3>Privacy Policy</h3>
-					</div>
-				)}
-				<div className={styles.condition}>
+				<div className={styles.inputs}>
 					{isSignUpPage && (
-						<p>
-							Have a D&D Games account? <Link href={LOGIN_ROUTE}>Log In</Link>
-						</p>
+						<Input
+							placeholder={"User's Name"}
+							{...register('userName', {
+								required: 'Required',
+							})}
+							error={errors.userName}
+						/>
 					)}
-					{!isSignUpPage && (
-						<p>
-							Don't have an D&D Games Account?{' '}
-							<Link href={REGISTRATION_ROUTE}>Sign Up</Link>
-						</p>
+					<Input
+						placeholder={'Email Address'}
+						{...register('email', {
+							required: 'Required',
+							pattern: { value: emailPattern, message: 'Invalid email' },
+						})}
+						error={errors.email}
+					/>
+					<Input
+						placeholder={'Password'}
+						{...register('password', {
+							required: 'Required',
+							minLength: {
+								value: 6,
+								message: 'Password must be at least 6 symbols.',
+							},
+						})}
+						error={errors.password}
+						type={'password'}
+					/>
+					{error && <div className={styles.error}>{error}</div>}
+					<div className={styles.submit}>
+						<button type={'submit'} disabled={isLoading}>
+							{isSignUpPage ? 'SIGN UP NOW' : 'SIGN IN NOW'}
+						</button>
+					</div>
+					{isSignUpPage && (
+						<div className={styles.privacy}>
+							<h3>Privacy Policy</h3>
+						</div>
 					)}
+					<div className={styles.condition}>
+						{isSignUpPage && (
+							<p>
+								Have a D&D Games account? <Link href={LOGIN_ROUTE}>Log In</Link>
+							</p>
+						)}
+						{!isSignUpPage && (
+							<p>
+								Don't have an D&D Games Account?{' '}
+								<Link href={REGISTRATION_ROUTE}>Sign Up</Link>
+							</p>
+						)}
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</DynamicModuleLoader>
 	)
 })

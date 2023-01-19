@@ -1,33 +1,48 @@
 import { StateSchema, ThunkExtraArgs } from './StateSchema'
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
+import {
+	CombinedState,
+	configureStore,
+	Reducer,
+	ReducersMapObject,
+} from '@reduxjs/toolkit'
 import { api } from '@/store/api/api'
 import gameReducer from '@/store/reducers/gameReducer/GameSlice'
 import cartReducer from '@/store/reducers/cartReducer/CartSlice'
 import { userReducer } from '@/entities/User'
 import { $api } from '@/shared/api'
-import { authByEmailReducer } from '@/features/authByEmail'
+import { createReducerManager } from './reducerManager'
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+	initialState?: StateSchema,
+	asyncReducers?: ReducersMapObject<StateSchema>,
+) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
+		...asyncReducers,
 		[api.reducerPath]: api.reducer,
 		user: userReducer,
-		authByEmail: authByEmailReducer,
 		game: gameReducer,
 		cart: cartReducer,
 	}
 
-	const extraArg: ThunkExtraArgs = {
+	const reducerManager = createReducerManager(rootReducer)
+
+	const extraArgument: ThunkExtraArgs = {
 		api: $api,
 	}
 
-	return configureStore({
-		reducer: rootReducer,
+	const store = configureStore({
+		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
 		middleware: getDefaultMiddleware =>
 			getDefaultMiddleware({
 				serializableCheck: false,
-				thunk: { extraArgument: extraArg },
+				thunk: { extraArgument },
 			}).concat(api.middleware),
 	})
+
+	// @ts-ignore
+	store.reducerManager = reducerManager
+
+	return store
 }
 
 export const store = createReduxStore()
