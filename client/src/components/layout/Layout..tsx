@@ -5,8 +5,8 @@ import Footer from './footer/Footer'
 
 interface ILayoutProps {
 	title: string
-	showHeader: boolean
-	showFooter: boolean
+	showHeader?: boolean
+	showFooter?: boolean
 }
 
 const Layout: FC<PropsWithChildren<ILayoutProps>> = ({

@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/dist/query/react'
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { API_URL } from '../../shared/api'
-import { IUser } from '../../models/IUser'
+import { User } from '@/entities/User'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: API_URL,
@@ -19,7 +19,7 @@ export const api = createApi({
 	baseQuery,
 	tagTypes: ['Game', 'Genre', 'Feature', 'Rating'],
 	endpoints: build => ({
-		getUsers: build.query<IUser[], void>({
+		getUsers: build.query<User[], void>({
 			query: () => ({
 				url: '/users',
 			}),

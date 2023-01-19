@@ -1,13 +1,8 @@
 import type { NextPage } from 'next'
-import Layout from '../src/components/layout/Layout.'
-import Signup from '../src/components/pages/auth/Signup'
+import AuthPage from '@/pages/authPage/ui/AuthPage'
 
-const SignUpPage: NextPage = () => {
-	return (
-		<Layout showHeader={false} title={'D&D Games | Sign Up'} showFooter={false}>
-			<Signup />
-		</Layout>
-	)
+const SignUp: NextPage = () => {
+	return <AuthPage />
 }
 
-export default SignUpPage
+export default SignUp

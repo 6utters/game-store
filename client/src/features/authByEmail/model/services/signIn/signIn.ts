@@ -4,14 +4,14 @@ import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
 import { ThunkConfig } from '@/app/providers/storeProvider'
 
-interface SignInProps {
+export interface SignInFields {
 	email: string
 	password: string
 }
 
 export const signIn = createAsyncThunk<
 	AuthByEmailResponse,
-	SignInProps,
+	SignInFields,
 	ThunkConfig<string>
 >('authByEmail/signIn', async (inputData, thunkAPI) => {
 	const { dispatch, extra, rejectWithValue } = thunkAPI

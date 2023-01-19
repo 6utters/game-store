@@ -4,7 +4,7 @@ import { ThunkConfig } from '@/app/providers/storeProvider'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
 
-interface SignUpProps {
+export interface SignUpFields {
 	email: string
 	password: string
 	userName: string
@@ -12,7 +12,7 @@ interface SignUpProps {
 
 export const signUp = createAsyncThunk<
 	AuthByEmailResponse,
-	SignUpProps,
+	SignUpFields,
 	ThunkConfig<string>
 >('authByEmail/signUp', async (inputData, thunkAPI) => {
 	const { dispatch, rejectWithValue, extra } = thunkAPI

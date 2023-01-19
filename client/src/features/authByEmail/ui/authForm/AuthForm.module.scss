@@ -1,0 +1,52 @@
+.form {
+  > .image {
+    @apply flex justify-center items-center pb-[1.5rem];
+  }
+
+  > .title {
+    @apply flex justify-center text-[1rem] text-neutral-100 font-semibold;
+  }
+
+  .inputs {
+    @apply mt-[1.2rem];
+  }
+
+  .error {
+    @apply text-sm text-error-red pb-[0.3rem];
+    line-height: 1.2;
+    font-size: 0.6rem;
+  }
+
+  .submit {
+    @apply w-full h-[3.7rem] rounded-[4px] bg-form-btn;
+
+    button {
+      @apply w-full h-full rounded-[4px] text-input-text font-semibold transition-colors duration-150;
+      font-size: 0.8rem;
+
+      &:hover {
+        @apply bg-basic-yellow text-basic-gray;
+      }
+    }
+  }
+
+  .privacy {
+    @apply w-full h-[3rem] flex justify-center items-end;
+    h3 {
+      @apply underline text-white font-medium;
+      font-size: 0.9rem;
+    }
+  }
+
+  .condition {
+    @apply w-full h-[2.3rem] flex justify-center items-end;
+    p {
+      @apply text-input-text font-medium;
+      font-size: 0.9rem;
+
+      a {
+        @apply text-white underline font-medium;
+      }
+    }
+  }
+}

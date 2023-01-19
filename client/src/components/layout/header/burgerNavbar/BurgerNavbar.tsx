@@ -5,15 +5,16 @@ import { navigationLinks } from '../header-links'
 import Link from 'next/link'
 import { FaUser } from 'react-icons/fa'
 import cn from 'classnames'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
-import { logout } from '../../../../store/reducers/userReducer/userAC'
+import { useAppDispatch } from '../../../../hooks/redux'
+// import { logout } from '../../../../store/reducers/userReducer/userAC'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from '@/entities/User'
 
 const BurgerNavbar: FC = () => {
 	const dispatch = useAppDispatch()
 	const [isShown, setIsShown] = useState(false)
-	// const { isAuth, user } = useAppSelector((state) => state.user)
-	const { isAuth, user } = useAppSelector(state => state.auth)
+	const user = useSelector(getUserAuthData)
 
 	useEffect(() => {
 		if (isShown) {
@@ -24,7 +25,7 @@ const BurgerNavbar: FC = () => {
 	}, [isShown])
 
 	const logoutHandler = () => {
-		dispatch(logout())
+		// dispatch(logout())
 		setIsShown(false)
 	}
 
@@ -56,7 +57,7 @@ const BurgerNavbar: FC = () => {
 						))}
 					</div>
 					<div className={styles.auth}>
-						{isAuth ? (
+						{user ? (
 							<>
 								<div className={styles.user}>
 									<div className={styles.user_symb}>
