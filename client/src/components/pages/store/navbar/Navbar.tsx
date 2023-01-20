@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 import styles from './Navbar.module.scss'
-import Search from './Search/Search'
+import Search from '../../../../shared/ui/Search/Search'
 import Link from 'next/link'
 import { cartApi } from '../../../../store/api/cart.api'
 import { ICartGame } from '../../../../models/ICartGame'

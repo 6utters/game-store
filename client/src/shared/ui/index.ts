@@ -1,1 +1,5 @@
 export * from './logo/Logo'
+export * from './dropdown/Dropdown'
+export * from './onlineUserIcon/OnlineUserIcon'
+export * from './footer/Footer'
+export * from './layout/Layout'

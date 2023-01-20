@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { REGISTRATION_ROUTE } from '@/shared/consts'
+import { Layout } from '@/shared/ui'
 
-import Layout from '@/components/layout/Layout.'
 import { AuthForm } from '@/features/authByEmail'
 
 import styles from './AuthPage.module.scss'

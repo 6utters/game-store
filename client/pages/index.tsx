@@ -1,17 +1,6 @@
 import type { NextPage } from 'next'
-import Layout from '../src/components/layout/Layout.'
-import Store from '../src/components/pages/store/Store'
+import { StorePage } from '@/pages/storePage'
 
-const HomePage: NextPage = () => {
-	return (
-		<Layout
-			showHeader={true}
-			title={'D&D Games | Store page'}
-			showFooter={true}
-		>
-			<Store />
-		</Layout>
-	)
-}
+const Home: NextPage = () => <StorePage />
 
-export default HomePage
+export default Home
