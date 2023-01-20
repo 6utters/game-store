@@ -1,12 +1,19 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Cart.module.scss'
 import Navbar from '../store/navbar/Navbar'
 import logoSvg from '../../../shared/assets/svgs/sword-svgrepo-com.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { STORE_ROUTE } from '@/shared/consts'
+import { Layout } from '@/shared/ui'
+import { useAppDispatch } from '@/hooks/redux'
+import { fetchCartGames } from '@/store/reducers/cartReducer/cartAC'
 
 const Cart: FC = () => {
+	const dispatch = useAppDispatch()
+	useEffect(() => {
+		dispatch(fetchCartGames())
+	}, [])
 	// const { cartGames } = useAppSelector(state => state.cart)
 	// const totalPrice = cartGames.reduce((acc, game) => {
 	// 	return acc + game.gamePrice
@@ -17,7 +24,7 @@ const Cart: FC = () => {
 	// const subtotal = totalPrice - discount
 
 	return (
-		<>
+		<Layout title={'D&D Games | Your Cart'} withNavbar withFooter>
 			<Navbar />
 			<div className={styles.container}>
 				<div className={styles.title}>
@@ -69,7 +76,7 @@ const Cart: FC = () => {
 				</div>
 				{/*)}*/}
 			</div>
-		</>
+		</Layout>
 	)
 }
 

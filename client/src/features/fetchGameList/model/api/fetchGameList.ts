@@ -1,18 +1,16 @@
-import { $rtkApi } from '@/shared/api'
-import { IGame } from '../../models/IGame'
-import { IGenre } from '../../models/IGenre'
-import { IFeature } from '../../models/IFeature'
+import { $rtkApi } from '@/shared/api/rtkApi'
+import { Feature, Game, Genre } from '@/entities/Game/model/types/Game'
 
-interface IFilterGamesParams {
-	genres: IGenre[] | []
-	features: IFeature[] | []
+interface GameFilters {
+	genres?: Genre[] | []
+	features?: Feature[] | []
 }
 
+//todo: make refactoring
 export const gamesApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
-		fetchGames: build.query<IGame[], IFilterGamesParams>({
-			query: ({ genres, features }) => {
-				//If possible - make refactoring
+		fetchGameList: build.query<Game[], GameFilters>({
+			query: ({ genres = [], features = [] }) => {
 				const genresQuery = genres
 					.map(g => `genreName=${g.genreName}&`)
 					.join('')
@@ -26,7 +24,8 @@ export const gamesApi = $rtkApi.injectEndpoints({
 			},
 			providesTags: () => [{ type: 'Game' }],
 		}),
-		createGame: build.mutation<IGame, any>({
+
+		createGame: build.mutation<Game, any>({
 			query: body => ({
 				url: `/games/`,
 				method: 'POST',
@@ -34,12 +33,12 @@ export const gamesApi = $rtkApi.injectEndpoints({
 			}),
 			invalidatesTags: () => [{ type: 'Game' }],
 		}),
-		fetchBySearchGames: build.query<IGame[], string>({
+		fetchBySearchGames: build.query<Game[], string>({
 			query: searchTerm => ({
 				url: `/games?searchTerm=${searchTerm}`,
 			}),
 		}),
-		fetchOneGame: build.query<IGame, number>({
+		fetchOneGame: build.query<Game, number>({
 			query: id => ({
 				url: `games/${id}`,
 			}),
@@ -67,3 +66,5 @@ export const gamesApi = $rtkApi.injectEndpoints({
 		}),
 	}),
 })
+
+export const useFetchGameList = gamesApi.useFetchGameListQuery

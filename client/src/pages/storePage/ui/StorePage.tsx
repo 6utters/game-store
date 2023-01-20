@@ -5,6 +5,7 @@ import { Layout } from '@/shared/ui'
 import { Toolbar } from '@/widgets/toolbar'
 
 import styles from './StorePage.module.scss'
+import { FetchGameList } from '@/features/fetchGameList'
 
 const StorePage: FC = memo(() => {
 	const [selectedGenres, setSelectedGenres] = useState<IGenre[]>([])
@@ -20,7 +21,9 @@ const StorePage: FC = memo(() => {
 			<Toolbar />
 			<div className={styles.container}>
 				<div className={styles.content}>
-					<div className={styles.games}>{/*<FetchGameList />*/}</div>
+					<div className={styles.games}>
+						<FetchGameList />
+					</div>
 					<div className={styles.filters}>
 						{/*<Filter*/}
 						{/*	type={'genres'}*/}

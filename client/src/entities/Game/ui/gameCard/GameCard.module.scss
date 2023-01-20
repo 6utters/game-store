@@ -1,0 +1,29 @@
+.card {
+  @apply relative w-[12,9375rem] h-[22rem] mb-[3rem] flex flex-col justify-start cursor-pointer;
+
+  &:hover {
+    > .cover {
+      opacity: 80%;
+    }
+  }
+
+  > .cover {
+    @apply w-full h-[17.5rem] rounded-[0.25rem] transition-all;
+  }
+
+  > .title {
+    @apply w-full mt-2;
+    > h3 {
+      @apply text-gray-text font-medium;
+      font-size: 1rem;
+    }
+  }
+
+  > .price {
+    @apply w-full mt-2 ;
+    p {
+      @apply text-gray-text font-medium;
+      font-size: 0.85rem
+    }
+  }
+}
