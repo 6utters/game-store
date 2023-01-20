@@ -1,13 +1,18 @@
 import { FC, memo } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
 import cn from 'classnames'
 import { Logo } from '@/shared/ui'
 
 import { navLinks } from './navbarLinks'
 
 import styles from './Navbar.module.scss'
-import { UserMenu } from '@/widgets/navbar'
+
+const DynamicUserMenu = dynamic(() => import('../userMenu/UserMenu'), {
+	ssr: false,
+})
 
 interface NavbarProps {
 	className?: string
@@ -31,7 +36,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 					))}
 				</div>
 			</div>
-			<UserMenu />
+			<DynamicUserMenu />
 		</nav>
 	)
 })

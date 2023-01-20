@@ -1,6 +1,5 @@
 import { ICartState } from '@/store/reducers/cartReducer/CartSlice'
 import { IGameState } from '@/store/reducers/gameReducer/GameSlice'
-import { api } from '@/store/api/api'
 import { UserSchema } from '@/entities/User'
 import { AxiosInstance } from 'axios'
 import { AuthByEmailSchema } from '@/features/authByEmail'
@@ -11,12 +10,13 @@ import {
 	Reducer,
 	ReducersMapObject,
 } from '@reduxjs/toolkit'
+import { $rtkApi } from '@/shared/api'
 
 export interface StateSchema {
 	user: UserSchema
 	cart: ICartState
 	game: IGameState
-	[api.reducerPath]: ReturnType<typeof api.reducer>
+	[$rtkApi.reducerPath]: ReturnType<typeof $rtkApi.reducer>
 
 	authByEmail?: AuthByEmailSchema
 }

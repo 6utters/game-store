@@ -6,16 +6,18 @@ import '../src/components/pages/gamePage/Game/GameSlider/GameSlider.scss'
 import '../src/components/ui/MultipleSelect/MultipleSelect.scss'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import AuthProvider from '../src/providers/auth.provider'
 import { StoreProvider } from '@/app/providers/storeProvider'
+import { AuthProvider, ComponentAuthFields } from '@/app/providers/authProvider'
 
 const queryClient = new QueryClient()
 
-function MyApp({ Component, pageProps }: AppProps) {
+type EnhancedAppProps = AppProps & ComponentAuthFields
+
+function MyApp({ Component, pageProps }: EnhancedAppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<StoreProvider>
-				<AuthProvider>
+				<AuthProvider Component={Component}>
 					<Component {...pageProps} />
 				</AuthProvider>
 			</StoreProvider>

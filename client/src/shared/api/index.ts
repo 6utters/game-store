@@ -1,1 +1,2 @@
-export * from './api'
+export * from './axiosApi'
+export * from './rtkApi'

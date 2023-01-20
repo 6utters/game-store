@@ -1,8 +1,8 @@
-import { api } from './api'
 import { ICart } from '../../models/ICart'
+import { $rtkApi } from '@/shared/api'
 
-export const cartApi = api.injectEndpoints({
-	endpoints: (build) => ({
+export const cartApi = $rtkApi.injectEndpoints({
+	endpoints: build => ({
 		fetchCart: build.query<ICart, void>({
 			query: () => ({
 				url: '/carts',

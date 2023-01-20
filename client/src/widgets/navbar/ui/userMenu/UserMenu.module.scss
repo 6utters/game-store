@@ -2,12 +2,22 @@
   @apply h-full flex items-center;
 
   .menuOption {
-    @apply list-none text-gray-text uppercase bg-basic-gray h-full w-full flex justify-center items-center;
-    font-size: 0.65rem;
-    letter-spacing: 0.05rem;
+    @apply list-none bg-basic-gray h-full w-full flex justify-center items-center;
+
+    > button {
+      @apply text-gray-text uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+
+      h3 {
+        @apply transition-all duration-200;
+      }
+    }
 
     &:hover {
-      @apply text-white;
+      h3 {
+        @apply text-white;
+      }
     }
   }
 

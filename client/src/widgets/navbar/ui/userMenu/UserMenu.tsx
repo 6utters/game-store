@@ -15,8 +15,10 @@ import { UserMenuTrigger } from './userMenuTrigger/UserMenuTrigger'
 import { userMenuLinks } from './userMenuLinks'
 
 import styles from './UserMenu.module.scss'
+import { useRouter } from 'next/router'
 
-export const UserMenu: FC = memo(() => {
+const UserMenu: FC = memo(() => {
+	const router = useRouter()
 	const dispatch = useAppDispatch()
 	const user = useSelector(getUserAuthData)
 	const isAdmin = useSelector(getIsUserAdmin)
@@ -27,6 +29,10 @@ export const UserMenu: FC = memo(() => {
 		await dispatch(logOut())
 	}, [dispatch])
 
+	const onAdminPanelClick = useCallback(async () => {
+		await router.push('/admin')
+	}, [router])
+
 	return (
 		<div className={styles.userMenu}>
 			{user ? (
@@ -35,36 +41,18 @@ export const UserMenu: FC = memo(() => {
 					trigger={<UserMenuTrigger userName={user.userName} />}
 				>
 					<>
-						{userMenuLinks.map(link => {
-							if (isAdmin && link.adminOnly) {
-								return (
-									<li className={styles.menuOption}>
-										<Link href={link.href}>
-											<h3>{link.title}</h3>
-										</Link>
-									</li>
-								)
-								return (
-									<li className={styles.menuOption}>
-										<Link href={link.href}>
-											<h3>{link.title}</h3>
-										</Link>
-									</li>
-								)
-							}
-						})}
-						{/*{isAdmin && (*/}
-						{/*	<li className={styles.menuOption}>*/}
-						{/*		<Link href={ADMIN_ROUTE}>*/}
-						{/*			<h3>Admin Panel</h3>*/}
-						{/*		</Link>*/}
-						{/*	</li>*/}
-						{/*)}*/}
-						{/*<li className={styles.menuOption}>*/}
-						{/*	<button onClick={onLogOutClick}>*/}
-						{/*		<h3>Log Out</h3>*/}
-						{/*	</button>*/}
-						{/*</li>*/}
+						{isAdmin && (
+							<li className={styles.menuOption}>
+								<button onClick={onAdminPanelClick}>
+									<h3>Admin Panel</h3>
+								</button>
+							</li>
+						)}
+						<li className={styles.menuOption}>
+							<button onClick={onLogOutClick}>
+								<h3>Log Out</h3>
+							</button>
+						</li>
 					</>
 				</Dropdown>
 			) : (
@@ -85,3 +73,5 @@ export const UserMenu: FC = memo(() => {
 		</div>
 	)
 })
+
+export default UserMenu

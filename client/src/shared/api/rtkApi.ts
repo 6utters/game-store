@@ -1,7 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/dist/query/react'
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
-import { API_URL } from '../../shared/api'
-import { User } from '@/entities/User'
+import { API_URL } from './axiosApi'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: API_URL,
@@ -14,15 +13,9 @@ const baseQuery = fetchBaseQuery({
 	},
 })
 
-export const api = createApi({
+export const $rtkApi = createApi({
 	reducerPath: 'api',
 	baseQuery,
 	tagTypes: ['Game', 'Genre', 'Feature', 'Rating'],
-	endpoints: build => ({
-		getUsers: build.query<User[], void>({
-			query: () => ({
-				url: '/users',
-			}),
-		}),
-	}),
+	endpoints: build => ({}),
 })

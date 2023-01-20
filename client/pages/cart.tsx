@@ -1,10 +1,11 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import { fetchCartGames } from '../src/store/reducers/cartReducer/cartAC'
 import { useAppDispatch } from '../src/hooks/redux'
 import Cart from '../src/components/pages/cart/Cart'
 import Layout from '../src/components/layout/Layout.'
+import { NextPageWithRoles } from '@/app/providers/authProvider'
 
-const CartPage: FC = () => {
+const CartPage: NextPageWithRoles = () => {
 	const dispatch = useAppDispatch()
 	useEffect(() => {
 		dispatch(fetchCartGames())
@@ -16,5 +17,7 @@ const CartPage: FC = () => {
 		</Layout>
 	)
 }
+
+CartPage.isOnlyForUser = true
 
 export default CartPage

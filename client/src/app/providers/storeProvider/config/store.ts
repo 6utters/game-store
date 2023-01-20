@@ -5,11 +5,10 @@ import {
 	Reducer,
 	ReducersMapObject,
 } from '@reduxjs/toolkit'
-import { api } from '@/store/api/api'
 import gameReducer from '@/store/reducers/gameReducer/GameSlice'
 import cartReducer from '@/store/reducers/cartReducer/CartSlice'
 import { userReducer } from '@/entities/User'
-import { $api } from '@/shared/api'
+import { $api, $rtkApi } from '@/shared/api'
 import { createReducerManager } from './reducerManager'
 
 export function createReduxStore(
@@ -18,7 +17,7 @@ export function createReduxStore(
 ) {
 	const rootReducer: ReducersMapObject<StateSchema> = {
 		...asyncReducers,
-		[api.reducerPath]: api.reducer,
+		[$rtkApi.reducerPath]: $rtkApi.reducer,
 		user: userReducer,
 		game: gameReducer,
 		cart: cartReducer,
@@ -36,7 +35,7 @@ export function createReduxStore(
 			getDefaultMiddleware({
 				serializableCheck: false,
 				thunk: { extraArgument },
-			}).concat(api.middleware),
+			}).concat($rtkApi.middleware),
 	})
 
 	// @ts-ignore

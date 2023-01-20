@@ -1,9 +1,9 @@
-import { api } from './api'
+import { $rtkApi } from '@/shared/api'
 import { IGenre } from '../../models/IGenre'
 import { IFeature } from '../../models/IFeature'
 
-export const propertiesApi = api.injectEndpoints({
-	endpoints: (build) => ({
+export const propertiesApi = $rtkApi.injectEndpoints({
+	endpoints: build => ({
 		fetchGenres: build.query<IGenre[], void>({
 			query: () => ({
 				url: 'genres',
@@ -11,7 +11,7 @@ export const propertiesApi = api.injectEndpoints({
 			providesTags: () => [{ type: 'Genre' }],
 		}),
 		createGenre: build.mutation<IGenre[], string>({
-			query: (genreName) => ({
+			query: genreName => ({
 				url: `genres/`,
 				method: 'POST',
 				body: { genreName },
@@ -19,7 +19,7 @@ export const propertiesApi = api.injectEndpoints({
 			invalidatesTags: () => [{ type: 'Genre' }],
 		}),
 		deleteGenre: build.mutation<IGenre[], number>({
-			query: (genreId) => ({
+			query: genreId => ({
 				url: `genres/${genreId}`,
 				method: 'DELETE',
 			}),
@@ -32,7 +32,7 @@ export const propertiesApi = api.injectEndpoints({
 			providesTags: () => [{ type: 'Feature' }],
 		}),
 		createFeature: build.mutation<IFeature[], string>({
-			query: (featureName) => ({
+			query: featureName => ({
 				url: `features/`,
 				method: 'POST',
 				body: { featureName },
@@ -40,7 +40,7 @@ export const propertiesApi = api.injectEndpoints({
 			invalidatesTags: () => [{ type: 'Feature' }],
 		}),
 		deleteFeature: build.mutation<IFeature[], number>({
-			query: (featureId) => ({
+			query: featureId => ({
 				url: `features/${featureId}`,
 				method: 'DELETE',
 			}),
