@@ -2,6 +2,8 @@ import { FC, memo, useState } from 'react'
 import { IGenre } from '@/models/IGenre'
 import { IFeature } from '@/models/IFeature'
 import { Layout } from '@/shared/ui'
+import { Toolbar } from '@/widgets/toolbar'
+
 import styles from './StorePage.module.scss'
 
 const StorePage: FC = memo(() => {
@@ -15,7 +17,7 @@ const StorePage: FC = memo(() => {
 
 	return (
 		<Layout title={'D&D Games | StorePage page'} withNavbar withFooter>
-			{/*<Toolbar />*/}
+			<Toolbar />
 			<div className={styles.container}>
 				<div className={styles.content}>
 					<div className={styles.games}>{/*<FetchGameList />*/}</div>
