@@ -12,6 +12,8 @@ const DynamicCheckRole = dynamic(() => import('../model/lib/CheckRole'), {
 	ssr: false,
 })
 
+//todo: throw error if refresh crashed
+
 export const AuthProvider: FC<ComponentAuthFields> = ({
 	Component: { isOnlyForAdmin, isOnlyForUser },
 	children,

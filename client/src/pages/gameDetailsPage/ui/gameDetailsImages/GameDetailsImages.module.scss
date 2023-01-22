@@ -1,0 +1,18 @@
+.container_element {
+  display: grid;
+  grid: auto / repeat(4, 1fr);
+  gap: 8px;
+}
+
+.grid_item {
+  grid-column: span 2;
+  position: relative;
+
+  img {
+    height: 100%;
+  }
+}
+
+.container_element .grid_item:nth-child(3n - 2) {
+  grid-column: span 4;
+}

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { $api, API_URL } from '../shared/api'
-import { IGame } from '../models/IGame'
 import { IGameInfo } from '../models/IGameInfo'
 import { IGameAboutInfo } from '../models/IGameAboutInfo'
+import { GameSchema } from '@/entities/Game'
 
 export default class GameService {
 	static async createGame(game: any) {
-		const { data } = await $api.post<IGame>(`${API_URL}/games`, game)
+		const { data } = await $api.post<GameSchema>(`${API_URL}/games`, game)
 		return data
 	}
 
@@ -35,14 +35,14 @@ export default class GameService {
 	}
 
 	static async fetchBySearchGames(searchTerm: string) {
-		const { data } = await axios.get<IGame[]>(
+		const { data } = await axios.get<GameSchema[]>(
 			`${API_URL}/games?searchTerm=${searchTerm}`,
 		)
 		return data
 	}
 
 	static async fetchGames() {
-		const { data } = await axios.get<IGame[]>(`${API_URL}/games`)
+		const { data } = await axios.get<IGameShema[]>(`${API_URL}/games`)
 		return data
 	}
 

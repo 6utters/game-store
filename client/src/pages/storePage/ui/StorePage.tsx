@@ -1,15 +1,17 @@
 import { FC, memo, useState } from 'react'
-import { IGenre } from '@/models/IGenre'
-import { IFeature } from '@/models/IFeature'
-import { Layout } from '@/shared/ui'
 import { Toolbar } from '@/widgets/toolbar'
 
 import styles from './StorePage.module.scss'
-import { FetchGameList } from '@/features/fetchGameList'
+import { Layout } from '@/widgets/layout'
+import { Feature, GameCardList, GameSchema, Genre } from '@/entities/Game'
 
-const StorePage: FC = memo(() => {
-	const [selectedGenres, setSelectedGenres] = useState<IGenre[]>([])
-	const [selectedFeatures, setSelectedFeatures] = useState<IFeature[]>([])
+interface StorePageProps {
+	games?: GameSchema[]
+}
+
+const StorePage: FC<StorePageProps> = memo(({ games }) => {
+	const [selectedGenres, setSelectedGenres] = useState<Genre[]>([])
+	const [selectedFeatures, setSelectedFeatures] = useState<Feature[]>([])
 
 	// const { data: games, error } = useFetchGameList({
 	// 	genres: selectedGenres,
@@ -22,7 +24,7 @@ const StorePage: FC = memo(() => {
 			<div className={styles.container}>
 				<div className={styles.content}>
 					<div className={styles.games}>
-						<FetchGameList />
+						<GameCardList games={games} />
 					</div>
 					<div className={styles.filters}>
 						{/*<Filter*/}

@@ -1,3 +1,3 @@
 export * from './ui/gameCardList/GameCardList'
 export * from './ui/gameCard/GameCard'
-export * from './model/types/Game'
+export type { GameSchema, Feature, Genre } from './model/types/GameSchema'

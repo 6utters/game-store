@@ -4,7 +4,7 @@ export interface Base {
 	id: number
 }
 
-export interface Game extends Base {
+export interface GameSchema extends Base {
 	gameName: string
 	gamePrice: number
 	gameRating: number
@@ -28,6 +28,11 @@ export interface GameAbout extends Base {
 
 export interface GameMedia extends Base {
 	type: 'video' | 'image'
+	url: string
+}
+
+export interface GameImage extends Base {
+	type: 'image'
 	url: string
 }
 

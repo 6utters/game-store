@@ -1,15 +1,16 @@
 import { $rtkApi } from '@/shared/api/rtkApi'
-import { Feature, Game, Genre } from '@/entities/Game/model/types/Game'
+import { Feature, GameSchema, Genre } from '@/entities/Game'
 
 interface GameFilters {
 	genres?: Genre[] | []
 	features?: Feature[] | []
 }
 
+//todo: replace this feature by fetchFilteredGameList
 //todo: make refactoring
 export const gamesApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
-		fetchGameList: build.query<Game[], GameFilters>({
+		fetchGameList: build.query<GameSchema[], GameFilters>({
 			query: ({ genres = [], features = [] }) => {
 				const genresQuery = genres
 					.map(g => `genreName=${g.genreName}&`)
@@ -25,7 +26,7 @@ export const gamesApi = $rtkApi.injectEndpoints({
 			providesTags: () => [{ type: 'Game' }],
 		}),
 
-		createGame: build.mutation<Game, any>({
+		createGame: build.mutation<GameSchema, any>({
 			query: body => ({
 				url: `/games/`,
 				method: 'POST',
@@ -33,12 +34,12 @@ export const gamesApi = $rtkApi.injectEndpoints({
 			}),
 			invalidatesTags: () => [{ type: 'Game' }],
 		}),
-		fetchBySearchGames: build.query<Game[], string>({
+		fetchBySearchGames: build.query<GameSchema[], string>({
 			query: searchTerm => ({
 				url: `/games?searchTerm=${searchTerm}`,
 			}),
 		}),
-		fetchOneGame: build.query<Game, number>({
+		fetchOneGame: build.query<GameSchema, number>({
 			query: id => ({
 				url: `games/${id}`,
 			}),

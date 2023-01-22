@@ -4,9 +4,9 @@ import CartService from '../../../../services/cart.service'
 import { useAppDispatch } from '../../../../hooks/redux'
 import { useRouter } from 'next/router'
 import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
-import { gamesApi } from '../../../../store/api/games.api'
 import Spinner from '../../../ui/Spinner/Spinner'
 import { BASKET_ROUTE } from '@/shared/consts'
+import { gamesApi } from '@/features/fetchGameList'
 
 const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
 	const dispatch = useAppDispatch()

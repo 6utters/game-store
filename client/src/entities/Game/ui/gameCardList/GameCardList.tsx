@@ -3,12 +3,12 @@ import cn from 'classnames'
 
 import { GameCardSkeleton } from '../gameCard/GameCardSkeleton'
 import { GameCard } from '../gameCard/GameCard'
-import { Game } from '../../model/types/Game'
+import { GameSchema } from '../../model/types/GameSchema'
 
 import styles from './GameCardList.module.scss'
 
 interface GameCardListProps {
-	games?: Game[]
+	games?: GameSchema[]
 	isLoading?: boolean
 	className?: string
 }
@@ -21,7 +21,7 @@ const getSkeletons = () =>
 export const GameCardList: FC<GameCardListProps> = props => {
 	const { isLoading, className, games } = props
 
-	const renderGameCard = (game: Game) => (
+	const renderGameCard = (game: GameSchema) => (
 		<GameCard
 			key={game.gameName}
 			name={game.gameName}
