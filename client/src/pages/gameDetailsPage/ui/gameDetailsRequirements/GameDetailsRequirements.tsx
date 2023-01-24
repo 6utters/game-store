@@ -1,9 +1,16 @@
-import { FC } from 'react'
-import { IGameInfo } from '../../../../../models/IGameInfo'
-import styles from './Specifications.module.scss'
+import { FC, memo } from 'react'
+import { GameInfo } from '@/entities/Game'
 
-const Specifications: FC<{ gameInfo: IGameInfo }> = ({ gameInfo }) => {
-	return (
+import styles from './GameDetailsRequirements.module.scss'
+
+interface GameDetailsRequirementsProps {
+	gameInfo: GameInfo
+}
+
+//todo: try to refactor
+
+export const GameDetailsRequirements: FC<GameDetailsRequirementsProps> = memo(
+	({ gameInfo }) => (
 		<div className={styles.container}>
 			<h3>Specifications</h3>
 			<div className={styles.block}>
@@ -82,7 +89,5 @@ const Specifications: FC<{ gameInfo: IGameInfo }> = ({ gameInfo }) => {
 				</div>
 			</div>
 		</div>
-	)
-}
-
-export default Specifications
+	),
+)

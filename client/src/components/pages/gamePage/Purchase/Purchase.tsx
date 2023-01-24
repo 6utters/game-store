@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 import Spinner from '../../../ui/Spinner/Spinner'
 import { BASKET_ROUTE } from '@/shared/consts'
-import { gamesApi } from '@/features/fetchGameList'
+import { gamesApi } from '@/features/fetchFilteredGameList'
 
 const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
 	const dispatch = useAppDispatch()

@@ -8,7 +8,7 @@ interface GameFilters {
 
 //todo: replace this feature by fetchFilteredGameList
 //todo: make refactoring
-export const gamesApi = $rtkApi.injectEndpoints({
+export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
 		fetchGameList: build.query<GameSchema[], GameFilters>({
 			query: ({ genres = [], features = [] }) => {
@@ -68,4 +68,4 @@ export const gamesApi = $rtkApi.injectEndpoints({
 	}),
 })
 
-export const useFetchGameList = gamesApi.useFetchGameListQuery
+export const useFetchGameList = fetchFilteredGamesApi.useFetchGameListQuery

@@ -24,6 +24,8 @@ export interface GameAbout extends Base {
 	thdP?: string
 	ftsP?: string
 	thsP?: string
+	updatedAt: string
+	createdAt: string
 }
 
 export interface GameMedia extends Base {

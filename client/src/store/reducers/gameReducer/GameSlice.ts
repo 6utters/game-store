@@ -1,15 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IGame } from '../../../models/IGame'
-import { IGenre } from '../../../models/IGenre'
-import { IFeature } from '../../../models/IFeature'
 import { findSelectedFilterId } from '@/shared/lib'
+import { Feature, GameSchema, Genre } from '@/entities/Game'
 
 export interface IGameState {
-	genres: IGenre[]
-	features: IFeature[]
-	games: IGame[]
-	selectedGenres: IGenre[]
-	selectedFeatures: IFeature[]
+	genres: Genre[]
+	features: Feature[]
+	games: GameSchema[]
+	selectedGenres: Genre[]
+	selectedFeatures: Feature[]
 }
 
 const initialState: IGameState = {
@@ -24,16 +22,16 @@ export const gameSlice = createSlice({
 	name: 'game',
 	initialState,
 	reducers: {
-		setGenres: (state, action: PayloadAction<IGenre[]>) => {
+		setGenres: (state, action: PayloadAction<Genre[]>) => {
 			state.genres = action.payload
 		},
-		setFeatures: (state, action: PayloadAction<IFeature[]>) => {
+		setFeatures: (state, action: PayloadAction<Feature[]>) => {
 			state.features = action.payload
 		},
-		setGames: (state, action: PayloadAction<IGame[] | []>) => {
+		setGames: (state, action: PayloadAction<GameSchema[] | []>) => {
 			state.games = action.payload
 		},
-		setSelectedGenres: (state, action: PayloadAction<IGenre>) => {
+		setSelectedGenres: (state, action: PayloadAction<Genre>) => {
 			state.selectedGenres.push(action.payload)
 		},
 		removeSelectedGenre: (state, action: PayloadAction<number>) => {
@@ -45,7 +43,7 @@ export const gameSlice = createSlice({
 				genre => genre.id !== searchedId,
 			)
 		},
-		setSelectedFeatures: (state, action: PayloadAction<IFeature>) => {
+		setSelectedFeatures: (state, action: PayloadAction<Feature>) => {
 			state.selectedFeatures.push(action.payload)
 		},
 		removeSelectedFeature: (state, action: PayloadAction<number>) => {

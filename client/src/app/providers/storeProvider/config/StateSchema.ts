@@ -11,6 +11,7 @@ import {
 	ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { $rtkApi } from '@/shared/api'
+import { FetchFilteredGameListSchema } from '@/features/fetchFilteredGameList'
 
 export interface StateSchema {
 	user: UserSchema
@@ -19,6 +20,7 @@ export interface StateSchema {
 	[$rtkApi.reducerPath]: ReturnType<typeof $rtkApi.reducer>
 
 	authByEmail?: AuthByEmailSchema
+	fetchFilteredGameList?: FetchFilteredGameListSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

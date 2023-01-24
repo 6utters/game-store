@@ -1,51 +1,27 @@
-import { FC, memo, useState } from 'react'
+import { FC, memo } from 'react'
 import { Toolbar } from '@/widgets/toolbar'
 
 import styles from './StorePage.module.scss'
 import { Layout } from '@/widgets/layout'
-import { Feature, GameCardList, GameSchema, Genre } from '@/entities/Game'
+import { Feature, GameSchema, Genre } from '@/entities/Game'
+import { FetchGameList } from '@/features/fetchFilteredGameList'
+import FilterPanels from '@/widgets/filterPanels/ui/filterPanels/FilterPanels'
 
 interface StorePageProps {
 	games?: GameSchema[]
+	features?: Feature[]
+	genres?: Genre[]
 }
 
-const StorePage: FC<StorePageProps> = memo(({ games }) => {
-	const [selectedGenres, setSelectedGenres] = useState<Genre[]>([])
-	const [selectedFeatures, setSelectedFeatures] = useState<Feature[]>([])
-
-	// const { data: games, error } = useFetchGameList({
-	// 	genres: selectedGenres,
-	// 	features: selectedFeatures,
-	// })
-
+const StorePage: FC<StorePageProps> = memo(props => {
+	const { games, ...filters } = props
 	return (
 		<Layout title={'D&D Games | StorePage page'} withNavbar withFooter>
 			<Toolbar />
 			<div className={styles.container}>
 				<div className={styles.content}>
-					<div className={styles.games}>
-						<GameCardList games={games} />
-					</div>
-					<div className={styles.filters}>
-						{/*<Filter*/}
-						{/*	type={'genres'}*/}
-						{/*	selectedFilters={selectedGenres}*/}
-						{/*	setSelectedFilters={setSelectedGenres}*/}
-						{/*/>*/}
-						{/*<Filter*/}
-						{/*	type={'features'}*/}
-						{/*	selectedFilters={selectedFeatures}*/}
-						{/*	setSelectedFilters={setSelectedFeatures}*/}
-						{/*/>*/}
-						{/*<GenreFilter*/}
-						{/*	selectedGenres={selectedGenres}*/}
-						{/*	setSelectedGenres={setSelectedGenres}*/}
-						{/*/>*/}
-						{/*<FeatureFilter*/}
-						{/*	selectedFeatures={selectedFeatures}*/}
-						{/*	setSelectedFeatures={setSelectedFeatures}*/}
-						{/*/>*/}
-					</div>
+					<FetchGameList games={games} />
+					<FilterPanels {...filters} />
 				</div>
 			</div>
 		</Layout>

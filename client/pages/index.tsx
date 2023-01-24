@@ -1,15 +1,17 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { StorePage } from '@/pages/storePage'
-import { GameSchema } from '@/entities/Game'
+import { Feature, GameSchema, Genre } from '@/entities/Game'
 import axios from 'axios'
 import { API_URL } from '@/shared/api'
 
 interface HomeProps {
 	games?: GameSchema[]
+	genres?: Genre[]
+	features?: Feature[]
 }
 
-const Home: NextPage<HomeProps> = ({ games }) => {
-	return <StorePage games={games} />
+const Home: NextPage<HomeProps> = props => {
+	return <StorePage {...props} />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -17,9 +19,17 @@ export const getStaticProps: GetStaticProps = async () => {
 		const games = await axios
 			.get<GameSchema[]>(`${API_URL}/games`)
 			.then(response => response.data)
+		const genres = await axios
+			.get<Genre[]>(`${API_URL}/genres`)
+			.then(response => response.data)
+		const features = await axios
+			.get<Feature[]>(`${API_URL}/features`)
+			.then(response => response.data)
 		return {
 			props: {
 				games,
+				genres,
+				features,
 			},
 			revalidate: 60,
 		}
@@ -27,6 +37,8 @@ export const getStaticProps: GetStaticProps = async () => {
 		return {
 			props: {
 				games: [] as GameSchema[],
+				features: [] as Feature[],
+				genres: [] as Genre[],
 			},
 		}
 	}

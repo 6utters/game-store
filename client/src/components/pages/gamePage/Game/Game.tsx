@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import GameSlider from './GameSlider/GameSlider'
-import AboutGameInfo from './AboutGameInfo/AboutGameInfo'
-import Specifications from './Specifications/Specifications'
 import Spinner from '../../../ui/Spinner/Spinner'
-import { gamesApi } from '@/features/fetchGameList'
+import { gamesApi } from '@/features/fetchFilteredGameList'
 import { GameMedia } from '@/entities/Game/model/types/GameSchema'
 import styles from './Game.module.scss'
 import { GameDetailsImages } from '@/pages/gameDetailsPage/ui/gameDetailsImages/GameDetailsImages'
+import { GameDetailsRequirements } from '@/pages/gameDetailsPage/ui/gameDetailsRequirements/GameDetailsRequirements'
+import { GameDetailsInfo } from '@/pages/gameDetailsPage/ui/gameDetailsInfo/GameDetailsInfo'
 
 const GameSide: FC<{ gameId: number }> = ({ gameId }) => {
 	const { data: game } = gamesApi.useFetchOneGameQuery(gameId)
@@ -20,14 +20,14 @@ const GameSide: FC<{ gameId: number }> = ({ gameId }) => {
 					<div className={styles.sliderWrapper}>
 						<GameSlider media={game.gameMedia} />
 					</div>
-					<AboutGameInfo
+					<GameDetailsInfo
 						aboutInfo={game.gameAbout}
 						gameGenres={game.genres}
 						gameFeatures={game.features}
 						gameName={game.gameName}
 					/>
 					<GameDetailsImages media={game.gameMedia} />
-					<Specifications gameInfo={game.gameInfo} />
+					<GameDetailsRequirements gameInfo={game.gameInfo} />
 				</div>
 			) : (
 				<Spinner />
