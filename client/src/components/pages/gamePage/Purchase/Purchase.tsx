@@ -6,9 +6,9 @@ import { useRouter } from 'next/router'
 import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 import Spinner from '../../../ui/Spinner/Spinner'
 import { BASKET_ROUTE } from '@/shared/consts'
-import { gamesApi } from '@/features/fetchFilteredGameList'
+import { GameSchema } from '@/entities/Game'
 
-const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
+const Purchase: FC<{ game?: GameSchema }> = ({ game }) => {
 	const dispatch = useAppDispatch()
 	// const { cartGames } = useAppSelector(state => state.cart)
 	useEffect(() => {
@@ -21,8 +21,6 @@ const Purchase: FC<{ gameId: number }> = ({ gameId }) => {
 		CartService.addToCart(gameName).then(() => setAddToCartBtn(!addToCartBtn))
 		dispatch(fetchCartGames())
 	}
-
-	const { data: game } = gamesApi.useFetchOneGameQuery(gameId)
 
 	// useEffect(() => {
 	// 	if (cartGames.some(g => g.gameName === game?.gameName)) {
