@@ -5,11 +5,10 @@ import {
 	Reducer,
 	ReducersMapObject,
 } from '@reduxjs/toolkit'
-import gameReducer from '@/store/reducers/gameReducer/GameSlice'
-import cartReducer from '@/store/reducers/cartReducer/CartSlice'
 import { userReducer } from '@/entities/User'
 import { $api, $rtkApi } from '@/shared/api'
 import { createReducerManager } from './reducerManager'
+import { cartReducer } from '@/entities/Cart'
 
 export function createReduxStore(
 	initialState?: StateSchema,
@@ -19,7 +18,6 @@ export function createReduxStore(
 		...asyncReducers,
 		[$rtkApi.reducerPath]: $rtkApi.reducer,
 		user: userReducer,
-		game: gameReducer,
 		cart: cartReducer,
 	}
 

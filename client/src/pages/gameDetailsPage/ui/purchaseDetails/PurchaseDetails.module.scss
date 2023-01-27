@@ -1,0 +1,82 @@
+.container {
+  @apply h-full w-2/6 pl-[3rem];
+
+  .gameName {
+    @apply w-full mt-[4rem] flex items-center justify-center;
+
+    p {
+      @apply text-white font-extrabold;
+      font-size: 1.5rem;
+    }
+  }
+
+  > p {
+    @apply inline-block bg-basic-gray rounded uppercase my-[0.5rem] py-[0.4rem] px-[0.6rem] text-white font-semibold;
+    opacity: 90%;
+    font-size: 0.6rem;
+  }
+
+  .gamePrice {
+    @apply w-full h-[2.5rem];
+
+    p {
+      @apply text-sm text-gray-text font-semibold;
+    }
+  }
+
+  .buttons {
+    @apply flex flex-col;
+
+    .buyBtn {
+      @apply w-full h-[3rem] bg-basic-yellow mb-[0.75rem] rounded transition-all;
+      opacity: 70%;
+
+      p {
+        @apply text-basic-black font-bold uppercase;
+        font-size: 0.7rem;
+      }
+
+      &:hover {
+        opacity: 100%;
+
+      }
+    }
+
+    .cartBtn {
+      @apply w-full h-[3rem] border border-border-gray rounded transition-all mb-[0.5rem];
+      background: transparent;
+
+      p {
+        @apply text-gray-text font-medium uppercase;
+        font-size: 0.7rem;
+      }
+
+      &:hover {
+        @apply border-white bg-basic-gray;
+
+        p {
+          @apply text-white;
+        }
+      }
+    }
+  }
+
+  .purchaseInfo {
+    @apply w-full;
+
+    .infoItem {
+      @apply h-[2.5rem] flex justify-between items-center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+
+      p {
+        @apply text-border-gray font-medium;
+      }
+
+      h4 {
+        @apply text-white font-medium;
+        opacity: 95%;
+      }
+    }
+  }
+}

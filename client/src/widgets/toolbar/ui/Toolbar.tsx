@@ -30,7 +30,8 @@ export const Toolbar: FC = memo(() => {
 					<div className={styles.buttons}>
 						<button>
 							<Link href={BASKET_ROUTE}>
-								{/*Cart <span>{showCount(cartGames?.games)}</span>*/}
+								Basket
+								{/*CartSchema <span>{showCount(cartGames?.games)}</span>*/}
 							</Link>
 						</button>
 					</div>

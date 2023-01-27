@@ -1,5 +1,3 @@
-import { ICartState } from '@/store/reducers/cartReducer/CartSlice'
-import { IGameState } from '@/store/reducers/gameReducer/GameSlice'
 import { UserSchema } from '@/entities/User'
 import { AxiosInstance } from 'axios'
 import { AuthByEmailSchema } from '@/features/authByEmail'
@@ -12,15 +10,17 @@ import {
 } from '@reduxjs/toolkit'
 import { $rtkApi } from '@/shared/api'
 import { FetchFilteredGameListSchema } from '@/features/fetchFilteredGameList'
+import { CartSchema } from '@/entities/Cart'
+import { CartInteractionSchema } from '@/features/cartInteraction'
 
 export interface StateSchema {
 	user: UserSchema
-	cart: ICartState
-	game: IGameState
+	cart: CartSchema
 	[$rtkApi.reducerPath]: ReturnType<typeof $rtkApi.reducer>
 
 	authByEmail?: AuthByEmailSchema
 	fetchFilteredGameList?: FetchFilteredGameListSchema
+	cartInteraction?: CartInteractionSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

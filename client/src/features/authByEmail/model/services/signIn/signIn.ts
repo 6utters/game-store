@@ -3,6 +3,7 @@ import { AuthByEmailResponse } from '../../types/AuthByEmailSchema'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
 import { ThunkConfig } from '@/app/providers/storeProvider'
+import { fetchCart } from '@/features/cartInteraction'
 
 export interface SignInFields {
 	email: string
@@ -28,6 +29,7 @@ export const signIn = createAsyncThunk<
 			ACCESS_TOKEN_LOCAL_STORAGE_KEY,
 			response.data.accessToken,
 		)
+		dispatch(fetchCart())
 		dispatch(userActions.setAuthData(response.data.user))
 
 		return response.data

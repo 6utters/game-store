@@ -70,6 +70,7 @@ export class AuthService {
 				HttpStatus.BAD_REQUEST,
 			)
 		}
+		console.log('user:', user)
 		const userDto = new UserDto(user)
 		const tokens = await this.tokenService.generateTokes({ ...userDto })
 		await this.tokenService.saveToken(userDto.id, tokens.refreshToken)

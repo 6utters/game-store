@@ -3,15 +3,18 @@ import { FiPlus } from 'react-icons/fi'
 import { ImCross } from 'react-icons/im'
 import GameModal from './GameModal/GameModal'
 import styles from './GamesPanel.module.scss'
-import { gamesApi } from '../../../../store/api/games.api'
 import { convertImagePath } from '@/shared/lib'
+import {
+	fetchFilteredGamesApi,
+	useFetchGameList,
+} from '@/features/fetchFilteredGameList/model/api/fetchGameList'
 
 const GamesPanel: FC = () => {
-	const { data: games } = gamesApi.useFetchGamesQuery({
+	const { data: games } = useFetchGameList({
 		genres: [],
 		features: [],
 	})
-	const [deleteGame, {}] = gamesApi.useDeleteGameMutation()
+	const [deleteGame, {}] = fetchFilteredGamesApi.useDeleteGameMutation()
 
 	const deleteHandler = (gameId: number) => {
 		deleteGame(gameId)

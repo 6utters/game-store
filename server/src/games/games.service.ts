@@ -70,6 +70,9 @@ export class GamesService {
 	}
 
 	public async getByIds(ids: number[]) {
+		if (typeof ids === 'number') {
+			return await this.gameRepository.findOne({ where: { id: ids } })
+		}
 		const games = []
 		for (let i = 0; i < ids.length; i++) {
 			const game = await this.gameRepository.findByPk(ids[i])

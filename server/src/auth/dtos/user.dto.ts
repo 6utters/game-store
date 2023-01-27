@@ -5,6 +5,7 @@ import {
 	IsNumber,
 	IsString,
 } from 'class-validator'
+import { Cart } from '../../carts/entities/carts.model'
 
 export class UserDto {
 	@IsEmail()
@@ -17,6 +18,7 @@ export class UserDto {
 	userName: string
 	@IsArray()
 	roles: []
+	cart: Cart
 
 	constructor(model) {
 		this.email = model.email
@@ -24,5 +26,6 @@ export class UserDto {
 		this.userName = model.userName
 		this.isActivated = model.isActivated
 		this.roles = model.roles
+		this.cart = model.cart
 	}
 }

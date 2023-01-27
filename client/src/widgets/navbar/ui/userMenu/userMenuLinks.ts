@@ -1,5 +1,5 @@
-import { DropdownLink } from '@/shared/ui'
 import { ADMIN_ROUTE, STORE_ROUTE } from '@/shared/consts'
+import { DropdownLink } from '@/shared/ui/dropdown/Dropdown'
 
 export const userMenuLinks: DropdownLink[] = [
 	{

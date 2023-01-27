@@ -4,11 +4,13 @@ import { User } from './entities/users.model'
 import { CreateUserDto } from './dtos/create-user.dto'
 import { AddRoleDto } from './dtos/add-role.dto'
 import { RolesService } from '../roles/roles.service'
+import { Cart } from '../carts/entities/carts.model'
 
 @Injectable()
 export class UsersService {
 	constructor(
 		@InjectModel(User) private userRepository: typeof User,
+		@InjectModel(Cart) private cartRepository: typeof Cart,
 		private roleService: RolesService,
 	) {}
 
@@ -19,7 +21,7 @@ export class UsersService {
 	public async findUserByEmail(email: string): Promise<User> {
 		return await this.userRepository.findOne({
 			where: { email },
-			include: { all: true },
+			include: Cart,
 		})
 	}
 

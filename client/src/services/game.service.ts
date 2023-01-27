@@ -42,11 +42,11 @@ export default class GameService {
 	}
 
 	static async fetchGames() {
-		const { data } = await axios.get<IGameShema[]>(`${API_URL}/games`)
+		const { data } = await axios.get<GameSchema[]>(`${API_URL}/games`)
 		return data
 	}
 
 	static async fetchOneGame(id: string) {
-		return await axios.get<IGame>(`${API_URL}/games/${id}`)
+		return await axios.get<GameSchema>(`${API_URL}/games/${id}`)
 	}
 }

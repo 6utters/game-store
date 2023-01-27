@@ -25,7 +25,15 @@ export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 			},
 			providesTags: () => [{ type: 'Game' }],
 		}),
-
+		fetchGamesByIds: build.query<GameSchema[], number[]>({
+			query: gameIds => {
+				const query = gameIds.map(id => `gameId=${id}&`).join('')
+				return {
+					url: `/carts/cartgames?${query}`,
+				}
+			},
+			providesTags: () => [{ type: 'CartGame' }],
+		}),
 		createGame: build.mutation<GameSchema, any>({
 			query: body => ({
 				url: `/games/`,
@@ -69,3 +77,4 @@ export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 })
 
 export const useFetchGameList = fetchFilteredGamesApi.useFetchGameListQuery
+export const useFetchGamesByIds = fetchFilteredGamesApi.useFetchGamesByIdsQuery

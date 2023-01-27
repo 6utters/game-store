@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IGame } from '../../../models/IGame'
+import { GameSchema } from '@/entities/Game'
 
-export interface ICartState {
-	cartGames: IGame[]
+export interface CartState {
+	cartGames: GameSchema[]
 }
 
-const initialState: ICartState = {
+const initialState: CartState = {
 	cartGames: [],
 }
 
@@ -13,7 +13,7 @@ export const CartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		setCartGames: (state, action: PayloadAction<IGame[] | []>) => {
+		setCartGames: (state, action: PayloadAction<GameSchema[] | []>) => {
 			state.cartGames = action.payload
 		},
 		removeGame: (state, action: PayloadAction<number>) => {

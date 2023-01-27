@@ -1,25 +1,25 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import styles from './Purchase.module.scss'
-import CartService from '../../../../services/cart.service'
 import { useAppDispatch } from '../../../../hooks/redux'
 import { useRouter } from 'next/router'
-import { fetchCartGames } from '../../../../store/reducers/cartReducer/cartAC'
 import Spinner from '../../../ui/Spinner/Spinner'
 import { BASKET_ROUTE } from '@/shared/consts'
 import { GameSchema } from '@/entities/Game'
+import { addGameToCart } from '@/features/cartInteraction'
 
 const Purchase: FC<{ game?: GameSchema }> = ({ game }) => {
 	const dispatch = useAppDispatch()
 	// const { cartGames } = useAppSelector(state => state.cart)
-	useEffect(() => {
-		dispatch(fetchCartGames())
-	}, [])
+	// useEffect(() => {
+	// 	dispatch(fetchCartGames())
+	// }, [])
 
 	const router = useRouter()
 	const [addToCartBtn, setAddToCartBtn] = useState<boolean>(false)
 	const addToCart = (gameName: string) => {
-		CartService.addToCart(gameName).then(() => setAddToCartBtn(!addToCartBtn))
-		dispatch(fetchCartGames())
+		// CartService.addToCart(gameName).then(() => setAddToCartBtn(!addToCartBtn))
+		// dispatch(fetchCartGames())
+		dispatch(addGameToCart({ gameName }))
 	}
 
 	// useEffect(() => {

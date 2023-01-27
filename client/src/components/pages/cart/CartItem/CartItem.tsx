@@ -1,16 +1,16 @@
 import { FC } from 'react'
 import styles from './CartItem.module.scss'
-import { IGame } from '../../../../models/IGame'
-import { addGameToCart } from '../../../../store/reducers/cartReducer/cartAC'
 import { useAppDispatch } from '../../../../hooks/redux'
 import Link from 'next/link'
 import { convertImagePath } from '@/shared/lib'
 import { GAME_ROUTE } from '@/shared/consts'
+import { GameSchema } from '@/entities/Game'
+import { removeGameFromCart } from '@/features/cartInteraction'
 
-const CartItem: FC<IGame> = game => {
+const CartItem: FC<GameSchema> = game => {
 	const dispatch = useAppDispatch()
-	const removeHandler = (gameId: string) => {
-		dispatch(addGameToCart(gameId))
+	const removeHandler = (gameId: number) => {
+		dispatch(removeGameFromCart({ gameId }))
 	}
 
 	return (
@@ -29,7 +29,7 @@ const CartItem: FC<IGame> = game => {
 					<div className={styles.game_price}>${game.gamePrice - 0.01}</div>
 					<button
 						className={styles.remove_btn}
-						onClick={() => removeHandler(String(game.id))}
+						onClick={() => removeHandler(game.id)}
 					>
 						Remove
 					</button>

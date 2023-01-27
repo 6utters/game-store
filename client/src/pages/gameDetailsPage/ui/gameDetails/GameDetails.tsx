@@ -14,22 +14,19 @@ interface GameDetailsProps {
 }
 
 export const GameDetails: FC<GameDetailsProps> = memo(({ game }) => {
-	if (game) {
-		return (
-			<div className={styles.container}>
-				{/*<Rating gameId={game.id} />*/}
-				<div className={styles.sliderWrapper}>
-					<GameSlider media={game.gameMedia} />
-				</div>
-				<GameDetailsInfo game={game} />
-				<GameDetailsImages media={game.gameMedia} />
-				<GameDetailsRequirements gameInfo={game.gameInfo} />
-			</div>
-		)
-	}
-
-	return (
+	if (!game) {
 		//todo: try to reload the game with rtk
-		<h3>Something went wrong.</h3>
+		return <h3>Something went wrong.</h3>
+	}
+	return (
+		<div className={styles.container}>
+			{/*<Rating gameId={game.id} />*/}
+			<div className={styles.sliderWrapper}>
+				<GameSlider media={game.gameMedia} />
+			</div>
+			<GameDetailsInfo game={game} />
+			<GameDetailsImages media={game.gameMedia} />
+			<GameDetailsRequirements gameInfo={game.gameInfo} />
+		</div>
 	)
 })
