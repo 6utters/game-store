@@ -1,8 +1,8 @@
-import Cart from '../src/components/pages/cart/Cart'
 import { NextPageWithRoles } from '@/app/providers/authProvider'
+import { CartPage } from '@/pages/cartPage'
 
-const CartPage: NextPageWithRoles = () => <Cart />
+const Cart: NextPageWithRoles = () => <CartPage />
 
-CartPage.isOnlyForUser = true
+Cart.isOnlyForUser = true
 
-export default CartPage
+export default Cart

@@ -5,11 +5,11 @@ import { navigationLinks } from '../header-links'
 import Link from 'next/link'
 import { FaUser } from 'react-icons/fa'
 import cn from 'classnames'
-import { useAppDispatch } from '../../../../hooks/redux'
 // import { logout } from '../../../../store/reducers/userReducer/userAC'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
 import { useSelector } from 'react-redux'
 import { getUserAuthData } from '@/entities/User'
+import { useAppDispatch } from '@/shared/lib/hooks'
 
 const BurgerNavbar: FC = () => {
 	const dispatch = useAppDispatch()

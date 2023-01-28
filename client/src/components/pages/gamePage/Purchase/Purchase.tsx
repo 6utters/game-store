@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
 import styles from './Purchase.module.scss'
-import { useAppDispatch } from '../../../../hooks/redux'
 import { useRouter } from 'next/router'
 import Spinner from '../../../ui/Spinner/Spinner'
 import { BASKET_ROUTE } from '@/shared/consts'
 import { GameSchema } from '@/entities/Game'
 import { addGameToCart } from '@/features/cartInteraction'
+import { useAppDispatch } from '@/shared/lib/hooks'
 
 const Purchase: FC<{ game?: GameSchema }> = ({ game }) => {
 	const dispatch = useAppDispatch()

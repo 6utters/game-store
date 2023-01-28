@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppDispatch } from '../../../../../hooks/redux'
 import PopUp from '../../../../ui/popUp/PopUp'
 import Input from '../../../../ui/Input/Input'
 import styles from './GamesModal.module.scss'
@@ -26,6 +25,7 @@ import {
 	selectVideos,
 } from './formdata.helper'
 import { fetchFilteredGamesApi } from '@/features/fetchFilteredGameList/model/api/fetchGameList'
+import { useAppDispatch } from '@/shared/lib/hooks'
 
 const GameModal: FC<IGameModalProps> = ({ active, setActive }) => {
 	const {
