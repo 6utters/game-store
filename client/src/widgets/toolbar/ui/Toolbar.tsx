@@ -1,18 +1,15 @@
 import { FC, memo } from 'react'
-import Search from '@/shared/ui/Search/Search'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+
 import { BASKET_ROUTE } from '@/shared/consts'
+import Search from '@/shared/ui/Search/Search'
+import { getCartGames } from '@/entities/Cart/model/selectors/getCartGames/getCartGames'
 
 import styles from './Toolbar.module.scss'
 
 export const Toolbar: FC = memo(() => {
-	// const { data: cartGames } = cartApi.useFetchCartQuery()
-	//
-	// const showCount = (cartGames: ICartGame[] | undefined) => {
-	// 	if (cartGames) {
-	// 		return cartGames.length ? cartGames.length : ''
-	// 	}
-	// }
+	const cartGames = useSelector(getCartGames)
 
 	return (
 		<nav className={styles.toolbar}>
@@ -30,8 +27,7 @@ export const Toolbar: FC = memo(() => {
 					<div className={styles.buttons}>
 						<button>
 							<Link href={BASKET_ROUTE}>
-								Basket
-								{/*CartSchema <span>{showCount(cartGames?.games)}</span>*/}
+								Basket <span>{cartGames.length > 0 && cartGames.length}</span>
 							</Link>
 						</button>
 					</div>

@@ -1,5 +1,7 @@
 import { FC, memo, useMemo } from 'react'
+
 import { GameMedia } from '@/entities/Game/model/types/GameSchema'
+
 import styles from './GameDetailsImages.module.scss'
 
 //todo: implement next Image

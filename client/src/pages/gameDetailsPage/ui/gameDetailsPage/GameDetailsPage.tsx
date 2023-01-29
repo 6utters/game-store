@@ -4,8 +4,8 @@ import { Layout } from '@/widgets/layout'
 import { GameSchema } from '@/entities/Game'
 
 import { GameDetails } from '../gameDetails/GameDetails'
+import { PurchaseDetails } from '../purchaseDetails/PurchaseDetails'
 import { Toolbar } from '@/widgets/toolbar'
-import Purchase from '@/components/pages/gamePage/Purchase/Purchase'
 
 import styles from './GameDetailsPage.module.scss'
 
@@ -20,7 +20,7 @@ const GameDetailsPage: FC<GamePageProps> = memo(({ game }) => {
 			<div className={styles.container}>
 				<div className={styles.content}>
 					<GameDetails game={game} />
-					<Purchase game={game} />
+					<PurchaseDetails game={game} />
 				</div>
 			</div>
 		</Layout>

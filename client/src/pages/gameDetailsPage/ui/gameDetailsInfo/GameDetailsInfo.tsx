@@ -1,13 +1,16 @@
 import { FC, memo, useCallback, useMemo } from 'react'
-import { Feature, GameSchema, Genre } from '@/entities/Game'
-import styles from './GameDetailsInfo.module.scss'
 import { useRouter } from 'next/router'
+
+import { Feature, GameSchema, Genre } from '@/entities/Game'
+
 import {
 	fetchFilteredGameListActions,
 	fetchFilteredGameListReducer,
 } from '@/features/fetchFilteredGameList'
 import { useAppDispatch } from '@/shared/lib/hooks'
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
+
+import styles from './GameDetailsInfo.module.scss'
 
 interface GameDetailsInfoProps {
 	game: GameSchema
