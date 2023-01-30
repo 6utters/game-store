@@ -5,7 +5,9 @@ import dynamic from 'next/dynamic'
 import { BsFillPlayFill } from 'react-icons/bs'
 import { GameMedia } from '@/entities/Game/model/types/GameSchema'
 
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
+const ReactPlayer = dynamic(() => import('@/widgets/player/ui/player/Player'), {
+	ssr: false,
+})
 
 const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 	const [activeThumb, setActiveThumb] = useState()
@@ -27,16 +29,17 @@ const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 				{sortedMedia.map(mediaItem => (
 					<SwiperSlide key={mediaItem.id}>
 						{mediaItem.type === 'video' ? (
-							<ReactPlayer
-								url={`http://localhost:5000${mediaItem.url}`}
-								className={'player'}
-								controls={true}
-								pip={true}
-								playing={true}
-								muted={true}
-								width='100%'
-								height='27.5rem'
-							/>
+							// <ReactPlayer
+							// 	url={`http://localhost:5000${mediaItem.url}`}
+							// 	className={'player'}
+							// 	controls={true}
+							// 	pip={true}
+							// 	playing={true}
+							// 	muted={true}
+							// 	width='100%'
+							// 	height='27.5rem'
+							// />
+							<ReactPlayer source={mediaItem.url} className={'player'} />
 						) : (
 							<img
 								src={`http://localhost:5000${mediaItem.url}`}
@@ -61,14 +64,9 @@ const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 							{mediaItem.type === 'video' ? (
 								<>
 									<ReactPlayer
-										url={`http://localhost:5000${mediaItem.url}`}
+										source={mediaItem.url}
 										className={'player'}
-										controls={false}
-										pip={true}
-										playing={false}
-										muted={true}
-										width='100%'
-										height='h-[3.5rem]'
+										showPanel={false}
 									/>
 									<div className={'play-btn'}>
 										<BsFillPlayFill className={'icon'} />

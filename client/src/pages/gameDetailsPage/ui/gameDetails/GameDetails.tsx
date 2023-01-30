@@ -18,6 +18,9 @@ export const GameDetails: FC<GameDetailsProps> = memo(({ game }) => {
 		//todo: try to reload the game with rtk
 		return <h3>Something went wrong.</h3>
 	}
+
+	const videos = game.gameMedia.filter(media => media.type === 'video')
+
 	return (
 		<div className={styles.container}>
 			{/*<Rating gameId={game.id} />*/}
