@@ -1,15 +1,16 @@
 import { BsHdd } from 'react-icons/bs'
 import { GiGamepad } from 'react-icons/gi'
 import { FEATURES_PANEL, GAMES_PANEL, GENRES_PANEL } from '@/shared/consts'
+import { IconType } from 'react-icons'
 
-interface ISidebarAdminLinks {
+interface AdminLayoutLink {
 	id: number
 	title: string
 	href: string
-	icon: any
+	icon: IconType
 }
 
-export const sidebarAdminLinks: ISidebarAdminLinks[] = [
+export const adminLayoutLinks: AdminLayoutLink[] = [
 	{ id: 1, title: 'Genres Panel', href: GENRES_PANEL, icon: BsHdd },
 	{ id: 2, title: 'Features Panel', href: FEATURES_PANEL, icon: BsHdd },
 	{

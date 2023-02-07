@@ -8,7 +8,11 @@
   }
 
   > .cover {
-    @apply w-full h-[17.5rem] rounded-[0.25rem] transition-all;
+    @apply relative w-full h-[16.5rem] transition-all;
+
+    img {
+      @apply w-full h-full bg-cover rounded-[0.25rem] ;
+    }
   }
 
   > .title {

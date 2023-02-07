@@ -1,9 +1,10 @@
 import { FC, useEffect, useState } from 'react'
-import styles from './Rating.module.scss'
 import { BsFillStarFill } from 'react-icons/bs'
 import { fetchFilteredGamesApi } from '@/features/fetchFilteredGameList/model/api/fetchGameList'
 
-const Rating: FC<{ gameId: number }> = ({ gameId }) => {
+import styles from './GameDetailsRating.module.scss'
+
+const GameDetailsRating: FC<{ gameId: number }> = ({ gameId }) => {
 	const { data, isSuccess } = fetchFilteredGamesApi.useGetRatingQuery(gameId)
 	const [rate] = fetchFilteredGamesApi.useRateMutation()
 	const [rating, setRating] = useState(0)
@@ -46,4 +47,4 @@ const Rating: FC<{ gameId: number }> = ({ gameId }) => {
 	)
 }
 
-export default Rating
+export default GameDetailsRating

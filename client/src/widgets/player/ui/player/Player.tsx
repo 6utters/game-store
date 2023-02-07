@@ -13,6 +13,7 @@ interface PlayerProps {
 	showPanel?: boolean
 }
 
+// eslint-disable-next-line react/display-name
 const Player: FC<PlayerProps> = memo(
 	({ source, className, showPanel = true }) => {
 		const { videoRef, video, actions } = usePlayer(true)

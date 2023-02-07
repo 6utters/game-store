@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { $api, API_URL } from '../shared/api'
-import { IGameInfo } from '../models/IGameInfo'
-import { IGameAboutInfo } from '../models/IGameAboutInfo'
-import { GameSchema } from '@/entities/Game'
+import { GameAbout, GameInfo, GameSchema } from '@/entities/Game'
 
 export default class GameService {
 	static async createGame(game: any) {
@@ -10,11 +8,11 @@ export default class GameService {
 		return data
 	}
 
-	static async addInfo(gameInfo: IGameInfo) {
+	static async addInfo(gameInfo: GameInfo) {
 		await $api.post(`${API_URL}/games-info`, gameInfo)
 	}
 
-	static async addAboutInfo(gameAboutInfo: IGameAboutInfo) {
+	static async addAboutInfo(gameAboutInfo: GameAbout) {
 		await $api.post(`${API_URL}/games-about`, gameAboutInfo)
 	}
 

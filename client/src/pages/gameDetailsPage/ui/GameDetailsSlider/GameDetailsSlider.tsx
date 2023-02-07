@@ -9,7 +9,9 @@ const ReactPlayer = dynamic(() => import('@/widgets/player/ui/player/Player'), {
 	ssr: false,
 })
 
-const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
+//todo: refactor slider
+
+export const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 	const [activeThumb, setActiveThumb] = useState()
 	const videos = media.filter(m => m.type === 'video')
 	const images = media.filter(m => m.type === 'image')
@@ -86,5 +88,3 @@ const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 		</>
 	)
 }
-
-export default GameSlider

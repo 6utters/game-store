@@ -5,6 +5,7 @@ import { GAME_ROUTE } from '@/shared/consts'
 import { convertImagePath } from '@/shared/lib'
 
 import styles from './GameCard.module.scss'
+import Image from 'next/image'
 
 interface IGameCardProps {
 	name: string
@@ -22,11 +23,13 @@ export const GameCard: FC<IGameCardProps> = memo(
 
 		return (
 			<Link href={`${GAME_ROUTE}/${gameId}`} className={styles.card}>
-				<img
-					className={styles.cover}
-					src={`http://localhost:5000${convertImagePath(image)}`}
-					alt='gameImage'
-				/>
+				<div className={styles.cover}>
+					<Image
+						src={`http://localhost:5000${convertImagePath(image)}`}
+						alt='gameImage'
+						fill
+					/>
+				</div>
 				<div className={styles.title}>
 					<h3>{name}</h3>
 				</div>
