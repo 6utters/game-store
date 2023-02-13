@@ -4,7 +4,7 @@ import { DropdownLink } from '@/shared/ui/dropdown/Dropdown'
 export const userMenuLinks: DropdownLink[] = [
 	{
 		href: ADMIN_ROUTE,
-		title: 'Admin Panel',
+		title: 'AdminPage Panel',
 		adminOnly: true,
 	},
 	{

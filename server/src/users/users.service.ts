@@ -21,7 +21,7 @@ export class UsersService {
 	public async findUserByEmail(email: string): Promise<User> {
 		return await this.userRepository.findOne({
 			where: { email },
-			include: Cart,
+			include: { all: true },
 		})
 	}
 

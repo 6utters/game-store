@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import GenresPanel from '../../src/components/pages/admin/genresPanel/GenresPanel'
+import { AdminGenrePage } from '@/pages/adminPage'
 
-const Genres: FC = () => <GenresPanel />
+const Genres: FC = () => <AdminGenrePage />
 
 export default Genres

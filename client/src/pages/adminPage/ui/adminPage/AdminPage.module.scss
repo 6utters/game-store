@@ -1,0 +1,17 @@
+
+.container {
+  @apply w-full flex justify-center;
+  height: 93vh;
+
+  .content {
+    @apply w-[25rem] h-[35rem] flex items-center justify-center;
+
+
+    h3 {
+      @apply p-[1rem] text-border-gray font-semibold;
+      font-size: 0.9rem;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+  }
+}

@@ -27,7 +27,7 @@ const GamesPanel: FC = () => {
 	return (
 		<Layout
 			withNavbar={false}
-			title={'D&D Games | Admin panel | Games Panel'}
+			title={'D&D Games | AdminPage panel | Games Panel'}
 			withFooter={false}
 		>
 			<AdminLayout>

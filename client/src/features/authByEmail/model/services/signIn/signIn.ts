@@ -25,6 +25,8 @@ export const signIn = createAsyncThunk<
 		if (!response.data) {
 			throw new Error()
 		}
+		console.log('signin response.data:', response.data)
+
 		localStorage.setItem(
 			ACCESS_TOKEN_LOCAL_STORAGE_KEY,
 			response.data.accessToken,

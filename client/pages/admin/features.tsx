@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import FeaturesPanel from '../../src/components/pages/admin/featuresPanel/FeaturesPanel'
+import { AdminFeaturePage } from '@/pages/adminPage'
 
-const Features: FC = () => <FeaturesPanel />
+const Features: FC = () => <AdminFeaturePage />
 
 export default Features

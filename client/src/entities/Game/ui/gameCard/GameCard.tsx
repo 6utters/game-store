@@ -27,6 +27,7 @@ export const GameCard: FC<IGameCardProps> = memo(
 					<Image
 						src={`http://localhost:5000${convertImagePath(image)}`}
 						alt='gameImage'
+						quality={80}
 						fill
 					/>
 				</div>

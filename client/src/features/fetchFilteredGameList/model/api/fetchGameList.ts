@@ -1,3 +1,4 @@
+
 import { $rtkApi } from '@/shared/api/rtkApi'
 import { Feature, GameSchema, Genre } from '@/entities/Game'
 
