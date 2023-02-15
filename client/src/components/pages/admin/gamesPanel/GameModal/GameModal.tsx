@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import PopUp from '../../../../ui/popUp/PopUp'
+import PopUp from '../../../../../shared/ui/popUp/PopUp'
 import Input from '../../../../ui/Input/Input'
 import styles from './GamesModal.module.scss'
 import { IGameForm } from '../../../../../models/IGameForm'

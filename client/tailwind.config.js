@@ -17,6 +17,7 @@ module.exports = {
 				'border-gray': 'rgb(118, 118, 118)',
 				'input-text': 'rgb(190,190,190)',
 				'form-btn': '#887634',
+				'overlay': 'rgba(0, 0, 0, 0.5)'
 			},
 		},
 	},

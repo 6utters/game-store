@@ -18,11 +18,11 @@
 // 	large: 'p-4 text-base',
 // }
 
-import { FieldError } from 'react-hook-form'
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 import { InputHTMLAttributes } from 'react'
 
 export interface IFieldProps {
-	error?: FieldError | undefined
+	error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
 }
 
 type TypedInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps

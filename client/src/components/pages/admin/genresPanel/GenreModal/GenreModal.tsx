@@ -1,31 +1,36 @@
 import { FC } from 'react'
-import PopUp from '../../../../ui/popUp/PopUp'
 import styles from './GenreModal.module.scss'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { IGenreForm } from '../../../../../models/IGenreForm'
 import Input from '../../../../ui/Input/Input'
 import { propertiesApi } from '../../../../../store/api/properties.api'
+import { Modal } from '@/shared/ui/modal/Modal'
 
-const GenreModal: FC<{
-	active: boolean
-	setActive: (active: boolean) => void
-}> = ({ active, setActive }) => {
+interface GenreModalForm {
+	genreName: string
+}
+
+interface GenreModalProps {
+	isOpen: boolean
+	onClose: () => void
+}
+
+const GenreModal: FC<GenreModalProps> = ({ isOpen, onClose }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<IGenreForm>({
+	} = useForm<GenreModalForm>({
 		mode: 'onBlur',
 	})
+
 	const [createGenre] = propertiesApi.useCreateGenreMutation()
-	const onSubmit: SubmitHandler<IGenreForm> = (data) => {
+	const onSubmit: SubmitHandler<GenreModalForm> = (data) => {
 		createGenre(data.genreName)
-		setActive(false)
+		onClose()
 	}
 
 	return (
-		<>
-			<PopUp modalActive={active} setModalActive={setActive}>
+		<Modal isOpen={isOpen} onClose={onClose}>
 				<div className={styles.content} onClick={(e) => e.stopPropagation()}>
 					<div className={styles.title}>
 						<p>Create Genre</p>
@@ -41,8 +46,7 @@ const GenreModal: FC<{
 						</div>
 					</form>
 				</div>
-			</PopUp>
-		</>
+		</Modal>
 	)
 }
 

@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: EnhancedAppProps) {
 		<QueryClientProvider client={queryClient}>
 			<StoreProvider>
 				<AuthProvider Component={Component}>
-					<main className={inter.className}>
+					<main className={inter.className} id={'mainApp'}>
 						<Component {...pageProps} />
 					</main>
 				</AuthProvider>
