@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, memo, ReactNode } from 'react'
 import { useModal } from '@/shared/lib/hooks'
 import { Overlay, Portal } from '@/shared/ui'
 import cn from 'classnames'
@@ -19,15 +19,12 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 250
 
-export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className, lazy }) => {
+export const Modal: FC<ModalProps> = memo(({ isOpen, onClose, children, className, lazy }) => {
 	const { close, isClosing, isMounted } = useModal({ animationDelay: ANIMATION_DELAY, onClose, isOpen })
 
 	if (lazy && !isMounted) {
 		return null
 	}
-
-	console.log('isOpen:', isOpen)
-	console.log('isClosing:', isClosing)
 
 	return (
 		<DynamicPortal>
@@ -42,5 +39,5 @@ export const Modal: FC<ModalProps> = ({ isOpen, onClose, children, className, la
 			</div>
 		</DynamicPortal>
 	)
-}
+})
 

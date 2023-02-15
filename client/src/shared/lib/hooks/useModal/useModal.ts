@@ -29,7 +29,11 @@ export function useModal({animationDelay, onClose, isOpen}: useModalArgs) {
 
 	useEffect(() => {
 		if (isOpen) {
+			document.body.style.overflow = 'hidden'
 			setIsMounted(true)
+		}
+		return () => {
+			document.body.style.overflow = 'unset'
 		}
 	}, [isOpen])
 

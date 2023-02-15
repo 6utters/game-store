@@ -8,12 +8,10 @@ import { FiPlus } from 'react-icons/fi'
 import { FetchGenreList } from '@/features/genreInteraction'
 
 import styles from './AdminGenrePage.module.scss'
-import GenreModal from '@/components/pages/admin/genresPanel/GenreModal/GenreModal'
+import { AdminGenrePageModal } from './adminGenrePageModal/AdminGenrePageModal'
 
 const GenresPanel: FC = memo(() => {
 	const [modalActive, setModalActive] = useState(false)
-
-	console.log('modalActive:', modalActive)
 
 	const onModalClose = useCallback(() => {
 		setModalActive(false)
@@ -32,7 +30,7 @@ const GenresPanel: FC = memo(() => {
 							<FiPlus onClick={() => setModalActive(true)} />
 						</div>
 						<FetchGenreList/>
-						<GenreModal isOpen={modalActive} onClose={onModalClose} />
+						<AdminGenrePageModal isOpen={modalActive} onClose={onModalClose} />
 					</div>
 				</div>
 			</AdminLayout>
