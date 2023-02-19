@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { BsFillStarFill } from 'react-icons/bs'
-import { fetchFilteredGamesApi } from '@/features/fetchFilteredGameList/model/api/fetchGameList'
+import { fetchFilteredGamesApi } from '@/features/fetchFilteredGameList/model/api/fetchFilteredGamesApi'
 
 import styles from './GameDetailsRating.module.scss'
 

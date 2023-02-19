@@ -3,12 +3,12 @@ import { IoIosArrowDown } from 'react-icons/io'
 import cn from 'classnames'
 
 import { fetchFilteredGameListActions } from '@/features/fetchFilteredGameList'
-import { Feature } from '@/entities/Game'
 
 import { FilterItem, findSelectedFilterId } from '@/shared/lib'
 import { useAppDispatch } from '@/shared/lib/hooks'
 
 import styles from './FeatureFilter.module.scss'
+import { Feature } from '@/entities/Feature'
 
 interface FeatureFilterProps {
 	features?: Feature[]

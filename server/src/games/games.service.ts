@@ -66,6 +66,7 @@ export class GamesService {
 			await game.$add('features', [features[i].id])
 		}
 
+		console.log('game:', game)
 		return game
 	}
 

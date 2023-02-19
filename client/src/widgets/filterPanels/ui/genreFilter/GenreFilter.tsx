@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 import cn from 'classnames'
 
-import { Genre } from '@/entities/Game'
+import { Genre } from '@/entities/Genre'
 import { fetchFilteredGameListActions } from '@/features/fetchFilteredGameList'
 
 import { FilterItem, findSelectedFilterId } from '@/shared/lib'

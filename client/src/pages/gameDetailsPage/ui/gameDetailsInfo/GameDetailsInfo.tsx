@@ -1,7 +1,9 @@
 import { FC, memo, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 
-import { Feature, GameSchema, Genre } from '@/entities/Game'
+import { Genre } from '@/entities/Genre'
+import { Feature } from '@/entities/Feature'
+import { GameSchema } from '@/entities/Game'
 
 import {
 	fetchFilteredGameListActions,

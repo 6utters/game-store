@@ -1,12 +1,14 @@
 //todo: maybe if it doesn't fit StateSchema - the name shouldn't contain prefix Schema
 
 import { Genre } from '@/entities/Genre'
+import { Feature } from '@/entities/Feature'
 
 export interface Base {
 	id: number
 }
 
-export interface GameSchema extends Base {
+export interface GameSchema {
+	id: number
 	gameName: string
 	gamePrice: number
 	gameRating: number
@@ -18,7 +20,7 @@ export interface GameSchema extends Base {
 	gameMedia: GameMedia[]
 }
 
-export interface GameAbout extends Base {
+export interface GameAbout {
 	gameId: number
 	mainInfo: string
 	fstP?: string
@@ -26,8 +28,6 @@ export interface GameAbout extends Base {
 	thdP?: string
 	ftsP?: string
 	thsP?: string
-	updatedAt: string
-	createdAt: string
 }
 
 export interface GameMedia extends Base {
@@ -40,12 +40,7 @@ export interface GameImage extends Base {
 	url: string
 }
 
-//todo: can be removed to separate entity
-export interface Feature extends Base {
-	featureName: string
-}
-
-export interface GameInfo extends Base {
+export interface GameInfo {
 	gameId: number
 	developer: string
 	publisher: string

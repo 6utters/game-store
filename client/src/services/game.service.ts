@@ -1,50 +1,12 @@
 import axios from 'axios'
-import { $api, API_URL } from '../shared/api'
-import { GameAbout, GameInfo, GameSchema } from '@/entities/Game'
+import { API_URL } from '../shared/api'
+import { GameSchema } from '@/entities/Game'
 
 export default class GameService {
-	static async createGame(game: any) {
-		const { data } = await $api.post<GameSchema>(`${API_URL}/games`, game)
-		return data
-	}
-
-	static async addInfo(gameInfo: GameInfo) {
-		await $api.post(`${API_URL}/games-info`, gameInfo)
-	}
-
-	static async addAboutInfo(gameAboutInfo: GameAbout) {
-		await $api.post(`${API_URL}/games-about`, gameAboutInfo)
-	}
-
-	static async addMedia(
-		media: any,
-		gameId: number,
-		type: string,
-		folder: string,
-	) {
-		await $api.post(
-			`${API_URL}/games/media?folder=${folder}&gameId=${gameId}&type=${type}`,
-			media,
-		)
-	}
-
-	static async deleteGame(gameId: number) {
-		await $api.delete(`${API_URL}/games/${gameId}`)
-	}
-
 	static async fetchBySearchGames(searchTerm: string) {
 		const { data } = await axios.get<GameSchema[]>(
 			`${API_URL}/games?searchTerm=${searchTerm}`,
 		)
 		return data
-	}
-
-	static async fetchGames() {
-		const { data } = await axios.get<GameSchema[]>(`${API_URL}/games`)
-		return data
-	}
-
-	static async fetchOneGame(id: string) {
-		return await axios.get<GameSchema>(`${API_URL}/games/${id}`)
 	}
 }

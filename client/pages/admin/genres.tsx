@@ -1,6 +1,5 @@
-import { FC } from 'react'
-import { AdminGenrePage } from '@/pages/adminPage'
+import { AdminGenresPage } from '@/pages/adminPage'
 
-const Genres: FC = () => <AdminGenrePage />
+const Genres = () => <AdminGenresPage />
 
 export default Genres

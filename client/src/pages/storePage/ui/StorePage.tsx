@@ -3,9 +3,11 @@ import { Toolbar } from '@/widgets/toolbar'
 
 import styles from './StorePage.module.scss'
 import { Layout } from '@/widgets/layout'
-import { Feature, GameSchema, Genre } from '@/entities/Game'
+import { GameSchema } from '@/entities/Game'
 import { FetchGameList } from '@/features/fetchFilteredGameList'
 import FilterPanels from '@/widgets/filterPanels/ui/filterPanels/FilterPanels'
+import { Feature } from '@/entities/Feature'
+import { Genre } from '@/entities/Genre'
 
 interface StorePageProps {
 	games?: GameSchema[]

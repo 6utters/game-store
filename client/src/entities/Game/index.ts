@@ -6,6 +6,4 @@ export type {
 	GameMedia,
 	GameImage,
 	GameAbout,
-	Feature,
-	Genre,
 } from './model/types/GameSchema'

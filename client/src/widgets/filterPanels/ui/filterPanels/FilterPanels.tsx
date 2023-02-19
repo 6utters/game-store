@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { Feature, Genre } from '@/entities/Game'
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
 import {
 	fetchFilteredGameListReducer,
@@ -10,7 +9,11 @@ import {
 import FeatureFilter from '../featureFilter/FeatureFilter'
 import GenreFilter from '../genreFilter/GenreFilter'
 
+import { Genre } from '@/entities/Genre'
+import { Feature } from '@/entities/Feature'
+
 import styles from './FilterPanels.module.scss'
+
 
 interface FilterPanelsProps {
 	genres?: Genre[]

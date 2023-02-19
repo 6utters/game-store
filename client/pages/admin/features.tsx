@@ -1,6 +1,5 @@
-import { FC } from 'react'
-import { AdminFeaturePage } from '@/pages/adminPage'
+import { AdminFeaturesPage } from '@/pages/adminPage'
 
-const Features: FC = () => <AdminFeaturePage />
+const Features= () => <AdminFeaturesPage />
 
 export default Features

@@ -1,6 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { StorePage } from '@/pages/storePage'
-import { Feature, GameSchema, Genre } from '@/entities/Game'
+import { GameSchema} from '@/entities/Game'
+import { Genre } from '@/entities/Genre'
+import { Feature } from '@/entities/Feature'
 import axios from 'axios'
 import { API_URL } from '@/shared/api'
 

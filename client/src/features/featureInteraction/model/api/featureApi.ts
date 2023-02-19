@@ -1,5 +1,5 @@
 import { $rtkApi } from '@/shared/api'
-import { Feature } from '@/entities/Game'
+import { Feature } from '@/entities/Feature'
 
 export const featureApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({

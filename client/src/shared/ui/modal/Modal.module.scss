@@ -4,11 +4,14 @@
   z-index: -1;
 
   > .content {
-    @apply max-w-[90%] bg-basic-gray;
+    @apply max-w-[90%] max-h-[90vh] bg-basic-gray overflow-y-scroll py-[1rem] px-[2.5rem];
     transition: transform 0.3s ease;
     transform: scale(0.5);
-    padding: 1.5rem;
     border-radius: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-stone-600 rounded;
   }
 }
 

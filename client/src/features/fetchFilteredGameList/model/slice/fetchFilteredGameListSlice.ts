@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FetchFilteredGameListSchema } from '../types/FetchFilteredGameListSchema'
-import { Feature, Genre } from '@/entities/Game'
 import { findSelectedFilterId } from '@/shared/lib'
+import { Genre } from '@/entities/Genre'
+import { Feature } from '@/entities/Feature'
 
 const initialState: FetchFilteredGameListSchema = {
 	selectedFeatures: [],

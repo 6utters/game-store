@@ -1,5 +1,5 @@
 import { $rtkApi } from '@/shared/api'
-import { Genre } from '@/entities/Game'
+import { Genre } from '@/entities/Genre'
 
 export const genreApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({

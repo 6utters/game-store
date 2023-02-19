@@ -1,6 +1,5 @@
-import { FC } from 'react'
-import GamesPanel from '../../src/components/pages/admin/gamesPanel/GamesPanel'
+import { AdminGamesPage } from '@/pages/adminPage'
 
-const Games: FC = () => <GamesPanel />
+const Games = () => <AdminGamesPage />
 
 export default Games

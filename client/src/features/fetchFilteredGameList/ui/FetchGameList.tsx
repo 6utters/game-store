@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
 
-import { useFetchGameList } from '../model/api/fetchGameList'
+import { useFetchGameList } from '../model/api/fetchFilteredGamesApi'
 import { GameCardList, GameSchema } from '@/entities/Game'
 
 import styles from './FetchGameList.module.scss'
