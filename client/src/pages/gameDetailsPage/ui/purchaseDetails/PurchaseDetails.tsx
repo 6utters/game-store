@@ -8,7 +8,7 @@ import { getCartGames } from '@/entities/Cart/model/selectors/getCartGames/getCa
 import { addGameToCart } from '@/features/cartInteraction'
 import { useAppDispatch } from '@/shared/lib/hooks'
 import { BASKET_ROUTE } from '@/shared/consts'
-import Spinner from '@/components/ui/Spinner/Spinner'
+import { Spinner } from '@/shared/ui'
 
 import styles from './PurchaseDetails.module.scss'
 

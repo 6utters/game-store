@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import { BASKET_ROUTE } from '@/shared/consts'
-import Search from '@/shared/ui/Search/Search'
+import { Search } from '@/widgets/search'
 import { getCartGames } from '@/entities/Cart/model/selectors/getCartGames/getCartGames'
 
 import styles from './Toolbar.module.scss'

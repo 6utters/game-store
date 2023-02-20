@@ -17,15 +17,11 @@ import {
 } from '../../model/selectors'
 
 import { emailPattern, LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
-import Input from '@/components/ui/Input/Input'
-import { Logo } from '@/shared/ui'
+import { Input, Logo } from '@/shared/ui'
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
 
-import styles from './AuthForm.module.scss'
-import {
-	DynamicModuleLoader,
-	ReducerList,
-} from '@/shared/lib/components/dynamicModuleLoader/DynamicModuleLoader'
 import { authByEmailReducer } from '@/features/authByEmail'
+import styles from './AuthForm.module.scss'
 
 const initialReducers: ReducerList = {
 	authByEmail: authByEmailReducer,
@@ -127,7 +123,7 @@ export const AuthForm: FC<AuthFormProps> = memo(({ isSignUpPage }) => {
 						)}
 						{!isSignUpPage && (
 							<p>
-								Don't have an D&D Games Account?{' '}
+								Don&apos;t have an D&D Games Account?{' '}
 								<Link href={REGISTRATION_ROUTE}>Sign Up</Link>
 							</p>
 						)}

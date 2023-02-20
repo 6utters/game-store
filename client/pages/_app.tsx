@@ -3,7 +3,7 @@ import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 import '../src/app/styles/globals.scss'
 import '@/pages/gameDetailsPage/ui/GameDetailsSlider/GameDetailsSlider.scss'
-import '../src/components/ui/MultipleSelect/MultipleSelect.scss'
+import '@/shared/ui/multipleSelect/MultipleSelect.scss'
 
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'

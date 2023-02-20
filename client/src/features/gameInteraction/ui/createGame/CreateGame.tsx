@@ -11,6 +11,8 @@ import { GameMediaForm } from './gameMediaForm/GameMediaForm'
 import { GameRequirementsForm } from './gameRequirementsForm/GameRequirementsForm'
 import { GameAboutForm } from './gameAboutForm/GameAboutForm'
 
+import { Spinner } from '@/shared/ui'
+
 import {
 	createFormImagesData,
 	createFormVideosData,
@@ -18,8 +20,6 @@ import {
 	createGameFormData,
 	createGameInfoFormData,
 } from '../../model/lib/createGameFormdata'
-
-import Spinner from '@/components/ui/Spinner/Spinner'
 
 import styles from './CreateGame.module.scss'
 
@@ -37,8 +37,6 @@ export const CreateGame: FC<CreateGameProps> = memo(({ onClose }) => {
 	} = useForm<CreateGameSchema>({
 		mode: 'onBlur',
 	})
-
-	console.log('isLoading', isLoading)
 
 	const [currentFile, setCurrentFile] = useState<File | null>(null)
 	const [currentImages, setCurrentImages] = useState<File[]>([])

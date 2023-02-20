@@ -1,11 +1,14 @@
 import { FC, memo } from 'react'
-import styles from './Search.module.scss'
-import { BiSearch } from 'react-icons/bi'
-import { useSearch } from './useSearch'
 import Link from 'next/link'
-import { GAME_ROUTE, STORE_ROUTE } from '@/shared/consts'
 
-const Search: FC = memo(() => {
+import { GAME_ROUTE, STORE_ROUTE } from '@/shared/consts'
+import { BiSearch } from 'react-icons/bi'
+
+import { useSearch } from '../model/lib/useSearch'
+
+import styles from './Search.module.scss'
+
+export const Search: FC = memo(() => {
 	const { data, handleSearch, searchTerm, visible } = useSearch()
 	return (
 		<div className={styles.container} ref={visible.ref}>
@@ -36,5 +39,3 @@ const Search: FC = memo(() => {
 		</div>
 	)
 })
-
-export default Search

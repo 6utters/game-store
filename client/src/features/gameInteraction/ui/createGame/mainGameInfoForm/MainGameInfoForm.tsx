@@ -1,12 +1,11 @@
 import { Dispatch, FC, memo, SetStateAction } from 'react'
 
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
-import UploadField from '@/components/ui/UploadField/UploadField'
 
 import { CreateGameSchema } from '@/features/gameInteraction'
 import { selectFile } from '../../../model/lib/createGameFormdata'
 
-import Input from '@/components/ui/Input/Input'
+import { Input, UploadField } from '@/shared/ui'
 
 interface MainInfoFormProps {
 	register: UseFormRegister<CreateGameSchema>

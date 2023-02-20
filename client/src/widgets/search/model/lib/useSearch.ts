@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react'
-import { useDebounce } from '../../../hooks/useDebounce'
 import { useQuery } from 'react-query'
-import GameService from '../../../services/game.service'
-import { useOutside } from '../../../hooks/useOutside'
+
+import { SearchGamesService } from '../services/searchGamesService'
+import { useDebounce, useOutside } from '@/shared/lib/hooks'
 
 export const useSearch = () => {
 	const visible = useOutside(false)
@@ -11,7 +11,7 @@ export const useSearch = () => {
 
 	const { isSuccess, data } = useQuery(
 		['search games', debounceSearch],
-		() => GameService.fetchBySearchGames(searchTerm),
+		() => SearchGamesService.search(searchTerm),
 		{
 			select: data => data.slice(0, 5),
 			enabled: !!debounceSearch,

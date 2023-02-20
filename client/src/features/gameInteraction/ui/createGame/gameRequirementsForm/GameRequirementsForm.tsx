@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
-import Input from '../../../../../components/ui/Input/Input'
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 import { CreateGameSchema } from '@/features/gameInteraction'
+import { Input } from '@/shared/ui'
 
 import styles from './GameRequirementsForm.module.scss'
 

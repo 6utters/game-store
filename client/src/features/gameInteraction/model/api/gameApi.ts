@@ -9,12 +9,6 @@ export const gameApi = $rtkApi.injectEndpoints({
 				method: 'POST',
 				body,
 			}),
-			// transformResponse: (response: { data: GameSchema }) => response.data,
-			// transformErrorResponse: (
-			// 	response: { status: string | number },
-			// 	meta,
-			// 	arg,
-			// ) => response.status,
 			invalidatesTags: () => [{ type: 'Game' }],
 		}),
 		deleteGame: build.mutation<void, number>({

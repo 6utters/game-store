@@ -1,10 +1,11 @@
 import React, { Dispatch, FC, memo, SetStateAction } from 'react'
-import UploadField from '@/components/ui/UploadField/UploadField'
 
 import {
 	selectImages,
 	selectVideos,
 } from '../../../model/lib/createGameFormdata'
+
+import { UploadField } from '@/shared/ui'
 
 import styles from './GameMediaForm.module.scss'
 
