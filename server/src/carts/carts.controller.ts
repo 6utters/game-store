@@ -5,6 +5,7 @@ import {
 	Get,
 	Param,
 	Post,
+	Query,
 	UseGuards,
 } from '@nestjs/common'
 import { CartsService } from './carts.service'
@@ -35,5 +36,20 @@ export class CartsController {
 	@UseGuards(AuthGuard)
 	getUserCart(@CurrentUser('id') id: number) {
 		return this.cartsService.getCart(id)
+	}
+
+	// @Get('cartgames')
+	// @UseGuards(AuthGuard)
+	// getCartGames(@CurrentUser('id') id: number) {
+	// 	return this.cartsService.getCartGames(id)
+	// }
+	@Get('/cartgames')
+	@UseGuards(AuthGuard)
+	getCartGames(
+		// @CurrentUser('id') id: number,
+		@Query('gameId') gameIds: number[],
+	) {
+		console.log('ids:', gameIds)
+		return this.cartsService.getCartGames(gameIds)
 	}
 }

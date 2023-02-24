@@ -42,10 +42,10 @@ export class AuthService {
 		const role = await this.rolesService.getRoleByValue('USER')
 		await user.$set('roles', [role.id])
 		user.roles = [role]
-		await this.mailService.sendActivationMail({
-			email: dto.email,
-			link: `${process.env.API_URL}/api/auth/activate/${activationLink}`,
-		})
+		// await this.mailService.sendActivationMail({
+		// 	email: dto.email,
+		// 	link: `${process.env.API_URL}/api/auth/activate/${activationLink}`,
+		// })
 		const userDto = new UserDto(user)
 		const tokens = await this.tokenService.generateTokes({ ...userDto })
 		await this.tokenService.saveToken(userDto.id, tokens.refreshToken)
@@ -70,6 +70,7 @@ export class AuthService {
 				HttpStatus.BAD_REQUEST,
 			)
 		}
+		console.log('user:', user)
 		const userDto = new UserDto(user)
 		const tokens = await this.tokenService.generateTokes({ ...userDto })
 		await this.tokenService.saveToken(userDto.id, tokens.refreshToken)

@@ -8,8 +8,8 @@ import { AuthGuard } from '../auth/auth.guard'
 export class RolesController {
 	constructor(private rolesService: RolesService) {}
 
-	@Roles('ADMIN')
-	@UseGuards(AuthGuard)
+	// @Roles('ADMIN')
+	// @UseGuards(AuthGuard)
 	@Post()
 	createRole(@Body() roleDto: CreateRoleDto) {
 		return this.rolesService.createRole(roleDto)

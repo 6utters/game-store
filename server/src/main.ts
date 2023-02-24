@@ -11,7 +11,7 @@ async function bootstrap() {
 		origin: process.env.CLIENT_URL,
 	})
 	app.use(cookieParser())
-	// app.useGlobalPipes(new ValidationPipe())
+	// src.useGlobalPipes(new ValidationPipe())
 	await app.listen(PORT, () =>
 		console.log(`Server has been started on port ${PORT}...`),
 	)

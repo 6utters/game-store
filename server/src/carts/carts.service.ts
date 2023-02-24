@@ -23,6 +23,18 @@ export class CartsService {
 		})
 	}
 
+	public async getCartGames(ids: number[]) {
+		const gameIdsArray = typeof ids === 'string' ? [ids] : ids
+		// const userCartGamesIds = await this.cartsRepository
+		// 	.findOne({
+		// 		where: { userId },
+		// 		include: { all: true },
+		// 	})
+		// 	.then((data) => data.games.map((game) => game.gameId))
+		// const userCartGamesIds = cartGames.map((cartGame) => cartGame.gameId)
+		return await this.gamesService.getByIds(gameIdsArray)
+	}
+
 	public async addGame(userId, gameName: string): Promise<CartGame> {
 		const game = await this.gamesService.findGameByName(gameName)
 		if (!game) {
@@ -30,7 +42,14 @@ export class CartsService {
 		}
 		const cart = await this.cartsRepository.findOne({
 			where: { userId },
+			include: { all: true },
 		})
+		const gameInCart = cart.games.some(
+			(cartGame) => cartGame.gameId === game.id,
+		)
+		if (gameInCart) {
+			throw new HttpException("Game's already in the cart", HttpStatus.CONTINUE)
+		}
 		return await this.cartGamesRepository.create({
 			gameId: game.id,
 			cartId: cart.id,

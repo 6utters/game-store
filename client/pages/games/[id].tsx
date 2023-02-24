@@ -1,26 +1,28 @@
-import React from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import GameService from '../../app/services/game.service'
-import { IGame } from '../../app/models/IGame'
-import Layout from '../../app/components/layout/Layout.'
-import GamePage from '../../app/components/pages/gamePage/GamePage'
 
-const Game: NextPage<{ game: IGame }> = (props) => {
-	return (
-		<Layout
-			title={`D&D Games | ${props.game.gameName}`}
-			showHeader={true}
-			showFooter={true}
-		>
-			<GamePage />
-		</Layout>
-	)
+import { GameDetailsPage } from '@/pages/gameDetailsPage'
+
+import { API_URL } from '@/shared/api'
+import axios from 'axios'
+
+import { GameSchema } from '@/entities/Game'
+
+interface GameProps {
+	game?: GameSchema
 }
+
+const GameDetails: NextPage<GameProps> = ({ game }) => {
+	return <GameDetailsPage game={game} />
+}
+
+export default GameDetails
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	try {
-		const games = await GameService.fetchGames().then((data) => data)
-		const paths = games.map((game) => ({
+		const games = await axios
+			.get<GameSchema[]>(`${API_URL}/games`)
+			.then(response => response.data)
+		const paths = games.map(game => ({
 			params: {
 				id: String(game.id),
 			},
@@ -40,9 +42,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const gameId = String(params?.id)
-		const game = await GameService.fetchOneGame(gameId).then(
-			({ data }) => data || ({} as IGame),
-		)
+		const game = await axios
+			.get<GameSchema>(`${API_URL}/games/${gameId}`)
+			.then(response => response.data)
 		return {
 			props: {
 				game,
@@ -52,9 +54,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	} catch (e) {
 		return {
 			props: {
-				game: {} as IGame,
+				game: {} as GameSchema,
 			},
 		}
 	}
 }
-export default Game

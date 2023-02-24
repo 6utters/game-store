@@ -1,0 +1,7 @@
+.container {
+  @apply w-full flex justify-center pt-[3rem];
+
+  .card {
+    @apply relative w-[30rem] bg-basic-black rounded-md p-[4rem];
+  }
+}

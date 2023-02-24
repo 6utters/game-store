@@ -1,0 +1,74 @@
+.userMenu {
+  @apply h-full flex items-center;
+
+  .menuOption {
+    @apply list-none bg-basic-gray h-full w-full flex justify-center items-center;
+
+    > button {
+      @apply text-gray-text uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+
+      h3 {
+        @apply transition-all duration-200;
+      }
+    }
+
+    &:hover {
+      h3 {
+        @apply text-white;
+      }
+    }
+  }
+
+  > .login {
+    @apply relative h-full;
+    > a {
+      @apply relative h-full flex items-center justify-center text-gray-text uppercase px-[0.75rem] transition-all;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+
+      &:after {
+        @apply content-[''] absolute right-0 left-0 bottom-0 h-0 bg-basic-yellow transition-all duration-200;
+      }
+
+      &:hover {
+        &:after {
+          @apply h-[0.25rem]
+        }
+      }
+
+      .loginIcon {
+        @apply text-sm;
+      }
+
+      p {
+        @apply ml-2
+      }
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+
+  > .signup {
+    @apply relative h-full bg-basic-yellow transition-colors duration-200;
+    padding: 0 1.5rem;
+
+    &:hover {
+      background: rgba(243, 211, 73, 0.88);
+    }
+
+    > a {
+      @apply flex items-center font-semibold text-basic-gray uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.05rem;
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,45 @@
+.card {
+  @apply w-full h-[13.4rem] flex bg-basic-black mb-[2rem] p-[1.3rem] rounded;
+
+  .image {
+    @apply relative h-full;
+
+    img {
+      @apply h-full w-[10rem] rounded;
+    }
+  }
+
+  .content {
+    @apply w-full flex justify-between;
+
+    .title {
+      @apply text-white ml-[1rem];
+      font-size: 1rem;
+
+      a {
+        @apply transition-all;
+        &:hover {
+          @apply underline;
+        }
+      }
+    }
+
+    .rightSide {
+      @apply flex flex-col justify-between;
+
+      .price {
+        @apply text-right text-white;
+        font-size: 1rem;
+      }
+
+      .remove {
+        @apply text-border-gray font-semibold border-b border-border-gray transition-all;
+        font-size: 0.9rem;
+
+        &:hover {
+          @apply text-white border-white;
+        }
+      }
+    }
+  }
+}

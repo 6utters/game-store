@@ -1,20 +1,5 @@
-import { FC } from 'react'
-import Layout from '../../app/components/layout/Layout.'
-import AdminLayout from '../../app/components/layout/adminLayout/AdminLayout'
-import GenresPanel from '../../app/components/pages/admin/genresPanel/GenresPanel'
+import { AdminGenresPage } from '@/pages/adminPage'
 
-const Genres: FC = () => {
-	return (
-		<Layout
-			showHeader={true}
-			title={'D&D Games | Admin panel | Genres Panel'}
-			showFooter={false}
-		>
-			<AdminLayout>
-				<GenresPanel />
-			</AdminLayout>
-		</Layout>
-	)
-}
+const Genres = () => <AdminGenresPage />
 
 export default Genres

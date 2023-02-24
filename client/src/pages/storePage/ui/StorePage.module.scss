@@ -1,0 +1,16 @@
+.container {
+  @apply relative h-full w-full;
+
+  .content {
+    @apply flex justify-between mx-auto;
+    width: 75%;
+
+    @media screen and (max-width: 766px) {
+      width: 90%;
+    }
+  }
+
+  .no_games {
+    @apply text-sm text-white;
+  }
+}

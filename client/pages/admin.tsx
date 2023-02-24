@@ -1,20 +1,5 @@
-import { FC } from 'react'
-import Admin from '../app/components/pages/admin/Admin'
-import Layout from '../app/components/layout/Layout.'
-import AdminLayout from '../app/components/layout/adminLayout/AdminLayout'
+import { AdminPage } from '@/pages/adminPage'
 
-const AdminPage: FC = () => {
-	return (
-		<Layout
-			showHeader={true}
-			title={'D&D Games | Admin panel'}
-			showFooter={false}
-		>
-			<AdminLayout>
-				<Admin />
-			</AdminLayout>
-		</Layout>
-	)
-}
+const Admin = () => <AdminPage />
 
-export default AdminPage
+export default Admin

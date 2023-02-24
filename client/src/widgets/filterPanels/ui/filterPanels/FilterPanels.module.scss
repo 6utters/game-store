@@ -1,0 +1,7 @@
+.filters {
+  @apply w-1/5;
+
+  @media screen and (max-width: 766px) {
+    display: none;
+  }
+}
