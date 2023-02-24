@@ -31,16 +31,6 @@ export const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 				{sortedMedia.map(mediaItem => (
 					<SwiperSlide key={mediaItem.id}>
 						{mediaItem.type === 'video' ? (
-							// <ReactPlayer
-							// 	url={`http://localhost:5000${mediaItem.url}`}
-							// 	className={'player'}
-							// 	controls={true}
-							// 	pip={true}
-							// 	playing={true}
-							// 	muted={true}
-							// 	width='100%'
-							// 	height='27.5rem'
-							// />
 							<ReactPlayer source={mediaItem.url} className={'player'} />
 						) : (
 							<img

@@ -10,8 +10,6 @@ import { useAppDispatch } from '@/shared/lib/hooks'
 
 import styles from './GenreFilter.module.scss'
 
-//TODO: use separate component for filters
-
 interface GenreFilterProps {
 	selectedGenres?: Genre[]
 	genres?: Genre[]

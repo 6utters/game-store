@@ -32,7 +32,6 @@ const CartPage: FC = () => {
 		[cartGames],
 	)
 
-	// TODO: realize discount logic
 	const discount = 0
 
 	return (

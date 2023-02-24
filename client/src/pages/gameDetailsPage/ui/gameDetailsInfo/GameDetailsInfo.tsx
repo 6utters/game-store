@@ -29,8 +29,7 @@ export const GameDetailsInfo: FC<GameDetailsInfoProps> = memo(props => {
 	const dispatch = useAppDispatch()
 
 	const aboutInfoParagraphs = useMemo(() => {
-		const { gameId, id, mainInfo, createdAt, updatedAt, ...paragraphs } =
-			gameAbout
+		const { gameId, mainInfo, ...paragraphs } = gameAbout
 		return Object.values(paragraphs).map((paragraph, index) => {
 			return <p key={paragraph + index}>{paragraph}</p>
 		})

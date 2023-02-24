@@ -1,12 +1,11 @@
 import { FC, forwardRef, InputHTMLAttributes } from 'react'
-import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
 
 import cn from 'classnames'
 
 import styles from './Input.module.scss'
 
 export interface FieldProps {
-	error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>
+	error?: any
 }
 
 type TypedInputPropsField = InputHTMLAttributes<HTMLInputElement> & FieldProps

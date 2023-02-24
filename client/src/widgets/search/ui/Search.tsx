@@ -8,8 +8,11 @@ import { useSearch } from '../model/lib/useSearch'
 
 import styles from './Search.module.scss'
 
-export const Search: FC = memo(() => {
+export const Search: FC = () => {
 	const { data, handleSearch, searchTerm, visible } = useSearch()
+
+	const Icon = memo(() => <BiSearch className={styles.search_icon} />)
+
 	return (
 		<div className={styles.container} ref={visible.ref}>
 			<div className={styles.input}>
@@ -19,7 +22,7 @@ export const Search: FC = memo(() => {
 					value={searchTerm}
 					onChange={handleSearch}
 				/>
-				<BiSearch className={styles.search_icon} />
+				<Icon />
 			</div>
 			{visible.isShown && (
 				<div className={styles.drop_down} ref={visible.ref}>
@@ -38,4 +41,4 @@ export const Search: FC = memo(() => {
 			)}
 		</div>
 	)
-})
+}

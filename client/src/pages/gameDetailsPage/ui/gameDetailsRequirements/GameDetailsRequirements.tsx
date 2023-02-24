@@ -7,8 +7,6 @@ interface GameDetailsRequirementsProps {
 	gameInfo: GameInfo
 }
 
-//todo: try to refactor
-
 export const GameDetailsRequirements: FC<GameDetailsRequirementsProps> = memo(
 	({ gameInfo }) => (
 		<div className={styles.container}>

@@ -4,8 +4,6 @@ import { GameMedia } from '@/entities/Game/model/types/GameSchema'
 
 import styles from './GameDetailsImages.module.scss'
 
-//todo: implement next Image
-
 interface GameDetailsImagesProps {
 	media?: GameMedia[]
 }

@@ -15,7 +15,6 @@ interface IGameCardProps {
 }
 
 //todo: change skeleton
-//todo: change img => Image
 
 export const GameCard: FC<IGameCardProps> = memo(
 	({ name, price, image, gameId }) => {
