@@ -14,7 +14,11 @@ interface LogoProps {
 }
 
 export const Logo: FC<LogoProps> = ({ size, className }) => (
-	<Link href={STORE_ROUTE} className={cn(styles.logo, className)}>
+	<Link
+		data-testid='Logo'
+		href={STORE_ROUTE}
+		className={cn(styles.logo, className)}
+	>
 		<Image src={logoSvg} height={size} width={size} alt={'appLogo'} />
 		<h2>
 			<span>D</span>&<span>D</span> Games
