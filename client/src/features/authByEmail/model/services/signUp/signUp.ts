@@ -31,6 +31,6 @@ export const signUp = createAsyncThunk<
 
 		return response.data
 	} catch (e: any) {
-		rejectWithValue(e.response.data.message)
+		return rejectWithValue(e.response.data.message)
 	}
 })

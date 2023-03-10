@@ -14,7 +14,7 @@ export const Search: FC = () => {
 	const Icon = memo(() => <BiSearch className={styles.search_icon} />)
 
 	return (
-		<div className={styles.container} ref={visible.ref}>
+		<div data-testid='search' className={styles.container} ref={visible.ref}>
 			<div className={styles.input}>
 				<input
 					type='text'
@@ -25,7 +25,11 @@ export const Search: FC = () => {
 				<Icon />
 			</div>
 			{visible.isShown && (
-				<div className={styles.drop_down} ref={visible.ref}>
+				<div
+					data-testid='search_dropdown'
+					className={styles.drop_down}
+					ref={visible.ref}
+				>
 					{data?.length ? (
 						data.map(game => (
 							<div className={styles.search_item} key={game.id}>
