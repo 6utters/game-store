@@ -1,5 +1,6 @@
 .container {
   @apply relative h-full w-full flex justify-center;
+  background: rgb(18, 18, 18);
 
   .content {
     @apply w-3/4 h-full flex justify-between;

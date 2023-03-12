@@ -23,9 +23,6 @@ const UserMenu: FC = memo(() => {
 	const user = useSelector(getUserAuthData)
 	const isAdmin = useSelector(getIsUserAdmin)
 
-	console.log('user:', user?.roles)
-	console.log('isAdmin:', isAdmin)
-
 	const userOptions = userMenuLinks.filter(link => link.adminOnly === false)
 
 	const onLogOutClick = useCallback(async () => {

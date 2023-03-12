@@ -1,5 +1,5 @@
 .user {
-  @apply relative;
+  @apply relative w-fit;
 
   > .online {
     @apply absolute h-[0.5rem] w-[0.5rem] bg-online rounded;

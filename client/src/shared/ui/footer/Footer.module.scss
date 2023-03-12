@@ -13,14 +13,12 @@
       &:hover {
         @apply text-basic-yellow;
       }
-
     }
 
     &_links {
       @apply flex justify-between;
       width: 8%;
     }
-
   }
 
   .resources {
@@ -34,7 +32,7 @@
     &_links {
       @apply text-white font-semibold mb-[0.5rem];
       opacity: 90%;
-      width: 32%;
+      width: 35%;
       font-size: 0.8rem;
       display: grid;
       grid-template-columns: 3fr 3fr 3fr;

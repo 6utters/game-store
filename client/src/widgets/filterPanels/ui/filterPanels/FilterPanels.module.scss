@@ -1,5 +1,6 @@
 .filters {
   @apply w-1/5;
+  background: rgb(18, 18, 18);
 
   @media screen and (max-width: 766px) {
     display: none;

@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { StoreProvider } from '@/app/providers/storeProvider'
 import { AuthProvider, ComponentAuthFields } from '@/app/providers/authProvider'
 import localFont from '@next/font/local'
+import cn from 'classnames'
 
 const inter = localFont({
 	src: '../public/fonts/inter-v12-latin-regular.woff2',
@@ -25,7 +26,7 @@ function MyApp({ Component, pageProps }: EnhancedAppProps) {
 		<QueryClientProvider client={queryClient}>
 			<StoreProvider>
 				<AuthProvider Component={Component}>
-					<main className={inter.className} id={'mainApp'}>
+					<main className={cn('app', inter.className)} id={'mainApp'}>
 						<Component {...pageProps} />
 					</main>
 				</AuthProvider>

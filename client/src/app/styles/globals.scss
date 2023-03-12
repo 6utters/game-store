@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "reset";
 @import "scrollbar";
 
 * {
@@ -11,8 +12,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  //font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+}
+
+.app {
   background: rgb(18, 18, 18);
+  min-height: 100vh;
 }
 
 

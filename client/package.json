@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test:unit": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -c ./config/storybook",
+    "build-storybook": "build-storybook -c ./config/storybook"
   },
   "dependencies": {
     "@next/font": "^13.1.6",
@@ -61,6 +61,7 @@
     "jest-environment-jsdom": "^29.4.3",
     "jsdom": "^21.1.0",
     "postcss": "^8.4.21",
+    "storybook-addon-next": "^1.7.3",
     "tailwindcss": "^3.2.4",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
