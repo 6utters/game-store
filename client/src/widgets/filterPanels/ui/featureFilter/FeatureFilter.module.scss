@@ -1,5 +1,6 @@
 .feature_filter {
   @apply transition-all;
+  background: rgb(18, 18, 18);
 
   @media screen and (max-width: 766px) {
     display: none;

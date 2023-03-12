@@ -13,7 +13,10 @@ type TypedInputPropsField = InputHTMLAttributes<HTMLInputElement> & FieldProps
 export interface Input extends TypedInputPropsField {}
 
 const Input: FC<Input> = forwardRef<HTMLInputElement, Input>(
-	({ error, type = 'text', style, ...rest }, ref) => {
+	(
+		{ error, type = 'text', style, placeholder = '', value = '', ...rest },
+		ref,
+	) => {
 		return (
 			<div
 				className={cn(styles.input, {

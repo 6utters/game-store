@@ -1,5 +1,6 @@
 .container {
   @apply relative h-full w-full;
+  background: rgb(18, 18, 18);
 
   .content {
     @apply flex justify-between mx-auto;

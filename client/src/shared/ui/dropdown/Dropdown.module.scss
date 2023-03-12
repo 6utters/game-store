@@ -1,5 +1,5 @@
 .dropdown {
-  @apply relative h-full;
+  @apply relative h-full w-fit text-stone-400;
 
   &:hover ul, &:focus ul {
     opacity: 1;

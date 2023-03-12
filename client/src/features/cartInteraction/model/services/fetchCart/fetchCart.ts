@@ -17,7 +17,7 @@ export const fetchCart = createAsyncThunk<any, void, ThunkConfig<string>>(
 
 			return response.data
 		} catch (e: any) {
-			rejectWithValue(e.response.data.message)
+			return rejectWithValue(e.response.data.message)
 		}
 	},
 )

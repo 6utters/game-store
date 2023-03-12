@@ -12,7 +12,7 @@ export const Toolbar: FC = memo(() => {
 	const cartGames = useSelector(getCartGames)
 
 	return (
-		<nav className={styles.toolbar}>
+		<nav data-testid='toolbar' className={styles.toolbar}>
 			<div className={styles.content}>
 				<div className={styles.left}>
 					<Search />

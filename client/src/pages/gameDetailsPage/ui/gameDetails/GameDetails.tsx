@@ -2,11 +2,10 @@ import { FC, memo } from 'react'
 
 import { GameSchema } from '@/entities/Game'
 
+import { GameSlider } from '../GameDetailsSlider/GameDetailsSlider'
 import { GameDetailsInfo } from '../gameDetailsInfo/GameDetailsInfo'
 import { GameDetailsImages } from '../gameDetailsImages/GameDetailsImages'
 import { GameDetailsRequirements } from '../gameDetailsRequirements/GameDetailsRequirements'
-
-import { GameSlider } from '../GameDetailsSlider/GameDetailsSlider'
 
 import styles from './GameDetails.module.scss'
 

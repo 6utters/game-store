@@ -8,11 +8,15 @@ import { GameMedia } from '@/entities/Game/model/types/GameSchema'
 const ReactPlayer = dynamic(() => import('@/widgets/player/ui/player/Player'), {
 	ssr: false,
 })
-
 //todo: refactor slider
 
-export const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
-	const [activeThumb, setActiveThumb] = useState()
+interface GameSliderProps {
+	media: GameMedia[]
+}
+
+export const GameSlider: FC<GameSliderProps> = ({ media }) => {
+	// @ts-ignore
+	const [activeThumb, setActiveThumb] = useState<Swiper>(null)
 	const videos = media.filter(m => m.type === 'video')
 	const images = media.filter(m => m.type === 'image')
 	const sortedMedia = [...videos, ...images]
@@ -24,7 +28,9 @@ export const GameSlider: FC<{ media: GameMedia[] }> = ({ media }) => {
 				spaceBetween={10}
 				navigation={true}
 				modules={[Navigation, Thumbs]}
-				thumbs={{ swiper: activeThumb }}
+				thumbs={{
+					swiper: activeThumb && !activeThumb.destroyed ? activeThumb : null,
+				}}
 				simulateTouch={false}
 				className={'game-media-slider'}
 			>
