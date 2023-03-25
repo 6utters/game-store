@@ -6,7 +6,7 @@ import { QueryDecorator } from '@/shared/config/storybook/QueryDecorator'
 export default {
 	title: 'pages/StorePage',
 	component: StorePage,
-	decorators: [StoreDecorator({}), QueryDecorator()],
+	decorators: [StoreDecorator(), QueryDecorator()],
 } as ComponentMeta<typeof StorePage>
 
 const Template: ComponentStory<typeof StorePage> = args => (

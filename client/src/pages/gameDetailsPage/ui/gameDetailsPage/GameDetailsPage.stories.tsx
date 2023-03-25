@@ -6,7 +6,7 @@ import { QueryDecorator } from '@/shared/config/storybook/QueryDecorator'
 export default {
 	title: 'pages/GameDetailsPage',
 	component: GameDetailsPage,
-	decorators: [StoreDecorator({}), QueryDecorator()],
+	decorators: [StoreDecorator(), QueryDecorator()],
 	args: {
 		game: {
 			id: 1,

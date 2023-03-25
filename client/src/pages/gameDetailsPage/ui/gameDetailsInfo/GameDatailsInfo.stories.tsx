@@ -37,7 +37,7 @@ export default {
 			},
 		},
 	},
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 } as ComponentMeta<typeof GameDetailsInfo>
 
 const Template: ComponentStory<typeof GameDetailsInfo> = args => (

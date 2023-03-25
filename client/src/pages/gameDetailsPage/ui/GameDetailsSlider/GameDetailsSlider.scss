@@ -1,5 +1,5 @@
 .game-media-slider {
-  @apply relative h-[27.5rem] mb-[1rem];
+  @apply relative h-full mb-[1rem];
   .swiper-slide {
     @apply relative overflow-hidden;
     padding-top: 100%;

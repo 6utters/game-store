@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 export default {
 	title: 'pages/StorePage',
 	component: GameDetails,
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 } as ComponentMeta<typeof GameDetails>
 
 const Template: ComponentStory<typeof GameDetails> = args => (

@@ -21,9 +21,7 @@ export const GameDetails: FC<GameDetailsProps> = memo(({ game }) => {
 	return (
 		<div className={styles.container}>
 			{/*<GameDetailsRating gameId={game.id} />*/}
-			<div className={styles.sliderWrapper}>
-				<GameSlider media={game.gameMedia} />
-			</div>
+			<GameSlider media={game.gameMedia} />
 			<GameDetailsInfo game={game} />
 			<GameDetailsImages media={game.gameMedia} />
 			<GameDetailsRequirements gameInfo={game.gameInfo} />

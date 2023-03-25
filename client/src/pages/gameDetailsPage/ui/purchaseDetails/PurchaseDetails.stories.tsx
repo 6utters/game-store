@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 export default {
 	title: 'pages/PurchaseDetails',
 	component: PurchaseDetails,
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 	args: {
 		game: {
 			id: 1,

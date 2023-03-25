@@ -11,7 +11,7 @@ export default {
 		withNavbar: true,
 		withFooter: true,
 	},
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 } as ComponentMeta<typeof Layout>
 
 const Template: ComponentStory<typeof Layout> = args => <Layout {...args} />

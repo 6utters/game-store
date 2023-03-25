@@ -15,7 +15,7 @@ export default {
 			{ featureName: 'test genre 2', id: 2 },
 		],
 	},
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 } as ComponentMeta<typeof FilterPanels>
 
 const Template: ComponentStory<typeof FilterPanels> = args => (

@@ -1,0 +1,11 @@
+.carouselArrow {
+  @apply flex items-center justify-center text-white text-5xl z-20 bottom-8;
+
+  &.left {
+    @apply right-24;
+  }
+
+  &.right {
+    @apply right-8;
+  }
+}
