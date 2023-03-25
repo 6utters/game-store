@@ -19,8 +19,6 @@ export const refresh = createAsyncThunk<
 			throw new Error()
 		}
 
-		console.log('refresh response.data:', response.data)
-
 		localStorage.setItem(
 			ACCESS_TOKEN_LOCAL_STORAGE_KEY,
 			response.data.accessToken,

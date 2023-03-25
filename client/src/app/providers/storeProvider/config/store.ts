@@ -42,10 +42,7 @@ export function createReduxStore(
 	return store
 }
 
-export const createStore = (
-	initialState?: StateSchema,
-	asyncReducers?: ReducersMapObject<StateSchema>,
-) => createReduxStore(initialState, asyncReducers)
+export const store = createReduxStore()
 
 export type AppStore = ReturnType<typeof createReduxStore>
 export type AppDispatch = AppStore['dispatch']

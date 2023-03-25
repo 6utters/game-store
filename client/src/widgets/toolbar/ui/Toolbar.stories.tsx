@@ -6,7 +6,7 @@ import { QueryDecorator } from '@/shared/config/storybook/QueryDecorator'
 export default {
 	title: 'widgets/Toolbar',
 	component: Toolbar,
-	decorators: [StoreDecorator({}), QueryDecorator()],
+	decorators: [StoreDecorator(), QueryDecorator()],
 } as ComponentMeta<typeof Toolbar>
 
 const Template: ComponentStory<typeof Toolbar> = args => <Toolbar {...args} />

@@ -12,7 +12,7 @@ export default {
 		],
 		selectedFeatures: [{ featureName: 'test genre 1', id: 1 }],
 	},
-	decorators: [StoreDecorator({})],
+	decorators: [StoreDecorator()],
 } as ComponentMeta<typeof FeatureFilter>
 
 const Template: ComponentStory<typeof FeatureFilter> = args => (

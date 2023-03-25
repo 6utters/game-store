@@ -2,7 +2,7 @@
   @apply relative w-full h-[3.7rem] rounded-[4px] border border-border-gray mb-[1rem];
 
   input {
-    @apply w-full h-full pl-[0.5rem] text-white bg-basic-gray;
+    @apply w-full h-full pl-[0.5rem] text-white bg-transparent;
     outline: none;
 
     &::placeholder {

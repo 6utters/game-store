@@ -15,8 +15,30 @@ body {
 }
 
 .app {
+  @apply text-stone-400;
   background: rgb(18, 18, 18);
   min-height: 100vh;
+}
+
+.carousel-animation-enter {
+  //opacity: 0;
+  //transform: scale(0.9);
+}
+
+.carousel-animation-enter-active {
+  //opacity: 1;
+  //transform: translateX(0);
+  //transition: opacity 300ms, tranform 300ms;
+}
+
+.carousel-animation-exit {
+  //opacity: 1;
+}
+
+.carousel-animation-exit-active {
+  //opacity: 0;
+  //transform: scale(0.9);
+  //transition: opacity 300ms, tranform 300ms;
 }
 
 

@@ -1,4 +1,4 @@
-import { StateSchema, StoreProvider } from '@/app/providers/storeProvider'
+import { StoreProvider } from '@/app/providers/storeProvider'
 import { ReducerList } from '@/shared/lib'
 import { fetchFilteredGameListReducer } from '@/features/fetchFilteredGameList'
 import { authByEmailReducer } from '@/features/authByEmail'
@@ -11,14 +11,9 @@ const defaultAsyncReducers: ReducerList = {
 	cartInteraction: cartInteractionReducer,
 }
 
-export const StoreDecorator =
-	(state: DeepPartial<StateSchema>, asyncReducers?: ReducerList) =>
-	(StoryComponent: Story) =>
-		(
-			<StoreProvider
-				initialState={state}
-				asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
-			>
-				<StoryComponent />
-			</StoreProvider>
-		)
+export const StoreDecorator = () => (StoryComponent: Story) =>
+	(
+		<StoreProvider>
+			<StoryComponent />
+		</StoreProvider>
+	)
