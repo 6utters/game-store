@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import cn from 'classnames'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
@@ -10,7 +10,7 @@ interface CarouselArrowProps {
 	clickHandler: () => void
 }
 
-export const CarouselArrow: FC<CarouselArrowProps> = props => {
+export const CarouselArrow: FC<CarouselArrowProps> = memo(props => {
 	const { clickHandler, variant, className } = props
 
 	const isLeft = variant === 'left'
@@ -27,4 +27,4 @@ export const CarouselArrow: FC<CarouselArrowProps> = props => {
 			{isLeft ? <MdChevronLeft /> : <MdChevronRight />}
 		</button>
 	)
-}
+})
