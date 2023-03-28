@@ -1,9 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { VideoElement } from '../../type/player'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-export const usePlayer = (autoStart = false) => {
+export interface VideoElement extends HTMLVideoElement {
+	msRequestFullscreen?: () => void
+	mozRequestFullscreen?: () => void
+	webkitRequestFullscreen?: () => void
+}
+
+export const usePlayer = () => {
 	const videoRef = useRef<VideoElement | null>(null)
-	const videoElementDuration = videoRef.current?.duration
 
 	const [isPlaying, setPlaying] = useState(false)
 	const [currentTime, setCurrentTime] = useState(0)
@@ -11,8 +15,9 @@ export const usePlayer = (autoStart = false) => {
 	const [progress, setProgress] = useState(0)
 
 	useEffect(() => {
-		if (videoElementDuration) setVideoDuration(videoElementDuration)
-	}, [videoElementDuration])
+		const duration = videoRef.current?.duration
+		if (duration) setVideoDuration(duration)
+	}, [videoRef.current?.duration])
 
 	const toggleVideo = useCallback(() => {
 		if (!isPlaying) {
@@ -24,28 +29,28 @@ export const usePlayer = (autoStart = false) => {
 		}
 	}, [isPlaying])
 
-	const forward = useCallback(() => {
-		if (videoRef.current) videoRef.current.currentTime += 10
-	}, [videoRef.current])
+	const setNewProgress = (secs: number) => {
+		if (videoRef.current) {
+			setCurrentTime(secs)
+			videoRef.current.currentTime = secs
+			setProgress((secs / videoDuration) * 100)
+		}
+	}
 
-	const backward = useCallback(() => {
-		if (videoRef.current) videoRef.current.currentTime -= 10
-	}, [videoRef.current])
-
-	const fullScreen = useCallback(() => {
+	const fullscreen = () => {
 		const video = videoRef.current
 		if (!video) return
 
 		if (video.msRequestFullscreen) {
+			video.msRequestFullscreen()
+		} else if (video.mozRequestFullscreen) {
+			video.mozRequestFullscreen()
+		} else if (video.webkitRequestFullscreen) {
+			video.webkitRequestFullscreen()
+		} else {
 			video.requestFullscreen()
 		}
-		if (video.mozRequestFullscreen) {
-			video.requestFullscreen()
-		}
-		if (video.webkitRequestFullscreen) {
-			video.requestFullscreen()
-		}
-	}, [videoRef.current])
+	}
 
 	useEffect(() => {
 		const video = videoRef.current
@@ -66,22 +71,11 @@ export const usePlayer = (autoStart = false) => {
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			switch (e.key) {
-				case 'ArrowRight':
-					forward()
-					break
-				case 'ArrowLeft':
-					backward()
-					break
-				case ' ': {
-					e.preventDefault()
-					toggleVideo()
-					break
-				}
 				case 'f':
-					fullScreen()
+					fullscreen()
 					break
 				default:
-					break
+					return
 			}
 		}
 
@@ -92,12 +86,17 @@ export const usePlayer = (autoStart = false) => {
 		}
 	}, [toggleVideo])
 
-	return useMemo(
-		() => ({
-			videoRef,
-			actions: { fullScreen, forward, backward, toggleVideo },
-			video: { isPlaying, currentTime, progress, videoDuration },
-		}),
-		[currentTime, videoDuration, progress, isPlaying],
-	)
+	console.log('progress:', progress)
+
+	return {
+		videoRef,
+		actions: { fullscreen, toggleVideo },
+		video: {
+			isPlaying,
+			currentTime,
+			videoDuration,
+			progress,
+			setNewProgress,
+		},
+	}
 }
