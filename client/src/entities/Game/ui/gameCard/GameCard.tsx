@@ -21,22 +21,27 @@ export const GameCard: FC<IGameCardProps> = memo(
 		const actualPrice = price - 0.01
 
 		return (
-			<Link href={`${GAME_ROUTE}/${gameId}`} className={styles.card}>
-				<div className={styles.cover}>
-					<Image
-						src={`http://localhost:5000${convertImagePath(image)}`}
-						alt='gameImage'
-						quality={80}
-						fill
-					/>
-				</div>
-				<div className={styles.title}>
-					<h3>{name}</h3>
-				</div>
-				<div className={styles.price}>
-					<p>{`$${actualPrice}`}</p>
-				</div>
-			</Link>
+			<li className={styles.card_container}>
+				<Link href={`${GAME_ROUTE}/${gameId}`} className={styles.card}>
+					<div className={styles.cover}>
+						<Image
+							src={`http://localhost:5000${convertImagePath(image)}`}
+							alt='game_card_cover'
+							width='100'
+							height='100'
+							sizes='100vw'
+						/>
+					</div>
+					<div className={styles.info}>
+						<div className={styles.title}>
+							<h3>{name}</h3>
+						</div>
+						<div className={styles.price}>
+							<p>{`$${actualPrice}`}</p>
+						</div>
+					</div>
+				</Link>
+			</li>
 		)
 	},
 )

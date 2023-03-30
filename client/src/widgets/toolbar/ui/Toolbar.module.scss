@@ -1,47 +1,68 @@
-.toolbar {
-  @apply sticky top-0 w-full h-[6.25rem] bg-black-primary flex justify-center z-50;
+.container {
+  background-color: rgb(18, 18, 18);
+  position: sticky;
+  top: 0px;
 
-  .content {
-    @apply flex items-center justify-between;
+  @media (min-width: 1024px) {
+    height: 100px;
+  }
+
+  .toolbar {
+    //@apply sticky top-0 w-full h-[6.25rem] bg-black-primary flex justify-center z-50;
+    margin-left: auto;
+    margin-right: auto;
     width: 75%;
-  }
+    max-width: 1600px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
 
-  .left {
-    @apply flex items-center;
-
-    a {
-      @apply ml-[2rem] text-border-gray text-sm font-medium;
-
-      &:hover {
-        @apply text-white transition-all;
-      }
+    .content {
+      @apply flex items-center justify-between;
+      width: 100%;
     }
 
-    .activeLink {
-      @apply text-white;
-    }
-  }
+    .left {
+      @apply flex items-center;
 
-  .right {
-    @apply flex items-center;
+      a {
+        @apply ml-[2rem] text-border-gray text-sm font-medium;
 
-    button {
-      @apply relative ml-[1.8rem] text-border-gray text-sm font-medium;
-
-      &:hover {
-        @apply text-white transition-all;
-
-        span {
-          @apply text-basic-black;
+        &:hover {
+          @apply text-white transition-all;
         }
       }
 
-      span {
-        @apply absolute inline-block bg-white w-[1rem] rounded-3xl ml-[0.2rem] text-basic-black;
-        top: 0;
-        right: -1.3rem;
+      .activeLink {
+        @apply text-white;
       }
     }
 
+    .right {
+      @apply flex items-center;
+
+      button {
+        @apply relative ml-[1.8rem] text-border-gray text-sm font-medium;
+
+        &:hover {
+          @apply text-white transition-all;
+
+          span {
+            @apply text-basic-black;
+          }
+        }
+
+        span {
+          @apply absolute inline-block bg-white w-[1rem] rounded-3xl ml-[0.2rem] text-basic-black;
+          top: 0;
+          right: -1.3rem;
+        }
+      }
+    }
   }
 }

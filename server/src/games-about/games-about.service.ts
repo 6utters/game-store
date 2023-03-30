@@ -18,7 +18,6 @@ export class GamesAboutService {
 			await game.$set('gameAbout', gameAbout)
 			return game
 		} catch (e) {
-			console.log(e)
 			throw new HttpException('Something went wrong', HttpStatus.BAD_REQUEST)
 		}
 	}

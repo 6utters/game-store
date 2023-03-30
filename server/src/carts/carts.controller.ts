@@ -38,18 +38,12 @@ export class CartsController {
 		return this.cartsService.getCart(id)
 	}
 
-	// @Get('cartgames')
-	// @UseGuards(AuthGuard)
-	// getCartGames(@CurrentUser('id') id: number) {
-	// 	return this.cartsService.getCartGames(id)
-	// }
 	@Get('/cartgames')
 	@UseGuards(AuthGuard)
 	getCartGames(
 		// @CurrentUser('id') id: number,
 		@Query('gameId') gameIds: number[],
 	) {
-		console.log('ids:', gameIds)
 		return this.cartsService.getCartGames(gameIds)
 	}
 }

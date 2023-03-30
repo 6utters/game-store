@@ -25,8 +25,6 @@ export const signIn = createAsyncThunk<
 		if (!response.data) {
 			throw new Error()
 		}
-		console.log('signin response.data:', response.data)
-
 		localStorage.setItem(
 			ACCESS_TOKEN_LOCAL_STORAGE_KEY,
 			response.data.accessToken,
@@ -36,7 +34,6 @@ export const signIn = createAsyncThunk<
 
 		return response.data
 	} catch (e: any) {
-		console.log('e.response.data.message:', e.response.data.message)
 		return rejectWithValue(e.response.data.message)
 	}
 })

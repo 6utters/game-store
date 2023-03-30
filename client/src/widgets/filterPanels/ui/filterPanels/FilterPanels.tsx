@@ -14,7 +14,6 @@ import { Feature } from '@/entities/Feature'
 
 import styles from './FilterPanels.module.scss'
 
-
 interface FilterPanelsProps {
 	genres?: Genre[]
 
@@ -32,13 +31,13 @@ const FilterPanels: FC<FilterPanelsProps> = props => {
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
-			<div className={styles.filters}>
+			<aside className={styles.filters}>
 				<GenreFilter genres={genres} selectedGenres={selectedGenres} />
 				<FeatureFilter
 					features={features}
 					selectedFeatures={selectedFeatures}
 				/>
-			</div>
+			</aside>
 		</DynamicModuleLoader>
 	)
 }

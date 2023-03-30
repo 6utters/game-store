@@ -5,7 +5,6 @@ import { GameSchema } from '@/entities/Game'
 
 import { GameDetails } from '../gameDetails/GameDetails'
 import { PurchaseDetails } from '../purchaseDetails/PurchaseDetails'
-import { Toolbar } from '@/widgets/toolbar'
 
 import styles from './GameDetailsPage.module.scss'
 
@@ -15,13 +14,10 @@ interface GamePageProps {
 
 const GameDetailsPage: FC<GamePageProps> = memo(({ game }) => {
 	return (
-		<Layout title={`D&D Games | ${game?.gameName}`} withNavbar withFooter>
-			<Toolbar />
+		<Layout title={`D&D Games | ${game?.gameName}`}>
 			<div className={styles.container}>
-				<div className={styles.content}>
-					<GameDetails game={game} />
-					<PurchaseDetails game={game} />
-				</div>
+				<GameDetails game={game} />
+				<PurchaseDetails game={game} />
 			</div>
 		</Layout>
 	)
