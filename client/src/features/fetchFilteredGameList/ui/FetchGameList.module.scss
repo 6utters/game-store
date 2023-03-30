@@ -1,22 +1,4 @@
-.games {
-  @apply h-full w-4/5;
-
-  &_list {
-    @apply w-full pr-[2rem];
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-auto-rows: 25rem;
-    grid-gap: 1rem;
-  }
-
-  @media screen and (max-width: 766px) {
-    @apply w-full;
-
-    &_list {
-      @apply pr-0;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 25rem;
-      grid-gap: 0.5rem;
-    }
-  }
+.games_container {
+  @apply pr-[0.938rem];
+  width: calc(100% - 245px);
 }

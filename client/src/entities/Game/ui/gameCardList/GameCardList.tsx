@@ -40,9 +40,13 @@ export const GameCardList: FC<GameCardListProps> = props => {
 	}
 
 	return (
-		<div className={cn(styles.gameCardList, className)}>
-			{games && !!games.length && games.map(renderGameCard)}
-			{isLoading && getSkeletons()}
-		</div>
+		<section className={cn(styles.games_section, className)}>
+			<ul className={styles.game_list}>
+				{games && !!games.length && games.map(renderGameCard)}
+				{games && !!games.length && games.map(renderGameCard)}
+				{games && !!games.length && games.map(renderGameCard)}
+				{isLoading && getSkeletons()}
+			</ul>
+		</section>
 	)
 }

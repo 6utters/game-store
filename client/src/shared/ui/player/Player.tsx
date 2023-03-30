@@ -1,4 +1,4 @@
-import { FC, memo, useRef, useState } from 'react'
+import { FC, memo, useCallback, useRef, useState } from 'react'
 import cn from 'classnames'
 import { usePlayer } from '@/shared/lib/hooks'
 
@@ -20,6 +20,7 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 	const { videoRef, video, actions } = usePlayer()
 	const [visibleControls, setVisibleControls] = useState(false)
 	const progressBarRef = useRef<HTMLDivElement | null>(null)
+	const [showCentralIcon, setShowCentralIcon] = useState(false)
 
 	const onMouseEnterHandler = () => {
 		if (!visibleControls) setVisibleControls(true)
@@ -27,18 +28,21 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 	}
 
 	const onMouseLeaveHandler = () => {
-		setTimeout(() => {
-			setVisibleControls(false)
-		}, 1000)
+		setVisibleControls(false)
 	}
 
-	const mouseClickHandler = (e: any) => {
+	const toggleVideoHandler = useCallback(() => {
+		setShowCentralIcon(true)
+		actions.toggleVideo()
+		setTimeout(() => setShowCentralIcon(false), 200)
+	}, [video.isPlaying])
+
+	const LineMouseClickHandler = (e: any) => {
 		if (progressBarRef.current) {
 			const expectedTimeCode =
 				e.clientX - progressBarRef.current?.getClientRects()[0].x
 			const videoWidth = progressBarRef.current?.getClientRects()[0].width
 			const timeCodeSecs = (video.videoDuration * expectedTimeCode) / videoWidth
-			console.log('timeCodeSecs:', timeCodeSecs)
 			video.setNewProgress(timeCodeSecs)
 		}
 	}
@@ -55,8 +59,14 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 				src={source}
 				preload='metadata'
 			/>
-			<div className={styles.play_btn}></div>
-			<button />
+			<div
+				className={cn(styles.play_icon, {
+					[styles.show_icon]: showCentralIcon,
+				})}
+			>
+				<span>{video.isPlaying ? <BsPauseFill /> : <BsPlayFill />}</span>
+			</div>
+			<button className={styles.play_btn} onClick={toggleVideoHandler} />
 			<div
 				className={cn(styles.panel, {
 					[styles.panel_visible]: visibleControls,
@@ -66,7 +76,7 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 					<div className={styles.progress_item} ref={progressBarRef}>
 						<button
 							className={styles.progress_btn}
-							onClick={mouseClickHandler}
+							onClick={LineMouseClickHandler}
 						/>
 						<div className={styles.progress_panel}>
 							<span
@@ -81,7 +91,7 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 						</div>
 					</div>
 				</div>
-				<div className={styles.play} onClick={actions.toggleVideo}>
+				<div className={styles.play} onClick={toggleVideoHandler}>
 					<button className={styles.icon_button}>
 						<span className={styles.icon}>
 							{video.isPlaying ? <BsPauseFill /> : <BsPlayFill />}
@@ -116,7 +126,7 @@ export const Player: FC<PlayerProps> = memo(({ source, className }) => {
 					</button>
 				</div>
 				<div className={styles.fullscreen}>
-					<button className={styles.icon_button}>
+					<button className={styles.icon_button} onClick={actions.fullscreen}>
 						<span className={styles.icon}>
 							<BsArrowsFullscreen />
 						</span>

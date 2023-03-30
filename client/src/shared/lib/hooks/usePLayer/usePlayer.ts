@@ -86,8 +86,6 @@ export const usePlayer = () => {
 		}
 	}, [toggleVideo])
 
-	console.log('progress:', progress)
-
 	return {
 		videoRef,
 		actions: { fullscreen, toggleVideo },

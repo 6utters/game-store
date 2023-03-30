@@ -9,6 +9,7 @@ import { useAppDispatch } from '@/shared/lib/hooks'
 import { GAME_ROUTE } from '@/shared/consts'
 
 import styles from './CartCard.module.scss'
+import Image from 'next/image'
 
 interface CartCardProps {
 	game: GameSchema
@@ -27,7 +28,10 @@ export const CartCard: FC<CartCardProps> = memo(({ game }) => {
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>
-				<img
+				<Image
+					width='100'
+					height='100'
+					sizes='100vh'
 					src={'http://localhost:5000' + convertImagePath(game.gameImage)}
 					alt='Game Image'
 				/>

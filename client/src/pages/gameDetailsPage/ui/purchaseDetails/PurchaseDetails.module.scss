@@ -1,6 +1,25 @@
 .container {
-  @apply h-full w-2/6 pl-[3rem];
-  background: rgb(18, 18, 18);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+
+  @media (min-width: 768px) {
+    top: 160px;
+    margin-left: 32px;
+    width: 256px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-left: 20px;
+    width: 260px;
+  }
+
+  @media (min-width: 1280px) {
+    margin-left: 64px;
+    width: 320px;
+  }
 
   .title {
     @apply w-full mt-[4rem] flex items-center justify-center;
@@ -12,7 +31,8 @@
   }
 
   > p {
-    @apply inline-block bg-basic-gray rounded uppercase my-[0.5rem] py-[0.4rem] px-[0.6rem] text-white font-semibold;
+    @apply block bg-basic-gray rounded uppercase my-[0.5rem] py-[0.4rem] px-[0.6rem] text-white font-semibold;
+    margin-right: auto;
     opacity: 90%;
     font-size: 0.6rem;
   }

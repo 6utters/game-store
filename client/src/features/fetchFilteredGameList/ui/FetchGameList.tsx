@@ -40,7 +40,7 @@ export const FetchGameList: FC<FetchGameListProps> = props => {
 	}
 
 	return (
-		<div className={cn(styles.games, className)}>
+		<div className={cn(styles.games_container, className)}>
 			<GameCardList
 				games={filteredGames ? filteredGames : games}
 				isLoading={isLoading}

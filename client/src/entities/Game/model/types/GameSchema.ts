@@ -21,6 +21,7 @@ export interface GameSchema {
 }
 
 export interface GameAbout {
+	id: number
 	gameId: number
 	mainInfo: string
 	fstP?: string
@@ -28,6 +29,8 @@ export interface GameAbout {
 	thdP?: string
 	ftsP?: string
 	thsP?: string
+	createdAt?: string
+	updatedAt?: string
 }
 
 export interface GameMedia extends Base {

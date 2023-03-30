@@ -1,15 +1,5 @@
 .container {
-  @apply relative h-full w-full;
-  background: rgb(18, 18, 18);
-
-  .content {
-    @apply flex justify-between mx-auto;
-    width: 75%;
-
-    @media screen and (max-width: 766px) {
-      width: 90%;
-    }
-  }
+  @apply flex justify-between mx-auto;
 
   .no_games {
     @apply text-sm text-white;

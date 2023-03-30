@@ -20,7 +20,6 @@ export const cartSlice = createSlice({
 			)
 		},
 		addToCart: (state, action: PayloadAction<CartGame>) => {
-			console.log('state.games:', state.games)
 			state.games.push(action.payload)
 			localStorage.setItem(
 				CART_GAMES_LOCAL_STORAGE_KEY,

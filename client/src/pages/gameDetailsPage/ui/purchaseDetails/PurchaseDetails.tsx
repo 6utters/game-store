@@ -35,7 +35,7 @@ export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
 	if (!game) return <Spinner />
 
 	return (
-		<div className={styles.container}>
+		<aside className={styles.container}>
 			<div className={styles.title}>
 				<p>{game.gameName}</p>
 			</div>
@@ -77,6 +77,6 @@ export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</aside>
 	)
 }

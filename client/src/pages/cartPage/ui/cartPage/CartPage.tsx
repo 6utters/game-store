@@ -36,7 +36,7 @@ const CartPage: FC = () => {
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
-			<Layout title={'D&D Games | Your CartSchema'} withNavbar withFooter>
+			<Layout title={'D&D Games | Your CartSchema'}>
 				<Toolbar />
 				<div className={styles.container}>
 					<div className={styles.title}>
