@@ -25,14 +25,16 @@ export class RatingsService {
 		return await this.ratingsRepository.destroy({
 			where: { userId, gameId: dto.gameId },
 		})
-		// return await this.rate(userId, dto)
 	}
 
-	async getRate(gameId: number): Promise<number> {
-		const ratings = await this.ratingsRepository.findAll({ where: { gameId } })
-		return (
-			ratings.reduce((total, next) => total + next.rate, 0) / ratings.length
-		)
+	async getRate(gameId: number): Promise<Rating[]> {
+		return await this.ratingsRepository.findAll({ where: { gameId } })
+		// if (ratings.length == 0) {
+		// 	return ratings.length
+		// }
+		// return (
+		// 	ratings.reduce((total, next) => total + next.rate, 0) / ratings.length
+		// )
 	}
 
 	// 	async check(userId: number, dto: RateGameDto) {

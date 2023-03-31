@@ -10,11 +10,7 @@ export class RatingsController {
 
 	@Post()
 	@UseGuards(AuthGuard)
-	rateGame(
-		@CurrentUser('id') id: number,
-		gameId: number,
-		@Body() dto: RateGameDto,
-	) {
+	rateGame(@CurrentUser('id') id: number, @Body() dto: RateGameDto) {
 		return this.ratingsService.rate(id, dto)
 	}
 

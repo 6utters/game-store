@@ -12,7 +12,6 @@ interface GameDetailsImagesProps {
 export const GameDetailsImages: FC<GameDetailsImagesProps> = memo(
 	({ media }) => {
 		const images = media?.filter(mediaItem => mediaItem.type === 'image')
-
 		const arrangedImages = useMemo(() => {
 			return images?.map(image => (
 				<div className={styles.grid_item} key={image.url}>

@@ -8,7 +8,6 @@ interface GameFilters {
 	features?: Feature[] | []
 }
 
-//todo: replace this feature by fetchFilteredGameList
 //todo: make refactoring
 export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
@@ -45,20 +44,6 @@ export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 			query: id => ({
 				url: `games/${id}`,
 			}),
-		}),
-		getRating: build.query<any, number>({
-			query: gameId => ({
-				url: `ratings/${gameId}`,
-			}),
-			providesTags: () => [{ type: 'Rating' }],
-		}),
-		rate: build.mutation<any, { gameId: number; rate: number }>({
-			query: body => ({
-				url: `ratings/`,
-				method: 'POST',
-				body,
-			}),
-			invalidatesTags: () => [{ type: 'Rating' }],
 		}),
 	}),
 })
