@@ -1,0 +1,7 @@
+.container {
+  @apply flex justify-between mx-auto;
+
+  .no_games {
+    @apply text-sm text-white;
+  }
+}

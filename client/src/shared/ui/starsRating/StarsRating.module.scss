@@ -1,0 +1,17 @@
+.stars_rating {
+  @apply flex;
+  cursor: pointer;
+  fill: none;
+
+  svg {
+    display: block;
+    line-height: 0;
+    width: 14px;
+    height: 15px;
+  }
+}
+
+.hoveredActive {
+  fill: #f9cd0b;
+  opacity: 80%;
+}

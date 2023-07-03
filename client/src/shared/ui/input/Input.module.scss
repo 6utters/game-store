@@ -1,0 +1,22 @@
+.input {
+  @apply relative w-full h-[3.7rem] rounded-[4px] border border-border-gray mb-[1rem];
+
+  input {
+    @apply w-full h-full pl-[0.5rem] text-white bg-transparent;
+    outline: none;
+
+    &::placeholder {
+      @apply text-input-text font-medium;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.error {
+  @apply absolute -bottom-5 text-sm text-error-red;
+  font-size: 0.6rem;
+}
+
+.errorInput {
+  @apply border-[1.5px] border-error-red
+}

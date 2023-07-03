@@ -1,0 +1,27 @@
+.gameList {
+  h3 {
+    @apply text-border-gray font-semibold mb-[0.5rem];
+    font-size: 0.9rem;
+  }
+
+  .gameItem {
+    @apply flex justify-between items-center w-full text-border-gray h-[3.5rem] bg-basic-black rounded mb-[0.4rem] px-[1rem] transition-all;
+    .gameCover {
+      @apply relative w-[2rem] h-[75%];
+    }
+
+    P {
+      @apply font-medium;
+      font-size: 0.9rem;
+    }
+
+    svg {
+      @apply cursor-pointer;
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      @apply text-white bg-basic-gray;
+    }
+  }
+}

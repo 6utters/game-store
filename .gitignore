@@ -35,12 +35,17 @@
 # vercel
 /client/.vercel
 
+# typescript
+/client/*.tsbuildinfo
+
 
 # server
 
 # compiled output
 /server/dist
 /server/node_modules
+/server/.development.env
+/server/.production.env
 
 # Logs
 /server/logs
@@ -73,3 +78,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+/server/uploads/videos/
+/client/src/stories/

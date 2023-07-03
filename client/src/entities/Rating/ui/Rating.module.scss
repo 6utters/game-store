@@ -1,0 +1,38 @@
+.rating {
+  @apply mb-3 flex justify-between items-center;
+
+  .stars {
+    @apply flex items-center;
+  }
+
+  .people_ranked {
+    @apply flex items-center;
+
+    svg {
+      @apply h-[16px] w-[16px];
+      fill: white;
+    }
+  }
+}
+
+.card {
+  margin-left: 5px;
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 2px 4px;
+
+  > span {
+    transition: color 125ms ease-in-out 0s;
+    color: rgb(245, 245, 245);
+    font-size: 12px;
+    line-height: 1.364;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}

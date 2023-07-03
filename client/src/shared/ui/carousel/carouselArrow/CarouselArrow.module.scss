@@ -1,0 +1,12 @@
+.carouselArrow {
+  @apply flex items-center justify-center text-white text-5xl bottom-8;
+  pointer-events: all;
+
+  &.left {
+    @apply right-24;
+  }
+
+  &.right {
+    @apply right-8;
+  }
+}

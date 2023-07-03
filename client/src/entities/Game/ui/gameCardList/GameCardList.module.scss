@@ -1,0 +1,36 @@
+.games_section {
+  @apply h-full w-full pb-[1rem];
+
+  margin: 0 auto;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  //display: grid;
+  //grid-template-columns: 1fr 1fr 1fr 1fr;
+  //grid-auto-rows: 25rem;
+  //grid-gap: 1rem;
+  //
+  //> h2 {
+  //  @apply text-neutral-500;
+  //}
+
+  .game_list {
+    @apply w-full m-0 p-0;
+    list-style-type: none;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+  }
+}

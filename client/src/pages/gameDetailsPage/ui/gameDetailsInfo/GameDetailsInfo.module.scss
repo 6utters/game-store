@@ -1,0 +1,63 @@
+.container {
+  @apply w-full;
+  background: rgb(18, 18, 18);
+
+  .main_info {
+    @apply mb-[2rem];
+    p {
+      @apply text-white;
+      font-size: 1.05rem;
+    }
+  }
+
+  .genres_filters {
+    @apply w-full h-[5.6rem] flex mb-[2rem];
+
+    .genre_card, .feature_card {
+      @apply w-full h-full pl-[1rem];
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+      p {
+        @apply text-border-gray font-semibold;
+        font-size: 0.9rem;
+      }
+
+      .genres, .features {
+        @apply flex;
+        flex-wrap: wrap;
+
+        h5 {
+          @apply text-white font-semibold mr-[1rem] underline cursor-pointer;
+          font-size: 0.9rem;
+
+          &:hover {
+            @apply no-underline;
+          }
+        }
+      }
+    }
+  }
+
+  .about {
+    @apply w-full flex flex-col;
+
+    .game_name {
+      @apply mb-[-0.75rem];
+      p {
+        @apply text-white font-semibold;
+      }
+    }
+
+    .game_about {
+      @apply mb-[-0.75rem];
+      p {
+        @apply text-white font-semibold;
+      }
+    }
+
+    p {
+      @apply text-border-gray font-medium mb-[1.5rem];
+      font-size: 0.9rem;
+    }
+  }
+}

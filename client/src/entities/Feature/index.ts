@@ -1,0 +1,1 @@
+export type {Feature} from './model/types/Feature'

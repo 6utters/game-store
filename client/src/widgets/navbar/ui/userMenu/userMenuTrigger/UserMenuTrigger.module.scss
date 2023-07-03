@@ -1,0 +1,9 @@
+.trigger {
+  @apply relative h-full flex items-center text-gray-text ml-[1rem] mr-6 cursor-pointer;
+
+  p {
+    @apply uppercase ml-[0.9rem];
+    font-size: 0.65rem;
+    letter-spacing: 0.05rem;
+  }
+}
