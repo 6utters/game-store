@@ -17,6 +17,6 @@ const baseQuery = fetchBaseQuery({
 export const $rtkApi = createApi({
 	reducerPath: 'api',
 	baseQuery,
-	tagTypes: ['Game', 'Genre', 'Feature', 'Rating', 'CartGame'],
+	tagTypes: ['Game', 'Genre', 'Feature', 'Rating', 'CartGame', 'SearchedGames'],
 	endpoints: build => ({}),
 })

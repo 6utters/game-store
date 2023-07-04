@@ -1,4 +1,4 @@
-import { $api } from '@/shared/api'
+import { $api, $rtkApi } from '@/shared/api'
 import { GameSchema } from '@/entities/Game'
 
 export class SearchGamesService {
@@ -9,3 +9,16 @@ export class SearchGamesService {
 		return data
 	}
 }
+
+const searchApi = $rtkApi.injectEndpoints({
+	endpoints: build => ({
+		searchGames: build.query<GameSchema[], string>({
+			query: searchTerm => ({
+				url: `/games?searchTerm=${searchTerm}`,
+			}),
+			providesTags: () => [{ type: 'SearchedGames' }],
+		}),
+	}),
+})
+
+export const useSearchGames = searchApi.useSearchGamesQuery

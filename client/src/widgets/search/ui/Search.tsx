@@ -9,7 +9,7 @@ import { filterText } from '@/shared/lib/string/filterText'
 
 import styles from './Search.module.scss'
 
-export const Search: FC = () => {
+export const Search: FC = memo(() => {
 	const { data, handleSearch, searchTerm, visible } = useSearch()
 
 	const Icon = memo(() => <BiSearch className={styles.search_icon} />)
@@ -48,4 +48,4 @@ export const Search: FC = () => {
 			)}
 		</div>
 	)
-}
+})

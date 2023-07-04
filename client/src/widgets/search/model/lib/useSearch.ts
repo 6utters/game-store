@@ -1,25 +1,22 @@
-import { ChangeEvent, useState } from 'react'
-import { useQuery } from 'react-query'
+import { ChangeEvent, useEffect, useState } from 'react'
 
-import { SearchGamesService } from '../services/searchGamesService'
+import { useSearchGames } from '../services/searchGamesService'
 import { useDebounce, useOutside } from '@/shared/lib/hooks'
 
 export const useSearch = () => {
 	const visible = useOutside(false)
 	const [searchTerm, setSearchTerm] = useState('')
-	const debounceSearch = useDebounce(searchTerm, 500)
+	const debounceSearch = useDebounce(searchTerm, 1000)
 
-	const { isSuccess, data } = useQuery(
-		['search games', debounceSearch],
-		() => SearchGamesService.search(searchTerm),
-		{
-			select: data => data.slice(0, 5),
-			enabled: !!debounceSearch,
-			onSuccess: () => {
-				visible.setIsShown(true)
-			},
-		},
-	)
+	const { data, isSuccess } = useSearchGames(debounceSearch, {
+		skip: !debounceSearch,
+	})
+
+	useEffect(() => {
+		if (isSuccess) {
+			visible.setIsShown(true)
+		}
+	}, [isSuccess, visible])
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)

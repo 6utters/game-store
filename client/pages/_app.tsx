@@ -6,7 +6,6 @@ import '@/pages/gameDetailsPage/ui/GameDetailsSlider/GameDetailsSlider.scss'
 import '@/shared/ui/multipleSelect/MultipleSelect.scss'
 
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { StoreProvider } from '@/app/providers/storeProvider'
 import { AuthProvider, ComponentAuthFields } from '@/app/providers/authProvider'
 import localFont from '@next/font/local'
@@ -17,21 +16,17 @@ const inter = localFont({
 	display: 'swap',
 })
 
-const queryClient = new QueryClient()
-
 type EnhancedAppProps = AppProps & ComponentAuthFields
 
 function MyApp({ Component, pageProps }: EnhancedAppProps) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<StoreProvider>
-				<AuthProvider Component={Component}>
-					<main className={cn('app', inter.className)} id={'mainApp'}>
-						<Component {...pageProps} />
-					</main>
-				</AuthProvider>
-			</StoreProvider>
-		</QueryClientProvider>
+		<StoreProvider>
+			<AuthProvider Component={Component}>
+				<main className={cn('app', inter.className)} id={'mainApp'}>
+					<Component {...pageProps} />
+				</main>
+			</AuthProvider>
+		</StoreProvider>
 	)
 }
 
