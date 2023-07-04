@@ -1,5 +1,7 @@
 .container {
   @apply relative;
+  z-index: 11;
+
   .input {
     @apply h-[2.5rem] min-w-[10rem] w-[10rem];
 
@@ -24,11 +26,10 @@
   .drop_down {
     @apply absolute left-0 top-[4rem] bg-basic-gray rounded py-[0.75rem];
     width: 17rem;
+    z-index: 10;
 
     .search_item {
       @apply h-[2rem] w-full;
-      z-index: 10;
-
 
       a {
         @apply text-white font-semibold transition-all;

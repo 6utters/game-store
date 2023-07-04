@@ -5,6 +5,7 @@ import { GAME_ROUTE, STORE_ROUTE } from '@/shared/consts'
 import { BiSearch } from 'react-icons/bi'
 
 import { useSearch } from '../model/lib/useSearch'
+import { filterText } from '@/shared/lib/string/filterText'
 
 import styles from './Search.module.scss'
 
@@ -33,7 +34,9 @@ export const Search: FC = () => {
 					{data?.length ? (
 						data.map(game => (
 							<div className={styles.search_item} key={game.id}>
-								<Link href={GAME_ROUTE + '/' + game.id}>{game.gameName}</Link>
+								<Link href={GAME_ROUTE + '/' + game.id}>
+									{filterText(game.gameName, 25)}
+								</Link>
 							</div>
 						))
 					) : (
