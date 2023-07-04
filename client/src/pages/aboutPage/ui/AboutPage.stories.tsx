@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 export default {
 	title: 'pages/AboutPage',
 	component: AboutPage,
-	decorators: [StoreDecorator()],
+	decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof AboutPage>
 
 const Template: ComponentStory<typeof AboutPage> = () => <AboutPage />

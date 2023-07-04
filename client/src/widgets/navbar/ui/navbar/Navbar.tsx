@@ -1,18 +1,18 @@
 import { FC, memo } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-
 import cn from 'classnames'
 import { Logo } from '@/shared/ui'
-
 import { navLinks } from './navbarLinks'
-
+import dynamic from 'next/dynamic'
 import styles from './Navbar.module.scss'
 
-const DynamicUserMenu = dynamic(() => import('../userMenu/UserMenu'), {
-	ssr: false,
-})
+const DynamicUserMenu = dynamic(
+	() => import('../../../userMenu/ui/userMenu/UserMenu'),
+	{
+		ssr: false,
+	},
+)
 
 interface NavbarProps {
 	className?: string

@@ -9,7 +9,7 @@ import { CartSummary } from '@/pages/cartPage/ui/cartSummary/CartSummary'
 
 import { getCartGamesIds } from '@/entities/Cart/model/selectors/getCartGamesIds/getCartGamesIds'
 import { CartCardList } from '@/entities/Cart'
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { Toolbar } from '@/widgets/toolbar'
 import { CartIsEmpty } from '../cartIsEmpty/CartIsEmpty'
 
@@ -36,7 +36,7 @@ const CartPage: FC = () => {
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
-			<Layout title={'D&D Games | Your CartSchema'}>
+			<MainLayout title={'D&D Games | Your CartSchema'}>
 				<Toolbar />
 				<div className={styles.container}>
 					<div className={styles.title}>
@@ -51,7 +51,7 @@ const CartPage: FC = () => {
 						<CartIsEmpty />
 					)}
 				</div>
-			</Layout>
+			</MainLayout>
 		</DynamicModuleLoader>
 	)
 }

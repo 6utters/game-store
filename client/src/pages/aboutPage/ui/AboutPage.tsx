@@ -1,11 +1,11 @@
 import { FC, memo } from 'react'
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import styles from './AboutPage.module.scss'
 
 const AboutPage: FC = memo(() => (
-	<Layout title={'D&D Games | AboutPage page'}>
+	<MainLayout title={'D&D Games | AboutPage page'}>
 		<div className={styles.container}>About Page</div>
-	</Layout>
+	</MainLayout>
 ))
 
 export default AboutPage

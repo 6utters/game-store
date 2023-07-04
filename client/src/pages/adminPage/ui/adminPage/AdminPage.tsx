@@ -1,13 +1,13 @@
 import { FC, memo } from 'react'
 
-import { Layout } from '@/widgets/layout'
-import { AdminLayout } from '@/widgets/adminLayout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { AdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
 
 import styles from './AdminPage.module.scss'
 
 const AdminPage: FC = memo(() => {
 	return (
-		<Layout withFooter={false} title={'D&D Games | AdminPage panel'}>
+		<MainLayout withFooter={false} title={'D&D Games | AdminPage panel'}>
 			<AdminLayout>
 				<div className={styles.container}>
 					<div className={styles.content}>
@@ -15,7 +15,7 @@ const AdminPage: FC = memo(() => {
 					</div>
 				</div>
 			</AdminLayout>
-		</Layout>
+		</MainLayout>
 	)
 })
 

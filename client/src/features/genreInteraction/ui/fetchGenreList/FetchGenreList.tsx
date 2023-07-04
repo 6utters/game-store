@@ -1,7 +1,7 @@
-import { FC, memo, MouseEventHandler, useCallback } from 'react'
+import { FC, memo, useCallback } from 'react'
 
 import { ImCross } from 'react-icons/im'
-import { useFetchGenres, useDeleteGenre } from '../../model/api/genreApi'
+import { useDeleteGenre, useFetchGenres } from '../../api/genreApi'
 
 import styles from './FetchGenreList.module.scss'
 
@@ -15,7 +15,8 @@ export const FetchGenreList: FC = memo(() => {
 		deleteGenre(genreId)
 	}, [])
 
-	if (!genres || error) return <div className={styles.error}>Something wet wrong</div>
+	if (!genres || error)
+		return <div className={styles.error}>Something wet wrong</div>
 
 	return (
 		<div className={styles.genreList}>
@@ -23,10 +24,9 @@ export const FetchGenreList: FC = memo(() => {
 			{genres.map(genre => (
 				<div key={genre.id} className={styles.genreItem}>
 					<p>{genre.genreName}</p>
-						<ImCross onClick={() => deleteHandler(genre.id)} />
+					<ImCross onClick={() => deleteHandler(genre.id)} />
 				</div>
 			))}
 		</div>
 	)
 })
-

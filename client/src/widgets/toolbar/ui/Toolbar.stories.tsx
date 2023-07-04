@@ -1,15 +1,32 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Toolbar } from './Toolbar'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
-import { QueryDecorator } from '@/shared/config/storybook/QueryDecorator'
 
 export default {
 	title: 'widgets/Toolbar',
 	component: Toolbar,
-	decorators: [StoreDecorator(), QueryDecorator()],
+	decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof Toolbar>
 
 const Template: ComponentStory<typeof Toolbar> = args => <Toolbar {...args} />
 
-export const Ordinary = Template.bind({})
-Ordinary.args = {}
+export const WithoutGamesInCart = Template.bind({})
+WithoutGamesInCart.args = {}
+
+export const WithSeveralGamesInCart = Template.bind({})
+WithSeveralGamesInCart.decorators = [
+	StoreDecorator({
+		cart: {
+			games: [
+				{
+					id: 1,
+					gameId: 1,
+				},
+				{
+					id: 2,
+					gameId: 2,
+				},
+			],
+		},
+	}),
+]

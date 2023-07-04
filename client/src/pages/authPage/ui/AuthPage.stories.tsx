@@ -5,7 +5,7 @@ import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 export default {
 	title: 'pages/AuthPage',
 	component: AuthPage,
-	decorators: [StoreDecorator()],
+	decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof AuthPage>
 
 const Template: ComponentStory<typeof AuthPage> = args => <AuthPage {...args} />

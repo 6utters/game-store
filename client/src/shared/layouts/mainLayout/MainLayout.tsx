@@ -2,9 +2,9 @@ import { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import { Navbar } from '@/widgets/navbar'
 import { Footer } from '@/shared/ui'
-
-import styles from './Layout.module.scss'
 import { Toolbar } from '@/widgets/toolbar'
+
+import styles from './MainLayout.module.scss'
 
 interface LayoutProps {
 	children: ReactNode
@@ -14,7 +14,7 @@ interface LayoutProps {
 	withToolbar?: boolean
 }
 
-export const Layout: FC<LayoutProps> = props => {
+export const MainLayout: FC<LayoutProps> = props => {
 	const {
 		withFooter = true,
 		withNavbar = true,

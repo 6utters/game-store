@@ -1,0 +1,11 @@
+.carousel_list {
+  @apply h-full flex transition-transform ease-in-out duration-300;
+
+  .carousel_item {
+    @apply min-w-full max-w-full;
+
+    .carousel_image {
+      @apply w-full h-full object-cover;
+    }
+  }
+}

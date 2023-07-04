@@ -1,0 +1,32 @@
+.carousel_thumb_list {
+  @apply h-full flex transition-transform ease-in-out duration-300;
+
+  .carousel_thumb_item {
+    @apply relative flex justify-center items-center rounded-2xl p-1;
+    min-width: calc(100% / 6);
+    max-width: calc(100% / 6);
+
+    .thumb_image {
+      @apply h-full w-full rounded-xl cursor-pointer transition-all;
+
+      &:hover {
+        filter: brightness(100%);
+      }
+    }
+
+    .thumb_play_icon {
+      @apply block absolute text-white text-2xl left-[50%] top-[50%] z-20;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .thumb_video {
+      @apply w-full h-full rounded-xl cursor-pointer;
+      object-fit: fill;
+    }
+  }
+}
+
+.inactive {
+  filter: brightness(65%);
+}

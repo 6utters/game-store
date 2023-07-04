@@ -11,11 +11,11 @@ import { useAppDispatch } from '@/shared/lib/hooks'
 import { Dropdown } from '@/shared/ui'
 
 import { FaUser } from 'react-icons/fa'
-import { UserMenuTrigger } from './userMenuTrigger/UserMenuTrigger'
-import { userMenuLinks } from './userMenuLinks'
+import { UserMenuTrigger } from '../userMenuTrigger/UserMenuTrigger'
+import { userMenuLinks } from '../../lib/userMenuLinks'
 
-import styles from './UserMenu.module.scss'
 import { useRouter } from 'next/router'
+import styles from './UserMenu.module.scss'
 
 const UserMenu: FC = memo(() => {
 	const router = useRouter()
@@ -23,7 +23,7 @@ const UserMenu: FC = memo(() => {
 	const user = useSelector(getUserAuthData)
 	const isAdmin = useSelector(getIsUserAdmin)
 
-	const userOptions = userMenuLinks.filter(link => link.adminOnly === false)
+	const userOptions = userMenuLinks.filter(link => !link.adminOnly)
 
 	const onLogOutClick = useCallback(async () => {
 		await dispatch(logOut())

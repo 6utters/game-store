@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { REGISTRATION_ROUTE } from '@/shared/consts'
 
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { AuthForm } from '@/features/authByEmail'
 
 import styles from './AuthPage.module.scss'
@@ -11,7 +11,7 @@ const AuthPage: FC = () => {
 	const router = useRouter()
 	const isSignUpPage = router.pathname === REGISTRATION_ROUTE
 	return (
-		<Layout
+		<MainLayout
 			title={`D&D Games | ${isSignUpPage ? 'Sign Up' : 'Sign In'}`}
 			withNavbar={false}
 			withFooter={false}
@@ -22,7 +22,7 @@ const AuthPage: FC = () => {
 					<AuthForm isSignUpPage={isSignUpPage} />
 				</div>
 			</div>
-		</Layout>
+		</MainLayout>
 	)
 }
 

@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useState } from 'react'
 
-import { Layout } from '@/widgets/layout'
-import { AdminLayout } from '@/widgets/adminLayout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { AdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
 
 import { FiPlus } from 'react-icons/fi'
 
@@ -10,16 +10,15 @@ import { FetchGenreList } from '@/features/genreInteraction'
 
 import styles from './AdminGenresPage.module.scss'
 
-
 const GenresPanel: FC = memo(() => {
 	const [modalActive, setModalActive] = useState(false)
 
 	const onModalClose = useCallback(() => {
 		setModalActive(false)
-	}, [modalActive])
+	}, [])
 
 	return (
-		<Layout
+		<MainLayout
 			withNavbar={true}
 			title={'D&D Games | AdminPage panel | Genres Panel'}
 			withFooter={false}
@@ -30,14 +29,13 @@ const GenresPanel: FC = memo(() => {
 						<div className={styles.addNewGenreButton}>
 							<FiPlus onClick={() => setModalActive(true)} />
 						</div>
-						<FetchGenreList/>
+						<FetchGenreList />
 						<AdminGenresPageModal isOpen={modalActive} onClose={onModalClose} />
 					</div>
 				</div>
 			</AdminLayout>
-		</Layout>
+		</MainLayout>
 	)
 })
 
 export default GenresPanel
-

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Dropdown } from './Dropdown'
-import { UserMenuTrigger } from '@/widgets/navbar/ui/userMenu/userMenuTrigger/UserMenuTrigger'
+import { UserMenuTrigger } from '@/widgets/userMenu/ui/userMenuTrigger/UserMenuTrigger'
 
 export default {
 	title: 'shared/Dropdown',

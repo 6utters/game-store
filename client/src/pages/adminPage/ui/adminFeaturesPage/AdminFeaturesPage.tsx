@@ -2,16 +2,13 @@ import { FC, memo, useCallback, useState } from 'react'
 
 import { FiPlus } from 'react-icons/fi'
 
-import { Layout } from '@/widgets/layout'
-import { AdminLayout } from '@/widgets/adminLayout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { AdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
 
 import { FetchFeatureList } from '@/features/featureInteraction'
-import {
-	AdminFeaturesPageModal,
-} from './adminFeaturesPageModal/AdminFeaturesPageModal'
+import { AdminFeaturesPageModal } from './adminFeaturesPageModal/AdminFeaturesPageModal'
 
 import styles from './AdminFeaturesPage.module.scss'
-
 
 const AdminFeaturesPage: FC = memo(() => {
 	const [modalActive, setModalActive] = useState<boolean>(false)
@@ -21,7 +18,7 @@ const AdminFeaturesPage: FC = memo(() => {
 	}, [modalActive])
 
 	return (
-		<Layout
+		<MainLayout
 			withNavbar={true}
 			title={'D&D Games | AdminPage panel | Features Panel'}
 			withFooter={false}
@@ -33,11 +30,14 @@ const AdminFeaturesPage: FC = memo(() => {
 							<FiPlus onClick={() => setModalActive(true)} />
 						</div>
 						<FetchFeatureList />
-						<AdminFeaturesPageModal isOpen={modalActive} onClose={onModalClose} />
+						<AdminFeaturesPageModal
+							isOpen={modalActive}
+							onClose={onModalClose}
+						/>
 					</div>
 				</div>
 			</AdminLayout>
-		</Layout>
+		</MainLayout>
 	)
 })
 

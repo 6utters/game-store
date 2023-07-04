@@ -10,14 +10,20 @@ export default {
 			{ featureName: 'test genre 1', id: 1 },
 			{ featureName: 'test genre 2', id: 2 },
 		],
-		selectedFeatures: [{ featureName: 'test genre 1', id: 1 }],
 	},
-	decorators: [StoreDecorator()],
+	decorators: [StoreDecorator({})],
 } as ComponentMeta<typeof FeatureFilter>
 
 const Template: ComponentStory<typeof FeatureFilter> = args => (
 	<FeatureFilter {...args} />
 )
 
-export const Ordinary = Template.bind({})
-Ordinary.args = {}
+export const FirstSelected = Template.bind({})
+FirstSelected.args = {
+	selectedFeatures: [{ featureName: 'test genre 1', id: 1 }],
+}
+
+export const SecondSelected = Template.bind({})
+SecondSelected.args = {
+	selectedFeatures: [{ featureName: 'test genre 2', id: 2 }],
+}

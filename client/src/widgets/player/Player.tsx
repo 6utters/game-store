@@ -13,7 +13,7 @@ import {
 
 interface PlayerProps {
 	source: string
-	className: string
+	className?: string
 }
 
 export const Player: FC<PlayerProps> = memo(({ source, className }) => {

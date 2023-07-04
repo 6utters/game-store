@@ -1,2 +1,6 @@
-export * from './model/types/PageRoles'
-export * from './ui/AuthProvider'
+export type {
+	PageRoles,
+	NextPageWithRoles,
+	ComponentAuthFields,
+} from './model/types/PageRoles'
+export { AuthProvider } from './ui/AuthProvider'

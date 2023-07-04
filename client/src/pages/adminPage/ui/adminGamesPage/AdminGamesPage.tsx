@@ -2,8 +2,8 @@ import { FC, useCallback, useState } from 'react'
 
 import { FiPlus } from 'react-icons/fi'
 
-import { Layout } from '@/widgets/layout'
-import { AdminLayout } from '@/widgets/adminLayout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
+import { AdminLayout } from '@/shared/layouts/adminLayout/AdminLayout'
 
 import { Modal } from '@/shared/ui/modal/Modal'
 import { CreateGame, FetchAdminGameList } from '@/features/gameInteraction'
@@ -18,7 +18,7 @@ const AdminGamesPage: FC = () => {
 	}, [modalActive])
 
 	return (
-		<Layout
+		<MainLayout
 			withNavbar={true}
 			title={'D&D Games | AdminPage panel | Games Panel'}
 			withFooter={false}
@@ -36,7 +36,7 @@ const AdminGamesPage: FC = () => {
 					</div>
 				</div>
 			</AdminLayout>
-		</Layout>
+		</MainLayout>
 	)
 }
 

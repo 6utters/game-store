@@ -1,0 +1,51 @@
+.carousel_wrapper {
+  @apply w-full flex flex-col justify-between overflow-hidden;
+
+  .carousel {
+    @apply relative w-full h-full;
+
+    .hoverContainer {
+      @apply absolute top-0 left-0 w-full h-full flex items-center justify-between pointer-events-none z-[2];
+
+      .prev_panel, .next_panel {
+        @apply h-full w-[55px] text-white flex justify-center items-center opacity-0;
+        transition: transform 0.35s cubic-bezier(1, 0.09, 0.03, 0.93) 0s, opacity 0.35s ease 0s;
+      }
+
+      .prev_panel {
+        transform: translateX(-100%);
+        background: linear-gradient(270deg, rgba(11, 11, 11, 0) 0%, rgba(11, 11, 11, 0.4) 100%);
+      }
+
+      .next_panel {
+        transform: translateX(100%);
+        background: linear-gradient(270deg, rgba(11, 11, 11, 0.4) 0%, rgba(11, 11, 11, 0) 100%);
+      }
+    }
+  }
+
+  > .thumbs_carousel {
+    @apply relative h-[4rem] w-full mt-[1.25rem] flex items-center justify-between;
+
+    .thumb_list_wrapper {
+      @apply w-[80%] h-full overflow-hidden;
+
+      @media (min-width: 2300px) {
+        @apply w-[70%]
+      }
+    }
+
+    .thumbs_nav_btn {
+      @apply rounded-full p-2 text-2xl font-medium bg-basic-black transition-colors ease-in-out;
+
+      &:hover {
+        @apply bg-basic-gray;
+      }
+    }
+  }
+}
+
+.hover_over {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}

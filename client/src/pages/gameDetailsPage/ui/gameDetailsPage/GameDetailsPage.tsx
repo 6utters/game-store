@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 
-import { Layout } from '@/widgets/layout'
+import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { GameSchema } from '@/entities/Game'
 
 import { GameDetails } from '../gameDetails/GameDetails'
@@ -14,12 +14,12 @@ interface GamePageProps {
 
 const GameDetailsPage: FC<GamePageProps> = memo(({ game }) => {
 	return (
-		<Layout title={`D&D Games | ${game?.gameName}`}>
+		<MainLayout title={`D&D Games | ${game?.gameName}`}>
 			<div className={styles.container}>
 				<GameDetails game={game} />
 				<PurchaseDetails game={game} />
 			</div>
-		</Layout>
+		</MainLayout>
 	)
 })
 

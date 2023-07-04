@@ -5,6 +5,7 @@ import { AuthByEmailResponse } from '@/features/authByEmail'
 //todo: reconsider interceptor logic
 
 export const API_URL = `http://localhost:5000/api`
+export const SERVER_URL = `http://localhost:5000`
 
 export const $api = axios.create({
 	withCredentials: true,

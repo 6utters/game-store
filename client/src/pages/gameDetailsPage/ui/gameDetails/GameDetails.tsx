@@ -3,7 +3,7 @@ import { FC, memo } from 'react'
 import { GameSchema } from '@/entities/Game'
 
 import { GameRating } from '@/features/gameRating'
-import { GameSlider } from '../GameDetailsSlider/GameDetailsSlider'
+import { GameDetailsCarousel } from '../GameDetailsCarousel/GameDetailsCarousel'
 import { GameDetailsInfo } from '../gameDetailsInfo/GameDetailsInfo'
 import { GameDetailsImages } from '../gameDetailsImages/GameDetailsImages'
 import { GameDetailsRequirements } from '../gameDetailsRequirements/GameDetailsRequirements'
@@ -22,7 +22,7 @@ export const GameDetails: FC<GameDetailsProps> = memo(({ game }) => {
 	return (
 		<div className={styles.container}>
 			<GameRating gameId={game.id} />
-			<GameSlider media={game.gameMedia} />
+			<GameDetailsCarousel media={game.gameMedia} />
 			<GameDetailsInfo game={game} />
 			<GameDetailsImages media={game.gameMedia} />
 			<GameDetailsRequirements gameInfo={game.gameInfo} />
