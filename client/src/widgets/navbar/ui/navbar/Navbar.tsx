@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import cn from 'classnames'
 import { Logo } from '@/shared/ui'
-import { navLinks } from './navbarLinks'
+import { navLinks } from '../lib/navbarLinks'
 import dynamic from 'next/dynamic'
 import styles from './Navbar.module.scss'
 

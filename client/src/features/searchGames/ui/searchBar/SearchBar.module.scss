@@ -1,0 +1,42 @@
+.searchbar_wrapper {
+  @apply relative;
+
+  .searchbar {
+    @apply h-[2.5rem] min-w-[10rem] w-[10rem];
+
+    .search_input {
+      @apply h-[2.5rem] bg-basic-black rounded-3xl pl-[2rem] pr-[0.7rem] text-sm font-medium border-0;
+
+      &:focus {
+        @apply bg-basic-gray outline-0;
+      }
+
+      &::placeholder {
+        @apply text-border-gray;
+      }
+
+    }
+
+    .search_icon {
+      @apply absolute top-[0.8rem] left-[0.7rem] text-border-gray;
+    }
+  }
+
+  .search_dropdown {
+    @apply absolute w-[17rem] left-0 top-[4rem] bg-basic-gray rounded py-[0.75rem];
+
+    .search_item {
+      @apply min-h-[2rem];
+
+      a {
+        @apply font-semibold transition-all;
+        font-size: 0.8rem;
+
+        &:hover {
+          @apply text-white underline;
+        }
+      }
+    }
+  }
+}
+

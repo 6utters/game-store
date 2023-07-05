@@ -1,27 +1,21 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
-type typeOut = {
-	ref: any
-	isShown: boolean
-	setIsShown: Dispatch<SetStateAction<boolean>>
-}
-
-export const useOutside = (initialVisibility: boolean): typeOut => {
-	const [isShown, setIsShown] = useState(initialVisibility)
-	const ref = useRef<any>()
-
-	const handleClickOutside = (e: any) => {
-		if (ref.current && !ref.current.contains(event?.target)) {
-			setIsShown(false)
-		}
-	}
+export function useOutside(callback: () => void) {
+	const ref = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true)
-		return () => {
-			document.removeEventListener('click', handleClickOutside, true)
+		const handleClickOutside = (event: MouseEvent) => {
+			if (ref.current && !ref.current.contains(event.target as Node)) {
+				callback()
+			}
 		}
-	})
 
-	return { ref, isShown, setIsShown }
+		document.addEventListener('mousedown', handleClickOutside)
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [callback])
+
+	return ref
 }

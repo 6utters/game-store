@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import { BASKET_ROUTE } from '@/shared/consts'
-import { Search } from '@/widgets/search'
+import { SearchBar } from '@/features/searchGames'
 import { getCartGames } from '@/entities/Cart/model/selectors/getCartGames/getCartGames'
 
 import styles from './Toolbar.module.scss'
@@ -16,7 +16,7 @@ export const Toolbar: FC = memo(() => {
 			<nav data-testid='toolbar' className={styles.toolbar}>
 				<div className={styles.content}>
 					<div className={styles.left}>
-						<Search />
+						<SearchBar />
 						<div className={styles.links}>
 							<Link href={'/'}>Discover</Link>
 							<Link href={'/'} className={styles.activeLink}>

@@ -1,11 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react'
+import { useSearchGames } from '../api/searchGamesApi'
+import { useDebounce } from '@/shared/lib/hooks'
 
-import { useSearchGames } from '../services/searchGamesService'
-import { useDebounce, useOutside } from '@/shared/lib/hooks'
-
-export const useSearch = () => {
-	const visible = useOutside(false)
-	const [searchTerm, setSearchTerm] = useState('')
+export function useSearch(initialValue?: string) {
+	const [isVisible, setVisible] = useState(false)
+	const [searchTerm, setSearchTerm] = useState(initialValue ?? '')
 	const debounceSearch = useDebounce(searchTerm, 1000)
 
 	const { data, isSuccess } = useSearchGames(debounceSearch, {
@@ -14,19 +13,23 @@ export const useSearch = () => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			visible.setIsShown(true)
+			setVisible(true)
 		}
-	}, [isSuccess, visible])
+	}, [isSuccess])
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 
+	const hide = () => {
+		setVisible(false)
+	}
+
 	return {
 		handleSearch,
-		isSuccess,
-		data,
+		hide,
+		games: data,
 		searchTerm,
-		visible,
+		isVisible,
 	}
 }

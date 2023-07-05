@@ -1,2 +1,1 @@
-export * from '../userMenu/ui/userMenu/UserMenu'
-export * from './ui/navbar/Navbar'
+export { Navbar } from './ui/navbar/Navbar'
