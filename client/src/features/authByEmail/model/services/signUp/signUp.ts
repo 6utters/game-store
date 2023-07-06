@@ -3,7 +3,7 @@ import { AuthByEmailResponse } from '../../types/AuthByEmailSchema'
 import { ThunkConfig } from '@/app/providers/storeProvider'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { userActions } from '@/entities/User'
-import { fetchCart } from '@/features/cartInteraction'
+import { fetchCart } from '@/entities/Cart'
 
 export interface SignUpFields {
 	email: string

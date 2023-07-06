@@ -1,0 +1,8 @@
+.add_to_cart_button {
+  @apply w-full h-[3rem] border border-border-gray rounded transition-all mb-[0.5rem] text-gray-text font-medium uppercase bg-transparent;
+  font-size: 0.7rem;
+
+  &:hover {
+    @apply border-white bg-basic-gray text-white;
+  }
+}

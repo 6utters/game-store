@@ -1,5 +1,6 @@
-.container {
+.page_wrapper {
   @apply relative h-full w-full flex flex-col items-center;
+  min-height: calc(100vh - var(--navbar-height) - var(--toolbar-height) - var(--footer-height));
 
   .title {
     @apply w-3/4 mb-[3.5rem];

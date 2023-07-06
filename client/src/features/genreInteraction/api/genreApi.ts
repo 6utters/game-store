@@ -3,12 +3,6 @@ import { Genre } from '@/entities/Genre'
 
 export const genreApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
-		fetchGenres: build.query<Genre[], void>({
-			query: () => ({
-				url: 'genres',
-			}),
-			providesTags: () => [{ type: 'Genre' }],
-		}),
 		createGenre: build.mutation<Genre[], string>({
 			query: genreName => ({
 				url: `genres/`,
@@ -30,5 +24,4 @@ export const genreApi = $rtkApi.injectEndpoints({
 export const {
 	useDeleteGenreMutation: useDeleteGenre,
 	useCreateGenreMutation: useCreateGenre,
-	useFetchGenresQuery: useFetchGenres,
 } = genreApi

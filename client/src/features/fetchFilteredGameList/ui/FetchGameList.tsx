@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import cn from 'classnames'
 
 import { useFetchGameList } from '../api/fetchFilteredGamesApi'
@@ -6,15 +6,15 @@ import { GameCardList, GameSchema } from '@/entities/Game'
 
 import styles from './FetchGameList.module.scss'
 import { useSelector } from 'react-redux'
-import { getSelectedGenres } from '@/features/fetchFilteredGameList/model/selectors/getSelectedGenres/getSelectedGenres'
-import { getSelectedFeatures } from '@/features/fetchFilteredGameList/model/selectors/getSelectedFeatures/getSelectedFeatures'
+import { getSelectedGenres } from '@/features/genresPanel'
+import { getSelectedFeatures } from '@/features/featuresPanel'
 
 interface FetchGameListProps {
 	games?: GameSchema[]
 	className?: string
 }
 
-export const FetchGameList: FC<FetchGameListProps> = props => {
+export const FetchGameList: FC<FetchGameListProps> = memo(props => {
 	const { games, className } = props
 	const genres = useSelector(getSelectedGenres)
 	const features = useSelector(getSelectedFeatures)
@@ -47,4 +47,4 @@ export const FetchGameList: FC<FetchGameListProps> = props => {
 			/>
 		</div>
 	)
-}
+})

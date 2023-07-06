@@ -1,5 +1,5 @@
 import { UserRole } from '../consts/userRoles'
-import { CartSchema } from '@/entities/Cart'
+import { Cart } from '@/entities/Cart'
 
 export interface User {
 	id: number
@@ -7,7 +7,7 @@ export interface User {
 	email: string
 	isActivated: boolean
 	roles: UserRole[]
-	cart: CartSchema
+	cart: Cart
 }
 
 export interface UserSchema {

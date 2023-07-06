@@ -2,25 +2,23 @@ import { CSSProperties, FC, memo } from 'react'
 import cn from 'classnames'
 import styles from './Skeleton.module.scss'
 
-//todo: change styles and colors
-
 interface SkeletonProps {
 	className?: string
 	height?: string | number
 	width?: string | number
-	borderRadius?: string
+	border?: string
 }
 
 export const Skeleton: FC<SkeletonProps> = memo(props => {
-	const { height, borderRadius, width, className } = props
+	const { className, height, width, border } = props
 
 	const additionalStyles: CSSProperties = {
-		height,
 		width,
-		borderRadius,
+		height,
+		borderRadius: border,
 	}
 
 	return (
-		<div className={cn(styles.skeleton, className)} style={additionalStyles} />
+		<div className={cn(styles.Skeleton, className)} style={additionalStyles} />
 	)
 })

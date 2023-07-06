@@ -1,8 +1,8 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
-import { CartGame, CartSchema } from '../types/CartSchema'
+import { Cart, CartGame } from '../types/Cart'
 import { CART_GAMES_LOCAL_STORAGE_KEY } from '@/shared/consts'
 
-const initialState: CartSchema = {
+const initialState: Cart = {
 	games: [],
 }
 
@@ -10,7 +10,7 @@ export const cartSlice = createSlice({
 	name: 'cartSlice',
 	initialState,
 	reducers: {
-		initCart: (state, action: PayloadAction<CartSchema>) => {
+		initCart: (state, action: PayloadAction<Cart>) => {
 			state.games = action.payload.games
 			state.id = action.payload.id
 			state.userId = action.payload.userId
@@ -27,10 +27,6 @@ export const cartSlice = createSlice({
 			)
 		},
 		removeFromCart: (state, action: PayloadAction<number>) => {
-			// const games = current(state.games).filter(
-			// 	game => game.gameId !== action.payload,
-			// )
-			// state.games = games
 			const index = current(state.games).findIndex(
 				game => game.gameId === action.payload,
 			)

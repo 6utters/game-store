@@ -1,7 +1,7 @@
 .footer {
-  @apply w-full bg-basic-gray;
+  @apply w-full bg-basic-gray mt-[5.6rem];
   padding: 1.25em 4.5em 2.5em;
-  margin-top: 5.6rem;
+  height: var(--footer-height);
 
   &_nav {
     @apply flex justify-between items-center h-[5rem];

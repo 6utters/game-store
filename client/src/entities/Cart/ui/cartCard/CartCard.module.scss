@@ -1,9 +1,7 @@
 .card {
-  @apply w-full h-[13.4rem] flex bg-basic-black mb-[2rem] p-[1.3rem] rounded;
+  @apply w-full h-[13.4rem] flex bg-basic-black p-[1.3rem] rounded;
 
   .image {
-    @apply relative h-full;
-
     img {
       @apply h-full w-[10rem] rounded;
     }

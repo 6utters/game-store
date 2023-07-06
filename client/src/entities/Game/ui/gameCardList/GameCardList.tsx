@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import cn from 'classnames'
 
 import { GameCardSkeleton } from '../gameCard/GameCardSkeleton'
@@ -14,11 +14,11 @@ interface GameCardListProps {
 }
 
 const getSkeletons = () =>
-	new Array(9)
+	new Array(15)
 		.fill(0)
 		.map((_, index) => <GameCardSkeleton key={index} className={styles.card} />)
 
-export const GameCardList: FC<GameCardListProps> = props => {
+export const GameCardList: FC<GameCardListProps> = memo(props => {
 	const { isLoading, className, games } = props
 
 	const renderGameCard = (game: GameSchema) => (
@@ -31,7 +31,7 @@ export const GameCardList: FC<GameCardListProps> = props => {
 		/>
 	)
 
-	if (!isLoading && !games?.length) {
+	if ((!isLoading && !games?.length) || !games) {
 		return (
 			<div className={styles.gameCardList}>
 				<h2>No games were found.</h2>
@@ -39,14 +39,22 @@ export const GameCardList: FC<GameCardListProps> = props => {
 		)
 	}
 
+	if (isLoading) {
+		return (
+			<section className={cn(styles.games_section, className)}>
+				<ul className={styles.game_list}>{getSkeletons()}</ul>
+			</section>
+		)
+	}
+
+	// Duplicated game cards for quantity
 	return (
 		<section className={cn(styles.games_section, className)}>
 			<ul className={styles.game_list}>
-				{games && !!games.length && games.map(renderGameCard)}
-				{games && !!games.length && games.map(renderGameCard)}
-				{games && !!games.length && games.map(renderGameCard)}
-				{isLoading && getSkeletons()}
+				{games.map(renderGameCard)}
+				{games.map(renderGameCard)}
+				{games.map(renderGameCard)}
 			</ul>
 		</section>
 	)
-}
+})

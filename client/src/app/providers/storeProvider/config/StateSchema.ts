@@ -9,18 +9,20 @@ import {
 	ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { $rtkApi } from '@/shared/api'
-import { FetchFilteredGameListSchema } from '@/features/fetchFilteredGameList'
-import { CartSchema } from '@/entities/Cart'
-import { CartInteractionSchema } from '@/features/cartInteraction'
+import { Cart } from '@/entities/Cart'
+import { UserCartSchema } from '@/features/userCart'
+import { FeaturesPanel } from '@/features/featuresPanel/model/types/FeaturesPanel'
+import { GenresPanel } from '@/features/genresPanel/model/types/GenresPanel'
 
 export interface StateSchema {
 	user: UserSchema
-	cart: CartSchema
+	cart: Cart
 	[$rtkApi.reducerPath]: ReturnType<typeof $rtkApi.reducer>
 
 	authByEmail?: AuthByEmailSchema
-	fetchFilteredGameList?: FetchFilteredGameListSchema
-	cartInteraction?: CartInteractionSchema
+	featuresPanel?: FeaturesPanel
+	genresPanel?: GenresPanel
+	userCart?: UserCartSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

@@ -1,7 +1,6 @@
 import { FC, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
-import { cartInteractionReducer } from '@/features/cartInteraction'
 import { useFetchGamesByIds } from '@/features/fetchFilteredGameList'
 
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
@@ -13,15 +12,18 @@ import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { Toolbar } from '@/widgets/toolbar'
 import { CartIsEmpty } from '../cartIsEmpty/CartIsEmpty'
 
+import { userCartSliceReducer } from '@/features/userCart'
 import styles from './CartPage.module.scss'
 
 const initialReducers: ReducerList = {
-	cartInteraction: cartInteractionReducer,
+	userCart: userCartSliceReducer,
 }
 
 const CartPage: FC = () => {
 	const gameIds = useSelector(getCartGamesIds)
-	const { data: data } = useFetchGamesByIds(gameIds, { skip: !gameIds.length })
+	const { data: data, isLoading } = useFetchGamesByIds(gameIds, {
+		skip: !gameIds.length,
+	})
 	const cartGames = data?.filter(Boolean)
 
 	const totalPrice = useMemo(
@@ -36,21 +38,25 @@ const CartPage: FC = () => {
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
-			<MainLayout title={'D&D Games | Your CartSchema'}>
+			<MainLayout title={'D&D Games | Your Cart'}>
 				<Toolbar />
-				<div className={styles.container}>
+				<section className={styles.page_wrapper}>
 					<div className={styles.title}>
 						<h1>My Cart</h1>
 					</div>
 					{cartGames?.length ? (
 						<div className={styles.content}>
-							<CartCardList games={cartGames} />
-							<CartSummary totalPrice={totalPrice} discount={discount} />
+							<CartCardList games={cartGames} isLoading={isLoading} />
+							<CartSummary
+								totalPrice={totalPrice}
+								discount={discount}
+								isLoading={isLoading}
+							/>
 						</div>
 					) : (
 						<CartIsEmpty />
 					)}
-				</div>
+				</section>
 			</MainLayout>
 		</DynamicModuleLoader>
 	)

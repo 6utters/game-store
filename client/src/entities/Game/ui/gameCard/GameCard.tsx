@@ -14,14 +14,12 @@ interface IGameCardProps {
 	gameId: number
 }
 
-//todo: change skeleton
-
 export const GameCard: FC<IGameCardProps> = memo(
 	({ name, price, image, gameId }) => {
 		const actualPrice = price - 0.01
 
 		return (
-			<li className={styles.card_container}>
+			<li className={styles.card_wrapper}>
 				<Link href={`${GAME_ROUTE}/${gameId}`} className={styles.card}>
 					<div className={styles.cover}>
 						<Image

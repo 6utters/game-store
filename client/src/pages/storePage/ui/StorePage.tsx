@@ -1,12 +1,12 @@
 import { FC, memo } from 'react'
-
-import styles from './StorePage.module.scss'
 import { MainLayout } from '@/shared/layouts/mainLayout/MainLayout'
 import { GameSchema } from '@/entities/Game'
 import { FetchGameList } from '@/features/fetchFilteredGameList'
-import FilterPanels from '@/widgets/filterPanels/ui/filterPanels/FilterPanels'
+import { Filters } from '@/widgets/filters'
 import { Feature } from '@/entities/Feature'
 import { Genre } from '@/entities/Genre'
+
+import styles from './StorePage.module.scss'
 
 interface StorePageProps {
 	games?: GameSchema[]
@@ -20,7 +20,7 @@ const StorePage: FC<StorePageProps> = memo(props => {
 		<MainLayout title={'D&D Games | StorePage page'}>
 			<section className={styles.container}>
 				<FetchGameList games={games} />
-				<FilterPanels {...filters} />
+				<Filters {...filters} />
 			</section>
 		</MainLayout>
 	)

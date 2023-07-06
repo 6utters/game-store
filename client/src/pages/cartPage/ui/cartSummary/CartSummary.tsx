@@ -1,15 +1,25 @@
 import { FC, memo } from 'react'
 import styles from './CartSummary.module.scss'
+import { Skeleton } from '@/shared/ui'
 
 interface CartSummaryProps {
 	totalPrice?: number
+	isLoading: boolean
 	discount: number
 }
 
 export const CartSummary: FC<CartSummaryProps> = memo(props => {
-	const { totalPrice, discount } = props
+	const { totalPrice, discount, isLoading } = props
 
 	const subtotal = totalPrice && totalPrice - discount
+
+	if (isLoading) {
+		return (
+			<div className={styles.cartSummary}>
+				<Skeleton height={'20rem'} width={'100%'} border={'0.25rem'} />
+			</div>
+		)
+	}
 
 	return (
 		<div className={styles.cartSummary}>

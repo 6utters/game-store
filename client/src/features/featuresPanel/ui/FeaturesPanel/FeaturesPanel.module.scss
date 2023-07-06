@@ -1,0 +1,16 @@
+.feature_item {
+  @apply text-border-gray font-bold h-[3rem] cursor-pointer flex items-center mb-1 pl-[0.5rem];
+  font-size: 0.8rem;
+
+  &:hover {
+    @apply text-gray-text;
+  }
+}
+
+.active {
+  @apply bg-basic-gray rounded font-medium;
+
+  p {
+    @apply text-white;
+  }
+}

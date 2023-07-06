@@ -1,36 +1,29 @@
-import { FC, useCallback, useMemo } from 'react'
-import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import { FC } from 'react'
 
 import { GameSchema } from '@/entities/Game'
-import { getCartGames } from '@/entities/Cart/model/selectors/getCartGames/getCartGames'
-
-import { addGameToCart } from '@/features/cartInteraction'
-import { useAppDispatch } from '@/shared/lib/hooks'
-import { BASKET_ROUTE } from '@/shared/consts'
 import { Spinner } from '@/shared/ui'
-
 import styles from './PurchaseDetails.module.scss'
+import { AddToCartButton } from '@/features/userCart'
 
 interface PurchaseDetailsProps {
 	game?: GameSchema
 }
 
 export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
-	const dispatch = useAppDispatch()
-	const router = useRouter()
-	const cartGames = useSelector(getCartGames)
-
-	const isGameInCart = useMemo(() => {
-		return cartGames.some(cartGame => cartGame.gameId === game?.id)
-	}, [cartGames, game])
-
-	const addToCart = useCallback(
-		(gameName: string) => {
-			dispatch(addGameToCart({ gameName }))
-		},
-		[dispatch],
-	)
+	// const dispatch = useAppDispatch()
+	// const router = useRouter()
+	// const cartGames = useSelector(getCartGames)
+	//
+	// const isGameInCart = useMemo(() => {
+	// 	return cartGames.some(cartGame => cartGame.gameId === game?.id)
+	// }, [cartGames, game])
+	//
+	// const addToCart = useCallback(
+	// 	(gameName: string) => {
+	// 		dispatch(addGameToCart(gameName))
+	// 	},
+	// 	[dispatch],
+	// )
 
 	if (!game) return <Spinner />
 
@@ -47,21 +40,22 @@ export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
 				<button className={styles.buy_btn}>
 					<p>get</p>
 				</button>
-				{isGameInCart ? (
-					<button
-						className={styles.cart_btn}
-						onClick={() => router.push(BASKET_ROUTE)}
-					>
-						<p>View in cart</p>
-					</button>
-				) : (
-					<button
-						className={styles.cart_btn}
-						onClick={() => addToCart(game.gameName)}
-					>
-						<p>add to cart</p>
-					</button>
-				)}
+				<AddToCartButton className={styles.cart_btn} game={game} />
+				{/*{isGameInCart ? (*/}
+				{/*	<button*/}
+				{/*		className={styles.cart_btn}*/}
+				{/*		onClick={() => router.push(BASKET_ROUTE)}*/}
+				{/*	>*/}
+				{/*		<p>View in cart</p>*/}
+				{/*	</button>*/}
+				{/*) : (*/}
+				{/*	<button*/}
+				{/*		className={styles.cart_btn}*/}
+				{/*		onClick={() => addToCart(game.gameName)}*/}
+				{/*	>*/}
+				{/*		<p>add to cart</p>*/}
+				{/*	</button>*/}
+				{/*)}*/}
 				<div className={styles.purchase_info}>
 					<div className={styles.info_item}>
 						<p>Developer</p>

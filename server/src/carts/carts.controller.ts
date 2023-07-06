@@ -20,6 +20,7 @@ export class CartsController {
 	@Post()
 	@UseGuards(AuthGuard)
 	addGameToCard(@CurrentUser('id') id: number, @Body() dto: AddGameDto) {
+		console.log('dto:', dto)
 		return this.cartsService.addGame(id, dto.gameName)
 	}
 

@@ -1,5 +1,7 @@
 .navbar {
-  @apply w-full h-[3.25rem] bg-basic-gray flex items-center justify-between pl-4;
+  @apply w-full bg-basic-gray flex items-center justify-between pl-4;
+  height: var(--navbar-height);
+
   > .navigation {
     @apply h-full flex items-center;
 

@@ -1,4 +1,3 @@
-.cartCards {
-  @apply h-full w-[73%];
-
+.cart_cards {
+  @apply h-full w-[73%] flex flex-col gap-[2rem];
 }
