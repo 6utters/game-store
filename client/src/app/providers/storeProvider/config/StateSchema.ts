@@ -13,6 +13,7 @@ import { Cart } from '@/entities/Cart'
 import { UserCartSchema } from '@/features/userCart'
 import { FeaturesPanel } from '@/features/featuresPanel/model/types/FeaturesPanel'
 import { GenresPanel } from '@/features/genresPanel/model/types/GenresPanel'
+import { CreateGameSchema } from '@/features/createGame'
 
 export interface StateSchema {
 	user: UserSchema
@@ -23,6 +24,7 @@ export interface StateSchema {
 	featuresPanel?: FeaturesPanel
 	genresPanel?: GenresPanel
 	userCart?: UserCartSchema
+	createGame?: CreateGameSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

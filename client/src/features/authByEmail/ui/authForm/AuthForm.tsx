@@ -53,7 +53,7 @@ export const AuthForm: FC<AuthFormProps> = memo(({ isSignUpPage }) => {
 			const result = await dispatch(signUp(data))
 			await redirect(result.meta.requestStatus)
 		},
-		[dispatch],
+		[dispatch, redirect],
 	)
 
 	const onSignInSubmit: SubmitHandler<SignInFields> = useCallback(
@@ -61,7 +61,7 @@ export const AuthForm: FC<AuthFormProps> = memo(({ isSignUpPage }) => {
 			const result = await dispatch(signIn(data))
 			await redirect(result.meta.requestStatus)
 		},
-		[dispatch],
+		[dispatch, redirect],
 	)
 
 	return (

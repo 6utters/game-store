@@ -1,5 +1,8 @@
-import { AdminGenresPage } from '@/pages/adminPage'
+import { AdminGenresPage } from '@/pages/adminGenresPage'
+import { NextPageWithRoles } from '@/app/providers/authProvider'
 
-const Genres = () => <AdminGenresPage />
+const Genres: NextPageWithRoles = () => <AdminGenresPage />
+
+Genres.isOnlyForAdmin = true
 
 export default Genres

@@ -4,7 +4,7 @@ import { getSelectedGenres } from './getSelectedGenres'
 describe('getSelectedGenres', () => {
 	test('if there are genres in the list', () => {
 		const state: DeepPartial<StateSchema> = {
-			fetchFilteredGameList: {
+			genresPanel: {
 				selectedGenres: [
 					{ id: 1, genreName: 'Action' },
 					{ id: 2, genreName: 'Action-Adventure' },

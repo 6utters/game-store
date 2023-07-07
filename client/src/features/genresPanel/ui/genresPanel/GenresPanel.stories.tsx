@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import GenresPanel from './GenresPanel'
+import { GenresPanel } from './GenresPanel'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 export default {
-	title: 'widgets/GenresPanel',
+	title: 'features/GenresPanel',
 	component: GenresPanel,
 	args: {
 		genres: [

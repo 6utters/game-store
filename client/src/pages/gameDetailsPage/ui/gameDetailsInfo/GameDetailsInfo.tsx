@@ -1,16 +1,15 @@
 import { FC, memo, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
-
 import { Genre } from '@/entities/Genre'
 import { Feature } from '@/entities/Feature'
 import { GameSchema } from '@/entities/Game'
-
-import {
-	fetchFilteredGameListActions,
-	fetchFilteredGameListReducer,
-} from '@/features/fetchFilteredGameList'
 import { useAppDispatch } from '@/shared/lib/hooks'
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
+import { genresPanelActions, genresPanelReducer } from '@/features/genresPanel'
+import {
+	featuresPanelActions,
+	featuresPanelReducer,
+} from '@/features/featuresPanel'
 
 import styles from './GameDetailsInfo.module.scss'
 
@@ -19,7 +18,8 @@ interface GameDetailsInfoProps {
 }
 
 const initialReducers: ReducerList = {
-	fetchFilteredGameList: fetchFilteredGameListReducer,
+	featuresPanel: featuresPanelReducer,
+	genresPanel: genresPanelReducer,
 }
 
 export const GameDetailsInfo: FC<GameDetailsInfoProps> = memo(props => {
@@ -39,22 +39,22 @@ export const GameDetailsInfo: FC<GameDetailsInfoProps> = memo(props => {
 	const router = useRouter()
 	const onGenreClick = useCallback(
 		(genre: Genre) => {
-			dispatch(fetchFilteredGameListActions.selectGenre(genre))
+			dispatch(genresPanelActions.selectGenre(genre))
 			router.push('/')
 		},
-		[dispatch],
+		[dispatch, router],
 	)
 
 	const onFeatureClick = useCallback(
 		(feature: Feature) => {
-			dispatch(fetchFilteredGameListActions.selectFeature(feature))
+			dispatch(featuresPanelActions.selectFeature(feature))
 			router.push('/')
 		},
-		[dispatch],
+		[dispatch, router],
 	)
 
 	return (
-		<DynamicModuleLoader reducers={initialReducers}>
+		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
 			<div className={styles.container}>
 				<div className={styles.main_info}>
 					<p>{gameAbout.mainInfo}</p>
@@ -63,9 +63,9 @@ export const GameDetailsInfo: FC<GameDetailsInfoProps> = memo(props => {
 					<div className={styles.genre_card}>
 						<p>Genres</p>
 						<div className={styles.genres}>
-							{genres.map(g => (
-								<h5 onClick={() => onGenreClick(g)} key={g.id}>
-									{g.genreName}
+							{genres.map(genre => (
+								<h5 onClick={() => onGenreClick(genre)} key={genre.id}>
+									{genre.genreName}
 								</h5>
 							))}
 						</div>
@@ -73,9 +73,9 @@ export const GameDetailsInfo: FC<GameDetailsInfoProps> = memo(props => {
 					<div className={styles.feature_card}>
 						<p>Features</p>
 						<div className={styles.features}>
-							{features.map(f => (
-								<h5 onClick={() => onFeatureClick(f)} key={f.id}>
-									{f.featureName}
+							{features.map(feature => (
+								<h5 onClick={() => onFeatureClick(feature)} key={feature.id}>
+									{feature.featureName}
 								</h5>
 							))}
 						</div>

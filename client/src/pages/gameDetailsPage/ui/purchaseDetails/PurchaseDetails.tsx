@@ -1,31 +1,21 @@
-import { FC } from 'react'
-
+import { FC, memo } from 'react'
 import { GameSchema } from '@/entities/Game'
-import { Spinner } from '@/shared/ui'
-import styles from './PurchaseDetails.module.scss'
+import { Skeleton } from '@/shared/ui'
 import { AddToCartButton } from '@/features/userCart'
+
+import styles from './PurchaseDetails.module.scss'
 
 interface PurchaseDetailsProps {
 	game?: GameSchema
 }
 
-export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
-	// const dispatch = useAppDispatch()
-	// const router = useRouter()
-	// const cartGames = useSelector(getCartGames)
-	//
-	// const isGameInCart = useMemo(() => {
-	// 	return cartGames.some(cartGame => cartGame.gameId === game?.id)
-	// }, [cartGames, game])
-	//
-	// const addToCart = useCallback(
-	// 	(gameName: string) => {
-	// 		dispatch(addGameToCart(gameName))
-	// 	},
-	// 	[dispatch],
-	// )
-
-	if (!game) return <Spinner />
+export const PurchaseDetails: FC<PurchaseDetailsProps> = memo(({ game }) => {
+	if (!game)
+		return (
+			<aside className={styles.container}>
+				<Skeleton width={'100%'} height={'20rem'} border={'0.25rem'} />
+			</aside>
+		)
 
 	return (
 		<aside className={styles.container}>
@@ -41,21 +31,6 @@ export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
 					<p>get</p>
 				</button>
 				<AddToCartButton className={styles.cart_btn} game={game} />
-				{/*{isGameInCart ? (*/}
-				{/*	<button*/}
-				{/*		className={styles.cart_btn}*/}
-				{/*		onClick={() => router.push(BASKET_ROUTE)}*/}
-				{/*	>*/}
-				{/*		<p>View in cart</p>*/}
-				{/*	</button>*/}
-				{/*) : (*/}
-				{/*	<button*/}
-				{/*		className={styles.cart_btn}*/}
-				{/*		onClick={() => addToCart(game.gameName)}*/}
-				{/*	>*/}
-				{/*		<p>add to cart</p>*/}
-				{/*	</button>*/}
-				{/*)}*/}
 				<div className={styles.purchase_info}>
 					<div className={styles.info_item}>
 						<p>Developer</p>
@@ -73,4 +48,4 @@ export const PurchaseDetails: FC<PurchaseDetailsProps> = ({ game }) => {
 			</div>
 		</aside>
 	)
-}
+})

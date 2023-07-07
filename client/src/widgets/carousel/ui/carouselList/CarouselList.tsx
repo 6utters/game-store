@@ -1,10 +1,10 @@
 import { FC, memo } from 'react'
 import Image from 'next/image'
-import { Player } from '@/widgets/player/Player'
 import { GameMedia } from '@/entities/Game'
 import { SERVER_URL } from '@/shared/api'
 
 import styles from './CarouselList.module.scss'
+import { Player } from '@/widgets/player'
 
 interface CarouselListProps {
 	mediaItems: GameMedia[]

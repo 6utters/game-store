@@ -10,16 +10,19 @@ interface MultipleSelectProps {
 	options: Option[] | undefined
 	placeHolder: string
 	currentOptions: string[]
-	setCurrentOptions: (option: any) => void
+	setCurrentOptions: (options: string[]) => void
 }
 
 export const MultipleSelect: FC<MultipleSelectProps> = memo(
 	({ options, placeHolder, currentOptions, setCurrentOptions }) => {
-		const getValue = () => {
+		const getValue = (): Option[] => {
 			return currentOptions
-				? options?.filter(o => currentOptions.indexOf(o.value) >= 0)
+				? options?.filter(
+						option => currentOptions.indexOf(option.value) >= 0,
+				  ) ?? []
 				: []
 		}
+
 		const onChange = (newValue: OnChangeValue<Option, boolean>) => {
 			setCurrentOptions((newValue as Option[]).map(v => v.value))
 		}

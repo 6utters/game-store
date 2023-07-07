@@ -1,4 +1,4 @@
-import { FC, memo } from 'react'
+import { FC, memo, useMemo } from 'react'
 
 import { GameSchema } from '@/entities/Game'
 
@@ -15,16 +15,25 @@ interface GameDetailsProps {
 }
 
 export const GameDetails: FC<GameDetailsProps> = memo(({ game }) => {
-	if (!game) {
+	const images = useMemo(
+		() => game?.gameMedia.filter(mediaItem => mediaItem.type === 'image'),
+		[game?.gameMedia],
+	)
+	const videos = useMemo(
+		() => game?.gameMedia.filter(mediaItem => mediaItem.type === 'video'),
+		[game?.gameMedia],
+	)
+
+	if (!game || !images || !videos) {
 		return <h3>Something went wrong.</h3>
 	}
 
 	return (
 		<div className={styles.container}>
 			<GameRating gameId={game.id} />
-			<GameDetailsCarousel media={game.gameMedia} />
+			<GameDetailsCarousel mediaItems={[...videos, ...images]} />
 			<GameDetailsInfo game={game} />
-			<GameDetailsImages media={game.gameMedia} />
+			<GameDetailsImages images={images} />
 			<GameDetailsRequirements gameInfo={game.gameInfo} />
 		</div>
 	)

@@ -8,7 +8,6 @@ interface GameFilters {
 	features?: Feature[] | []
 }
 
-//todo: make refactoring
 export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 	endpoints: build => ({
 		fetchGameList: build.query<GameSchema[], GameFilters>({
@@ -35,17 +34,8 @@ export const fetchFilteredGamesApi = $rtkApi.injectEndpoints({
 			},
 			providesTags: () => [{ type: 'CartGame' }],
 		}),
-		fetchBySearchGames: build.query<GameSchema[], string>({
-			query: searchTerm => ({
-				url: `/games?searchTerm=${searchTerm}`,
-			}),
-		}),
-		fetchOneGame: build.query<GameSchema, number>({
-			query: id => ({
-				url: `games/${id}`,
-			}),
-		}),
 	}),
+	overrideExisting: true,
 })
 
 export const {

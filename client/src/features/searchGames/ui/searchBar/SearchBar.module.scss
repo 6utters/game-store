@@ -7,11 +7,11 @@
     .search_input {
       @apply h-[2.5rem] bg-basic-black rounded-3xl pl-[2rem] pr-[0.7rem] text-sm font-medium border-0;
 
-      input {
-        &:focus {
-          @apply bg-basic-gray outline-0;
-        }
+      &:focus {
+        @apply bg-basic-gray outline-0;
+      }
 
+      input {
         &::placeholder {
           @apply text-border-gray;
         }

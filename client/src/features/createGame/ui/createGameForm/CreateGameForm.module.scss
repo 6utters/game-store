@@ -1,0 +1,36 @@
+.form {
+  @apply w-full min-h-[20rem] h-full flex flex-col justify-center py-[1rem];
+  > .heading {
+    @apply text-center mb-[1rem] text-stone-300 uppercase font-medium text-lg;
+  }
+
+  .forms {
+    .about_info {
+      p {
+        @apply text-stone-300 mb-[0.75rem] font-medium;
+      }
+    }
+
+    .selectors {
+      p {
+        @apply text-stone-300 font-medium underline mb-[0.75rem];
+      }
+    }
+  }
+
+  .submit {
+    @apply w-full h-[3rem] mt-[1rem] flex justify-end;
+
+    button {
+      @apply h-full px-[2rem] ml-auto bg-amber-300 text-black rounded;
+
+      &:hover {
+        @apply opacity-70;
+      }
+    }
+  }
+
+  .loading {
+    @apply text-2xl text-center;
+  }
+}

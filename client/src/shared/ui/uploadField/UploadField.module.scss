@@ -2,8 +2,9 @@
   @apply mb-[2rem];
   > label {
     @apply block;
+
     > span {
-      @apply text-white underline font-medium;
+      @apply text-stone-300 underline font-medium;
       font-size: 0.9rem;
     }
 

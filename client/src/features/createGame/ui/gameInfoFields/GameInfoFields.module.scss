@@ -1,0 +1,15 @@
+.input {
+  @apply mb-[1.5rem] pl-[0.7rem];
+
+  input {
+    @apply text-border-gray;
+
+    &:focus, &::selection, &:active {
+      @apply bg-transparent outline-0;
+    }
+
+    &::placeholder {
+      @apply text-border-gray;
+    }
+  }
+}

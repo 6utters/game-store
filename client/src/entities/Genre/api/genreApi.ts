@@ -9,7 +9,24 @@ const genreApi = $rtkApi.injectEndpoints({
 			}),
 			providesTags: () => [{ type: 'Genre' }],
 		}),
+		createGenre: build.mutation<Genre[], string>({
+			query: genreName => ({
+				url: `genres/`,
+				method: 'POST',
+				body: { genreName },
+			}),
+			invalidatesTags: () => [{ type: 'Genre' }],
+		}),
+		deleteGenre: build.mutation<Genre[], number>({
+			query: genreId => ({
+				url: `genres/${genreId}`,
+				method: 'DELETE',
+			}),
+			invalidatesTags: () => [{ type: 'Genre' }],
+		}),
 	}),
 })
 
 export const useFetchGenres = genreApi.useFetchGenresQuery
+export const useCreateGenre = genreApi.useCreateGenreMutation
+export const useDeleteGenre = genreApi.useDeleteGenreMutation

@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import FeatureList from './FeaturesPanel'
+import { FeaturesPanel } from './FeaturesPanel'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 export default {
-	title: 'widgets/FeaturesPanel',
-	component: FeatureList,
+	title: 'features/FeaturesPanel',
+	component: FeaturesPanel,
 	args: {
 		features: [
 			{ featureName: 'test genre 1', id: 1 },
@@ -12,10 +12,10 @@ export default {
 		],
 	},
 	decorators: [StoreDecorator({})],
-} as ComponentMeta<typeof FeatureList>
+} as ComponentMeta<typeof FeaturesPanel>
 
-const Template: ComponentStory<typeof FeatureList> = args => (
-	<FeatureList {...args} />
+const Template: ComponentStory<typeof FeaturesPanel> = args => (
+	<FeaturesPanel {...args} />
 )
 
 export const FirstSelected = Template.bind({})

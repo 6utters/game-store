@@ -21,7 +21,6 @@ export interface GameSchema {
 }
 
 export interface GameAbout {
-	id: number
 	gameId: number
 	mainInfo: string
 	fstP?: string

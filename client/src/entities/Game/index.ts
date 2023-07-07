@@ -1,5 +1,5 @@
-export * from './ui/gameCardList/GameCardList'
-export * from './ui/gameCard/GameCard'
+export { GameCardList } from './ui/gameCardList/GameCardList'
+export { GameList } from './ui/gameList/GameList'
 export type {
 	GameSchema,
 	GameInfo,
@@ -7,3 +7,4 @@ export type {
 	GameImage,
 	GameAbout,
 } from './model/types/GameSchema'
+export { useDeleteGame } from './api/gameApi'

@@ -1,0 +1,26 @@
+.feature_list {
+  @apply relative w-full flex flex-col gap-[0.4rem];
+
+  .heading {
+    @apply text-border-gray font-semibold mb-[0.5rem];
+    font-size: 0.9rem;
+  }
+
+  .feature_item {
+    @apply flex justify-between items-center w-full text-border-gray h-[3.5rem] bg-basic-black rounded px-[1rem] transition-all;
+
+    P {
+      @apply font-medium;
+      font-size: 0.9rem;
+    }
+
+    svg {
+      @apply cursor-pointer;
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      @apply text-white bg-basic-gray;
+    }
+  }
+}

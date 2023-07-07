@@ -1,0 +1,36 @@
+.content {
+  @apply rounded bg-basic-gray flex flex-col;
+
+  .title {
+    @apply w-full h-[2rem] flex justify-center mb-[1rem];
+
+    p {
+      @apply text-white font-semibold;
+      font-size: 1rem
+    }
+  }
+
+  form {
+    .modal_input {
+      input {
+        &::placeholder {
+          @apply text-border-gray;
+        }
+      }
+    }
+
+    .submit {
+      @apply w-[30rem] flex justify-end transition-all;
+      opacity: 1;
+
+      button {
+        @apply h-[2rem] w-[5rem] rounded bg-basic-yellow font-semibold text-gray-700;
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

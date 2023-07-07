@@ -1,8 +1,7 @@
 import { FC, useState } from 'react'
 import { StarsRating } from '@/shared/ui'
-
-import styles from './Rating.module.scss'
 import { BsFillPeopleFill } from 'react-icons/bs'
+import styles from './Rating.module.scss'
 
 interface RatingProps {
 	numberOfRates?: number

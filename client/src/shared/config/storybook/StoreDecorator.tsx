@@ -1,14 +1,18 @@
 import { StateSchema, StoreProvider } from '@/app/providers/storeProvider'
 import { ReducerList } from '@/shared/lib'
-import { fetchFilteredGameListReducer } from '@/features/fetchFilteredGameList'
 import { authByEmailReducer } from '@/features/authByEmail'
 import { userCartSliceReducer } from '@/features/userCart'
 import { Story } from '@storybook/react'
+import { genresPanelReducer } from '@/features/genresPanel'
+import { featuresPanelReducer } from '@/features/featuresPanel'
+import { createGameReducer } from '@/features/createGame'
 
 const defaultAsyncReducers: ReducerList = {
-	fetchFilteredGameList: fetchFilteredGameListReducer,
 	authByEmail: authByEmailReducer,
 	userCart: userCartSliceReducer,
+	genresPanel: genresPanelReducer,
+	featuresPanel: featuresPanelReducer,
+	createGame: createGameReducer,
 }
 
 export const StoreDecorator =
