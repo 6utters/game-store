@@ -7,7 +7,7 @@ const initialState: AuthByEmailSchema = {
 	error: undefined,
 }
 
-export const authByEmailSlice = createSlice({
+const authByEmailSlice = createSlice({
 	name: 'authByEmail',
 	initialState,
 	reducers: {},
@@ -60,5 +60,4 @@ export const authByEmailSlice = createSlice({
 	},
 })
 
-export const { reducer: authByEmailReducer, actions: authByEmailActions } =
-	authByEmailSlice
+export const { reducer: authByEmailReducer } = authByEmailSlice

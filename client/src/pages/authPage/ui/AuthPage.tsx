@@ -7,7 +7,7 @@ import { AuthForm } from '@/features/authByEmail'
 
 import styles from './AuthPage.module.scss'
 
-const AuthPage: FC = () => {
+export const AuthPage: FC = () => {
 	const router = useRouter()
 	const isSignUpPage = router.pathname === REGISTRATION_ROUTE
 	return (
@@ -25,5 +25,3 @@ const AuthPage: FC = () => {
 		</MainLayout>
 	)
 }
-
-export default AuthPage

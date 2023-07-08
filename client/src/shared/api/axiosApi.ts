@@ -2,8 +2,6 @@ import axios from 'axios'
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/shared/consts'
 import { AuthByEmailResponse } from '@/features/authByEmail'
 
-//todo: reconsider interceptor logic
-
 export const API_URL = `http://localhost:5000/api`
 export const SERVER_URL = `http://localhost:5000`
 

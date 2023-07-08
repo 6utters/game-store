@@ -1,6 +1,7 @@
 import { FC, memo } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { GameArgs } from '../../model/types/CreateGame'
+
 import styles from './GameAboutFields.module.scss'
 
 interface GameAboutFormProps {

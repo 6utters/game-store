@@ -51,6 +51,8 @@ export const CreateGameForm: FC<CreateGameFormProps> = memo(props => {
 		currentVideos: [],
 	})
 
+	console.log('gameArgs:', gameArgs)
+
 	const onSubmit: SubmitHandler<GameArgs> = async data => {
 		const result = await dispatch(
 			createGame({

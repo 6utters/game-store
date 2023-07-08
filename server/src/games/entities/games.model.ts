@@ -46,13 +46,6 @@ export class Game extends Model<Game, UserCreationAttrs> {
 	})
 	gamePrice: number
 
-	// @ForeignKey(() => GameDetailsRating)
-	// @Column({
-	// 	types: DataType.INTEGER,
-	// 	defaultValue: 0,
-	// })
-	// gameRating: number
-
 	@Column({
 		type: DataType.STRING,
 		allowNull: false,

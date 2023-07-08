@@ -4,9 +4,9 @@ import { FilterItem, findSelectedFilterId } from '@/shared/lib'
 import { useAppDispatch } from '@/shared/lib/hooks'
 import { Feature } from '@/entities/Feature'
 import { featuresPanelActions } from '../../model/slice/featurePanelSlice'
+import { Skeleton, ToggleList } from '@/shared/ui'
 
 import styles from './FeaturesPanel.module.scss'
-import { Skeleton, ToggleList } from '@/shared/ui'
 
 interface FeatureFilterProps {
 	features?: Feature[]

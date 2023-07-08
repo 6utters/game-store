@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Filters from './Filters'
+import { Filters } from './Filters'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 export default {

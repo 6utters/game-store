@@ -1,8 +1,8 @@
 import { FC, memo, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-
 import { useSelector } from 'react-redux'
+import Link from 'next/link'
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
 import { useAppDispatch } from '@/shared/lib/hooks'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import {
@@ -11,16 +11,12 @@ import {
 	signUp,
 	SignUpFields,
 } from '../../model/services'
-import {
-	getAuthByEmailError,
-	getAuthByEmailIsLoading,
-} from '../../model/selectors'
-
 import { emailPattern, LOGIN_ROUTE, REGISTRATION_ROUTE } from '@/shared/consts'
 import { Input, Logo } from '@/shared/ui'
-import { DynamicModuleLoader, ReducerList } from '@/shared/lib'
+import { authByEmailReducer } from '../../model/slice/authByEmailSlice'
+import { getAuthByEmailError } from '../../model/selectors/getAuthByEmailError/getAuthByEmailError'
+import { getAuthByEmailIsLoading } from '../../model/selectors/getAuthByEmailIsLoading/getAuthByEmailIsLoading'
 
-import { authByEmailReducer } from '@/features/authByEmail'
 import styles from './AuthForm.module.scss'
 
 const initialReducers: ReducerList = {
@@ -38,9 +34,12 @@ export const AuthForm: FC<AuthFormProps> = memo(({ isSignUpPage }) => {
 	const error = useSelector(getAuthByEmailError)
 	const isLoading = useSelector(getAuthByEmailIsLoading)
 
-	const redirect = async (status: string) => {
-		if (status === 'fulfilled') await router.push('/')
-	}
+	const redirect = useCallback(
+		async (status: string) => {
+			if (status === 'fulfilled') await router.push('/')
+		},
+		[router],
+	)
 
 	const {
 		register,

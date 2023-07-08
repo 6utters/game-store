@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ThunkConfig } from '@/app/providers/storeProvider'
-import { CreateGameSchema } from '@/features/gameInteraction'
+import { GameArgs } from '../types/CreateGame'
 import {
 	createGameAboutInfoFD,
 	createGameBaseFD,
@@ -14,8 +14,8 @@ import {
 	createGameMutation,
 } from '../../api/createGameApi'
 
-interface CreateGameProps {
-	gameData: CreateGameSchema
+export interface CreateGameProps {
+	gameData: GameArgs
 	gameImage: File | null
 	genres: string[]
 	features: string[]

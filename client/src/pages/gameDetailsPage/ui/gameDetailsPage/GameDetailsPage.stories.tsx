@@ -10,7 +10,6 @@ const mockedGame: GameSchema = {
 	gameRating: 5,
 	gameImage: '',
 	gameAbout: {
-		id: 1,
 		gameId: 1,
 		mainInfo: 'test',
 		fstP: 'test',
