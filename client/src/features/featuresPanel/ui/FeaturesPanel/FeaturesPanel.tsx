@@ -41,7 +41,7 @@ export const FeaturesPanel: FC<FeatureFilterProps> = memo(props => {
 		<ToggleList title={'features'} isOpen={isOpen} toggle={toggleHandler}>
 			{features?.map(feature => (
 				<li
-					onClick={() => featureClickHandler(feature)}
+					onClick={featureClickHandler(feature)}
 					key={feature.id}
 					className={cn(styles.feature_item, {
 						[styles.active]:

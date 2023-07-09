@@ -60,15 +60,15 @@
 
   &__multi-value__label {
     font-size: 80% !important;
-    color: rgb(white 0.7) !important;
+    color: rgb(white, 0.7) !important;
   }
 
   &__multi-value__remove {
-    color: rgb(white 0.8) !important;
+    color: rgb(white, 0.8) !important;
 
     &:hover {
       background: transparent !important;
-      color: rgb(white 1) !important;
+      color: rgb(white, 1) !important;
     }
   }
 

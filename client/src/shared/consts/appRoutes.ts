@@ -1,7 +1,7 @@
 export const ADMIN_ROUTE = '/admin'
 export const STORE_ROUTE = '/'
 export const BASKET_ROUTE = '/cart'
-export const LOGIN_ROUTE = '/common'
+export const LOGIN_ROUTE = '/login'
 export const REGISTRATION_ROUTE = '/signup'
 export const GAME_ROUTE = '/games'
 export const ABOUT_ROUTE = '/about'

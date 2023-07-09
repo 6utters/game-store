@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("variables");
-@import url("reset");
-@import url("scrollbar");
+@import "variables";
+@import "reset";
+@import "scrollbar";
 
 * {
   box-sizing: border-box;
