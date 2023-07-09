@@ -1,5 +1,6 @@
 .not_found_page {
   @apply relative h-full w-full flex flex-col items-center justify-center;
+
   min-height: calc(100vh - var(--navbar-height) - var(--toolbar-height) - var(--footer-height));
 
   .card {

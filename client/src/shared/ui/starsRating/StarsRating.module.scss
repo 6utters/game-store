@@ -1,5 +1,6 @@
 .stars_rating {
   @apply flex;
+
   cursor: pointer;
   fill: none;
 
@@ -13,5 +14,5 @@
 
 .hoveredActive {
   fill: #f9cd0b;
-  opacity: 80%;
+  opacity: 0.8;
 }

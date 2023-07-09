@@ -13,6 +13,7 @@
 
   .error {
     @apply text-sm text-error-red pb-[0.3rem];
+
     line-height: 1.2;
     font-size: 0.6rem;
   }
@@ -22,6 +23,7 @@
 
     button {
       @apply w-full h-full rounded-[4px] text-input-text font-semibold transition-colors duration-150;
+
       font-size: 0.8rem;
 
       &:hover {
@@ -32,16 +34,20 @@
 
   .privacy {
     @apply w-full h-[3rem] flex justify-center items-end;
+
     h3 {
       @apply underline text-white font-medium;
+
       font-size: 0.9rem;
     }
   }
 
   .condition {
     @apply w-full h-[2.3rem] flex justify-center items-end;
+
     p {
       @apply text-input-text font-medium;
+
       font-size: 0.9rem;
 
       a {

@@ -3,10 +3,12 @@
 
   input {
     @apply w-full h-full pl-[0.5rem] text-white bg-transparent;
+
     outline: none;
 
     &::placeholder {
       @apply font-medium;
+
       font-size: 0.9rem;
     }
   }
@@ -14,6 +16,7 @@
 
 .error {
   @apply absolute -bottom-5 text-sm text-error-red;
+
   font-size: 0.6rem;
 }
 

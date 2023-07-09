@@ -3,23 +3,28 @@
 
   > h3 {
     @apply text-white font-medium mt-[1rem] mb-[0.25rem];
+
     font-size: 0.9rem;
   }
 
   .block {
     @apply w-full bg-basic-black rounded px-[3.5rem] py-[1.5rem];
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
 
     .main {
       @apply w-full mb-[2rem];
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      border-bottom: 1px solid rgb(255 255 255 / 10%);
 
       .header {
         @apply w-full h-[5rem] mb-[2rem];
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-bottom: 1px solid rgb(255 255 255 / 10%);
 
         p {
           @apply w-[3.5rem] h-full text-white font-semibold uppercase flex items-center;
+
           font-size: 0.7rem;
           border-bottom: 2px solid #fff
         }
@@ -33,6 +38,7 @@
 
           > p {
             @apply text-border-gray font-semibold mb-[2rem];
+
             font-size: 0.9rem;
           }
 
@@ -41,11 +47,13 @@
 
             p {
               @apply text-border-gray font-semibold;
+
               font-size: 0.9rem;
             }
 
             h5 {
               @apply text-white font-medium;
+
               font-size: 0.85rem;
             }
 
@@ -55,13 +63,16 @@
 
       .logins {
         @apply mb-[2rem];
+
         p {
           @apply text-border-gray font-semibold;
+
           font-size: 0.9rem;
         }
 
         h5 {
           @apply text-white font-medium;
+
           font-size: 0.85rem;
         }
       }
@@ -70,11 +81,13 @@
     .policy {
       p {
         @apply text-border-gray text-center font-semibold mb-[1rem];
+
         font-size: 0.85rem;
       }
 
       h5 {
         @apply text-center text-white font-semibold;
+
         font-size: 0.85rem;
       }
     }

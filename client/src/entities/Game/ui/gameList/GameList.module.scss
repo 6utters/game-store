@@ -3,6 +3,7 @@
 
   .heading {
     @apply text-border-gray font-semibold mb-[0.5rem];
+
     font-size: 0.9rem;
   }
 
@@ -19,11 +20,13 @@
 
     p {
       @apply font-medium;
+
       font-size: 0.9rem;
     }
 
     svg {
       @apply cursor-pointer;
+
       font-size: 0.8rem;
     }
 

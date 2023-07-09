@@ -1,18 +1,20 @@
 .toggle_list_wrapper {
   @apply bg-black-primary;
 
-  @media screen and (max-width: 766px) {
+  @media screen and (width <= 766px) {
     display: none;
   }
 
-  &:before {
+  &::before {
     @apply block w-full h-[2px] bg-white mb-2;
+
     content: '';
     opacity: 0.1;
   }
 
-  &:after {
+  &::after {
     @apply block w-full h-[2px] bg-white my-2;
+
     content: '';
     opacity: 0.1;
   }
@@ -21,7 +23,7 @@
     @apply h-[3.75rem] flex items-center justify-between w-full cursor-pointer;
 
     .arrow_icon {
-      @apply transition-all;
+      @apply transition-all w-5 h-5 font-bold text-border-gray;
     }
 
     &:hover {
@@ -36,11 +38,8 @@
 
     h3 {
       @apply text-border-gray uppercase font-bold;
-      font-size: 0.8rem;
-    }
 
-    .arrow_icon {
-      @apply w-5 h-5 font-bold text-border-gray
+      font-size: 0.8rem;
     }
   }
 

@@ -10,6 +10,7 @@
 
     svg {
       @apply h-[16px] w-[16px];
+
       fill: white;
     }
   }
@@ -19,7 +20,7 @@
   margin-left: 5px;
   -webkit-box-align: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   border-radius: 4px;
   display: flex;
   -webkit-box-pack: center;
@@ -28,7 +29,7 @@
 
   > span {
     transition: color 125ms ease-in-out 0s;
-    color: rgb(245, 245, 245);
+    color: rgb(245 245 245);
     font-size: 12px;
     line-height: 1.364;
     letter-spacing: 0.5px;

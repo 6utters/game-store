@@ -8,6 +8,7 @@
 
   .popup {
     @apply absolute bottom-0 left-0 right-0 w-full bg-basic-gray flex flex-col items-center gap-1 cursor-pointer py-[0.5rem];
+
     opacity: 0;
     visibility: hidden;
     z-index: 10000;

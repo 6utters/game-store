@@ -6,6 +6,7 @@
 
     p {
       @apply text-white font-semibold;
+
       font-size: 1rem
     }
   }
@@ -13,10 +14,12 @@
   form {
     .submit {
       @apply w-[30rem] flex justify-end transition-all;
-      opacity: 70%;
+
+      opacity: 0.7;
 
       button {
         @apply h-[2rem] w-[5rem] rounded bg-basic-yellow font-semibold text-gray-700;
+
         font-size: 0.9rem;
       }
 

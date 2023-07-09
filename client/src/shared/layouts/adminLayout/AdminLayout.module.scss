@@ -1,27 +1,32 @@
 .error {
   @apply w-full flex items-center justify-center;
+
   height: 90vh;
 
   h1 {
     @apply text-white text-4xl;
+
     letter-spacing: -0.1rem;
   }
 }
 
 .container {
   @apply relative h-full w-full flex justify-center;
-  background: rgb(18, 18, 18);
+
+  background: rgb(18 18 18);
 
   .content {
     @apply w-3/4 flex justify-between;
 
     .sidebar {
       @apply h-full w-1/5 flex flex-col pt-[5rem];
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+      border-right: 1px solid rgb(255 255 255 / 10%);
 
       .links {
         @apply w-full py-[2rem] pr-[0.75rem];
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-top: 1px solid rgb(255 255 255 / 10%);
 
         .link {
           @apply w-full h-[3rem] mb-[1rem];
@@ -32,6 +37,7 @@
 
           a {
             @apply text-border-gray font-semibold flex items-center transition-all h-full pl-[0.5rem];
+
             font-size: 0.9rem;
 
             svg {

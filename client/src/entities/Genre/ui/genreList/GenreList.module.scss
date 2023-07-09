@@ -3,19 +3,22 @@
 
   .heading {
     @apply text-border-gray font-semibold mb-[0.5rem];
+
     font-size: 0.9rem;
   }
 
   .genre_item {
     @apply flex justify-between items-center w-full text-border-gray h-[3.5rem] bg-basic-black rounded px-[1rem] transition-all;
 
-    P {
+    p {
       @apply font-medium;
+
       font-size: 0.9rem;
     }
 
     svg {
       @apply cursor-pointer;
+
       font-size: 0.8rem;
     }
 

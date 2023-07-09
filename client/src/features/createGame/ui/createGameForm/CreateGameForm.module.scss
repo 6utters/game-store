@@ -1,5 +1,6 @@
 .form {
   @apply w-full min-h-[20rem] h-full flex flex-col justify-center py-[1rem];
+
   > .heading {
     @apply text-center mb-[1rem] text-stone-300 uppercase font-medium text-lg;
   }

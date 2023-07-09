@@ -1,11 +1,13 @@
-@keyframes scaleIn {
+@keyframes scale-in {
   0% {
     opacity: 0;
     transform: scale(0.9);
   }
+
   50% {
     opacity: 0.3;
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -17,11 +19,11 @@
     height: 3.5rem !important;
     background-color: transparent !important;
     border-radius: 0.25rem !important;
-    border: 1px solid rgb(145, 142, 142) !important;
+    border: 1px solid rgb(145 142 142) !important;
     box-shadow: none !important;
 
     &--menu-is-open {
-      border-color: #ffffff !important;
+      border-color: #fff !important;
     }
   }
 
@@ -32,7 +34,7 @@
   }
 
   &__input-container {
-    color: rgb(145, 142, 142) !important;
+    color: rgb(145 142 142) !important;
   }
 
   &__indicator-separator {
@@ -44,43 +46,43 @@
   }
 
   &__indicator {
-    color: rgb(145, 142, 142) !important;
+    color: rgb(145 142 142) !important;
 
     &:hover {
-      color: rgb(180, 173, 173) !important;
+      color: rgb(180 173 173) !important;
     }
   }
 
   &__multi-value {
-    background-color: rgb(118, 118, 118, 0.6) !important;
+    background-color: rgb(118 118 118 / 60%) !important;
     border-radius: 0.25rem !important;
   }
 
   &__multi-value__label {
     font-size: 80% !important;
-    color: rgba(white, 0.7) !important;
+    color: rgb(white 0.7) !important;
   }
 
   &__multi-value__remove {
-    color: rgba(white, 0.8) !important;
+    color: rgb(white 0.8) !important;
 
     &:hover {
       background: transparent !important;
-      color: rgba(white, 1) !important;
+      color: rgb(white 1) !important;
     }
   }
 
   &__menu {
     background-color: #202020 !important;
-    color: #CCCCCC !important;
-    animation: scaleIn .35s ease-in-out;
+    color: #CCC !important;
+    animation: scale-in .35s ease-in-out;
   }
 
   &__option {
     cursor: pointer !important;
 
     &--is-focused {
-      background-color: lighten(#292a2e, 8%) !important;
+      background-color: #292a2e !important;
     }
   }
 }

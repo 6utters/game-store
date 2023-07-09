@@ -1,9 +1,10 @@
 .filters {
   @apply w-[15.313rem];
-  flex-shrink: 0;
-  background: rgb(18, 18, 18);
 
-  @media screen and (max-width: 766px) {
+  flex-shrink: 0;
+  background: rgb(18 18 18);
+
+  @media screen and (width <= 766px) {
     display: none;
   }
 }

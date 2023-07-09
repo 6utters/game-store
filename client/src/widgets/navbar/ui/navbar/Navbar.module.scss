@@ -1,5 +1,6 @@
 .navbar {
   @apply w-full bg-basic-gray flex items-center justify-between pl-4;
+
   height: var(--navbar-height);
 
   > .navigation {
@@ -8,23 +9,24 @@
     > .links {
       @apply relative h-full flex items-center  ml-4;
 
-      .active:after {
+      .active::after {
         @apply content-[''] absolute right-0 left-0 bottom-0 h-[0.25rem] bg-basic-yellow;
       }
 
       a {
         @apply relative h-full flex flex-col justify-center text-gray-text uppercase px-4 transition-all;
+
         font-size: 0.65rem;
         letter-spacing: 0.05rem;
 
-        &:after {
+        &::after {
           @apply content-[''] absolute right-0 left-0 bottom-0 h-0 bg-basic-yellow transition-all;
         }
 
         &:hover {
           @apply text-white;
 
-          &:after {
+          &::after {
             @apply h-[0.25rem];
           }
         }

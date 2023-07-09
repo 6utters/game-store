@@ -1,5 +1,5 @@
 .container {
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     width: calc(100% - 384px);
   }
 }

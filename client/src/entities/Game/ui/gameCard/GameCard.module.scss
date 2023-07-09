@@ -1,16 +1,16 @@
 .card_wrapper {
   position: relative;
   box-sizing: border-box;
-  -webkit-transition: backgroundColor 125ms ease-in-out;
-  transition: backgroundColor 125ms ease-in-out;
+  transition: backgroundcolor 125ms ease-in-out;
   margin: 0;
   padding: 0;
   list-style-type: none;
   background-color: transparent;
   margin-bottom: 16px;
 
-  @media(min-width: 1920px) {
+  @media(width >= 1920px) {
     @apply ml-[1rem];
+
     width: calc(20% - 16px * 0.8);
 
     &:nth-child(5n + 1) {
@@ -18,12 +18,13 @@
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     margin-bottom: 48px;
   }
 
-  @media (min-width: 768px) and (max-width: 1919px) {
+  @media (width >= 768px) and (width <= 1919px) {
     @apply ml-[1rem];
+
     width: calc(25% - 16px * 0.75);
 
     &:nth-child(4n + 1) {
@@ -39,22 +40,18 @@
   > .cover {
     display: block;
     -webkit-box-flex: 0;
-    -webkit-flex-grow: 0;
     flex-grow: 0;
-    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     width: 100%;
     position: relative;
     overflow: hidden;
     margin-bottom: 10px;
     border-radius: 4px;
-
     padding-bottom: calc(4 / 3 * 100%);
-    background: linear-gradient(to bottom, rgb(43, 43, 43), rgb(32, 32, 32));
-    color: rgba(245, 245, 245, 0.6);
+    background: linear-gradient(to bottom, rgb(43 43 43), rgb(32 32 32));
+    color: rgb(245 245 245 / 60%);
 
-    &:after {
-      -webkit-transition: opacity 125ms ease-in-out;
+    &::after {
       transition: opacity 125ms ease-in-out;
       content: '';
       width: 100%;
@@ -70,8 +67,8 @@
     }
 
     &:hover {
-      &:after {
-        opacity: 10%;
+      &::after {
+        opacity: 0.1;
       }
     }
 
@@ -93,19 +90,15 @@
     line-height: 1.4;
     font-weight: 400;
     display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+    display: flexbox;
+    display: flex;
     flex-direction: column;
     -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
     flex-grow: 1;
-    -webkit-flex-shrink: 0;
     flex-shrink: 0;
 
-    @media (min-width: 1600px) {
+    @media (width >= 1600px) {
       font-size: 16px;
       line-height: 1.4;
     }
@@ -122,21 +115,20 @@
 
       > h3 {
         @apply text-gray-text font-medium;
+
         font-size: 1rem;
       }
     }
 
     > .price {
       @apply w-full mt-1 ;
+
       p {
         display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
+        display: flexbox;
+        display: flex;
         flex-direction: row;
-        -webkit-align-items: center;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;

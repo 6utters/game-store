@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "variables";
-@import "reset";
-@import "scrollbar";
+
+@import url("variables");
+@import url("reset");
+@import url("scrollbar");
 
 * {
   box-sizing: border-box;
@@ -17,7 +18,8 @@ body {
 
 .app {
   @apply text-stone-400;
-  background: rgb(18, 18, 18);
+
+  background: rgb(18 18 18);
   min-height: 100vh;
 }
 

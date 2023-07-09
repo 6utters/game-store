@@ -5,18 +5,18 @@
   -webkit-box-flex: 0;
   flex-grow: 0;
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     top: 160px;
     margin-left: 32px;
     width: 256px;
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     margin-left: 20px;
     width: 260px;
   }
 
-  @media (min-width: 1280px) {
+  @media (width >= 1280px) {
     margin-left: 64px;
     width: 320px;
   }
@@ -26,14 +26,16 @@
 
     p {
       @apply text-white font-extrabold;
+
       font-size: 1.5rem;
     }
   }
 
   > p {
     @apply block bg-basic-gray rounded uppercase my-[0.5rem] py-[0.4rem] px-[0.6rem] text-white font-semibold;
+
     margin-right: auto;
-    opacity: 90%;
+    opacity: 0.9;
     font-size: 0.6rem;
   }
 
@@ -50,25 +52,29 @@
 
     .buy_btn {
       @apply w-full h-[3rem] bg-basic-yellow mb-[0.75rem] rounded transition-all;
-      opacity: 70%;
+
+      opacity: 0.7;
 
       p {
         @apply text-basic-black font-bold uppercase;
+
         font-size: 0.7rem;
       }
 
       &:hover {
-        opacity: 100%;
+        opacity: 1;
 
       }
     }
 
     .cart_btn {
       @apply w-full h-[3rem] border border-border-gray rounded transition-all mb-[0.5rem];
+
       background: transparent;
 
       p {
         @apply text-gray-text font-medium uppercase;
+
         font-size: 0.7rem;
       }
 
@@ -87,7 +93,8 @@
 
     .info_item {
       @apply h-[2.5rem] flex justify-between items-center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      border-bottom: 1px solid rgb(255 255 255 / 10%);
       font-size: 0.9rem;
 
       p {
@@ -96,7 +103,8 @@
 
       h4 {
         @apply text-white font-medium;
-        opacity: 95%;
+
+        opacity: 0.95;
       }
     }
   }

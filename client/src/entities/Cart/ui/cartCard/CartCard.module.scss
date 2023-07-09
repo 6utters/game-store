@@ -12,10 +12,12 @@
 
     .title {
       @apply text-white ml-[1rem];
+
       font-size: 1rem;
 
       a {
         @apply transition-all;
+
         &:hover {
           @apply underline;
         }
@@ -27,11 +29,13 @@
 
       .price {
         @apply text-right text-white;
+
         font-size: 1rem;
       }
 
       .remove {
         @apply text-border-gray font-semibold border-b border-border-gray transition-all;
+
         font-size: 0.9rem;
 
         &:hover {
