@@ -18,7 +18,7 @@ const StorePage: FC<StorePageProps> = memo(props => {
 	const { games, ...filters } = props
 	return (
 		<MainLayout title={'D&D Games | StorePage page'}>
-			<section className={styles.container}>
+			<section className={styles.container} data-testid={'StorePage'}>
 				<FetchGameList games={games} />
 				<Filters {...filters} />
 			</section>

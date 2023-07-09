@@ -1,0 +1,12 @@
+.not_found_page {
+  @apply relative h-full w-full flex flex-col items-center justify-center;
+  min-height: calc(100vh - var(--navbar-height) - var(--toolbar-height) - var(--footer-height));
+
+  .card {
+    @apply w-[60%] min-h-[20rem] bg-basic-gray flex flex-col items-center justify-center gap-6 rounded;
+
+    .title {
+      @apply text-lg text-border-gray font-medium;
+    }
+  }
+}

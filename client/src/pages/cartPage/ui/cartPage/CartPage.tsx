@@ -40,7 +40,7 @@ const CartPage: FC = () => {
 		<DynamicModuleLoader reducers={initialReducers}>
 			<MainLayout title={'D&D Games | Your Cart'}>
 				<Toolbar />
-				<section className={styles.page_wrapper}>
+				<section className={styles.page_wrapper} data-testid={'CartPage'}>
 					<div className={styles.title}>
 						<h1>My Cart</h1>
 					</div>

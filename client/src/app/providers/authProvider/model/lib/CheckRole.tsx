@@ -21,7 +21,7 @@ const CheckRole: FC<ComponentAuthFields> = ({
 	}
 	if (isUser && isOnlyForUser) return <Children />
 	else {
-		router.pathname !== '/login' && router.replace('/login')
+		router.pathname !== '/common' && router.replace('/common')
 		return null
 	}
 }

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import AuthPage from './AuthPage'
+import { AuthPage } from './AuthPage'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator'
 
 export default {

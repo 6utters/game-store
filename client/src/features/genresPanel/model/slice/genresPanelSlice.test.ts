@@ -1,4 +1,3 @@
-import { FetchFilteredGameListSchema } from '@/features/fetchFilteredGameList'
 import { GenresPanel } from '../types/GenresPanel'
 import {
 	genresPanelActions,
@@ -12,7 +11,7 @@ describe('genresPanel', () => {
 		}
 		expect(
 			genresPanelReducer(
-				state as FetchFilteredGameListSchema,
+				state as GenresPanel,
 				genresPanelActions.selectGenre({
 					id: 1,
 					genreName: 'Action',
@@ -22,7 +21,7 @@ describe('genresPanel', () => {
 	})
 
 	test('removeSelectedGenre', () => {
-		const state: DeepPartial<FetchFilteredGameListSchema> = {
+		const state: DeepPartial<GenresPanel> = {
 			selectedGenres: [
 				{ id: 1, genreName: 'Action' },
 				{ id: 2, genreName: 'Action-Adventure' },
@@ -30,7 +29,7 @@ describe('genresPanel', () => {
 		}
 		expect(
 			genresPanelReducer(
-				state as FetchFilteredGameListSchema,
+				state as GenresPanel,
 				genresPanelActions.removeSelectedGenre(1),
 			),
 		).toEqual({

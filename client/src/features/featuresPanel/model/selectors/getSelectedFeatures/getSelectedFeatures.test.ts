@@ -4,7 +4,7 @@ import { getSelectedFeatures } from './getSelectedFeatures'
 describe('getSelectedFeatures', () => {
 	test('if there are genres in the list', () => {
 		const state: DeepPartial<StateSchema> = {
-			fetchFilteredGameList: {
+			featuresPanel: {
 				selectedFeatures: [
 					{ id: 1, featureName: 'Adult only' },
 					{ id: 2, featureName: 'Anime' },

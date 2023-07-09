@@ -13,9 +13,10 @@ interface GamePageProps {
 }
 
 const GameDetailsPage: FC<GamePageProps> = memo(({ game }) => {
+	console.log('game:', game)
 	return (
 		<MainLayout title={`D&D Games | ${game?.gameName}`}>
-			<div className={styles.container}>
+			<div className={styles.container} data-testid={'GamePage'}>
 				<GameDetails game={game} />
 				<PurchaseDetails game={game} />
 			</div>

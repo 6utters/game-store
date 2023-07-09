@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:unit": "jest",
+    "test:e2e": "cypress open",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build-storybook": "build-storybook -c ./config/storybook"
   },
@@ -50,6 +51,7 @@
     "autoprefixer": "^10.4.13",
     "babel-jest": "^29.5.0",
     "babel-loader": "^8.3.0",
+    "cypress": "^12.17.0",
     "eslint": "8.22.0",
     "eslint-config-next": "13.1.2",
     "eslint-plugin-storybook": "^0.6.11",

@@ -1,0 +1,146 @@
+{
+  "id": 3,
+  "gameName": "The Witcher 3: Wild Hunt",
+  "gamePrice": 40,
+  "gameImage": "/uploads/default/w-cover.jfif",
+  "createdAt": "2023-02-04T08:48:11.566Z",
+  "updatedAt": "2023-02-04T08:48:11.566Z",
+  "gameRating": [],
+  "gameMedia": [
+    {
+      "id": 17,
+      "gameId": 3,
+      "type": "video",
+      "url": "/uploads/videos/w-v-1.mp4",
+      "createdAt": "2023-02-04T08:48:13.915Z",
+      "updatedAt": "2023-02-04T08:48:13.930Z"
+    },
+    {
+      "id": 18,
+      "gameId": 3,
+      "type": "video",
+      "url": "/uploads/videos/w-v-2.mp4",
+      "createdAt": "2023-02-04T08:48:13.940Z",
+      "updatedAt": "2023-02-04T08:48:13.944Z"
+    },
+    {
+      "id": 19,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-1.jpg",
+      "createdAt": "2023-02-04T08:48:14.041Z",
+      "updatedAt": "2023-02-04T08:48:14.046Z"
+    },
+    {
+      "id": 20,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-2.jpeg",
+      "createdAt": "2023-02-04T08:48:14.051Z",
+      "updatedAt": "2023-02-04T08:48:14.055Z"
+    },
+    {
+      "id": 21,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-3.jpg",
+      "createdAt": "2023-02-04T08:48:14.060Z",
+      "updatedAt": "2023-02-04T08:48:14.072Z"
+    },
+    {
+      "id": 22,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-4.jpg",
+      "createdAt": "2023-02-04T08:48:14.075Z",
+      "updatedAt": "2023-02-04T08:48:14.081Z"
+    },
+    {
+      "id": 23,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-5.jfif",
+      "createdAt": "2023-02-04T08:48:14.086Z",
+      "updatedAt": "2023-02-04T08:48:14.090Z"
+    },
+    {
+      "id": 24,
+      "gameId": 3,
+      "type": "image",
+      "url": "/uploads/images/w-6.jfif",
+      "createdAt": "2023-02-04T08:48:14.092Z",
+      "updatedAt": "2023-02-04T08:48:14.097Z"
+    }
+  ],
+  "gameInfo": {
+    "id": 3,
+    "gameId": 3,
+    "developer": "CD Projekt",
+    "publisher": "CD Projekt RED",
+    "releaseDate": "18/05/15",
+    "os": "Windows",
+    "processor": "Intel CPU Core i5-2500K 3.3GHz / AMD A10-5800K APU (3.8GHz)",
+    "memory": "6 GB RAM",
+    "storage": "50 GB available space",
+    "graphics": "Nvidia GPU GeForce GTX 660 / AMD GPU Radeon HD 7870",
+    "createdAt": "2023-02-04T08:48:12.148Z",
+    "updatedAt": "2023-02-04T08:48:12.148Z"
+  },
+  "gameAbout": {
+    "id": 3,
+    "gameId": 3,
+    "mainInfo": "Behold the dark fantasy world of the Continent like never before! This edition of The Witcher 3: Wild Hunt has been enhanced with numerous visual and technical improvements implemented with the power of the latest console generation and modern PCs in mind.",
+    "fstP": "Behold the conjunction of two witcher worlds! In The Witcher 3: Wild Hunt next-gen update, discover brand new content inspired by Netflix’s The Witcher series, including two beautifully decorated armor sets for Geralt, and more!",
+    "sndP": "Below you’ll find a list of our events currently taking place, as well as ones which have been concluded (but might return in the future!). If you’d like to learn more about a particular one, simply click on the corresponding badge to load up a project’s dedicated page with all the details.",
+    "thdP": "Game of the Year winner, The Witcher 3: Wild Hunt, was developed by CD Projekt Red and was originally released on May 18, 2015. It re-released about a year later (August 30, 2016) with a content-packed GOTY edition which included all of the DLCs.",
+    "ftsP": "",
+    "thsP": "",
+    "createdAt": "2023-02-04T08:48:12.212Z",
+    "updatedAt": "2023-02-04T08:48:12.212Z"
+  },
+  "genres": [
+    {
+      "id": 1,
+      "genreName": "Action",
+      "createdAt": "2023-02-03T12:17:07.780Z",
+      "updatedAt": "2023-02-03T12:17:07.780Z",
+      "GenreGames": {
+        "id": 13,
+        "gameId": 3,
+        "genreId": 1
+      }
+    },
+    {
+      "id": 3,
+      "genreName": "Adventure",
+      "createdAt": "2023-02-03T12:20:02.517Z",
+      "updatedAt": "2023-02-03T12:20:02.517Z"
+    },
+    {
+      "id": 6,
+      "genreName": "Fantasy",
+      "createdAt": "2023-02-03T12:20:59.924Z",
+      "updatedAt": "2023-02-03T12:20:59.924Z"
+    },
+    {
+      "id": 7,
+      "genreName": "RPG",
+      "createdAt": "2023-02-03T12:21:13.548Z",
+      "updatedAt": "2023-02-03T12:21:13.548Z"
+    }
+  ],
+  "features": [
+    {
+      "id": 5,
+      "featureName": "Open World",
+      "createdAt": "2023-02-03T14:27:14.018Z",
+      "updatedAt": "2023-02-03T14:27:14.018Z"
+    },
+    {
+      "id": 11,
+      "featureName": "Singleplayer",
+      "createdAt": "2023-02-03T14:28:24.556Z",
+      "updatedAt": "2023-02-03T14:28:24.556Z"
+    }
+  ]
+}

@@ -7,7 +7,12 @@ import { AuthForm } from '@/features/authByEmail'
 
 import styles from './AuthPage.module.scss'
 
-export const AuthPage: FC = () => {
+interface AuthPageProps {
+	dataTestId: string
+}
+
+export const AuthPage: FC<AuthPageProps> = props => {
+	const { dataTestId } = props
 	const router = useRouter()
 	const isSignUpPage = router.pathname === REGISTRATION_ROUTE
 	return (
@@ -17,7 +22,7 @@ export const AuthPage: FC = () => {
 			withFooter={false}
 			withToolbar={false}
 		>
-			<div className={styles.container}>
+			<div className={styles.container} data-testid={dataTestId}>
 				<div className={styles.card}>
 					<AuthForm isSignUpPage={isSignUpPage} />
 				</div>

@@ -22,13 +22,10 @@ export const SearchBar: FC<SearchBarProps> = memo(props => {
 	const searchRef = useOutside(hide)
 
 	return (
-		<div
-			data-testid='search'
-			className={cn(styles.searchbar_wrapper, className)}
-			ref={searchRef}
-		>
-			<div className={styles.searchbar}>
+		<div className={cn(styles.searchbar_wrapper, className)} ref={searchRef}>
+			<div className={styles.searchbar} data-testid='Searchbar'>
 				<Input
+					dataTestId='Searchbar.Input'
 					className={styles.search_input}
 					placeholder={'Search'}
 					value={searchTerm}
@@ -37,18 +34,26 @@ export const SearchBar: FC<SearchBarProps> = memo(props => {
 				<Icon className={styles.search_icon} Icon={BiSearch} />
 			</div>
 			{isVisible && (
-				<div data-testid='search_dropdown' className={styles.search_dropdown}>
+				<div
+					data-testid='Searchbar.Dropdown'
+					className={styles.search_dropdown}
+				>
 					{games?.length ? (
 						games.map(game => (
 							<div className={styles.search_item} key={game.id}>
-								<Link href={`${GAME_ROUTE}/${game.id}`}>
+								<Link
+									href={`${GAME_ROUTE}/${game.id}`}
+									data-testid='Searchbar.Game'
+								>
 									{filterText(game.gameName, 25)}
 								</Link>
 							</div>
 						))
 					) : (
 						<div className={styles.search_item}>
-							<Link href={STORE_ROUTE}>Browse all</Link>
+							<Link data-testid='Searchbar.BrowseAll' href={STORE_ROUTE}>
+								Browse all
+							</Link>
 						</div>
 					)}
 				</div>

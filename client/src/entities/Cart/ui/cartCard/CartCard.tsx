@@ -9,8 +9,8 @@ import { GAME_ROUTE } from '@/shared/consts'
 
 import Image from 'next/image'
 import { removeGameFromCart } from '@/features/userCart/model/services/removeGameFromCart/removeGameFromCart'
-import styles from './CartCard.module.scss'
 import { SERVER_URL } from '@/shared/api'
+import styles from './CartCard.module.scss'
 
 interface CartCardProps {
 	game: GameSchema

@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
-import AuthPage from '@/pages/authPage/ui/AuthPage'
+import { AuthPage } from '@/pages/authPage'
 
 const LogIn: NextPage = () => {
-	return <AuthPage />
+	return <AuthPage dataTestId={'LoginPage'} />
 }
 
 export default LogIn
